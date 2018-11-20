@@ -122,7 +122,6 @@ app.post('/getpresentation/', (req,res,next)=>{
       res.send('0');
     }
   });
-  console.log(query);
 });
 app.post('/makeedits/', (req,res,next)=>{
   sess=req.session;
