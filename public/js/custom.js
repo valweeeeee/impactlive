@@ -327,7 +327,7 @@ $('document').ready(function() {
 		$('body').delay(500).queue(function(nxt100) {
 			$("#journeyStartAgain").remove();
 
-				$("<div id=\"journeyStartAgain\"><img src=\"/images/journeyCont.png\" width=\"300\" height=\"300\" alt=\"start your journey!\" id=\"journey2\">").prependTo("body").hide().fadeIn(200);
+				$("<div id=\"journeyStartAgain\"><img src=\"/images/journeycont.png\" width=\"300\" height=\"300\" alt=\"start your journey!\" id=\"journey2\">").prependTo("body").hide().fadeIn(200);
 				 var	startLevel=$("#journeyStartAgain").offset();
 				 $("<div id=\"progressBar\" style=\"overflow:hidden;\" class=\"skillbar clearfix\" data-percent=\"100%\"><div class=\"skillbar-bar\" style=\"background: #ED7D31;\"></div></div>").prependTo("body").hide().fadeIn(1000);
 			$('#progressBar').each(function() {
