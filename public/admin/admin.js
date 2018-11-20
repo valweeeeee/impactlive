@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+  $("#username").focus();
   window.getCookie = (function (name) {
     //console.log('hi');
       var nameEQ = name + "=";
