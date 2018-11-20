@@ -7,13 +7,12 @@
     "start": "node server.js"
   },
   "engines": {
-    "node": "6.2.0"
+    "node": "10.8.0"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bufferutil": "4.0.0",
     "client-sessions": "^0.8.0",
     "ejs": "^2.6.1",
     "express": "4.16.4",
@@ -23,11 +22,15 @@
     "morgan": "^1.9.1",
     "pg": "^7.6.1",
     "require.js": "^1.0.0",
+    "restart": "^2.0.0",
     "session-file-store": "^1.2.0",
     "socket.io": "2.1.1",
     "socket.io-client": "^2.1.1",
     "utf-8-validate": "5.0.1",
     "uuid": "^3.3.2",
     "ws": "6.1.0"
+  },
+  "optionalDependencies": {
+    "bufferutil": "^4.0.0"
   }
 }
