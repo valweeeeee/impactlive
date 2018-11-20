@@ -1,0 +1,64 @@
+<html>
+<head>
+  <title>Login  - Impact Live Admin</title>
+  <script src="/jquery/jquery.js" type="text/javascript"></script>
+  <script src="/socket/socket.js" type="text/javascript"></script>
+  <script src="/admin/admin.js" type="text/javascript"></script>
+  <link href="/admin/admin.css" type="text/css" rel="stylesheet">
+  <script>
+  $(document).ready(function() {
+
+    $('form').submit(function (e) {
+      e.preventDefault();
+     $.ajax({
+        url: '/loginpage/',
+        contentType: 'application/json',
+        data:  toJSONString( this ),
+        type: 'POST',
+        dataType: "json",
+        success: function (data) {
+            if(data.ok=="false"){
+              alert('Sorry, there is no user with those credentials.');
+            }
+            else{
+              setCookie('impactLive',data.ok);
+              window.location="/admin/presentations.html";
+            }
+        },
+        error: function (xhr, status, error) {
+            console.log('Error: ' + error);
+
+        },
+    });
+  });
+  });
+</script>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-colors">
+      <i class="green"></i>
+      <i class="purple"></i>
+      <i class="blue"></i>
+      <i class="green"></i>
+      <i class="yellow"></i>
+      <i class="orange"></i>
+      <i class="red"></i>
+  </div>
+  <nav>
+  Impact Live Push Content
+  </nav>
+</div>
+
+
+<div class="login">
+  <h1>Login</h1>
+  <form id="loginForm" method="post">
+    <input type="text" placeholder="username" id="username" name="username" required>
+    <input type="password" placeholder="password" id="password" name="password" required>
+    <input type="submit" value="Log In" id="login">
+  </form>
+</div>
+
+</body>
+</html>

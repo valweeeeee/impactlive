@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>Salesforce.org</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <link rel="stylesheet" href="css/custom.css">
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  <script src="/jquery/jquery.js" type="text/javascript"></script>
+  <script src="/socket/socket.js" type="text/javascript"></script>
+  <script src="/custom/custom.js" type="text/javascript"></script>
+  <script
+  src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"
+  integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <!-- Primary Page Layout
+    –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div id="whole" style="height:100%">
+    <div class="container">
+      <div class="bgContainer">
+        <div class="sliding-background"></div>
+      </div>
+      <div id="#main">
+        <div class="row">
+          <div class="twelve columns" style="visibility:hidden">
+            <br>
+            <img src="images/salesforce.png" width="270" height="140" alt="Salesforce.org" class="resizeImg" id="ticket">
+            <h4 class="fadeInIntro">WITH</h4>
+            <img src="" width="200" height="125" alt="Company Name" id="acsLogo" class="resizeImg fadeInIntro">
+            
+          </div>
+        </div>
+        <div class="row">
+
+        </div>
+        <div class="center">
+          <div id="register">
+            <span id="progressButton" class="next">Next</span>
+            <div id="inputContainer">
+              <input id="inputField" required autofocus/>
+              <span id="inputLabel"></span>
+              <div id="inputProgress"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="extras">
+    <div id="emailBuild">
+        <div id="tosection">
+          <div id="icon"></div>
+          From: <a href="#" id="subjectLink"></a>&nbsp;&nbsp;<span class="greaterThan">&gt;</span><br>
+          To: <a href="#"><span class="fNameStored"></span></a>&nbsp;&nbsp;<span class="greaterThan">&gt;</span>
+
+        </div>
+
+    </div>
+    <div id="subject">
+      <span class="fNameStored"></span> - <span id="custSubject"></span><br>
+      <div id="time">Today at <div id="curTime"></div></div>
+      <div id="inbox">Inbox <span id="x">X</span></div>
+    </div>
+
+    <div id="email1"><br><br><img src="" id="emailImg" alt="Company Name"><div id="nextStep">Continue</div></div>
+  </div>
+
+
+</body>
+</html>

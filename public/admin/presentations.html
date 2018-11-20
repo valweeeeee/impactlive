@@ -1,0 +1,112 @@
+<html>
+<head>
+  <title>Presentations  - Impact Live Admin</title>
+  <script src="/jquery/jquery.js" type="text/javascript"></script>
+  <script src="/socket/socket.js" type="text/javascript"></script>
+  <script src="/admin/admin.js" type="text/javascript"></script>
+  <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
+  <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+  <link href="/admin/admin.css" type="text/css" rel="stylesheet">
+  <script>
+  $(document).ready(function() {
+    window.newPres=function(){
+        window.location="/admin/newPresentations.html";
+  }
+  window.deletePres=function(presentationid,userid){
+    if(confirm('Are you sure you wish to delete this presentation? It cannot come back!')){
+      var data='{"userid":"' + getCookie('impactLive') + '", "presentationid":"'+presentationid+'" }';
+      $.ajax({
+         url: '/delete/',
+         contentType: 'application/json',
+         data: data,
+         type: 'POST',
+         dataType: "json",
+         success: function (data) {
+           if(data.ok=="false"){
+             alert('Sorry, there was an error. Please try again later.');
+           }
+           else{
+             $(".record_"+presentationid).hide('slow');
+           }
+
+          }
+        });
+      }
+}
+    var userid=getCookie('impactLive');
+    if(!userid){
+      window.location="/admin/index.html";
+    }
+    else{
+      var data='{"userid":"' + userid + '"}';
+      var table=$("#presentations tbody");
+      $.ajax({
+         url: '/getpresentations/',
+         contentType: 'application/json',
+         data: data,
+         type: 'POST',
+         dataType: "json",
+         success: function (data) {
+           table.empty();
+            $.each(data, function (a, b) {
+              var date = new Date(b.datecreated);
+              createdate=date.getMonth()+1 + '/' + date.getDate() + '/' +  date.getFullYear();
+
+                table.append("<tr class='record_"+b.presentationid+"'><td>"+b.presentationid+"</td><td>"+b.companyname+"</td>" +
+                    "<td>"+createdate+"</td><td><a href='/?r="+b.presentationid+"' target='_blank'>User Side</a></td><td><a href=\"/admin/adminPush.html?r="+b.presentationid+"\" target='_blank'>Admin</a></td><td style='vertical-align:middle'><a href='/admin/editPresentations.html?e="+b.presentationid+"'><i class='material-icons'>create</i></a></td><td style='vertical-align:middle' class='delete'><i class='material-icons'  onclick='deletePres("+b.presentationid+","+b.userid+")'>delete_sweep</i></td></tr>");
+
+
+            });
+
+            $("#presentations").dataTable({
+              "paging": false,
+            });
+         },
+         error: function (xhr, status, error) {
+             console.log('Error: ' + error);
+
+         },
+       });
+     }
+
+
+  });
+</script>
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-colors">
+      <i class="green"></i>
+      <i class="purple"></i>
+      <i class="blue"></i>
+      <i class="green"></i>
+      <i class="yellow"></i>
+      <i class="orange"></i>
+      <i class="red"></i>
+  </div>
+  <nav>
+  Impact Live Presentations
+  </nav>
+</div>
+<br><br>
+<button id="newPresentation" style="float:left;width:200px;height:50px;cursor:pointer;border:2px solid #000;background:#2ecc71;margin-left:80px;font-size:16px" onclick="newPres()">+ Add New Presentation</button>
+<table id="presentations" width="90%">
+  <thead>
+      <td width="10%">Presentation Number</td>
+      <td>Company Name</td>
+      <td>Date Created</td>
+      <td>User-Side URL</td>
+      <td>Admin Controls</td>
+      <td>Edit</td>
+      <td>Delete</td>
+  </thead>
+  <tbody>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
+
+</body>
+</html>

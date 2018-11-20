@@ -1,0 +1,227 @@
+body {
+	background: #f8f8f8;
+	font-family:verdana;
+}
+.topbar {
+	position: relative;
+	width: 100%;
+	height: 60px;
+	padding-top: 6px;
+	background: white;
+	box-shadow: 0 5px 18px rgba(0, 0, 0, 0.13);
+}
+.topbar-colors {
+	position: absolute;
+	background: #bc382a;
+	top: 0;
+	left: 0;
+	right: 0;
+}
+i {
+	float: left;
+	display: block;
+	height: 6px;
+	width: 14.285%;
+}
+nav {
+	line-height: 59px;
+	font-family: Verdana;
+	font-size: 12px;
+	text-align: center;
+	text-transform: uppercase;
+	letter-spacing: 0.05em;
+	color: #333;
+}
+/* button div */
+
+#buttons {
+	padding-top: 50px;
+	text-align: center;
+
+
+}
+.buttons{
+	display:inline;
+	width:350px;
+	height:500px;
+	border:1px solid red;
+}
+/* start da css for da buttons */
+
+.btn {
+	border-radius: 5px;
+	padding: 15px 25px;
+	font-size: 22px;
+	text-decoration: none;
+	margin: 20px;
+	color: #fff;
+	position: relative;
+	display: inline-block;
+}
+.btn:active {
+	transform: translate(0px, 5px);
+	-webkit-transform: translate(0px, 5px);
+	box-shadow: 0px 1px 0px 0px;
+}
+.blue {
+	background-color: #55acee;
+	box-shadow: 0px 5px 0px 0px #3C93D5;
+}
+.blue:hover {
+	background-color: #6FC6FF;
+}
+.green {
+	background-color: #2ecc71;
+	box-shadow: 0px 5px 0px 0px #15B358;
+}
+.green:hover {
+	background-color: #48E68B;
+}
+.red {
+	background-color: #e74c3c;
+	box-shadow: 0px 5px 0px 0px #CE3323;
+}
+.red:hover {
+	background-color: #FF6656;
+}
+.purple {
+	background-color: #9b59b6;
+	box-shadow: 0px 5px 0px 0px #82409D;
+}
+.purple:hover {
+	background-color: #B573D0;
+}
+.orange {
+	background-color: #e67e22;
+	box-shadow: 0px 5px 0px 0px #CD6509;
+}
+.orange:hover {
+	background-color: #FF983C;
+}
+.yellow {
+	background-color: #f1c40f;
+	box-shadow: 0px 5px 0px 0px #D8AB00;
+}
+.yellow:hover {
+	background-color: #FFDE29;
+}
+html {
+	height: 100%
+}
+::-moz-selection {
+	background: #fe57a1;
+	color: #fff;
+	text-shadow: none;
+}
+::selection {
+	background: #fe57a1;
+	color: #fff;
+	text-shadow: none;
+}
+body {
+	background-image: radial-gradient( cover, rgba(92, 100, 111, 1) 0%, rgba(31, 35, 40, 1) 100%)
+}
+.login {
+	background: #eceeee;
+	border: 1px solid #42464b;
+	border-radius: 6px;
+	height: 300px;
+	margin: 20px auto 0;
+	width: 328px;
+}
+.login h1 {
+	background-image: linear-gradient(top, #f1f3f3, #d4dae0);
+	border-bottom: 1px solid #a6abaf;
+	border-radius: 6px 6px 0 0;
+	box-sizing: border-box;
+	color: #727678;
+	display: block;
+	height: 43px;
+	font: 600 14px/1 'Open Sans', sans-serif;
+	padding-top: 14px;
+	margin: 0;
+	text-align: center;
+	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.2), 0 1px 0 #fff;
+}
+input[type="password"], input[type="text"] {
+	background: linear-gradient(top, #d6d7d7, #dee0e0);
+	border: 1px solid #a1a3a3;
+	border-radius: 4px;
+	box-shadow: 0 1px #fff;
+	box-sizing: border-box;
+	color: #696969;
+	height: 39px;
+	margin: 20px 0 0 38px;
+	padding-left: 5px;
+	transition: box-shadow 0.3s;
+	width: 240px;
+}
+.toggle {
+	display: block;
+	height: 16px;
+	margin-top: -20px;
+	width: 87px;
+	z-index: -1;
+}
+input[type="submit"] {
+	background-color: #007FBD;
+	border: 1px solid #256f67;
+	border-radius: 4px;
+	box-shadow: inset 0 1px rgba(255, 255, 255, 0.3);
+	box-sizing: border-box;
+	color: #f8f8f8;
+	font-weight: 700;
+	height: 39px;
+	margin: 12px 0 0 38px;
+	text-shadow: 0 -1px 0 #177c6a;
+	width: 240px;
+	cursor: pointer;
+}
+input[type="submit"]:hover, input[type="submit"]:focus {
+	background-image: linear-gradient(top, #4ec7c0, #31aba3)
+}
+input[type="submit"]:active {
+	background-image: linear-gradient(bottom, #3db0a6, #319d91);
+	padding: 0;
+}
+#presentations{
+	margin-top:55px;
+}
+#presentations_info{
+	display:none;
+}
+#presentations_filter{
+	margin-right:80px !important;
+}
+#presentations_filter input{
+	height:35px !important;
+}
+.material-icons{
+	margin-top:-15px;
+	cursor:pointer;
+
+}
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+		cursor:pointer;
+}
+
+/* Tooltip text */
+.tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    position: absolute;
+    z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
