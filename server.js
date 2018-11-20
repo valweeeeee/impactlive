@@ -86,6 +86,7 @@ const DB = {
 app.post('/loginpage/', (req, res, next) => {
     sess=req.session;
     let query = "SELECT userid from users where username='"+req.body.username + "' AND password=CRYPT('" + req.body.password + "',password)";
+    console.log(query);
     DB.query(query, (err, results) => {
       if (results && results != ''){
         sess.userid=results[0].userid;

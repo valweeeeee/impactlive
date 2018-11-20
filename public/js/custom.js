@@ -109,7 +109,8 @@ $('document').ready(function() {
 				});
 			}
 	else{
-			alert("You need to specify a room. Invalid URL. Push to a generic page here.");
+			alert("You need to specify a room. Invalid URL.");
+			window.location="http://www.salesforce.org";
 	}
 
 	var section="name";
