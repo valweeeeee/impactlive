@@ -17,7 +17,7 @@
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-
+        console.log('hey');
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
