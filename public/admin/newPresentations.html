@@ -17,7 +17,7 @@
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-        console.log('hey');
+
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
@@ -25,6 +25,7 @@
           type: 'POST',
           dataType: "json",
           success: function(data){
+            console.log('the data is' + data.data);
             if(data.data=="ok"){
               window.location="/admin/presentations.html";
             }
