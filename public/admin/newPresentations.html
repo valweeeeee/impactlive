@@ -25,9 +25,12 @@
           type: 'POST',
           dataType: "json",
           success: function(data){
-            console.log(data.data);
+
             if(data.data=="ok"){
               window.location="/admin/presentations.html";
+            }
+            else{
+              console.log(data);
             }
           },
           failure: function(errMsg) {
