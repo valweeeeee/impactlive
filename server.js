@@ -140,8 +140,7 @@ app.post('/makeedits/', (req,res,next)=>{
 app.post('/newrecord/', (req,res,next)=>{
   sess=req.session;
   let query = "INSERT INTO presentations (companyname,companylogourl,pushcontent1url,pushcontent2url,pushcontent3url,pushcontent4url,pushcontent5urlemail1subject,surveylink,userid,datecreated) VALUES ('"+req.body.companyname+"','"+req.body.companylogourl+"','"+req.body.pushcontent1url+"','"+req.body.pushcontent2url+"','"+req.body.pushcontent3url+"','"+req.body.pushcontent4url+"','"+req.body.pushcontent5url+"','"+req.body.email1subject+"','"+req.body.surveylink+"','"+req.body.userid+"', NOW())";
-  res.json({"data":query},200);
-  /*DB.query(query, (err, results) => {
+  res.json({"data":query},200);/*DB.query(query, (err, results) => {
     if(err) {
         res.json({'err':1,'message':err});
         return;
