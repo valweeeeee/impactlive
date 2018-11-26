@@ -148,8 +148,8 @@ app.post('/newrecord/', (req,res,next)=>{
       res.header("Access-Control-Allow-Origin", "*");
       res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,    Accept");
       res.json({"data":'ok'},200);
-  */
-  });
+
+  });*/
 });
 app.post('/delete/', (req,res,next)=>{
   sess=req.session;
