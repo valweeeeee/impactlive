@@ -62,15 +62,12 @@
 
    const files = document.getElementById('file-input').files;
    const file = files[0];
-   var fileExtension = ['jpeg', 'jpg', 'png', 'gif'];
+
    if(file == null){
      return alert('No file selected.');
    }
-   if ($.inArray($(file).split('.').pop().toLowerCase(), fileExtension) == -1) {
-        alert("Only files of type jpg, png, gif, jpeg are allowed");
-        return false;
-   }
-  
+   var fileExtension = ['jpeg', 'jpg', 'png', 'gif'];
+
 
    getSignedRequest(file);
  }
