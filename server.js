@@ -58,7 +58,6 @@ app.get('/sign-s3', (req, res) => {
     ACL: 'public-read'
   };
 
-  return new Promise( ( resolve, reject ) => {
     sharp(fileName).resize( 300).toBuffer( function ( err, data ) {
         console.log('here');
           s3.getSignedUrl('putObject', s3Params, (err, data) => {
@@ -74,7 +73,7 @@ app.get('/sign-s3', (req, res) => {
             res.write(JSON.stringify(returnData));
             res.end();
           });
-      });
+
   });
 
 });
