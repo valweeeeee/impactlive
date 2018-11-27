@@ -70,13 +70,7 @@
         alert("Only files of type jpg, png, gif, jpeg are allowed");
         return false;
    }
-   else{
-     var sizeOf = require('image-size');
-      sizeOf(file, function (err, dimensions) {
-        console.log(dimensions.width, dimensions.height);
-      });
-
-   }
+  
 
    getSignedRequest(file);
  }
