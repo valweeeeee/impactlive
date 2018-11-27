@@ -79,7 +79,8 @@
      var _URL = window.URL || window.webkitURL;
      img.onload=function(){
        if(this.width>350){
-         return alert('The max image width is 350px. The image you uploaded is '+this.width+'.');
+         return alert('The max image width is 350px. The image you uploaded is '+this.width+'px.');
+         return false;
        }
 
      }
@@ -89,7 +90,8 @@
      fileSize=(file.size/1024/1024).toFixed(2)
      console.log(fileSize);
      if(fileSize >=4){
-       return alert('max file size is 4MB');
+       return alert('Max file size is 4MB');
+       return false;
      }
 
    }
