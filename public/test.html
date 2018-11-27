@@ -56,8 +56,7 @@
    xhr.send();
  }
  /*
-  Function called when file input updated. If there is a file selected, then
-  start upload procedure by asking for a signed request from the app.
+  Function called when file input updated.
  */
  function initUpload(){
 
@@ -79,7 +78,7 @@
      var _URL = window.URL || window.webkitURL;
      img.onload=function(){
        if(this.width>350){
-         return alert('The max image width is 350px. The image you uploaded is '+this.width+'px.');
+         alert('The max image width is 350px. The image you uploaded is '+this.width+'px.');
          return false;
        }
 
@@ -87,10 +86,9 @@
      img.src = _URL.createObjectURL(file);
 
      /* file size limit*/
-     fileSize=(file.size/1024/1024).toFixed(2)
-     console.log(fileSize);
-     if(fileSize >=4){
-       return alert('Max file size is 4MB');
+     fileSize=(file.size/1024/1024).toFixed(2);
+     if(fileSize >4){
+       alert('Max file size is 4MB');
        return false;
      }
 
