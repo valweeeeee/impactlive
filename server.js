@@ -59,7 +59,8 @@ app.get('/sign-s3', (req, res) => {
   };
 
   return new Promise( ( resolve, reject ) => {
-    sharp( imageData.data ).resize( 300).toBuffer( function ( err, data ) {
+    sharp(fileName).resize( 300).toBuffer( function ( err, data ) {
+        console.log('here');
           s3.getSignedUrl('putObject', s3Params, (err, data) => {
             if(err){
               console.log(err);
@@ -77,24 +78,6 @@ app.get('/sign-s3', (req, res) => {
   });
 
 });
-function resizeAndUploadToS3( imageData, imageHeader, bucket, key ) {
-  return new Promise( ( resolve, reject ) => {
-    sharp( imageData.data ).resize( 300).toBuffer( function ( err, data ) {
-      s3.putObject( {
-        Bucket: bucket,
-        Key: key,
-        ACL: 'public-read',
-        ContentType: imageHeader['content-type'],
-        ContentLength: imageHeader['content-length'],
-        Body: data
-      }, ( err, status ) => {
-        console.log( 'err:::', err );
-        console.log( 'status:::', status );
-        resolve( status );
-      } );
-    } );
-  } );
-}
 /* pushing*/
 var server = app.listen(port);
 var io = socket.listen(server);
