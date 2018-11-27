@@ -47,9 +47,11 @@ app.post('/save-details', (req, res) => {
 });
 
 app.get('/sign-s3', (req, res) => {
+  const fs = require("fs"); //Load the filesystem module
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
+  const location= req.query['location'];
   const s3Params = {
     Bucket: S3_BUCKET,
     Key: fileName,
@@ -57,25 +59,23 @@ app.get('/sign-s3', (req, res) => {
     ContentType: fileType,
     ACL: 'public-read'
   };
-
-    sharp(fileName).resize( 300).toBuffer( function ( err, data ) {
-        console.log('here');
-          s3.getSignedUrl('putObject', s3Params, (err, data) => {
-            if(err){
-              console.log(err);
-              resolve(err);
-              return res.end();
-            }
-            const returnData = {
-              signedRequest: data,
-              url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
-            };
-            res.write(JSON.stringify(returnData));
-            res.end();
-          });
-
-  });
-
+  sharp(location)
+    .resize({ width: 350 })
+    .toBuffer()
+    .then(data => {
+        s3.getSignedUrl('putObject', s3Params, (err, data) => {
+          if(err){
+            console.log(err);
+            return res.end();
+          }
+          const returnData = {
+            signedRequest: data,
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+          };
+          res.write(JSON.stringify(returnData));
+          res.end();
+        });
+    });
 });
 /* pushing*/
 var server = app.listen(port);
