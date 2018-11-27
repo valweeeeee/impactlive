@@ -79,14 +79,13 @@
        fileSize=(file.size/1024/1024).toFixed(2);
        if(this.width>350){
          alert('The max image width is 350px. The image you uploaded is '+this.width+'px. Your image will be resized.');
-         return true;
+         getSignedRequest(file,this.src);
        }
        else if (fileSize >4){
          alert('Max file size is 4MB');
          return false;
       }
       else{
-        alert('her');
         getSignedRequest(file,this.src);
       }
 
