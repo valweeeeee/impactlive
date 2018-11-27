@@ -69,17 +69,17 @@
    }
    var fileExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
    fileType=file.type.toLowerCase();
-   alert(fileType);
-   alert(fileExtension.indexOf(fileType));
    if (fileExtension.indexOf(fileType) == -1) {
         alert("Only files of type jpg, png, gif, jpeg are allowed");
         return false;
    }
    else{
-     var sizeOf = require('image-size');
-      sizeOf(file, function (err, dimensions) {
-        console.log(dimensions.width, dimensions.height);
-      });
+     img=new Image();
+     img.onload=function(){
+       alert(this.width+ ' ' + this.height);
+
+     }
+     img.src = _URL.createObjectURL(file);
 
    }
    getSignedRequest(file);
