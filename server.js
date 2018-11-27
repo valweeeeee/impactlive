@@ -47,6 +47,12 @@ app.post('/save-details', (req, res) => {
 });
 
 app.get('/sign-s3', (req, res) => {
+  const fs = require("fs"); //Load the filesystem module
+  console.log(req.query['file-name']);
+  const stats = fs.statSync(req.query['file-name']);
+  const fileSizeInBytes = stats.size;
+  //Convert the file size to megabytes (optional)
+  const fileSizeInMegabytes = fileSizeInBytes / 1000000.0;
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
