@@ -60,7 +60,7 @@
  */
  function initUpload(){
 
-   const files = $('.file-input').files;
+   const files = $('.file-input').prop('files');
    const file = files[0];
 
    if(file == null){
@@ -92,10 +92,7 @@
 
      }
      img.src = _URL.createObjectURL(file);
-
-
    }
-
  }
  /*
   Bind listeners when the page loads.
