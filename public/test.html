@@ -59,8 +59,10 @@
   start upload procedure by asking for a signed request from the app.
  */
  function initUpload(){
+
    const files = document.getElementById('file-input').files;
    const file = files[0];
+   alert(file.size);
    if(file == null){
      return alert('No file selected.');
    }
