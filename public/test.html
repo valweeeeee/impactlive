@@ -78,7 +78,10 @@
      img=new Image();
      var _URL = window.URL || window.webkitURL;
      img.onload=function(){
-       alert(this.width+ ' ' + this.height);
+       if(this.width>350){
+         return alert('The max image width is 350px. The image you uploaded is '+this.width+'.');
+       }
+
      }
      img.src = _URL.createObjectURL(file);
 
@@ -86,7 +89,7 @@
      fileSize=(file.size/1024/1024).toFixed(2)
      console.log(fileSize);
      if(fileSize >=4){
-       alert('max file size is 4MB');
+       return alert('max file size is 4MB');
      }
 
    }
