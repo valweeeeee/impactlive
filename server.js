@@ -57,6 +57,7 @@ app.get('/sign-s3', (req, res) => {
     ContentType: fileType,
     ACL: 'public-read'
   };
+  console.log('hello');
 
   return new Promise( ( resolve, reject ) => {
     sharp(fileName).resize( 300).toBuffer( function ( err, data ) {
