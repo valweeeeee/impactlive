@@ -69,6 +69,8 @@
    }
    var fileExtension = ['jpeg', 'jpg', 'png', 'gif'];
    fileType=file.type.toLowerCase();
+   alert(fileType);
+   alert(fileExtension.indexOf(fileType));
    if (fileExtension.indexOf(fileType) == -1) {
         alert("Only files of type jpg, png, gif, jpeg are allowed");
         return false;
