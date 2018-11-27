@@ -1,9 +1,11 @@
 
 var express = require('express');
+var aws = require('aws-sdk');
 var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
 app.use(session({ resave: true ,secret: 'ValerieLovesYogi' , saveUninitialized: true,secure: false}));
+
 var path = require('path');
 var socket = require('socket.io');
 var sess;
@@ -14,10 +16,15 @@ var homepage=path.join(__dirname + '/public/index.html');
 var jqPath=path.join(__dirname + '/node_modules/jquery/dist/jquery.min.js');
 var userJS=path.join(__dirname + '/public/js/custom.js');
 
+app.engine('html', require('ejs').renderFile);
+const S3_BUCKET = process.env.S3_BUCKET;
+
+aws.config.region = 'us-east-2';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static('public'))
+app.use(express.static('public'));
+
 /*------ROUTING------*/
 app.get('/', function(req, res, next) {
   sess=req.session;
@@ -33,6 +40,36 @@ app.get('/socket/socket.io.js.map', function(req, res) {
 });
 app.get('/custom/custom.js', function(req, res) {
     res.sendFile(userJS);
+});
+/* File Uploads*/
+app.post('/save-details', (req, res) => {
+  console.log('image uploaded');
+});
+
+app.get('/sign-s3', (req, res) => {
+  const s3 = new aws.S3();
+  const fileName = req.query['file-name'];
+  const fileType = req.query['file-type'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    const returnData = {
+      signedRequest: data,
+      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+    };
+    res.write(JSON.stringify(returnData));
+    res.end();
+  });
 });
 /* pushing*/
 var server = app.listen(port);
