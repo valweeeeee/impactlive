@@ -83,7 +83,8 @@
      img.src = _URL.createObjectURL(file);
 
      /* file size limit*/
-     if((file.size/1024/1024).toFixed(2)) >=200){
+     fileSize=(file.size/1024/1024).toFixed(2)
+     if(fileSize >=200){
        alert('max file size is 200MB');
      }
 
