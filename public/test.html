@@ -10,8 +10,6 @@
 
 <form method="POST" action="/save-details">
   <input type="hidden" id="avatar-url" name="avatar-url" value="/images/default.png">
-  <input type="text" name="username" placeholder="Username"><br>
-  <input type="text" name="full-name" placeholder="Full name"><br><br>
   <input type="submit" value="Update profile">
 </form>
 <script>
@@ -58,9 +56,9 @@
  /*
   Function called when file input updated.
  */
- function initUpload(){
+ function initUpload(fileInput){
 
-   const files = $('.file-input').prop('files');
+   const files = $(fileInput).prop('files');
    const file = files[0];
 
    if(file == null){
@@ -79,8 +77,8 @@
      img.onload=function(){
        fileSize=(file.size/1024/1024).toFixed(2);
        if(this.width>350){
-         alert('The max image width is 350px. The image you uploaded is '+this.width+'px.');
-         return false;
+         alert('The max image width is 350px. The image you uploaded is '+this.width+'px. Your image will be resized.');
+         return true;
        }
        else if (fileSize >4){
          alert('Max file size is 4MB');
@@ -99,7 +97,7 @@
  */
  (() => {
      $('.file-input').change(function() {
-        return initUpload();
+        return initUpload(this);
      });
  })();
 

@@ -58,19 +58,43 @@ app.get('/sign-s3', (req, res) => {
     ACL: 'public-read'
   };
 
-  s3.getSignedUrl('putObject', s3Params, (err, data) => {
-    if(err){
-      console.log(err);
-      return res.end();
-    }
-    const returnData = {
-      signedRequest: data,
-      url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
-    };
-    res.write(JSON.stringify(returnData));
-    res.end();
+  return new Promise( ( resolve, reject ) => {
+    sharp( imageData.data ).resize( 300).toBuffer( function ( err, data ) {
+          s3.getSignedUrl('putObject', s3Params, (err, data) => {
+            if(err){
+              console.log(err);
+              resolve(err);
+              return res.end();
+            }
+            const returnData = {
+              signedRequest: data,
+              url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+            };
+            res.write(JSON.stringify(returnData));
+            res.end();
+          });
+      });
   });
+
 });
+function resizeAndUploadToS3( imageData, imageHeader, bucket, key ) {
+  return new Promise( ( resolve, reject ) => {
+    sharp( imageData.data ).resize( 300).toBuffer( function ( err, data ) {
+      s3.putObject( {
+        Bucket: bucket,
+        Key: key,
+        ACL: 'public-read',
+        ContentType: imageHeader['content-type'],
+        ContentLength: imageHeader['content-length'],
+        Body: data
+      }, ( err, status ) => {
+        console.log( 'err:::', err );
+        console.log( 'status:::', status );
+        resolve( status );
+      } );
+    } );
+  } );
+}
 /* pushing*/
 var server = app.listen(port);
 var io = socket.listen(server);
