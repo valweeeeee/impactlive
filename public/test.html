@@ -4,7 +4,7 @@
   <script src="/jquery/jquery.js" type="text/javascript"></script>
 </head>
 <body>
-<input type="file" id="file-input">
+<input type="file" class="file-input">
 <p id="status">Please select a file</p>
 <img id="preview" src="/images/default.png">
 
@@ -60,7 +60,7 @@
  */
  function initUpload(){
 
-   const files = document.getElementById('file-input').files;
+   const files = $('.file-input').files;
    const file = files[0];
 
    if(file == null){
@@ -101,7 +101,9 @@
   Bind listeners when the page loads.
  */
  (() => {
-     document.getElementById('file-input').onchange = return initUpload;
+     $('.file-input').change(function() {
+        return initUpload();
+     });
  })();
 
 
