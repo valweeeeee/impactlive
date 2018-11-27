@@ -38,6 +38,7 @@
    request.
  */
  function getSignedRequest(file){
+   alert('here');
    const xhr = new XMLHttpRequest();
    xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}`);
    xhr.onreadystatechange = () => {
