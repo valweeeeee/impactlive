@@ -59,7 +59,7 @@
   Function called when file input updated. If there is a file selected, then
   start upload procedure by asking for a signed request from the app.
  */
- function initUpload(){
+ function initUpload(input){
 
    const files = document.getElementById('file-input').files;
    const file = files[0];
@@ -74,13 +74,16 @@
         return false;
    }
    else{
+     /* image dimensions*/
      img=new Image();
      var _URL = window.URL || window.webkitURL;
      img.onload=function(){
        alert(this.width+ ' ' + this.height);
-
      }
      img.src = _URL.createObjectURL(file);
+
+     /* file size limit*/
+     console.log('This file size is: ' + (file.size/1024/1024).toFixed(2) + " MB");
 
    }
    getSignedRequest(file);
@@ -89,7 +92,7 @@
   Bind listeners when the page loads.
  */
  (() => {
-     document.getElementById('file-input').onchange = initUpload;
+     document.getElementById('#file-input').onchange = initUpload(this);
  })();
 
 
