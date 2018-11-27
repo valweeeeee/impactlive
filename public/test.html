@@ -83,7 +83,9 @@
      img.src = _URL.createObjectURL(file);
 
      /* file size limit*/
-     console.log('This file size is: ' + (file.size/1024/1024).toFixed(2) + " MB");
+     if(file.size/1024/1024).toFixed(2) >=200){
+       alert('max file size is 200MB');
+     }
 
    }
    getSignedRequest(file);
