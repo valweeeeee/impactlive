@@ -68,7 +68,8 @@
      return alert('No file selected.');
    }
    var fileExtension = ['jpeg', 'jpg', 'png', 'gif'];
-   if (inArray(file.type.toLowerCase(), fileExtension) == -1) {
+   fileType=file.type.toLowerCase();
+   if (fileExtension.indexOf(fileType)) == -1) {
         alert("Only files of type jpg, png, gif, jpeg are allowed");
         return false;
    }
