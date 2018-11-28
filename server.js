@@ -76,8 +76,8 @@ app.get('/sign-s3', (req, res) => {
         s3Resizer(
         350,
         `https://${S3_BUCKET}.s3.amazonaws.com/images/${fileName}`,
-        'https://${S3_BUCKET}.s3.amazonaws.com/images/images/',
-        `${fileName}`,
+        `${S3_BUCKET}`,
+        `images/${fileName}`,
         'public-read'
       )
       .then(() => {
