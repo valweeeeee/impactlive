@@ -47,7 +47,6 @@ app.post('/save-details', (req, res) => {
 });
 
 app.get('/sign-s3', (req, res) => {
-  const fs = require("fs"); //Load the filesystem module
   const s3 = new aws.S3();
   var currentDate = new Date();
   const fileName = req.query['file-name'];
@@ -60,10 +59,7 @@ app.get('/sign-s3', (req, res) => {
     ContentType: fileType,
     ACL: 'public-read'
   };
-  sharp(location)
-    .resize({ width: 350 })
-    .toBuffer()
-    .then(data => {
+
         s3.getSignedUrl('putObject', s3Params, (err, data) => {
           if(err){
             console.log(err);
@@ -76,7 +72,17 @@ app.get('/sign-s3', (req, res) => {
           res.write(JSON.stringify(returnData));
           res.end();
         });
-    });
+        const s3Resizer = require('s3-image-resize');
+        /*s3Resizer(
+        350,
+        'https://s3-eu-west-1.amazonaws.com/assets/images/foo.jpg',
+        'images',
+        'assets/foo.jpg',
+        'public-read'
+      )
+      .then(() => {
+        console.log('done');
+      });*/
 });
 /* pushing*/
 var server = app.listen(port);
