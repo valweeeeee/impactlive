@@ -72,17 +72,7 @@ app.get('/sign-s3', (req, res) => {
           res.write(JSON.stringify(returnData));
           res.end();
         });
-        const s3Resizer = require('s3-image-resize');
-        s3Resizer(
-        350,
-        `https://${S3_BUCKET}.s3.amazonaws.com/images/${fileName}`,
-        `https://${S3_BUCKET}.s3.amazonaws.com/`,
-        `images/${fileName}`,
-        'public-read'
-      )
-      .then(() => {
-        alert('done');
-      });
+        
 });
 /* pushing*/
 var server = app.listen(port);
