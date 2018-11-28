@@ -81,7 +81,7 @@ app.get('/sign-s3', (req, res) => {
         'public-read'
       )
       .then(() => {
-        console.log('done');
+        alert('done');
       });
 });
 /* pushing*/
