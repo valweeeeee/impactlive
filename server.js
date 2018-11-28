@@ -67,22 +67,22 @@ app.get('/sign-s3', (req, res) => {
           }
           const returnData = {
             signedRequest: data,
-            url: `https://${S3_BUCKET}.s3.amazonaws.com/${fileName}`
+            url: `https://${S3_BUCKET}.s3.amazonaws.com/images/${fileName}`
           };
           res.write(JSON.stringify(returnData));
           res.end();
         });
         const s3Resizer = require('s3-image-resize');
-        /*s3Resizer(
+        s3Resizer(
         350,
-        'https://s3-eu-west-1.amazonaws.com/assets/images/foo.jpg',
+        `https://${S3_BUCKET}.s3.amazonaws.com/images/${fileName}`,
         'images',
-        'assets/foo.jpg',
+        `${fileName}`,
         'public-read'
       )
       .then(() => {
         console.log('done');
-      });*/
+      });
 });
 /* pushing*/
 var server = app.listen(port);
