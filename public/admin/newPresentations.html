@@ -47,6 +47,7 @@
     newFileName=fileNameOnly + '_' + userID + '_99999' + '.' + fileExt;
     var formData = new FormData();
     formData.append('file', file, newFileName);
+    console.log(formData.name);
     xhr.open('GET', `/sign-s3?file-name=${formData.name}&file-type=${formData.type}&userid=${userID}`);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
