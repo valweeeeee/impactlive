@@ -10,6 +10,7 @@
   <script>
   $(document).ready(function() {
   $('.file-input').change(function() {
+        var
         return initUpload(this);
   });
   var userID=getCookie('impactLive');
@@ -22,7 +23,7 @@
           //document.getElementById('preview1').src = url;
           $("#preview1").html("<img src='"+url+"'>");
           $("#preview1").show();
-         document.getElementById('avatar-url').value = url;
+
         }
         else{
           alert('Could not upload file.');
@@ -38,12 +39,13 @@
   */
   function getSignedRequest(file){
     const xhr = new XMLHttpRequest();
+    file.name=file.name.replace(/\.[^/.]+$/, "");
+    console.log(file.name);
     xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&userid=${userID}`);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           const response = JSON.parse(xhr.responseText);
-          console.log(response.url);
           uploadFile(file, response.signedRequest, response.url);
         }
         else{
