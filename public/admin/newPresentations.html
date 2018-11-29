@@ -36,11 +36,15 @@
     If request successful, continue to upload the file using this signed
     request.
   */
+  function getFileExtension(filename) {
+    return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+  }
   function getSignedRequest(file){
     const xhr = new XMLHttpRequest();
     var fileNameOnly=file.name;
     fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
-    fileNameUserID=fileNameOnly + '_' + userID + '_99999' + '.' + file.type;
+    fileExt=getFileExtension(file.name);
+    fileNameUserID=fileNameOnly + '_' + userID + '_99999' + '.' + fileExt;
     console.log(fileNameUserID);
     file.name=fileNameUserID;
     console.log(file.name);
