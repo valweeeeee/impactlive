@@ -30,6 +30,7 @@
         if(xhr.status === 200){
           //document.getElementById('preview1').src = url;
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/100x100/images/" + fileName;
+          console.log(thisid);
           $(thisid).html("<img src='"+url+"'>");
           $(thisid).show();
 
@@ -168,7 +169,7 @@
    </tr>
    <tr>
      <td>Company Logo<br><span style="font-size:smaller"></td>
-     <td><div id="previewlogo" align="center"></div><input type="file" class="file-input green" name="companylogourl" id="companylogourl" id="logoimage"></td>
+     <td><div id="previewlogo" align="center"></div><br><input type="file" class="file-input green" name="companylogourl" id="companylogourl" id="logoimage"></td>
   </tr>
   <tr>
     <td>Push Content 1 <span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum and be a picture of an email</span></span></td>
