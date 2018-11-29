@@ -19,7 +19,7 @@ var userJS=path.join(__dirname + '/public/js/custom.js');
 app.engine('html', require('ejs').renderFile);
 const S3_BUCKET = process.env.S3_BUCKET;
 
-aws.config.region = 'us-east-2';
+aws.config.region = 'us-east-1';
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
