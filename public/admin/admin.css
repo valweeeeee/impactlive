@@ -164,7 +164,7 @@ input[type="password"], input[type="text"] {
 	z-index: -1;
 }
 .file-input{
-	margin-left:40px;
+	margin-right:20px;
 	float:right;
 }
 .file-input::-webkit-file-upload-button {
