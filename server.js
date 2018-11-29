@@ -45,7 +45,27 @@ app.get('/custom/custom.js', function(req, res) {
 app.post('/save-details', (req, res) => {
   console.log('image uploaded');
 });
+app.get('/delete-s3', (req, res) => {
+  const fileName = req.query['file-name'];
+  const s3Params = {
+    Bucket: S3_BUCKET,
+    Key: "images/" + fileName,
+    Expires: 60,
+    ContentType: fileType,
+    ACL: 'public-read'
+  };
+  s3.getSignedUrl('deleteObject', s3Params, (err, data) => {
+    if(err){
+      console.log(err);
+      return res.end();
+    }
+    else{
+      console.log(data);
+    }
+    res.end();
+  });
 
+});
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   var currentDate = new Date();

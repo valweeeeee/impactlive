@@ -16,6 +16,30 @@
   <script>
   $(document).ready(function() {
     var thisid;
+  $(".deleteImage").click(function(){
+    console.log($(this).data('filename');
+    /*$.ajax({
+       url: '/delete-s3',
+       contentType: 'application/json',
+       data:  toJSONString( this ),
+       type: 'POST',
+       dataType: "json",
+       success: function(data){
+
+         if(data.data=="ok"){
+
+         }
+         else{
+
+         }
+       },
+       failure: function(errMsg) {
+           console.log('error');
+       }
+
+   });*/
+
+  });
   $('.file-input').change(function() {
       thisid=$(this).prev('div');
       return initUpload(this);
@@ -31,7 +55,7 @@
           //document.getElementById('preview1').src = url;
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/150x150/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          $(thisid).html("<a href='"+urlFull+"' target='_blank'><img src='"+url+"' ></a><a href='#' id='deleteImage' style='font-size:larger;float:right;margin-right:180px;margin-top:0px;color:red;'>X</a><br>");
+          $(thisid).html("<a href='"+urlFull+"' target='_blank'><img src='"+url+"' ></a><a href='#' class='deleteImage' data-filename='"+fileName"' style='font-size:larger;float:right;margin-right:180px;margin-top:0px;color:red;'>X</a><br>");
           $(thisid).fadeIn('slow').css("display","block");
 
         }
@@ -182,7 +206,7 @@
   </tr>
   <tr>
     <td>Push Content 3<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
-    <td><div id="preview3" align="center" class="preview"></div><input type="file" class="file-input purple" name="pushcontent3url" id="image3"></td>
+    <td><div id="preview3" align="center" class="preview"></div><input type="file" class="file-input blue" name="pushcontent3url" id="image3"></td>
   </tr>
   <tr>
     <td>Push Content 4<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
