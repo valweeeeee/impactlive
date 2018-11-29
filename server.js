@@ -59,8 +59,7 @@ app.get('/sign-s3', (req, res) => {
     ContentType: fileType,
     ACL: 'public-read'
   };
-
-        s3.getSignedUrl('putObject', s3Params, (err, data) => {
+  s3.getSignedUrl('putObject', s3Params, (err, data) => {
           if(err){
             console.log(err);
             return res.end();
@@ -71,7 +70,7 @@ app.get('/sign-s3', (req, res) => {
           };
           res.write(JSON.stringify(returnData));
           res.end();
-        });
+  });
 
 });
 /* pushing*/
