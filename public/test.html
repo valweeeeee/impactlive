@@ -22,8 +22,8 @@
    xhr.onreadystatechange = () => {
      if(xhr.readyState === 4){
        if(xhr.status === 200){
-         document.getElementById('preview').src = url;
-         document.getElementById('avatar-url').value = url;
+         //document.getElementById('preview').src = url;
+        // document.getElementById('avatar-url').value = url;
        }
        else{
          alert('Could not upload file.');
@@ -44,6 +44,7 @@
      if(xhr.readyState === 4){
        if(xhr.status === 200){
          const response = JSON.parse(xhr.responseText);
+         console.log(response.url);
          uploadFile(file, response.signedRequest, response.url);
        }
        else{
