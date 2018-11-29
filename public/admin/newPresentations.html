@@ -17,10 +17,12 @@
   $(document).ready(function() {
     var thisid;
   $("body").on("click",".deleteImage",function(){
+    var imageInfo={ file-name: this.data('filename')};
+    imageInfo=JSON.stringify(imageInfo);
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
-       data:  toJSONString( this ),
+       data: imageInfo,
        type: 'POST',
        dataType: "json",
        success: function(data){
