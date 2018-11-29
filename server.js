@@ -49,11 +49,15 @@ app.post('/delete-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const s3Params = {
-    Bucket: S3_BUCKET,
-    Key: "images/" + fileName,
-    Expires: 60,
-    ACL: 'public-read'
-  };
+  Bucket: S3_BUCKET,
+  Delete: { // required
+    Objects: [ // required
+      {
+        Key: "images/" + fileName,
+      }
+    ],
+  },
+};
   s3.getSignedUrl('deleteObject', s3Params, (err, data) => {
     if(err){
       console.log(err);
