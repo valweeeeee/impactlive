@@ -108,7 +108,7 @@
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-        console.log($("#image1").value());
+        console.log($("#image1").val());
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
