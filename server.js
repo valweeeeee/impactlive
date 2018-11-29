@@ -58,7 +58,7 @@ app.post('/delete-s3', (req, res) => {
     ],
   },
 };
-  s3.getSignedUrl('deleteObject', s3Params, (err, data) => {
+  s3.deleteObjects(params, function(err, data) {
     if(err){
       console.log(err);
       return res.end();
