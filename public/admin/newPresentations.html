@@ -41,6 +41,7 @@
     var fileNameOnly=file.name;
     fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
     fileNameUserID=fileNameOnly + '_' + userID + '_99999' + '.' + file.type;
+    console.log(fileNameUserID);
     file.name=fileNameUserID;
     console.log(file.name);
     xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&userid=${userID}`);
