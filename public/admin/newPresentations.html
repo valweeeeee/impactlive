@@ -40,7 +40,9 @@
     const xhr = new XMLHttpRequest();
     var fileNameOnly=file.name;
     fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
-    console.log(fileNameOnly);
+    fileNameUserID=fileNameOnly + '_' + userID + '_99999' + '.' + file.type;
+    file.name=fileNameUserID;
+    console.log(file.name);
     xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&userid=${userID}`);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
@@ -94,7 +96,7 @@
       img.src = _URL.createObjectURL(file);
     }
   }
-  if(!userid){
+  if(!userID){
     window.location="/admin/index.html";
   }
   else{
