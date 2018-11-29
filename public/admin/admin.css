@@ -164,7 +164,7 @@ input[type="password"], input[type="text"] {
 	z-index: -1;
 }
 .file-input{
-	float:left;
+
 }
 .file-input::-webkit-file-upload-button {
   visibility: hidden;
@@ -195,7 +195,6 @@ input[type="password"], input[type="text"] {
 	text-align:center;
 	display:none;
 	vertical-align: bottom;;
-	float:right;
 	margin-right:55px;
 }
 input[type="submit"] {
