@@ -17,8 +17,9 @@
   $(document).ready(function() {
     var thisid;
   $("body").on("click",".deleteImage",function(){
-    var imageInfo={ "file-name": $(this).data('filename')};
+    var imageInfo={ filename: $(this).data('filename')};
     imageInfo=JSON.stringify(imageInfo);
+    console.log(imageInfo);
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',

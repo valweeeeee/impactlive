@@ -47,7 +47,7 @@ app.post('/save-details', (req, res) => {
 });
 app.post('/delete-s3', (req, res) => {
   const s3 = new aws.S3();
-  const fileName = req.query['file-name'];
+  const fileName = req.query['filename'];
   console.log(fileName);
   const s3Params = {
   Bucket: S3_BUCKET,
