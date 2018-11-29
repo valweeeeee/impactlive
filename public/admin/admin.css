@@ -196,10 +196,7 @@ input[type="password"], input[type="text"] {
 	text-align:center;
 	display:none;
 }
-td{
-	border:1px solid black;
-	border-radius:5px;
-}
+
 input[type="submit"] {
 	background-color: #007FBD;
 	border: 1px solid #256f67;
