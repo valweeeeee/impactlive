@@ -163,6 +163,9 @@ input[type="password"], input[type="text"] {
 	width: 87px;
 	z-index: -1;
 }
+.file-input{
+	margin-left:40px;
+}
 .file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
@@ -181,13 +184,6 @@ input[type="password"], input[type="text"] {
   font-weight: 700;
   font-size: 10pt;
 }
-.file-input:hover::before {
-  border-color: black;
-}
-.file-input:active::before {
-  background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
-}
-
 .file-input {
   color: transparent;
 }
