@@ -17,7 +17,6 @@
   $(document).ready(function() {
   $('.file-input').change(function() {
       var thisid=$(this).prev('div');
-      console.log(thisid);
       return initUpload(this);
   });
   var userID=getCookie('impactLive');
@@ -30,8 +29,8 @@
         if(xhr.status === 200){
           //document.getElementById('preview1').src = url;
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/100x100/images/" + fileName;
-          $("#preview1").html("<img src='"+url+"'>");
-          $("#preview1").show();
+          $(thisid).html("<img src='"+url+"'>");
+          $(thisid).show();
 
         }
         else{
