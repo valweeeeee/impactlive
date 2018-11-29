@@ -52,7 +52,6 @@ app.post('/delete-s3', (req, res) => {
     Bucket: S3_BUCKET,
     Key: "images/" + fileName,
     Expires: 60,
-    ContentType: fileType,
     ACL: 'public-read'
   };
   s3.getSignedUrl('deleteObject', s3Params, (err, data) => {
