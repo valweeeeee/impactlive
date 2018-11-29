@@ -45,7 +45,7 @@ app.get('/custom/custom.js', function(req, res) {
 app.post('/save-details', (req, res) => {
   console.log('image uploaded');
 });
-app.get('/delete-s3', (req, res) => {
+app.post('/delete-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const s3Params = {
