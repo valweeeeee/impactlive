@@ -48,7 +48,6 @@
     fileExt=getFileExtension(file.name);
     newFileName=fileNameOnly + '_' + userID + '_99999' + '.' + fileExt;
     const myNewFile = new File([file], newFileName, {type: file.type});
-    console.log(myNewFile.name);
     xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
@@ -109,7 +108,7 @@
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-
+        console.log($("#image1").value());
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
@@ -171,19 +170,19 @@
   </tr>
   <tr>
     <td>Push Content 2<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
-    <td><div id="preview2" align="center"></div><input type="file" class="file-input orange" name="pushcontent2url" id="image2"></td>
+    <td><div id="preview2" align="center"></div><br><input type="file" class="file-input orange" name="pushcontent2url" id="image2"></td>
   </tr>
   <tr>
     <td>Push Content 3<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
-    <td><div id="preview3" align="center"></div><input type="file" class="file-input purple" name="pushcontent3url" id="image3"></td>
+    <td><div id="preview3" align="center"></div><br><input type="file" class="file-input purple" name="pushcontent3url" id="image3"></td>
   </tr>
   <tr>
     <td>Push Content 4<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
-    <td><div id="preview4" align="center"></div><input type="file" class="file-input yellow" name="pushcontent4url" id="image4"></td>
+    <td><div id="preview4" align="center"></div><br><input type="file" class="file-input yellow" name="pushcontent4url" id="image4"></td>
   </tr>
   <tr>
     <td>Push Content 5<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
-    <td><div id="preview5" align="center"></div><input type="file" class="file-input blue" name="pushcontent5url" id="image5"></td>
+    <td><div id="preview5" align="center"><br></div><input type="file" class="file-input blue" name="pushcontent5url" id="image5"></td>
   </tr>
   <tr>
     <td>Email Subject<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Subject line for the first email</span></span></td>
