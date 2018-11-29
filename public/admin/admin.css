@@ -190,6 +190,12 @@ input[type="password"], input[type="text"] {
 .file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
+#preview{
+	width:110px;
+	height:110px;
+	text-align:center;
+	display:none;
+}
 td{
 	border:1px solid black;
 	border-radius:5px;

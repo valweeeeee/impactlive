@@ -49,9 +49,11 @@ app.post('/save-details', (req, res) => {
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   var currentDate = new Date();
+  const userid= req.query['userid'];
   const fileName = req.query['file-name'];
   const fileType = req.query['file-type'];
-  const location= req.query['location'];
+
+
   const s3Params = {
     Bucket: S3_BUCKET,
     Key: "images/" + fileName,

@@ -19,7 +19,9 @@
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          document.getElementById('preview').src = url;
+          //document.getElementById('preview1').src = url;
+          $("#preview1").html("<img src='"+url+"'>");
+          $("#preview1").show();
          document.getElementById('avatar-url').value = url;
         }
         else{
@@ -150,27 +152,28 @@
    </tr>
    <tr>
      <td>Company Logo<br><span style="font-size:smaller"></td>
-     <td><input type="file" class="file-input green" name="companylogourl" id="companylogourl"></td>
+     <td><input type="file" class="file-input green" name="companylogourl" id="companylogourl" id="logoimage"></td>
   </tr>
   <tr>
     <td>Push Content 1 <span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum and be a picture of an email</span></span></td>
-    <td><input type="file" class="file-input blue" name="pushcontent1url"></td>
+    <td><input type="file" class="file-input blue" name="pushcontent1url" id="image1">
+    <div id="preview1"></div></td>
   </tr>
   <tr>
     <td>Push Content 2<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
-    <td><input type="file" class="file-input orange" name="pushcontent2url"></td>
+    <td><input type="file" class="file-input orange" name="pushcontent2url" id="image2"><div id="preview2"></div></td>
   </tr>
   <tr>
     <td>Push Content 3<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
-    <td><input type="file" class="file-input purple" name="pushcontent3url"></td>
+    <td><input type="file" class="file-input purple" name="pushcontent3url" id="image3"><div id="preview3"></div></td>
   </tr>
   <tr>
     <td>Push Content 4<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
-    <td><input type="file" class="file-input yellow" name="pushcontent4url"></td>
+    <td><input type="file" class="file-input yellow" name="pushcontent4url" id="image4"><div id="preview4"></div></td>
   </tr>
   <tr>
     <td>Push Content 5<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum</span></span></td>
-    <td><input type="file" class="file-input blue" name="pushcontent5url"></td>
+    <td><input type="file" class="file-input blue" name="pushcontent5url" id="image5"><div id="preview5"></div></td>
   </tr>
   <tr>
     <td>Email Subject<span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Subject line for the first email</span></span></td>
