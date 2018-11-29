@@ -192,11 +192,11 @@ input[type="password"], input[type="text"] {
 }
 
 .preview{
-	width:110px;
-	height:110px;
+	width:55px;
+	height:55px;
 	text-align:center;
 	display:none;
-	margin-bottom:-15px;
+	vertical-align: bottom;;
 }
 input[type="submit"] {
 	background-color: #007FBD;
