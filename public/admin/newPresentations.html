@@ -16,7 +16,7 @@
   <script>
   $(document).ready(function() {
     var thisid;
-  $(".deleteImage").on("click",function(){
+  $("window").on("click",".deleteImage",function(){
     alert('here');
     console.log($(this).data('filename'));
     /*$.ajax({
