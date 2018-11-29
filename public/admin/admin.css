@@ -192,7 +192,6 @@ input[type="password"], input[type="text"] {
 }
 
 .preview{
-	text-align:center;
 	display:none;
 	vertical-align: bottom;
 	margin-bottom:15px;
