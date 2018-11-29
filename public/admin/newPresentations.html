@@ -17,9 +17,9 @@
   $(document).ready(function() {
     var thisid;
   $("body").on("click",".deleteImage",function(){
-    var imageInfo={ filename: $(this).data('filename')};
+    var imageInfo={};
+    imageInfo.filename= $(this).data('filename');
     imageInfo=JSON.stringify(imageInfo);
-    console.log(imageInfo);
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
@@ -27,7 +27,6 @@
        type: 'POST',
        dataType: "json",
        success: function(data){
-
          if(data.data=="ok"){
             console.log('deleted');
          }
