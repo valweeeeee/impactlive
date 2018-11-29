@@ -38,8 +38,9 @@
   */
   function getSignedRequest(file){
     const xhr = new XMLHttpRequest();
-    file.name=file.name.replace(/\.[^/.]+$/, "");
-    console.log(file.name);
+    var fileNameOnly=file.name;
+    fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
+    console.log(fileNameOnly);
     xhr.open('GET', `/sign-s3?file-name=${file.name}&file-type=${file.type}&userid=${userID}`);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
