@@ -195,6 +195,7 @@ input[type="password"], input[type="text"] {
 	display:none;
 	vertical-align: bottom;
 	margin-bottom:15px;
+	text-align: left;
 }
 input[type="submit"] {
 	background-color: #007FBD;
