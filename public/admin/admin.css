@@ -164,7 +164,7 @@ input[type="password"], input[type="text"] {
 	z-index: -1;
 }
 input[type="file"]{
-	margin-left:50px;
+	margin-left:45px;
 }
 input[type="submit"] {
 	background-color: #007FBD;
