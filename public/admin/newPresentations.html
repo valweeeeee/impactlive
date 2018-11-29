@@ -33,7 +33,7 @@
           console.log(thisid);
           console.log(url);
           $(thisid).html("<img src='"+url+"'>");
-          $(thisid).show();
+          $(thisid).fadeIn('slow');
 
         }
         else{
@@ -170,7 +170,7 @@
    </tr>
    <tr>
      <td>Company Logo<br><span style="font-size:smaller"></td>
-     <td><div id="previewlogo" align="center" class="preview" ></div><input type="file" class="file-input green" name="companylogourl" id="companylogourl" id="logoimage"></td>
+     <td valign=><div id="previewlogo" align="center" class="preview"></div><input type="file" class="file-input green" name="companylogourl" id="companylogourl" id="logoimage"></td>
   </tr>
   <tr>
     <td>Push Content 1 <span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum and be a picture of an email</span></span></td>
