@@ -30,9 +30,8 @@
         if(xhr.status === 200){
           //document.getElementById('preview1').src = url;
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/150x150/images/" + fileName;
-          console.log(thisid);
-          console.log(url);
-          $(thisid).html("<img src='"+url+"'>");
+          urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
+          $(thisid).html("<a href='"+urlFull"' target='_blank'><img src='"+url+"'></a>");
           $(thisid).fadeIn('slow').css("display","block");
 
         }
