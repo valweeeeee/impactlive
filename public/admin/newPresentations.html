@@ -13,13 +13,15 @@
         return initUpload(this);
   });
   var userID=getCookie('impactLive');
-  function uploadFile(file, signedRequest, url){
+
+  function uploadFile(file, signedRequest, fileName){
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           //document.getElementById('preview1').src = url;
+          url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/100x100/images/" + fileName;
           $("#preview1").html("<img src='"+url+"'>");
           $("#preview1").show();
 
@@ -52,7 +54,7 @@
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           const response = JSON.parse(xhr.responseText);
-          uploadFile(myNewFile, response.signedRequest, response.url);
+          uploadFile(myNewFile, response.signedRequest, myNewFile.name);
         }
         else{
           alert('Could not get signed URL.');
