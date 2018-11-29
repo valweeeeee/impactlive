@@ -16,7 +16,9 @@
   <script>
   $(document).ready(function() {
   $('.file-input').change(function() {
-        return initUpload(this);
+      var thisid=$(this).prev('div');
+      console.log(thisid);
+      return initUpload(this);
   });
   var userID=getCookie('impactLive');
 
@@ -114,7 +116,6 @@
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-        console.log($("#image1").val());
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
@@ -167,11 +168,11 @@
    </tr>
    <tr>
      <td>Company Logo<br><span style="font-size:smaller"></td>
-     <td><input type="file" class="file-input green" name="companylogourl" id="companylogourl" id="logoimage"></td>
+     <td><div id="previewlogo" align="center"><input type="file" class="file-input green" name="companylogourl" id="companylogourl" id="logoimage"></td>
   </tr>
   <tr>
     <td>Push Content 1 <span class="tooltip" style="font-weight:bold">&nbsp;?<span class="tooltiptext">Must be jpg, gif, png, or jpeg - 350px wide minimum and be a picture of an email</span></span></td>
-    <td><div id="preview1" align="center"></div><input type="file" class="file-input blue" name="pushcontent1url" id="image1">
+    <td><div id="preview1" align="center"></div><br><input type="file" class="file-input blue" name="pushcontent1url" id="image1">
     </td>
   </tr>
   <tr>
