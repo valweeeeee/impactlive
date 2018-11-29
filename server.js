@@ -46,6 +46,7 @@ app.post('/save-details', (req, res) => {
   console.log('image uploaded');
 });
 app.get('/delete-s3', (req, res) => {
+  const s3 = new aws.S3();
   const fileName = req.query['file-name'];
   const s3Params = {
     Bucket: S3_BUCKET,
@@ -61,6 +62,7 @@ app.get('/delete-s3', (req, res) => {
     }
     else{
       console.log(data);
+      return res.end();
     }
     res.end();
   });

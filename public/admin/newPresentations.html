@@ -17,9 +17,9 @@
   $(document).ready(function() {
     var thisid;
   $("body").on("click",".deleteImage",function(){
-    alert('here');
+
     console.log($(this).data('filename'));
-    /*$.ajax({
+    $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
        data:  toJSONString( this ),
@@ -28,17 +28,17 @@
        success: function(data){
 
          if(data.data=="ok"){
-
+            console.log('deleted');
          }
          else{
-
+           console.log(data.data);
          }
        },
        failure: function(errMsg) {
            console.log('error');
        }
 
-   });*/
+   });
 
   });
   $('.file-input').change(function() {
