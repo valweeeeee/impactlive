@@ -43,11 +43,11 @@
   </style>
   <script>
   $(document).ready(function() {
-    var $(thisid);
+    var thisid;
   $("body").on("click",".deleteImage",function(e){
     e.preventDefault();
     var data='{"filename":"' + $(this).data('filename')+ '"}';
-    thisid=$(this).prevAll('.preview:first');
+    //thisid=$(this).prevAll('.preview:first');
 
     $.ajax({
        url: '/delete-s3',
