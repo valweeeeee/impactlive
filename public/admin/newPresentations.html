@@ -18,7 +18,8 @@
     var thisid;
   $("body").on("click",".deleteImage",function(){
     var data='{"filename":"' + $(this).data('filename')+ '"}';
-    var preview=$(this).prev('.preview:first');
+    var preview=$(this).prevAll('.preview:first');
+    console.log(preview);
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
@@ -28,6 +29,7 @@
        success: function(data){
          if(data.data=="ok"){
            preview.hide('fast');
+           alert('deleted');
          }
          else{
            console.log(data.data);
@@ -55,7 +57,7 @@
           //document.getElementById('preview1').src = url;
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/150x150/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          $(thisid).html("<a href='"+urlFull+"' target='_blank'><img src='"+url+"' ></a><a href='#' class='deleteImage' data-filename='"+fileName+"' style='text-decoration:none;font-size:larger;float:right;margin-right:180px;margin-top:0px;color:red;'>X</a><br>");
+          $(thisid).html("<a href='"+urlFull+"' target='_blank'><img src='"+url+"' ></a><a href='' class='deleteImage' data-filename='"+fileName+"'  style='text-decoration:none;font-size:larger;float:right;margin-right:180px;margin-top:0px;color:red;'>X</a><br>");
           $(thisid).fadeIn('slow').css("display","block");
 
         }
