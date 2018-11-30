@@ -192,7 +192,7 @@ input[type="password"], input[type="text"] {
   visibility: hidden;
 }
 .thumb{
-	margin-top:-60px;
+	margin-top:-40px;
 	margin-left:-20px;
 	max-height:200px;
 }
