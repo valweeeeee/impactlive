@@ -48,6 +48,7 @@
     e.preventDefault();
     var data='{"filename":"' + $(this).data('filename')+ '"}';
     var thisid=$(this).prevAll('.preview:first');
+
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
@@ -70,6 +71,7 @@
 
   });
   $('.file-input').change(function() {
+    var thisid=$(this).prevAll('.preview:first');
       return initUpload(this);
   });
   var userID=getCookie('impactLive');
