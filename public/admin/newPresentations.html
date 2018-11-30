@@ -78,7 +78,7 @@
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           alert('hi');
           $(thisid).fadeOut('fast').css("display","block");
-          $(thisid).html("<a href='"+urlFull+"' target='_blank'><img src='"+url+"' ></a><a href='' class='deleteImage' data-filename='"+fileName+"'  style='text-decoration:none;float:right;font-size:smaller;float:right;margin-top:0px;color:red;'>X</a><br>");
+          $(thisid).html("<a href='"+urlFull+"' target='_blank'><img src='"+url+"'></a><i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' >delete</i>");
           $(thisid).fadeIn('slow').css("display","block");
 
         }
