@@ -86,7 +86,7 @@
           alert('here');
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          $(#).next('.previewimg').css('border','1px solid purple');
+          $(thisid).next('.previewimg').css('border','1px solid purple');
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><a href='"+urlFull+"' target='_blank'><img src='"+url+"'></a>").fadeIn('slow').css("display","block");
 
         }
@@ -218,7 +218,7 @@
 </div>
 <br><br>
 <form method="post" enctype="multipart/form-data">
-  <table id="presentationForm" width="45%" align="center" cellspacing="5" cellpadding="10" style="border-collapse: collapse;">
+  <table id="presentationForm" width="45%" align="center" cellspacing="5" cellpadding="10" style="border-collapse: collapse;background:#fff;">
     <tr>
       <td>Company Name * </td>
       <td><input type="text" name="companyname" id="companyname" required></td>
