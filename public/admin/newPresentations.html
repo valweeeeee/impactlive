@@ -39,6 +39,12 @@
     margin-left:160px;
     margin-top:18px;
     top:0;
+    height:36px;
+  }
+  .thumb{
+    max-height:210px;
+    margin-top:0;
+
   }
   </style>
   <script>
@@ -87,7 +93,7 @@
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           $(thisid).find('.previewimg').hide('fast');
-          $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><a href='"+urlFull+"' target='_blank'><img src='"+url+"'></a>").fadeIn('slow').css("display","block");
+          $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a>").fadeIn('slow').css("display","block");
 
         }
         else{
