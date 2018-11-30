@@ -197,8 +197,10 @@ input[type="password"], input[type="text"] {
 	display:none;
 	vertical-align: bottom;
 	margin-bottom:15px;
-	text-align: left;
 	margin-left:40px;
+	width:152px;
+	height:152px;
+
 }
 input[type="submit"] {
 	border: 1px solid #256f67;
