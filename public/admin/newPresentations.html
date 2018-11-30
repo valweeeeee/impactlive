@@ -85,7 +85,8 @@
           //document.getElementById('preview1').src = url;
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          $(thisid).css('border','1px solid purple');
+        console.log(thisid);
+         $(thisid).css('border','1px solid purple');
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><a href='"+urlFull+"' target='_blank'><img src='"+url+"'></a>").fadeIn('slow').css("display","block");
 
         }
