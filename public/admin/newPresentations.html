@@ -16,10 +16,10 @@
   <script>
   $(document).ready(function() {
     var thisid;
-  $("body").on("click",".deleteImage",function(){
+  $("body").on("click",".deleteImage",function(e){
+    e.preventDefault();
     var data='{"filename":"' + $(this).data('filename')+ '"}';
     var preview=$(this).prevAll('.preview:first');
-    console.log(preview);
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
