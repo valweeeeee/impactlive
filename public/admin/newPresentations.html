@@ -43,7 +43,7 @@
   </style>
   <script>
   $(document).ready(function() {
-    var thisid;
+    var $(thisid);
   $("body").on("click",".deleteImage",function(e){
     e.preventDefault();
     var data='{"filename":"' + $(this).data('filename')+ '"}';
@@ -71,7 +71,7 @@
 
   });
   $('.file-input').change(function() {
-    var thisid=$(this).parent();
+    $(thisid)=$(this).parent();
       return initUpload(this);
   });
   var userID=getCookie('impactLive');
