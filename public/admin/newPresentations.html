@@ -20,6 +20,7 @@
     var imageInfo={};
     imageInfo.filename= $(this).data('filename');
     imageInfo=JSON.stringify(imageInfo);
+    console.log(imageInfo);
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
