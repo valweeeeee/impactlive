@@ -71,7 +71,7 @@
 
   });
   $('.file-input').change(function() {
-    var thisid=$(this).parent();
+    var thisid=$(this).parent().child('i');
     console.log(thisid);
       return initUpload(this);
   });
