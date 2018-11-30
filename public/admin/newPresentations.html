@@ -18,7 +18,7 @@
     var thisid;
   $("body").on("click",".deleteImage",function(){
     var data='{"filename":"' + $(this).data('filename')+ '"}';
-    var previewLogo=$(this).prev('#previewlogo');
+    var previewLogo=$(this).prevAll('#previewlogo:first');
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
@@ -28,7 +28,7 @@
        success: function(data){
          if(data.data=="ok"){
            $('#previewLogo').hide('fast');
-            console.log('deleted');
+
          }
          else{
            console.log(data.data);
