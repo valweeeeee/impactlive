@@ -194,9 +194,6 @@ input[type="password"], input[type="text"] {
 }
 
 .preview{
-	vertical-align: bottom;
-	margin-bottom:15px;
-	margin-left:40px;
 	width:152px;
 	height:152px;
 
