@@ -72,6 +72,7 @@
   });
   $('.file-input').change(function() {
     var thisid=$(this).parent();
+    console.log(thisid);
       return initUpload(this);
   });
   var userID=getCookie('impactLive');
