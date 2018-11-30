@@ -166,7 +166,6 @@ input[type="password"], input[type="text"] {
 	width:100%;
 	margin-left:0px;
 	height:30px;
-	margin-top:-30px;
 }
 .file-input::-webkit-file-upload-button {
   visibility: hidden;
@@ -193,9 +192,9 @@ input[type="password"], input[type="text"] {
   visibility: hidden;
 }
 .thumb{
-	margin-top:-40px;
-	min-height:200px;
+	margin-top:-60px;
 	margin-left:-20px;
+	max-height:200px;
 }
 .preview{
 	width:220px;
