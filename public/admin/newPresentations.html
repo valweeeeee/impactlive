@@ -47,7 +47,7 @@
   $("body").on("click",".deleteImage",function(e){
     e.preventDefault();
     var data='{"filename":"' + $(this).data('filename')+ '"}';
-    var preview=$(this).prevAll('.preview:first');
+    var thisid=$(this).prevAll('.preview:first');
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
@@ -70,7 +70,6 @@
 
   });
   $('.file-input').change(function() {
-      thisid=$(this).closest('.preview').children('.material-icons');
       return initUpload(this);
   });
   var userID=getCookie('impactLive');
