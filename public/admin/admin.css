@@ -203,7 +203,9 @@ input[type="password"], input[type="text"] {
 	margin-left:40px;
 	background:#ccc;
 }
-
+.explain{
+	color:#666;margin-top:10px;font-size:smaller;width:125px;
+}
 input[type="submit"] {
 	border: 1px solid #256f67;
 	border-radius: 4px;
