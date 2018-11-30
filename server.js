@@ -41,14 +41,11 @@ app.get('/socket/socket.io.js.map', function(req, res) {
 app.get('/custom/custom.js', function(req, res) {
     res.sendFile(userJS);
 });
-/* File Uploads*/
-app.post('/save-details', (req, res) => {
-  console.log('image uploaded');
-});
+/* File Functions*/
 app.post('/delete-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.query['filename'];
-  console.log(req.query);
+  console.log(req.body);
   const s3Params = {
   Bucket: S3_BUCKET,
   Delete: { // required
