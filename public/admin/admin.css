@@ -199,7 +199,7 @@ input[type="password"], input[type="text"] {
 	min-height:220px;
 	background-color:#fff;
 	padding:0;
-	margin:auto;
+	margin-left:10px;
 	background:#fff;
 	border:1px solid #666;
 	border-radius:5px;
