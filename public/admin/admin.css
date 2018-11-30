@@ -167,6 +167,7 @@ input[type="password"], input[type="text"] {
 	width:100%;
 	margin-left:0px;
 	height:30px;
+	  margin-top:-40px;
 }
 .file-input::-webkit-file-upload-button {
   visibility: hidden;
