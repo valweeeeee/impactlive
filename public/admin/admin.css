@@ -196,6 +196,9 @@ input[type="password"], input[type="text"] {
 .preview{
 	width:220px;
 	height:220px;
+	background-color:#fff;
+	padding:2px;
+	margin-top:0;
 
 }
 
