@@ -152,8 +152,8 @@
       var _URL = window.URL || window.webkitURL;
       img.onload=function(){
         fileSize=(file.size/1024/1024).toFixed(2);
-        if(this.width<350){
-          alert('The minimum width for an image is 350');
+        if(this.width<350 || this.height<200){
+          alert('The minimum width for an image is 350 px. The minimum height is 200 px');
           return false;
           //getSignedRequest(file,this.src);
         }
