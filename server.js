@@ -44,8 +44,7 @@ app.get('/custom/custom.js', function(req, res) {
 /* File Functions*/
 app.post('/delete-s3', (req, res) => {
   const s3 = new aws.S3();
-  const fileName = req.query['filename'];
-  console.log(req.body);
+  const fileName = req.body['filename'];
   const s3Params = {
   Bucket: S3_BUCKET,
   Delete: { // required
