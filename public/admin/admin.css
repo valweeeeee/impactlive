@@ -193,9 +193,9 @@ input[type="password"], input[type="text"] {
   visibility: hidden;
 }
 .thumb{
-	margin-top:-36px;
+	margin-top:-40px;
 	min-height:200px;
-	margin-left:0;
+	margin-left:-20px;
 }
 .preview{
 	width:220px;
