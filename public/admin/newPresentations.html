@@ -62,7 +62,7 @@
 
   });
   $('.file-input').change(function() {
-      thisid=$(this).prev('.material-icons');
+      thisid=$(this).closest('.material-icons');
       return initUpload(this);
   });
   var userID=getCookie('impactLive');
