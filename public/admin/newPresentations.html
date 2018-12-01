@@ -51,6 +51,7 @@
     e.preventDefault();
     var data='{"filename":"' + $(this).data('filename')+ '"}';
     var deleteRes=deleteImage(data);
+    thisid=$(this).parent();
     if(deleteRes=="ok"){
        $(thisid).find('.thumb:first').hide('fast');
     }
