@@ -60,7 +60,7 @@
        dataType: "json",
        success: function(data){
          if(data.data=="ok"){
-           preview.hide('fast');
+           $(thisid).find('.thumb').hide('fast');
          }
          else{
            console.log(data.data);
