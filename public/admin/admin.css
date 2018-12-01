@@ -194,7 +194,8 @@ input[type="password"], input[type="text"] {
 .thumb{
 	margin-top:-40px;
 	margin-left:10px;
-	max-height:200px;
+	max-height:150px;
+	overflow:hidden;
 }
 .preview{
 	width:220px;
