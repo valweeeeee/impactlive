@@ -50,27 +50,31 @@
   $("body").on("click",".deleteImage",function(e){
     e.preventDefault();
     var data='{"filename":"' + $(this).data('filename')+ '"}';
-    //thisid=$(this).prevAll('.preview:first');
-
-    $.ajax({
-       url: '/delete-s3',
-       contentType: 'application/json',
-       data: data,
-       type: 'POST',
-       dataType: "json",
-       success: function(data){
-         if(data.data=="ok"){
-             $(thisid).find('.thumb:first').hide('fast');
+    var deleteRes=deleteImage(data);
+    if(deleteRes=="ok"){
+       $(thisid).find('.thumb:first').hide('fast');
+    }
+    function deleteImage(data){
+      $.ajax({
+         url: '/delete-s3',
+         contentType: 'application/json',
+         data: data,
+         type: 'POST',
+         dataType: "json",
+         success: function(data){
+           if(data.data=="ok"){
+              return("ok");
+           }
+           else{
+             console.log(data.data);
+           }
+         },
+         failure: function(errMsg) {
+             console.log('error');
          }
-         else{
-           console.log(data.data);
-         }
-       },
-       failure: function(errMsg) {
-           console.log('error');
-       }
 
-   });
+     });
+   }
 
   });
   $('.file-input').change(function() {
@@ -87,10 +91,11 @@
         if(xhr.status === 200){
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
+          $(thisid).find(".deleteImage").trigger("click");
           $(thisid).find('.previewimg').hide('fast');
           var curImgSrc=$(thisid).find(".thumb").attr('src');
           $(thisid).find(".uploaded").remove();
-          $(thisid).find(".deleteImage").trigger("click");
+
           $(thisid).find(".deleteImage").remove();
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
 
