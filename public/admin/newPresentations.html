@@ -90,7 +90,7 @@
           $(thisid).find('.previewimg').hide('fast');
           var curImgSrc=$(".thumb").attr('src');
           console.log(curImgSrc);
-          $(".preview").html('');
+          $(".preview div").html('');
           $('.deleteImage').remove();
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
 
