@@ -52,9 +52,12 @@
     var data='{"filename":"' + $(this).data('filename')+ '"}';
     var deleteRes=deleteImage(data);
     thisid=$(this).parent();
-    console.log(thisid);
     if(deleteRes=="ok"){
-       $(thisid).find('.thumb:first').hide('fast');
+      $(thisid).find('.previewimg').hide('fast');
+      var curImgSrc=$(thisid).find(".thumb").attr('src');
+      $(thisid).find(".uploaded").remove();
+
+      $(thisid).find(".deleteImage").remove();
     }
     function deleteImage(data){
       $.ajax({
@@ -94,11 +97,7 @@
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           $(thisid).find(".deleteImage").trigger("click");
-          $(thisid).find('.previewimg').hide('fast');
-          var curImgSrc=$(thisid).find(".thumb").attr('src');
-          $(thisid).find(".uploaded").remove();
 
-          $(thisid).find(".deleteImage").remove();
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
 
         }
