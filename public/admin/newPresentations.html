@@ -50,7 +50,10 @@
     $("body").on("click",".deleteImage",function(e){
       e.preventDefault();
       var data='{"filename":"' + $(this).data('filename')+ '"}';
-      deleteImage(data);
+      r=deleteImage(data);
+      if(r=="ok"){
+        $(thisid).find(".uploaded").remove();
+      }
 
     });
     function deleteImage(data){
@@ -92,8 +95,6 @@
           $(thisid).find('.previewimg').hide('fast');
           var curImgSrc=$(thisid).find(".thumb").attr('src');
           $(thisid).find(".uploaded").remove();
-
-          $(thisid).find(".deleteImage").remove();
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
 
         }
