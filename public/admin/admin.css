@@ -193,7 +193,7 @@ input[type="password"], input[type="text"] {
 }
 .thumb{
 	margin-top:-40px;
-	margin-left:-20px;
+	margin-left:10px;
 	max-height:200px;
 }
 .preview{
