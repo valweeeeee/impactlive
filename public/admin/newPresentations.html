@@ -37,7 +37,7 @@
     color:#666;
     position:relative;
     margin-left:220px;
-    margin-top:0px;
+    margin-top:10px;
     top:0;
     height:36px;
     width:36px;
@@ -90,6 +90,7 @@
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           $(thisid).find('.previewimg').hide('fast');
+          $('.deleteImage').remove();
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
 
         }
