@@ -52,12 +52,10 @@
     var data='{"filename":"' + $(this).data('filename')+ '"}';
     var deleteRes=deleteImage(data);
     thisid=$(this).parent();
+    console.log(thisid);
     if(deleteRes=="ok"){
-      $(thisid).find('.previewimg').hide('fast');
-      var curImgSrc=$(thisid).find(".thumb").attr('src');
+      $(thisid).find('.material-icons').hide('fast');
       $(thisid).find(".uploaded").remove();
-
-      $(thisid).find(".deleteImage").remove();
     }
     function deleteImage(data){
       $.ajax({
