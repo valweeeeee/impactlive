@@ -197,7 +197,7 @@
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
-          data:  toJSONString( that ),
+          data:  that,
           type: 'POST',
           dataType: "json",
           success: function(data){
@@ -206,7 +206,7 @@
               $.ajax({
                  url: '/updatenewrecord/',
                  contentType: 'application/json',
-                 data:  toJSONString( that ),
+                 data:  that,
                  type: 'POST',
                  dataType: "json",
                  success: function(data){
