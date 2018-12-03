@@ -88,7 +88,7 @@
         $(thisid).find(".deleteThumb").remove();
         $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteThumb'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+e.target.result+"' class='thumb'></div>").fadeIn('slow').css("display","block");
       }
-      reader.readAsDataURL(input.files[0]);
+      reader.readAsDataURL(this.files[0]);
 
 
     }
