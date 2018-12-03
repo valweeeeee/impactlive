@@ -47,7 +47,7 @@
   <script>
   $(document).ready(function() {
     var thisid;
-    let pid = $.QueryString["e"];
+    var pid = $.QueryString["e"];
     var userID=getCookie('impactLive');
 
     if(!userID){
@@ -152,7 +152,6 @@
            $(that).siblings('.uploaded').hide('fast');
            $(that).siblings('.previewimg').show('fast');
            $(that).siblings('.hiddenSrc').val('');
-           console.log(that);
            $(that).remove();
          }
          else{
@@ -180,7 +179,7 @@
         if(xhr.status === 200){
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          //$(thisid).find(".deleteImage").trigger("click");
+          $(thisid).find(".deleteImage").trigger("click");
           $(thisid).find('.hiddenSrc').val(urlFull);
           $(thisid).find('.previewimg').hide('fast');
           $(thisid).find(".uploaded").remove();
@@ -210,7 +209,7 @@
     var fileNameOnly=file.name;
     fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
     fileExt=getFileExtension(file.name);
-    newFileName=fileNameOnly + '_' + userID + '_99999' + '.' + fileExt;
+    newFileName=fileNameOnly + '_' + userID + '_' + pid  + '.' + fileExt;
     const myNewFile = new File([file], newFileName, {type: file.type});
     xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
     xhr.onreadystatechange = () => {
