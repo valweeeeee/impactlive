@@ -207,6 +207,7 @@ app.post('/newrecord/', (req,res,next)=>{
   DB.query(query, (err, results) => {
     if(err) {
         res.json({'err':1,'message':'ERROR'});
+
         return false;
       }
     else{
@@ -223,7 +224,7 @@ app.post('/updatenewrecord/', (req,res,next)=>{
         DB.query(query, (err, results) => {
           if(err) {
               res.json({'err':1,'message':'ERROR'});
-              return;
+              return false;
             }
             else{
               res.header("Access-Control-Allow-Origin", "*");
