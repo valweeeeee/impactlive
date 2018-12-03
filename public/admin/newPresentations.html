@@ -193,7 +193,6 @@
 
         this.companylogourl=initUpload($("#companylogourl"));
         var that=toJSONString(this);
-        console.log(that);
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
@@ -201,8 +200,8 @@
           type: 'POST',
           dataType: "json",
           success: function(data){
-            alert(data.err);
-            if(data.err!=1){
+            alert(data);
+            if(data.err!=1 && !data.err){
               $.ajax({
                  url: '/updatenewrecord/',
                  contentType: 'application/json',
