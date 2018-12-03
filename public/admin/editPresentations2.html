@@ -184,7 +184,7 @@
           $(thisid).find(".uploaded").remove();
           $(thisid).find(".deleteImage").remove();
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-          $(thisid).find("input[type=hidden]").css('border','2px solid blue');
+          $(thisid).find("input[type=hidden]").val(urlFull);
 
         }
         else{
