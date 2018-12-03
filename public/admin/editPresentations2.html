@@ -183,7 +183,7 @@
           $(thisid).find(".uploaded").remove();
           $(thisid).find(".deleteImage").remove();
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-          $(thisid).find("input[type=hidden]").css('border','2px solid blue');
+          //$(thisid).find("input[type=hidden]").css('border','2px solid blue');
 
         }
         else{
@@ -299,7 +299,7 @@
      <td>Company Logo * <br><span style="font-size:smaller"></td>
      <td><div id="previewlogo" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg" id="companyLogoNone">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="logoimage" required><input type="hidden" class="hiddenSrc" name="companylogourl"></div></td>
+</i><br><input type="file" class="file-input blue" id="logoimage"><input type="hidden" class="hiddenSrc" name="companylogourl"  required></div></td>
   </tr>
   <tr>
     <td>Push Content 1 *<br><div class="explain">Must be jpg, png, or jpeg,350px wide minimum, and be a picture of an email</div></td>
