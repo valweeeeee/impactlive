@@ -77,10 +77,7 @@
  }
   $('.file-input').change(function() {
     thisid=$(this).parent();
-    //var this=this;
     if(this.files && this.files[0]){
-      alert('files');
-      /* this is going to load up the thumbnails in a temporary browser spot*/
 
       const files = this.files;
       const file = files[0];
@@ -90,7 +87,6 @@
       }
       var fileExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
       fileType=file.type.toLowerCase();
-      alert(fileType);
       if (fileExtension.indexOf(fileType) == -1) {
            alert("Only files of type jpg, png, gif, jpeg are allowed");
            return false;
@@ -102,7 +98,6 @@
         var _URL = window.URL || window.webkitURL;
         img.src = _URL.createObjectURL(file);
         img.onload=function(){
-          alert('oad');
           fileSize=(file.size/1024/1024).toFixed(2);
           if(this.width<350 || this.height<200){
             alert('The minimum width for an image is 350 px. The minimum height is 200 px');
@@ -113,6 +108,8 @@
             return false;
          }
          else{
+           /* this is going to load up the thumbnails in a temporary browser spot*/
+
            var reader = new FileReader();
            reader.onload=function(e){
              $(thisid).find('.hiddenSrc').val('');
@@ -122,7 +119,7 @@
              $(thisid).find(".deleteThumb").remove();
              $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+e.target.result+"' class='thumb' style='max-width:180px'></div>").fadeIn('slow').css("display","block");
            }
-           reader.readAsDataURL(this.files[0]);
+           reader.readAsDataURL(file);
         }
 
       }
