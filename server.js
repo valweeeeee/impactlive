@@ -212,9 +212,9 @@ app.post('/newrecord/', (req,res,next)=>{
         return false;
       }
     else{
-      console.log(results.rows[0]);
-      var newlyCreatedPresentationId = results.rows[0].presentationid;
-      return res.json({'data':results.rows[0].presentationid});
+      console.log(results);
+      var newlyCreatedPresentationId = results.presentationid;
+      return res.json({'data':results.presentationid});
     }
   });
 });
