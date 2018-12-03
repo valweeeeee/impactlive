@@ -74,36 +74,37 @@
                     fileName=splitTest(b.companylogourl);
                     $("#companyLogoNone").hide('fast');
                     $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.companylogourl+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
-                    $("input[name=companylogourl").val(b.companylogourl);
+                    $("input[name=companylogourl]").val(b.companylogourl);
                   }
                   if(b.pushcontent1url!=''){
                     fileName=splitTest(b.pushcontent1url);
                     $("#image1None").hide('fast');
                     $("#preview1").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent1url+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
-                    $("input[name=pushcontent1url").val(b.companylogourl);
+                    $("input[name=pushcontent1url]").val(b.pushcontent1url);
                   }
                   if(b.pushcontent2url!=''){
                     fileName=splitTest(b.pushcontent2url);
                     $("#image1None").hide('fast');
                     $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent2url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-                    $("input[name=pushcontent2url").val(b.companylogourl);
+                    $("input[name=pushcontent2url]").val(b.pushcontent2url);
                   }
                   if(b.pushcontent3url!=''){
                     fileName=splitTest(b.pushcontent3url);
                     $("#image1None").hide('fast');
                     $("#preview3").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent3url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                    $("input[name=pushcontent3url]").val(b.val(b.pushcontent3url));
                   }
                   if(b.pushcontent4url!=''){
                     fileName=splitTest(b.pushcontent4url);
                     $("#image1None").hide('fast');
                     $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent4url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-                    $("input[name=pushcontent4url").val(b.companylogourl);
+                    $("input[name=pushcontent4url]").val(b.pushcontent4url);
                   }
                   if(b.pushcontent5url!=''){
                     fileName=splitTest(b.pushcontent5url);
                     $("#image1None").hide('fast');
                     $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent5url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-                    $("input[name=pushcontent5url").val(b.companylogourl);
+                    $("input[name=pushcontent5url").val(b.pushcontent5url);
                   }
                   $("#email1subject").val(b.email1subject);
                   $("#surveylink").val(b.surveylink);
@@ -117,7 +118,6 @@
       $('form').submit(function (e) {
         e.preventDefault();
 
-        var formData=this;
        $.ajax({
           url: '/makeedits/',
           contentType: 'application/json',
@@ -151,7 +151,7 @@
          if(data.data=="ok"){
            $(that).siblings('.uploaded').hide('fast');
            $(that).siblings('.previewimg').show('fast');
-           $(that).siblings('hiddenSrc').html('');
+           $(that).siblings('input.hiddenSrc').val('');
            $(that).remove();
          }
          else{
@@ -180,7 +180,7 @@
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           //$(thisid).find(".deleteImage").trigger("click");
-          $(thisid).find('.hiddenSrc').html(urlFull);
+          $(thisid).find('.hiddenSrc').val(urlFull);
           $(thisid).find('.previewimg').hide('fast');
           $(thisid).find(".uploaded").remove();
           $(thisid).find(".deleteImage").remove();
@@ -301,13 +301,13 @@
      <td>Company Logo * <br><span style="font-size:smaller"></td>
      <td><div id="previewlogo" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg" id="companyLogoNone">
 photo_size_select_actual
-</i><br><input type="hidden" name="companylogourl"><input type="file" class="file-input blue" id="logoimage"><span  class="hiddenSrc" style="height:0;width:0;display:none;position:absolute;"></span></div></td>
+</i><br><input type="file" class="file-input blue" id="logoimage"><input type="text" class="hiddenSrc" name="companylogourl"  style="height:0;width:0;display:none;position:absolute;" required></div></td>
   </tr>
   <tr>
     <td>Push Content 1 *<br><div class="explain">Must be jpg, png, or jpeg,350px wide minimum, and be a picture of an email</div></td>
     <td><div id="preview1" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg" id="image1None">
 photo_size_select_actual
-</i><br><input type="hidden" name="pushcontent1url"><input type="file" class="file-input blue" id="image1"><span class="hiddenSrc" style="height:0;width:0;display:none;position:absolute;"></span></div>
+</i><img src="" style="display:none" id="image1Pre" height="200" width="200"><br><input type="file" class="file-input blue" id="image1"><input type="text" class="hiddenSrc" name="pushcontent1url" style="height:0;width:0;display:none;position:absolute;" required></div>
     </td>
   </tr>
   <tr>
@@ -328,21 +328,21 @@ photo_size_select_actual
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview3" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg" id="image3None">
 photo_size_select_actual
-</i><img src="" style="display:none" id="image3Pre" height="200" width="200"><br><input type="file" class="file-input blue" id="image3"><input type="text" class="hiddenSrc" name="pushcontent3url" style="height:0;width:0;"></div></td>
+</i><br><input type="file" class="file-input blue" id="image3"><input type="text" class="hiddenSrc" name="pushcontent3url" style="height:0;width:0;"></div></td>
   </tr>
   <tr>
     <td>Push Content 4<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview4" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg" id="image4None">
 photo_size_select_actual
-</i><img src="" style="display:none" id="image4Pre" height="200" width="200"><br><input type="file" class="file-input blue"  id="image4"><input type="text" class="hiddenSrc" name="pushcontent4url" style="height:0;width:0;"></div></td>
+</i><br><input type="file" class="file-input blue"  id="image4"><input type="text" class="hiddenSrc" name="pushcontent4url" style="height:0;width:0;"></div></td>
   </tr>
   <tr>
     <td>Push Content 5<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview5" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg"vid="image5None">
 photo_size_select_actual
-</i><img src="" style="display:none" id="image5Pre" height="200" width="200"><br><input type="file" class="file-input blue"  id="image5"><input type="text" class="hiddenSrc" name="pushcontent5url" style="height:0;width:0;"></div></td>
+</i><br><input type="file" class="file-input blue"  id="image5"><input type="text" class="hiddenSrc" name="pushcontent5url" style="height:0;width:0;"></div></td>
   </tr>
 
     <td>Survey URL<br>
