@@ -70,6 +70,8 @@
                     $("#companyLogoNone").hide('fast');
                     $("#companyLogoPre").attr('src',b.companylogourl);
                     $("#companyLogoPre").show('fast');
+                    $("#companyLogoNone").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+
 
                   }
                   if(b.pushcontent1url!=''){
