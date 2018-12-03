@@ -77,20 +77,20 @@
  }
   $('.file-input').change(function() {
     thisid=$(this).parent();
-    alert(this.files[0]);
+    var this=this;
     if(this.files && this.files[0]){
-
+      alert('files');
       /* this is going to load up the thumbnails in a temporary browser spot*/
-      var reader = new FileReader();
+
       const files = this.files;
       const file = files[0];
-
 
       if(file == null){
         return alert('No file selected.');
       }
       var fileExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
       fileType=file.type.toLowerCase();
+      alert(fileType);
       if (fileExtension.indexOf(fileType) == -1) {
            alert("Only files of type jpg, png, gif, jpeg are allowed");
            return false;
@@ -100,17 +100,18 @@
         img=new Image();
         var _URL = window.URL || window.webkitURL;
         img.onload=function(){
+          alert('oad');
           fileSize=(file.size/1024/1024).toFixed(2);
           if(this.width<350 || this.height<200){
             alert('The minimum width for an image is 350 px. The minimum height is 200 px');
             return false;
-            //getSignedRequest(file,this.src);
           }
           else if (fileSize >4){
             alert('Max file size is 4MB');
             return false;
          }
          else{
+           var reader = new FileReader();
            reader.onload=function(e){
              $(thisid).find('.hiddenSrc').val('');
              $(thisid).find('.previewimg').hide('fast');
