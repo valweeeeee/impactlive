@@ -93,7 +93,6 @@
       }
       else{
         /* image dimensions*/
-
         img=new Image();
         var _URL = window.URL || window.webkitURL;
         img.src = _URL.createObjectURL(file);
@@ -109,7 +108,6 @@
          }
          else{
            /* this is going to load up the thumbnails in a temporary browser spot*/
-
            var reader = new FileReader();
            reader.onload=function(e){
              $(thisid).find('.hiddenSrc').val('');
@@ -287,13 +285,13 @@
      <td>Company Logo * <br><span style="font-size:smaller"></td>
      <td><div id="previewlogo" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="companylogourl"  required><input type="hidden" class="hiddenSrc" name="companylogourl"></div></td>
+</i><br><input type="file" class="file-input blue" id="companylogourl" name="companylogourl" required></div></td>
   </tr>
   <tr>
     <td>Push Content 1 *<br><div class="explain">Must be jpg, png, or jpeg,350px wide minimum, and be a picture of an email</div></td>
     <td><div id="preview1" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="image1" required><input type="hidden" class="hiddenSrc" name="pushcontent1url"></div>
+</i><br><input type="file" class="file-input blue" id="image1" name="pushcontent1url" required></div>
     </td>
   </tr>
   <tr>
@@ -306,28 +304,28 @@ photo_size_select_actual
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview2" class="preview" align="center"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="image2"><input type="hidden" class="hiddenSrc" name="pushcontent2url"></div></td>
+</i><br><input type="file" class="file-input blue" id="image2" name="pushcontent2url"></div></td>
   </tr>
   <tr>
     <td>Push Content 3<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview3" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="image3"><input type="hidden" class="hiddenSrc" name="pushcontent3url"></div></td>
+</i><br><input type="file" class="file-input blue" id="image3" name="pushcontent3url"></div></td>
   </tr>
   <tr>
     <td>Push Content 4<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview4" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue"  id="image4"><input type="hidden" class="hiddenSrc" name="pushcontent4url"></div></td>
+</i><br><input type="file" class="file-input blue" name="pushcontent4url" id="image4"></div></td>
   </tr>
   <tr>
     <td>Push Content 5<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview5" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue"  id="image5"><input type="hidden" class="hiddenSrc" name="pushcontent5url"></div></td>
+</i><br><input type="file" class="file-input blue" name="pushcontent5url" id="image5"></div></td>
   </tr>
 
   <tr>
