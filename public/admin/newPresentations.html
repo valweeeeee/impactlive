@@ -97,8 +97,10 @@
       }
       else{
         /* image dimensions*/
+
         img=new Image();
         var _URL = window.URL || window.webkitURL;
+        img.src = _URL.createObjectURL(file);
         img.onload=function(){
           alert('oad');
           fileSize=(file.size/1024/1024).toFixed(2);
@@ -122,7 +124,7 @@
            }
            reader.readAsDataURL(this.files[0]);
         }
-        img.src = _URL.createObjectURL(file);
+
       }
     }
   }
