@@ -210,6 +210,12 @@ app.post('/newrecord/', (req,res,next)=>{
         return false;
       }
     else{
+      return res.json({'data':result.rows[0].id});
+    }
+  });
+});
+app.post('/updatenewrecord/', (req,res,next)=>{
+      if(req.body.presentationid!=''){
         var newlyCreatedPresentationId = result.rows[0].id;
         let query = "UPDATE presentations SET companylogourl='"+req.body.companylogourl+"',pushcontent1url='"+req.body.pushcontent1url+"',pushcontent2url='"+req.body.pushcontent2url+"', pushcontent3url='"+req.body.pushcontent3url+"',pushcontent4url='"+req.body.pushcontent4url+"',pushcontent5url='"+req.body.pushcontent5url+"'  where userid='"+req.body.userid+ "' AND presentationid='"+newlyCreatedPresentationId+"'";
         DB.query(query, (err, results) => {
@@ -220,14 +226,14 @@ app.post('/newrecord/', (req,res,next)=>{
             else{
               res.header("Access-Control-Allow-Origin", "*");
               res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,    Accept");
-              res.json({"data":'ok'},200);
+              res.json({"data":newlyCreatedPresentationId},200);
             }
 
           });
         return newlyCreatedPresentationId;
-    }
+      }
   });
-});
+
 
 app.post('/delete/', (req,res,next)=>{
   sess=req.session;

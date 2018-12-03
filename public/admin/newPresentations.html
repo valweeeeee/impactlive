@@ -156,7 +156,7 @@
     var fileNameOnly=file.name;
     fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
     fileExt=getFileExtension(file.name);
-    newFileName=fileNameOnly + '_' + userID + '_99999' + '.' + fileExt;
+    newFileName=fileNameOnly + '_' + userID + '' + '.' + fileExt;
     const myNewFile = new File([file], newFileName, {type: file.type});
     xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
     xhr.onreadystatechange = () => {
@@ -180,37 +180,8 @@
     const files = $(fileInput).prop('files');
     const file = files[0];
 
-    if(file == null){
-      return alert('No file selected.');
-    }
-    var fileExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-    fileType=file.type.toLowerCase();
-    if (fileExtension.indexOf(fileType) == -1) {
-         alert("Only files of type jpg, png, gif, jpeg are allowed");
-         return false;
-    }
-    else{
-      /* image dimensions*/
-      img=new Image();
-      var _URL = window.URL || window.webkitURL;
-      img.onload=function(){
-        fileSize=(file.size/1024/1024).toFixed(2);
-        if(this.width<350 || this.height<200){
-          alert('The minimum width for an image is 350 px. The minimum height is 200 px');
-          return false;
-          //getSignedRequest(file,this.src);
-        }
-        else if (fileSize >4){
-          alert('Max file size is 4MB');
-          return false;
-       }
-       else{
-         getSignedRequest(file,this.src);
-       }
+    getSignedRequest(file,this.src);
 
-      }
-      img.src = _URL.createObjectURL(file);
-    }
   }
   if(!userID){
     window.location="/admin/index.html";
@@ -219,18 +190,43 @@
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-        console.log(toJSONString(this));
+
+        this.companylogourl=initUpload($("#companylogourl"));
+        var that=toJSONString(this);
       //  initUpload($("#companylogourl"));
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
-          data:  toJSONString( this ),
+          data:  toJSONString( that ),
           type: 'POST',
           dataType: "json",
           success: function(data){
 
-            if(data.data=="ok"){
-              window.location="/admin/presentations.html";
+            if(data.err!=1){
+              $.ajax({
+                 url: '/updatenewrecord/',
+                 contentType: 'application/json',
+                 data:  toJSONString( that ),
+                 type: 'POST',
+                 dataType: "json",
+                 success: function(data){
+
+                   if(data.err!=1){
+                      window.location="/admin/presentations.html";
+                   }
+                   else{
+                     //console.log(data);
+                   }
+                 },
+                 failure: function(errMsg) {
+                     console.log('error');
+                 }
+
+             });
+             return false;
+            });
+
+
             }
             else{
               //console.log(data);
