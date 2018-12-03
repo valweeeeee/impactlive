@@ -120,7 +120,7 @@
          }
 
         }
-        
+
       }
 
     }
@@ -231,7 +231,7 @@
       $('form').submit(function (e) {
         e.preventDefault();
         //console.log(toJSONString(this));
-        initUpload($("#companylogourl");
+        initUpload($("#companylogourl").val());
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
