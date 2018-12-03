@@ -78,6 +78,7 @@
   $('.file-input').change(function() {
     thisid=$(this).parent();
     if(this.files && this.files[0]){
+      alert('here');
       /* this is going to load up the thumbnails in a temporary browser spot*/
       var reader = new FileReader();
       const files = $(this).prop('files');
@@ -94,6 +95,7 @@
       }
       else{
         /* image dimensions*/
+        alert('here 2');
         img=new Image();
         var _URL = window.URL || window.webkitURL;
         img.onload=function(){
