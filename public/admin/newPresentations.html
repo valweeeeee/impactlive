@@ -77,12 +77,9 @@
  }
   $('.file-input').change(function() {
     thisid=$(this).parent();
-    console.log(thisid);
     var thatFile=this;
     if(this.files && this.files[0]){
-      alert('files');
       /* this is going to load up the thumbnails in a temporary browser spot*/
-
       const files = $(this).prop('files');
       const file = files[0];
 
@@ -100,6 +97,7 @@
         img=new Image();
         var _URL = window.URL || window.webkitURL;
         img.onload=function(){
+                     alert('here i');
           fileSize=(file.size/1024/1024).toFixed(2);
           if(this.width<350 || this.height<200){
             alert('The minimum width for an image is 350 px. The minimum height is 200 px');
@@ -111,7 +109,7 @@
             return false;
          }
          else{
-           alert('here');
+
            var reader = new FileReader();
            reader.onload=function(e){
              $(thisid).find('.hiddenSrc').val('');
