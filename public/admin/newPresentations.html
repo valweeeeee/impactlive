@@ -81,7 +81,7 @@
       var reader = new FileReader();
 
       reader.onload=function(e){
-        $(thisid).find('.hiddenSrc').val(urlFull);
+        $(thisid).find('.hiddenSrc').val('');
         $(thisid).find('.previewimg').hide('fast');
         $(thisid).find(".uploaded").remove();
         $(thisid).find(".deleteImage").remove();
