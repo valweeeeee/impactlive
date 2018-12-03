@@ -219,6 +219,7 @@ app.post('/updatenewrecord/', (req,res,next)=>{
       if(req.body.presentationid!=''){
         console.log(newlyCreatedPresentationId);
         let query = "UPDATE presentations SET companylogourl='"+req.body.companylogourl+"',pushcontent1url='"+req.body.pushcontent1url+"',pushcontent2url='"+req.body.pushcontent2url+"', pushcontent3url='"+req.body.pushcontent3url+"',pushcontent4url='"+req.body.pushcontent4url+"',pushcontent5url='"+req.body.pushcontent5url+"'  where userid='"+req.body.userid+ "' AND presentationid='"+newlyCreatedPresentationId+"'";
+        console.log(query);
         DB.query(query, (err, results) => {
           if(err) {
               res.json({'err':1,'message':'ERROR'});
