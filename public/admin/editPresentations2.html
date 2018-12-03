@@ -72,22 +72,35 @@
 
                   if(b.companylogourl!=''){
                     fileName=splitTest(b.companylogourl);
-
                     $("#companyLogoNone").hide('fast');
                     $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.companylogourl+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                   }
                   if(b.pushcontent1url!=''){
                     fileName=splitTest(b.pushcontent1url);
                     $("#image1None").hide('fast');
-                    $("#image1Pre").attr('src',b.pushcontent1url);
-                    $("#image1Pre").show('fast');
-                    $("#image1Pre").hide('fast');
-                    $("#image1Pre").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.companylogourl+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                    $("#preview1").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent1url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                   }
-                  $("#pushcontent2url").val(b.pushcontent2url);
-                  $("#pushcontent3url").val(b.pushcontent3url);
-                  $("#pushcontent4url").val(b.pushcontent4url);
-                  $("#pushcontent5url").val(b.pushcontent5url);
+                  if(b.pushcontent2url!=''){
+                    fileName=splitTest(b.pushcontent2url);
+                    $("#image1None").hide('fast');
+                    $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent2url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                  }
+                  if(b.pushcontent3url!=''){
+                    fileName=splitTest(b.pushcontent3url);
+                    $("#image1None").hide('fast');
+                    $("#preview3").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent3url"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                  }
+                  if(b.pushcontent4url!=''){
+                    fileName=splitTest(b.pushcontent4url);
+                    $("#image1None").hide('fast');
+                    $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent4url"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                  }
+                  if(b.pushcontent5url!=''){
+                    fileName=splitTest(b.pushcontent5url);
+                    $("#image1None").hide('fast');
+                    $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent5url"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                  }
+
                   $("#email1subject").val(b.email1subject);
                   $("#surveylink").val(b.surveylink);
                 });
