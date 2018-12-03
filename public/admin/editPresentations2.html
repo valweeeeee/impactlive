@@ -62,11 +62,17 @@
          type: 'POST',
          dataType: "json",
          success: function (data) {
+           var splitTest = function (str) {
+                return str.split('\\').pop().split('/').pop();
+            }
              $.each(data, function (a, b) {
                   $("#presentationid").val(b.presentationid);
                   $("#userid").val(b.userid);
                   $("#companyname").val(b.companyname);
+
                   if(b.companylogourl!=''){
+                    fileName=splitTest(b.companylogourl);
+                    alert(fileName);
                     $("#companyLogoNone").hide('fast');
                     $("#companyLogoNone").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.companylogourl+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                   }
