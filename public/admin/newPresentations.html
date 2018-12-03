@@ -77,6 +77,7 @@
  }
   $('.file-input').change(function() {
     thisid=$(this).parent();
+    console.log(thisid);
     var thatFile=this;
     if(this.files && this.files[0]){
       /* this is going to load up the thumbnails in a temporary browser spot*/
