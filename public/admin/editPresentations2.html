@@ -68,16 +68,14 @@
                   $("#companyname").val(b.companyname);
                   if(b.companylogourl!=''){
                     $("#companyLogoNone").hide('fast');
-                    $("#companyLogoPre").attr('src',b.companylogourl);
-                    $("#companyLogoPre").show('fast');
-                    $("#companyLogoNone").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-
-
+                    $("#companyLogoNone").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.companylogourl+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                   }
                   if(b.pushcontent1url!=''){
                     $("#image1None").hide('fast');
                     $("#image1Pre").attr('src',b.pushcontent1url);
                     $("#image1Pre").show('fast');
+                    $("#image1Pre").hide('fast');
+                    $("#image1Pre").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.companylogourl+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                   }
                   $("#pushcontent2url").val(b.pushcontent2url);
                   $("#pushcontent3url").val(b.pushcontent3url);
@@ -278,7 +276,7 @@
      <td>Company Logo * <br><span style="font-size:smaller"></td>
      <td><div id="previewlogo" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg" id="companyLogoNone">
 photo_size_select_actual
-</i><img src="" style="display:none" id="companyLogoPre" height="200" width="200"><br><input type="file" class="file-input blue" id="logoimage" required><input type="hidden" class="hiddenSrc" name="companylogourl"></div></td>
+</i><br><input type="file" class="file-input blue" id="logoimage" required><input type="hidden" class="hiddenSrc" name="companylogourl"></div></td>
   </tr>
   <tr>
     <td>Push Content 1 *<br><div class="explain">Must be jpg, png, or jpeg,350px wide minimum, and be a picture of an email</div></td>
@@ -292,7 +290,7 @@ photo_size_select_actual
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview2" class="preview" align="center"><i class="material-icons md-184 md-inactive md-dark previewimg" id="image2None">
 photo_size_select_actual
-</i><br><img src="" style="display:none" id="image2Pre" height="200" width="200"><input type="file" class="file-input blue" id="image2"><input type="hidden" class="hiddenSrc" name="pushcontent2url"></div></td>
+</i><br><input type="file" class="file-input blue" id="image2"><input type="hidden" class="hiddenSrc" name="pushcontent2url"></div></td>
   </tr>
   <tr>
     <td>Push Content 3<br>
