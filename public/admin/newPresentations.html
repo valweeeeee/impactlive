@@ -200,7 +200,7 @@
           type: 'POST',
           dataType: "json",
           success: function(data){
-            alert(data);
+            alert(data.data);
             if(data.err!=1 && !data.err){
               $.ajax({
                  url: '/updatenewrecord/',
