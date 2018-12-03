@@ -117,6 +117,7 @@
       $('form').submit(function (e) {
         e.preventDefault();
 
+        var formData=this;
        $.ajax({
           url: '/makeedits/',
           contentType: 'application/json',
@@ -150,7 +151,7 @@
          if(data.data=="ok"){
            $(that).siblings('.uploaded').hide('fast');
            $(that).siblings('.previewimg').show('fast');
-           $(that).siblings('hiddenSrc').val('');
+           $(that).siblings('hiddenSrc').html('');
            $(that).remove();
          }
          else{
@@ -179,7 +180,7 @@
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           //$(thisid).find(".deleteImage").trigger("click");
-          $(thisid).find('.hiddenSrc').val(urlFull);
+          $(thisid).find('.hiddenSrc').html(urlFull);
           $(thisid).find('.previewimg').hide('fast');
           $(thisid).find(".uploaded").remove();
           $(thisid).find(".deleteImage").remove();
@@ -300,13 +301,13 @@
      <td>Company Logo * <br><span style="font-size:smaller"></td>
      <td><div id="previewlogo" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg" id="companyLogoNone">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="logoimage"><input type="text" class="hiddenSrc" name="companylogourl"  style="height:0;width:0;display:none;position:absolute;" required></div></td>
+</i><br><input type="hidden" name="companylogourl"><input type="file" class="file-input blue" id="logoimage"><span  class="hiddenSrc" style="height:0;width:0;display:none;position:absolute;"></span></div></td>
   </tr>
   <tr>
     <td>Push Content 1 *<br><div class="explain">Must be jpg, png, or jpeg,350px wide minimum, and be a picture of an email</div></td>
     <td><div id="preview1" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg" id="image1None">
 photo_size_select_actual
-</i><img src="" style="display:none" id="image1Pre" height="200" width="200"><br><input type="file" class="file-input blue" id="image1"><input type="text" class="hiddenSrc" name="pushcontent1url" style="height:0;width:0;display:none;position:absolute;" required></div>
+</i><br><input type="hidden" name="pushcontent1url"><input type="file" class="file-input blue" id="image1"><span class="hiddenSrc" style="height:0;width:0;display:none;position:absolute;"></span></div>
     </td>
   </tr>
   <tr>
