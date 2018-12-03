@@ -80,7 +80,7 @@
     if(this.files && this.files[0]){
       /* this is going to load up the thumbnails in a temporary browser spot*/
       var reader = new FileReader();
-      const files = $(fileInput).prop('files');
+      const files = $(this).prop('files');
       const file = files[0];
 
       if(file == null){
