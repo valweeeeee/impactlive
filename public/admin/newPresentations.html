@@ -52,8 +52,8 @@
     e.preventDefault();
     deleteImage(this);
   });
-  function deleteImage(this){
-    var data='{"filename":"' + $(this).data('filename')+ '"}';
+  function deleteImage(that){
+    var data='{"filename":"' + $(that).data('filename')+ '"}';
     $.ajax({
        url: '/delete-s3',
        contentType: 'application/json',
