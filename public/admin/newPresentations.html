@@ -47,7 +47,6 @@
   <script>
   $(document).ready(function() {
     var thisid;
-    var section;
   $("body").on("click",".deleteImage",function(e){
     e.preventDefault();
     deleteImage(this);
@@ -92,6 +91,8 @@
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           //$(thisid).find(".deleteImage").trigger("click");
+          console.log(thisid);
+          $(thisid).siblings('.file-input').val('urlFull');
           $(thisid).find('.previewimg').hide('fast');
           var curImgSrc=$(thisid).find(".thumb").attr('src');
           $(thisid).find(".uploaded").remove();
@@ -182,7 +183,7 @@
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-        console.log(toJSONString(this));
+        //console.log(toJSONString(this));
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
