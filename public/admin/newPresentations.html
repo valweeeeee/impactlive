@@ -65,6 +65,7 @@
            console.log(that);
            $(that).siblings('.uploaded').hide('fast');
            $(that).siblings('.previewimg').show('fast');
+           $(that).remove();
          }
          else{
            console.log(data.data);
