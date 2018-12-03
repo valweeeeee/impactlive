@@ -210,7 +210,7 @@
                  type: 'POST',
                  dataType: "json",
                  success: function(data){
-
+                   alert(data);
                    if(data.err!=1){
                       window.location="/admin/presentations.html";
                    }
@@ -226,6 +226,7 @@
              return false;
             }
             else{
+              alert('what');
               //console.log(data);
             }
           },
