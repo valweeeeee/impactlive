@@ -47,31 +47,34 @@
   <script>
   $(document).ready(function() {
     var thisid;
+    var section;
   $("body").on("click",".deleteImage",function(e){
     e.preventDefault();
-    var data='{"filename":"' + $(this).data('filename')+ '"}';
-    //thisid=$(this).prevAll('.preview:first');
-      $.ajax({
-         url: '/delete-s3',
-         contentType: 'application/json',
-         data: data,
-         type: 'POST',
-         dataType: "json",
-         success: function(data){
-           if(data.data=="ok"){
-               
-
-           }
-           else{
-             console.log(data.data);
-           }
-         },
-         failure: function(errMsg) {
-             console.log('error');
-         }
-
-     });
+    deleteImage(this);
   });
+  function deleteImage(this){
+    var data='{"filename":"' + $(this).data('filename')+ '"}';
+    $.ajax({
+       url: '/delete-s3',
+       contentType: 'application/json',
+       data: data,
+       type: 'POST',
+       dataType: "json",
+       success: function(data){
+         if(data.data=="ok"){
+
+
+         }
+         else{
+           console.log(data.data);
+         }
+       },
+       failure: function(errMsg) {
+           console.log('error');
+       }
+
+   });
+ }
   $('.file-input').change(function() {
     thisid=$(this).parent();
     return initUpload(this);
