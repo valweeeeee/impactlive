@@ -91,7 +91,7 @@
         if(xhr.status === 200){
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          $(thisid).find(".deleteImage").trigger("click");
+          //$(thisid).find(".deleteImage").trigger("click");
           $(thisid).find('.previewimg').hide('fast');
           var curImgSrc=$(thisid).find(".thumb").attr('src');
           $(thisid).find(".uploaded").remove();
@@ -194,7 +194,7 @@
               window.location="/admin/presentations.html";
             }
             else{
-              console.log(data);
+              //console.log(data);
             }
           },
           failure: function(errMsg) {
