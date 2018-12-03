@@ -63,7 +63,7 @@
        success: function(data){
          if(data.data=="ok"){
            console.log(that);
-           $(that).siblings('.uploaded a').hide('fast');
+           $(that).siblings('.uploaded').hide('fast');
            $(that).siblings('.previewimg').show('fast');
          }
          else{
