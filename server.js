@@ -203,7 +203,7 @@ app.post('/makeedits/', (req,res,next)=>{
 app.post('/newrecord/', (req,res,next)=>{
   sess=req.session;
 
-  let query = "INSERT INTO presentations (companyname,email1subject,surveylink,userid,datecreated) VALUES ('"+req.body.companyname+"','"+req.body.email1subject+"','"+req.body.surveylink+"','"+req.body.userid+"', NOW())";
+  let query = "INSERT INTO presentations (companyname,email1subject,surveylink,userid,datecreated) VALUES ('"+req.body.companyname+"','"+req.body.email1subject+"','"+req.body.surveylink+"','"+req.body.userid+"', NOW() RETURNING presentationid)";
   DB.query(query, (err, results) => {
     if(err) {
         res.json({'err':1,'message':'ERROR'});
@@ -211,8 +211,8 @@ app.post('/newrecord/', (req,res,next)=>{
         return false;
       }
     else{
-      var newlyCreatedPresentationId = results.rows[0].id;
-      return res.json({'data':results.rows[0].id});
+      var newlyCreatedPresentationId = results.rows[0].presentationid;
+      return res.json({'data':results.rows[0].presentationid});
     }
   });
 });
