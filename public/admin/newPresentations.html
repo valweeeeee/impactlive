@@ -201,7 +201,7 @@
           type: 'POST',
           dataType: "json",
           success: function(data){
-
+            alert(data.err);
             if(data.err!=1){
               $.ajax({
                  url: '/updatenewrecord/',
@@ -215,7 +215,7 @@
                       window.location="/admin/presentations.html";
                    }
                    else{
-                     //console.log(data);
+                     console.log(data);
                    }
                  },
                  failure: function(errMsg) {
