@@ -74,16 +74,19 @@
                     fileName=splitTest(b.companylogourl);
                     $("#companyLogoNone").hide('fast');
                     $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.companylogourl+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                    $("input[name=companylogourl").val(b.companylogourl);
                   }
                   if(b.pushcontent1url!=''){
                     fileName=splitTest(b.pushcontent1url);
                     $("#image1None").hide('fast');
                     $("#preview1").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent1url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                    $("input[name=pushcontent1url").val(b.companylogourl);
                   }
                   if(b.pushcontent2url!=''){
                     fileName=splitTest(b.pushcontent2url);
                     $("#image1None").hide('fast');
                     $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent2url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                    $("input[name=pushcontent2url").val(b.companylogourl);
                   }
                   if(b.pushcontent3url!=''){
                     fileName=splitTest(b.pushcontent3url);
@@ -94,11 +97,13 @@
                     fileName=splitTest(b.pushcontent4url);
                     $("#image1None").hide('fast');
                     $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent4url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                    $("input[name=pushcontent4url").val(b.companylogourl);
                   }
                   if(b.pushcontent5url!=''){
                     fileName=splitTest(b.pushcontent5url);
                     $("#image1None").hide('fast');
                     $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent5url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                    $("input[name=pushcontent5url").val(b.companylogourl);
                   }
                   $("#email1subject").val(b.email1subject);
                   $("#surveylink").val(b.surveylink);
@@ -173,13 +178,12 @@
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           //$(thisid).find(".deleteImage").trigger("click");
-          console.log(thisid);
           $(thisid).find('.hiddenSrc').val(urlFull);
           $(thisid).find('.previewimg').hide('fast');
-          var curImgSrc=$(thisid).find(".thumb").attr('src');
           $(thisid).find(".uploaded").remove();
           $(thisid).find(".deleteImage").remove();
           $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><a href='"+urlFull+"' target='_blank'><img src='"+url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+          $(thisid).find("input[type=hidden]").css('border','2px solid blue');
 
         }
         else{
@@ -305,6 +309,12 @@ photo_size_select_actual
     </td>
   </tr>
   <tr>
+    <td>Email Subject *<br>
+      <div class="explain">Subject line for the first email (uploaded above)</div></td>
+    <td><input type="text" name="email1subject" id="email1subject" required></td>
+  </tr>
+  <tr>
+  <tr>
     <td>Push Content 2<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview2" class="preview" align="center"><i class="material-icons md-184 md-inactive md-dark previewimg" id="image2None">
@@ -332,12 +342,7 @@ photo_size_select_actual
 photo_size_select_actual
 </i><img src="" style="display:none" id="image5Pre" height="200" width="200"><br><input type="file" class="file-input blue"  id="image5"><input type="hidden" class="hiddenSrc" name="pushcontent5url"></div></td>
   </tr>
-  <tr>
-    <td>Email Subject *<br>
-      <div class="explain">Subject line for the first email</div></td>
-    <td><input type="text" name="email1subject" id="email1subject" required></td>
-  </tr>
-  <tr>
+
     <td>Survey URL<br>
       <div class="explain">If provided, survey link will display on end page</div></td>
     <td><input type="text" name="surveylink" id="surveylink"></td>
