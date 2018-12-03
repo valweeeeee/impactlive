@@ -92,7 +92,7 @@
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           //$(thisid).find(".deleteImage").trigger("click");
           console.log(thisid);
-          $(thisid).find('.file-input').val('urlFull');
+          $(thisid).find('.hiddenSrc').val('urlFull');
           $(thisid).find('.previewimg').hide('fast');
           var curImgSrc=$(thisid).find(".thumb").attr('src');
           $(thisid).find(".uploaded").remove();
@@ -238,13 +238,13 @@
      <td>Company Logo * <br><span style="font-size:smaller"></td>
      <td><div id="previewlogo" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="companylogourl" id="companylogourl" id="logoimage" required></div></td>
+</i><br><input type="file" class="file-input blue" id="companylogourl" id="logoimage" required><input type="hidden" class="hiddenSrc" name="companylogourl"></div></td>
   </tr>
   <tr>
     <td>Push Content 1 *<br><div class="explain">Must be jpg, png, or jpeg,350px wide minimum, and be a picture of an email</div></td>
     <td><div id="preview1" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="pushcontent1url" id="image1" required></div>
+</i><br><input type="file" class="file-input blue" id="image1" required><input type="hidden" class="hiddenSrc" name="pushcontent1url"></div>
     </td>
   </tr>
   <tr>
@@ -252,28 +252,28 @@ photo_size_select_actual
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview2" class="preview" align="center"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="pushcontent2url" id="image2"></div></td>
+</i><br><input type="file" class="file-input blue" id="image2"><input type="hidden" class="hiddenSrc" name="pushcontent2url"></div></td>
   </tr>
   <tr>
     <td>Push Content 3<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview3" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="pushcontent3url" id="image3"></div></td>
+</i><br><input type="file" class="file-input blue" id="image3"><input type="hidden" class="hiddenSrc" name="pushcontent3url"></div></td>
   </tr>
   <tr>
     <td>Push Content 4<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview4" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="pushcontent4url" id="image4"></div></td>
+</i><br><input type="file" class="file-input blue"  id="image4"><input type="hidden" class="hiddenSrc" name="pushcontent4url"></div></td>
   </tr>
   <tr>
     <td>Push Content 5<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview5" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="pushcontent5url" id="image5"></div></td>
+</i><br><input type="file" class="file-input blue"  id="image5"><input type="hidden" class="hiddenSrc" name="pushcontent5url"></div></td>
   </tr>
   <tr>
     <td>Email Subject *<br>
