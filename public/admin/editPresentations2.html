@@ -68,10 +68,14 @@
                   $("#companyname").val(b.companyname);
                   if(b.companylogourl!=''){
                     $("#companyLogoNone").hide('fast');
+                    $("#companyLogoPre").attr('src'.b.companylogourl);
                     $("#companyLogoPre").show('fast');
+
                   }
-                  if(b.pushcontent1url!='')
-                    $("#pushcontent1url").val(b.pushcontent1url);
+                  if(b.pushcontent1url!=''){
+                    $("#image1None").hide('fast');
+                    $("#image1Pre").attr('src'.b.pushcontent1url);
+                    $("#image1Pre").show('fast');
                   }
                   $("#pushcontent2url").val(b.pushcontent2url);
                   $("#pushcontent3url").val(b.pushcontent3url);
