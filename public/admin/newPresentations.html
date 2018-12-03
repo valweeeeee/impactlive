@@ -62,7 +62,6 @@
        dataType: "json",
        success: function(data){
          if(data.data=="ok"){
-           console.log(that);
            $(that).siblings('.uploaded').hide('fast');
            $(that).siblings('.previewimg').show('fast');
            $(that).remove();
@@ -79,7 +78,6 @@
  }
   $('.file-input').change(function() {
     thisid=$(this).parent();
-    console.log('hi' + thisid);
     return initUpload(this);
   });
   var userID=getCookie('impactLive');
@@ -184,6 +182,7 @@
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
+        console.log(toJSONString(this));
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
