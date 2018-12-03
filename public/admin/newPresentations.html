@@ -109,6 +109,7 @@
             return false;
          }
          else{
+           alert('here');
            var reader = new FileReader();
            reader.onload=function(e){
              $(thisid).find('.hiddenSrc').val('');
@@ -119,6 +120,7 @@
              $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+e.target.result+"' class='thumb' style='max-width:180px'></div>").fadeIn('slow').css("display","block");
 
            }
+           alert('reader');
            reader.readAsDataURL(thatFile.files[0]);
          }
 
