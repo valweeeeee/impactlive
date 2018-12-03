@@ -193,7 +193,7 @@
 
         this.companylogourl=initUpload($("#companylogourl"));
         var that=toJSONString(this);
-      //  initUpload($("#companylogourl"));
+        console.log(that);
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
