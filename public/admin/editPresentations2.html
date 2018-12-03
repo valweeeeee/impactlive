@@ -150,8 +150,7 @@
          if(data.data=="ok"){
            $(that).siblings('.uploaded').hide('fast');
            $(that).siblings('.previewimg').show('fast');
-           $(that).siblings('input[type=hidden]').val();
-           alert($(that).siblings('input[type=hidden]').val());
+           $(that).siblings('input[type=hidden]').val('');
            $(that).remove();
          }
          else{
