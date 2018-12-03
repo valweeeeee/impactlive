@@ -223,9 +223,10 @@ app.post('/newrecord/', (req,res,next)=>{
               res.json({"data":'ok'},200);
             }
 
-    });
+          });
         return newlyCreatedPresentationId;
     }
+  });
 });
 
 app.post('/delete/', (req,res,next)=>{
