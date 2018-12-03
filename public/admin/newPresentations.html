@@ -79,12 +79,12 @@
  }
   $('.file-input').change(function() {
     thisid=$(this).parent();
+    console.log('hi' + thisid);
     return initUpload(this);
   });
   var userID=getCookie('impactLive');
 
   function uploadFile(file, signedRequest, fileName){
-    console.log('hello' + fileName);
 
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
