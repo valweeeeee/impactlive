@@ -84,6 +84,8 @@
   var userID=getCookie('impactLive');
 
   function uploadFile(file, signedRequest, fileName){
+    console.log('hello' + fileName);
+
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
     xhr.onreadystatechange = () => {
