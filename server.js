@@ -210,8 +210,8 @@ app.post('/newrecord/', (req,res,next)=>{
         return false;
       }
     else{
-      var newlyCreatedPresentationId = result.rows[0].id;
-      return res.json({'data':result.rows[0].id});
+      var newlyCreatedPresentationId = results.rows[0].id;
+      return res.json({'data':results.rows[0].id});
     }
   });
 });
