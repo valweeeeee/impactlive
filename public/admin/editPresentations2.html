@@ -150,6 +150,7 @@
          if(data.data=="ok"){
            $(that).siblings('.uploaded').hide('fast');
            $(that).siblings('.previewimg').show('fast');
+           $(that).siblings('input[type=hidden]').val();
            $(that).remove();
          }
          else{
@@ -305,7 +306,7 @@ photo_size_select_actual
     <td>Push Content 1 *<br><div class="explain">Must be jpg, png, or jpeg,350px wide minimum, and be a picture of an email</div></td>
     <td><div id="preview1" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg" id="image1None">
 photo_size_select_actual
-</i><img src="" style="display:none" id="image1Pre" height="200" width="200"><br><input type="file" class="file-input blue" id="image1" required><input type="hidden" class="hiddenSrc" name="pushcontent1url"></div>
+</i><img src="" style="display:none" id="image1Pre" height="200" width="200"><br><input type="file" class="file-input blue" id="image1"><input type="hidden" class="hiddenSrc" name="pushcontent1url" required></div>
     </td>
   </tr>
   <tr>
