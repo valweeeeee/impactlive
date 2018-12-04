@@ -214,7 +214,7 @@ function getSignedRequest(file,pid){
                 var presentationid=data;
 
                  if(data.err!=1 && !data.err){
-                   return new $.Deferred().resolve(file,presentationid).promise();
+                   return dfd.resolve(file,presentationid).promise();
 
                  }
                })
