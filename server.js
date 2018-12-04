@@ -212,7 +212,7 @@ app.post('/newrecord/', (req,res,next)=>{
       console.log(results);
       presentationid=results;
       console.log(presentationid);
-      updateRecord(req,results.presentationid,res);
+      updateRecord(req,presentationid,res);
     }
   });
 });
