@@ -215,8 +215,11 @@ function getSignedRequest(file,pid){
                 var presentationid=data;
 
                  if(data.err!=1 && !data.err){
-                   return resolve(file,presentationid).promise();
+                   return Promise.resolve(file,presentationid);
 
+                 }
+                 else{
+                   return Promise.reject();
                  }
                })
         });
