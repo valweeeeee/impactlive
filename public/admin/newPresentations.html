@@ -129,17 +129,16 @@
   function getFileExtension(filename) {
     return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
   }
-  function chainPromises(list) {
-      return list.reduce((chain, func) => chain ? chain.then(func) : func(), null);
-  }
-function initUpload(fileInput){
-    var deferred = $.Deferred();
-    var urlFull=false;
+
+var initUpload=function(fileInput){
+    var dfd = $.Deferred();
     const files = $(fileInput).prop('files');
     const file = files[0];
-    resolve(file);
+    dfd.resolve(file);
+    return dfd.promise();
 }
 function getSignedRequest(file){
+      var dfd = $.Deferred();
       const xhr = new XMLHttpRequest();
       var fileNameOnly=file.name;
       fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
@@ -151,18 +150,20 @@ function getSignedRequest(file){
         if(xhr.readyState === 4){
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
-            resolve(myNewFile, response.signedRequest, myNewFile.name);
+            dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
           }
           else{
-            alert('Could not get signed URL.');
-            reject();
+          //  alert('Could not get signed URL.');
+            dfd.reject('error');
           }
         }
+
       };
       xhr.send();
+      return dfd.promise();
     }
   function uploadFile(file, signedRequest, fileName){
-
+    var dfd = $.Deferred();
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
     xhr.onreadystatechange = () => {
@@ -173,15 +174,17 @@ function getSignedRequest(file){
         if(xhr.status === 200){
           //url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
+          dfd.resolve(urlFull);
 
         }
         else{
-          alert('Could not upload file.');
-          return false;
+          //alert('Could not upload file.');
+          dfd.reject(0);
         }
       }
     };
     xhr.send(file);
+    return dfd.promise();
   }
   if(!userID){
     //window.location="/admin/index.html";
@@ -190,7 +193,10 @@ function getSignedRequest(file){
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-        fullUrl=chainPromises(initUpload($("#companylogourlTmp")),getSignedRequest,uploadFile);
+        var promise=initUpload($("#companylogourlTmp");
+        promise.then(getSignedUrl).then(uploadFile).done(function(message){
+          alert(message);
+        });
         function addHidden(theForm, key, value) {
             // Create a hidden input element, and append it to the form:
             var input = document.createElement('input');
