@@ -135,12 +135,9 @@ function initUpload(fileInput){
     var urlFull=false;
     const files = $(fileInput).prop('files');
     const file = files[0];
-    getSignedRequest(file,this.src).then(uploadFile(a,b,c));
+    getSignedRequest(file,this.src).then(uploadFile);
 }
-
-
-
-    function getSignedRequest(file){
+function getSignedRequest(file){
       const xhr = new XMLHttpRequest();
       var fileNameOnly=file.name;
       fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
@@ -153,7 +150,6 @@ function initUpload(fileInput){
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
             resolve(myNewFile, response.signedRequest, myNewFile.name);
-
           }
           else{
             alert('Could not get signed URL.');
