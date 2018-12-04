@@ -168,7 +168,7 @@
           if(xhr.status === 200){
             url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
             urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-            return urlFull;
+
           }
           else{
             alert('Could not upload file.');
@@ -178,10 +178,8 @@
       };
       xhr.send(file);
     }
-
-    /*
-     Function called when file input updated.
-    */
+    alert(urlFull);
+    return urlFull;
 
   }
   if(!userID){
