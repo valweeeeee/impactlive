@@ -213,7 +213,7 @@ function getSignedRequest(file){
           });
 
         }
-        if($("#companylogourlTmp").val()!='')
+        if($("#companylogourlTmp").val()!=''){
           fullURL=getPromise($("#companylogourlTmp"));
           if(fullURL!=0){
             addHidden(this,"companylogourl",fullURL);
