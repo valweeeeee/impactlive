@@ -133,8 +133,8 @@
   function getSignedRequest(file){
     var deferred = $.Deferred();
     var urlFull=false;
-    const files = $(fileInput).prop('files');
-    const file = files[0];
+    files = $(fileInput).prop('files');
+    file = files[0];
 
     const xhr = new XMLHttpRequest();
     var fileNameOnly=file.name;
