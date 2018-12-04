@@ -131,14 +131,14 @@
     return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
   }
 
-var initUpload=function(fileInput){
+var initUpload=function(pid,fileInput){
     var dfd = $.Deferred();
     const files = $(fileInput).prop('files');
     const file = files[0];
-    dfd.resolve(file);
+    dfd.resolve(pid,file);
     return dfd.promise();
 }
-function getSignedRequest(file){
+function getSignedRequest(file,pid){
       var dfd = $.Deferred();
 
       const xhr = new XMLHttpRequest();
@@ -194,9 +194,8 @@ function getSignedRequest(file){
         e.preventDefault();
         var form=this;
         function getPromise(inputID){
-
-          var promise=initUpload(inputID);
-          promise.then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
+          var promise=getPresID(form,inputID);
+          promise.then(initUpload(pid,inputID)).then(getSignedRequest(pid,file)).then(uploadFile).done(function(uploadedURL){
             if(uploadedURL!=0 && uploadedURL!=''){
               return uploadedURL;
             }
@@ -220,42 +219,26 @@ function getSignedRequest(file){
 
         var that=toJSONString(form);
         //console.log(that);
+        function getPresID(form,inputID){
+          return new Promise(function (resolve, reject) {
+            $.ajax({
+               url: '/newrecord/',
+               contentType: 'application/json',
+               data:  that,
+               type: 'POST',
+               dataType: "json"
+             }).done(function(data){
+                 if(data.err!=1 && !data.err){
+                   resolve(data,inputID);
+                 }
+               }).fail(function(errMsg) {
+                   resolve(false);
+               })
+           return false;
+        });
+          }
+        }
 
-       $.ajax({
-          url: '/newrecord/',
-          contentType: 'application/json',
-          data:  that,
-          type: 'POST',
-          dataType: "json"
-        }).done(function(data){
-
-            function addHidden(theForm, key, value) {
-                // Create a hidden input element, and append it to the form:
-                var input = document.createElement('input');
-                input.type = 'hidden';
-                input.name = key; // 'the key/name of the attribute/field that is sent to the server
-                input.value = value;
-                theForm.appendChild(input);
-            }
-            if(data.err!=1 && !data.err){
-              pid=data;
-              console.log(pid + 'pid');
-              addHidden(form,"presentationid",pid);
-              if($("#companylogourlTmp").val()!=''){
-                fullURL=getPromise($("#companylogourlTmp"));
-                if(fullURL!=0){
-                  console.log("url"+fullURL);
-                  addHidden(form,"companylogourl",fullURL);
-                  console.log(form);
-                  return true;
-                }
-              }
-            }
-          }).fail(function(errMsg) {
-              console.log('error');
-          })
-      return false;
-   });
  }
 });
 </script>
