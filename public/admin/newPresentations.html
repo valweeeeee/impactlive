@@ -129,13 +129,15 @@
   function getFileExtension(filename) {
     return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
   }
-
+  function chainPromises(list) {
+      return list.reduce((chain, func) => chain ? chain.then(func) : func(), null);
+  }
 function initUpload(fileInput){
     var deferred = $.Deferred();
     var urlFull=false;
     const files = $(fileInput).prop('files');
     const file = files[0];
-    getSignedRequest(file,this.src).then(uploadFile);
+    resolve(file);
 }
 function getSignedRequest(file){
       const xhr = new XMLHttpRequest();
@@ -188,7 +190,7 @@ function getSignedRequest(file){
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-
+        chainPromises(initUpload($("#companylogourlTmp")),getSignedRequest,uploadFile);
         function addHidden(theForm, key, value) {
             // Create a hidden input element, and append it to the form:
             var input = document.createElement('input');
@@ -198,7 +200,7 @@ function getSignedRequest(file){
             theForm.appendChild(input);
         }
         if($("#companylogourlTmp").val()!='')
-          addHidden(this,"companylogourl",initUpload($("#companylogourlTmp")));
+          addHidden(this,"companylogourl",fullUrl)));
         /*if($("#image1Tmp").val()!='')
           this.pushcontent1url.value=initUpload($("#image1Tmp"));
         if($("#image2Tmp").val()!='')
