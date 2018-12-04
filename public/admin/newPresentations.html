@@ -134,7 +134,7 @@
 
 
 function getSignedRequest(file,pid){
-    console.log(file);
+    console.log("the file is" + file);
     console.log(pid);
       var dfd = $.Deferred();
       const xhr = new XMLHttpRequest();
@@ -219,7 +219,7 @@ function getSignedRequest(file,pid){
 
                 });
     };
-            getPresID(form,$("#companylogourlTmp").prop('files')[0]);
+    getPresID(form,$("#companylogourlTmp"));
 
  });
 }
