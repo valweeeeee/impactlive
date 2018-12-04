@@ -134,6 +134,7 @@ var initUpload=function(fileInput){
     var dfd = $.Deferred();
     const files = $(fileInput).prop('files');
     const file = files[0];
+    alert(file);
     dfd.resolve(file);
     return dfd.promise();
 }
@@ -235,6 +236,7 @@ function getSignedRequest(file){
             if(data.err!=1 && !data.err){
               $("#presentationid").val(data);
               var pid=data;
+
               if($("#companylogourlTmp").val()!=''){
                 fullURL=getPromise($("#companylogourlTmp"));
                 alert(fullURL);
