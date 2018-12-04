@@ -208,16 +208,7 @@ function getSignedRequest(file,pid){
         if($("#companylogourlTmp").val()!=''){
           fullURL=getPromise($("#companylogourlTmp"));
         }
-        /*if($("#image1Tmp").val()!='')
-          this.pushcontent1url.value=initUpload($("#image1Tmp"));
-        if($("#image2Tmp").val()!='')
-          this.pushcontent2url.value=initUpload($("#image2Tmp"));
-        if($("#image3Tmp").val()!='')
-          this.pushcontent3url.value=initUpload($("#image3Tmp"));
-        if($("#image4Tmp").val()!='')
-          this.pushcontent3url.value=initUpload($("#image4Tmp"));
-        if($("#image5Tmp").val()!='')
-          this.pushcontent3url.value=initUpload($("#image5Tmp"));*/
+
 
         var that=toJSONString(form);
         //console.log(that);
@@ -239,7 +230,7 @@ function getSignedRequest(file,pid){
            return false;
         });
           }
-        }
+        });
 
  }
 });
