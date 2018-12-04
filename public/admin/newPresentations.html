@@ -202,31 +202,6 @@
           success: function(data){
             alert(data.data);
             if(data.err!=1 && !data.err){
-              $.ajax({
-                 url: '/updatenewrecord/',
-                 contentType: 'application/json',
-                 data:  that,
-                 type: 'POST',
-                 dataType: "json",
-                 success: function(data){
-                   alert(data);
-                   if(data.err!=1){
-                      window.location="/admin/presentations.html";
-                   }
-                   else{
-                     console.log(data);
-                   }
-                 },
-                 failure: function(errMsg) {
-                     console.log('error');
-                 }
-
-             });
-             return false;
-            }
-            else{
-              alert('what');
-              //console.log(data);
             }
           },
           failure: function(errMsg) {
