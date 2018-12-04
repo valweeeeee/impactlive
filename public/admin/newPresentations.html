@@ -241,11 +241,12 @@ function getSignedRequest(file){
                 theForm.appendChild(input);
             }
             if(data.err!=1 && !data.err){
-              $("#presentationid").val(data);
               pid=data;
+              addHidden(form,"presentationid",pid);
               if($("#companylogourlTmp").val()!=''){
                 fullURL=getPromise($("#companylogourlTmp"));
                 if(fullURL!=0){
+                  console.log(fullURL);
                   addHidden(form,"companylogourl",fullURL);
                   return true;
                 }
@@ -337,7 +338,7 @@ photo_size_select_actual
     <td><input type="text" name="surveylink" id="surveylink"></td>
   </tr>
   <tr>
-      <td style="border:none"><input type="hidden" name="userid" id="userid"><input type="hidden" name="presentationid" id="presentationid"></td>
+      <td style="border:none"><input type="hidden" name="userid" id="userid"></td>
       <td style="border:none"><br><input type="submit" id="editPresentation" class="green" style="float:left;width:200px;height:50px;cursor:pointer;border:2px solid #000;margin-left:40px;font-size:16px" value="Save"></td>
     </tr>
   </table>
