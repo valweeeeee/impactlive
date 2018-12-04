@@ -187,43 +187,31 @@ function getSignedRequest(file,pid){
       $('form').submit(function (e) {
         e.preventDefault();
         var form=this;
-        function getPromise(file){
-          getPresID(form,file).then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
-            if(uploadedURL!=0 && uploadedURL!=''){
-              return uploadedURL;
-            }
-            else {
-              return 0;
-            }
-          });
+        getPresId(form,$("#companylogourlTmp"));
 
-        }
-        if($("#companylogourlTmp").val()!=''){
-          fullURL=getPromise($("#companylogourlTmp"));
-        }
 
         function getPresID(form,file){
-            return new Promise((resolve, reject) => {
-               var xhr = new XMLHttpRequest();
-               xhr.open('POST','/newrecord/',true)
-               xhr.send(form);
-               xhr.onreadystatechange = function(){
-               if (xhr.readyState === 4){
-                  if (xhr.status === 200){
-                      var presentationid=xhr.responseText;
-                      resolve(file,presentationid);
-                  }
-                  else{
-                      reject();
-                  }
-                }
-              }
-        });
-    }
+            var dfd = $.Deferred();
+            var x;
+            $.ajax({
+               url: '/newrecord/',
+               contentType: 'application/json',
+               data:  toJSONString(form),
+               type: 'POST',
+               dataType: "json"
+             }).then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
+               if(uploadedURL!=0 && uploadedURL!=''){
+                 return uploadedURL;
+               }
+               else {
+                 return 0;
+               }
+             });
+        }
+    });
 
 
- });
-}
+ }
 });
 </script>
 
