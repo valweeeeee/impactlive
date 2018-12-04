@@ -160,10 +160,12 @@
       xhr.send();
     }
     function uploadFile(file, signedRequest, fileName){
-      alert('here');
+
       const xhr = new XMLHttpRequest();
       xhr.open('PUT', signedRequest);
       xhr.onreadystatechange = () => {
+          alert('here');
+          alert(xhr.readyState);
         if(xhr.readyState === 4){
           if(xhr.status === 200){
             //url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
