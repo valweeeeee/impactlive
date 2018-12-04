@@ -207,6 +207,7 @@ app.post('/newrecord/', (req,res,next)=>{
   console.log(query);
   DB.query(query, (err, results) => {
     if(err) {
+      console.log(err);
         return res.json({'err':1,'message':'ERROR'});
       }
     else{
