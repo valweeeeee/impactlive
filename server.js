@@ -210,7 +210,7 @@ app.post('/newrecord/', (req,res,next)=>{
       }
     else{
       console.log(results);
-      presentationid=results.presentationid;
+      presentationid=results;
       console.log(presentationid);
       updateRecord(req,results.presentationid,res);
     }
