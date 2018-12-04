@@ -130,10 +130,10 @@
     return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
   }
 
-  function getSignedRequest(file){
+  function getSignedRequest(fileInput){
     var deferred = $.Deferred();
     var urlFull=false;
-    files = file.prop('files');
+    files = fileInput.prop('files');
     file = files[0];
 
     const xhr = new XMLHttpRequest();
