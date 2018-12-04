@@ -173,7 +173,7 @@ function getSignedRequest(file){
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          console.log('here');
+          console.log('here url is'+ urlFull);
           dfd.resolve(urlFull);
 
         }
@@ -220,6 +220,7 @@ function getSignedRequest(file){
 
         var that=toJSONString(form);
         //console.log(that);
+
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
@@ -238,12 +239,14 @@ function getSignedRequest(file){
             }
             if(data.err!=1 && !data.err){
               pid=data;
+              console.log(pid + 'pid');
               addHidden(form,"presentationid",pid);
               if($("#companylogourlTmp").val()!=''){
                 fullURL=getPromise($("#companylogourlTmp"));
                 if(fullURL!=0){
                   console.log("url"+fullURL);
                   addHidden(form,"companylogourl",fullURL);
+                  console.log(form);
                   return true;
                 }
               }
