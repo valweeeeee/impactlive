@@ -47,6 +47,7 @@
   <script>
   $(document).ready(function() {
     var thisid;
+    var pid;
   $("body").on("click",".deleteImage",function(e){
     e.preventDefault();
     deleteImage(this);
@@ -240,8 +241,8 @@ function getSignedRequest(file){
         }).done(function(data){
             if(data.err!=1 && !data.err){
               $("#presentationid").val(data);
-              var pid=data;
-
+              pid=data;
+              alert(pid);
               if($("#companylogourlTmp").val()!=''){
                 fullURL=getPromise($("#companylogourlTmp"));
                 //alert(fullURL);
