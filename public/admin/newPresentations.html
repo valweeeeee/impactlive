@@ -139,7 +139,7 @@ var initUpload=function(fileInput){
 }
 function getSignedRequest(file){
       var dfd = $.Deferred();
-      alert('signed');
+
       const xhr = new XMLHttpRequest();
       var fileNameOnly=file.name;
       fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
@@ -149,6 +149,7 @@ function getSignedRequest(file){
       xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
+          alert(xhr.status);
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
             alert(response);
