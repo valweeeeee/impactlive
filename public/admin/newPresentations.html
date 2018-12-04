@@ -197,7 +197,7 @@ function getSignedRequest(file,pid){
                data:  toJSONString(form),
                type: 'POST',
                dataType: "json"
-             }).then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
+             }).then(getSignedRequest(form,file)).then(uploadFile).done(function(uploadedURL){
                if(uploadedURL!=0 && uploadedURL!=''){
                  return uploadedURL;
                }
