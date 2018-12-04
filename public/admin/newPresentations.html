@@ -204,25 +204,21 @@ function getSignedRequest(file,pid){
         }
 
         function getPresID(form,file){
-            var dfd = $.Deferred();
+
             return $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
                data:  toJSONString(form),
                type: 'POST',
                dataType: "json"
-             }).done(function(data){
+             }).then(function(data){
                 var presentationid=data;
                 var dfd = $.Deferred();
                  if(data.err!=1 && !data.err){
                    dfd.resolve(file,presentationid);
-                  return dfd.promise();
+                   return dfd.promise();
                  }
-               }).fail(function(errMsg) {
-                 var dfd = $.Deferred();
-                return dfd.promise();
                })
-
         }
     });
 
