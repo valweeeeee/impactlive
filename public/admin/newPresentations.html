@@ -187,8 +187,8 @@ function getSignedRequest(file){
       $('form').submit(function (e) {
         e.preventDefault();
         var form=this;
-        function getPromise(inputID){
-          var promise=getPresID(inputID);
+        function getPromise(file){
+          var promise=getPresID(file);
           promise.then(getSignedRequest()).then(uploadFile).done(function(uploadedURL){
             if(uploadedURL!=0 && uploadedURL!=''){
               return uploadedURL;
@@ -206,7 +206,7 @@ function getSignedRequest(file){
 
         var that=toJSONString(form);
         //console.log(that);
-        function getPresID(inputID){
+        function getPresID(file){
 
             $.ajax({
                url: '/newrecord/',
@@ -217,7 +217,7 @@ function getSignedRequest(file){
              }).done(function(data){
                 presentationid=data;
                  if(data.err!=1 && !data.err){
-                   resolve(inputID);
+                   dfd.resolve(file);
                  }
                }).fail(function(errMsg) {
                    resolve(false);
