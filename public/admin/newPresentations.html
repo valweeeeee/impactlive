@@ -194,7 +194,7 @@ function getSignedRequest(file){
       $('form').submit(function (e) {
         e.preventDefault();
         var promise=initUpload($("#companylogourlTmp"));
-        promise.then(getSignedUrl).then(uploadFile).done(function(message){
+        promise.then(getSignedRequest).then(uploadFile).done(function(message){
           alert(message);
         });
         function addHidden(theForm, key, value) {
