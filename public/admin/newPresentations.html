@@ -147,16 +147,16 @@ function getSignedRequest(file){
       fileExt=getFileExtension(file.name);
       newFileName=fileNameOnly + '_' + userID + '_' + pid +'.' + fileExt;
       const myNewFile = new File([file], newFileName, {type: file.type});
-      alert(myNewFile);
+      //alert(myNewFile);
       xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
 
       xhr.onreadystatechange = () => {
-        alert(xhr.readyState);
+      //  alert(xhr.readyState);
         if(xhr.readyState === 4){
 
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
-            alert(response);
+            //alert(response);
             dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
           }
           else{
@@ -170,7 +170,7 @@ function getSignedRequest(file){
       return dfd.promise();
     }
   function uploadFile(file, signedRequest, fileName){
-    alert('in upload');
+    //alert('in upload');
     var dfd = $.Deferred();
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
@@ -178,7 +178,7 @@ function getSignedRequest(file){
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          alert(urlFull);
+          //alert(urlFull);
           dfd.resolve(urlFull);
 
         }
@@ -197,14 +197,7 @@ function getSignedRequest(file){
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-        function addHidden(theForm, key, value) {
-            // Create a hidden input element, and append it to the form:
-            var input = document.createElement('input');
-            input.type = 'hidden';
-            input.name = key; // 'the key/name of the attribute/field that is sent to the server
-            input.value = value;
-            theForm.appendChild(input);
-        }
+        var form=this;
         function getPromise(inputID){
 
           var promise=initUpload(inputID);
@@ -239,15 +232,21 @@ function getSignedRequest(file){
           type: 'POST',
           dataType: "json"
         }).done(function(data){
+            function addHidden(theForm, key, value) {
+                // Create a hidden input element, and append it to the form:
+                var input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = key; // 'the key/name of the attribute/field that is sent to the server
+                input.value = value;
+                theForm.appendChild(input);
+            }
             if(data.err!=1 && !data.err){
               $("#presentationid").val(data);
               pid=data;
-              alert(pid);
               if($("#companylogourlTmp").val()!=''){
                 fullURL=getPromise($("#companylogourlTmp"));
-                //alert(fullURL);
                 if(fullURL!=0){
-                  addHidden(that,"companylogourl",fullURL);
+                  addHidden(form,"companylogourl",fullURL);
                   return true;
                 }
               }
