@@ -229,7 +229,7 @@ function getSignedRequest(file){
           type: 'POST',
           dataType: "json"
         }).done(function(data){
-            //alert(data.data);
+            console.log(data);
             if(data.err!=1 && !data.err){
               alert(data.data);
               $("#presentationid").val(data.data);
