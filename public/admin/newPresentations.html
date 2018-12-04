@@ -208,7 +208,7 @@ function getSignedRequest(file,pid){
                 }
              }).then(
                 function (pid) {
-                  getSignedRequest(file,pid).then(uploadFile).done(function(uploadedURL){
+                  getSignedRequest(file,pid.data).then(uploadFile).done(function(uploadedURL){
                        if(uploadedURL!=0 && uploadedURL!=''){
                          return uploadedURL;
                        }
