@@ -134,7 +134,6 @@
 
 function getSignedRequest(file,pid){
       var dfd = $.Deferred();
-      console.log(file.name);
       const xhr = new XMLHttpRequest();
       var fileNameOnly=file.name;
       fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
@@ -190,15 +189,23 @@ function getSignedRequest(file,pid){
         var form=this;
 
         function getPresID(form,file){
-            var dfd = $.Deferred();
-            var x;
+            var form=form;
+            var file=file;
             $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
                data:  toJSONString(form),
                type: 'POST',
-               dataType: "json"
-             }).then(getSignedRequest(form,file)).then(uploadFile).done(function(uploadedURL){
+               dataType: "json",
+               success: function ( data ) {
+                    return data;
+                },
+                error: function ( error ) {
+                    return error;
+                }
+             }).then(
+                function (pid) {
+                  getSignedRequest(file,pid).then(uploadFile).done(function(uploadedURL){
                if(uploadedURL!=0 && uploadedURL!=''){
                  return uploadedURL;
                }
