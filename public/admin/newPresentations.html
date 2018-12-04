@@ -223,8 +223,8 @@ function getSignedRequest(file){
         if($("#image5Tmp").val()!='')
           this.pushcontent3url.value=initUpload($("#image5Tmp"));*/
 
-        var that=toJSONString(this);
-        console.log(that);
+        var that=toJSONString(form);
+        //console.log(that);
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
@@ -232,6 +232,7 @@ function getSignedRequest(file){
           type: 'POST',
           dataType: "json"
         }).done(function(data){
+          alert(data);
             function addHidden(theForm, key, value) {
                 // Create a hidden input element, and append it to the form:
                 var input = document.createElement('input');
@@ -246,7 +247,7 @@ function getSignedRequest(file){
               if($("#companylogourlTmp").val()!=''){
                 fullURL=getPromise($("#companylogourlTmp"));
                 if(fullURL!=0){
-                  console.log(fullURL);
+                  console.log("url"+fullURL);
                   addHidden(form,"companylogourl",fullURL);
                   return true;
                 }
