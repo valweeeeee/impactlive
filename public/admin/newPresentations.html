@@ -187,8 +187,6 @@ function getSignedRequest(file,pid){
       $('form').submit(function (e) {
         e.preventDefault();
         var form=this;
-        getPresId(form,$("#companylogourlTmp"));
-
 
         function getPresID(form,file){
             var dfd = $.Deferred();
@@ -207,7 +205,9 @@ function getSignedRequest(file,pid){
                  return 0;
                }
              });
+
         }
+        getPresId(form,$("#companylogourlTmp"));
     });
 
 
