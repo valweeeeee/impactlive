@@ -134,7 +134,6 @@ var initUpload=function(fileInput){
     var dfd = $.Deferred();
     const files = $(fileInput).prop('files');
     const file = files[0];
-    alert(file);
     dfd.resolve(file);
     return dfd.promise();
 }
@@ -151,6 +150,7 @@ function getSignedRequest(file){
         if(xhr.readyState === 4){
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
+            alert(response);
             dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
           }
           else{
