@@ -204,29 +204,25 @@ function getSignedRequest(file,pid){
 
         function getPresID(form,file){
             return new Promise((resolve, reject) => {
-               $.ajax({
-               url: '/newrecord/',
-               contentType: 'application/json',
-               data:  toJSONString(form),
-               type: 'POST',
-               dataType: "json"
-             }).then(function(data){
-                var presentationid=data;
-
-                 if(data.err!=1 && !data.err){
-                   resolve(file,presentationid);
-
-                 }
-                 else{
-                   reject();
-                 }
-               })
-
+               var xhr = new XMLHttpRequest();
+               xhr.open('POST','/newrecord/',true)
+               xhr.send(form);
+               xhr.onreadystatechange = function(){
+               if (xhr.readyState === 4){
+                  if (xhr.status === 200){
+                      var presentationid=xhr.responseText;
+                      resolve(file,presentationid);
+                  }
+                  else{
+                      reject();
+                  }
+                }
         });
     }
 
 
  });
+});
 }
 });
 </script>
