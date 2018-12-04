@@ -192,17 +192,17 @@
       $('form').submit(function (e) {
         e.preventDefault();
         if($("#companylogourlTmp").val()!='')
-          this.companylogourl.value=initUpload($("#companylogourl"));
-        if($("#image1Tmp").val()!='')
-          this.pushcontent1url.value=initUpload($("#image1"));
+          this.companylogourl.value=initUpload($("#companylogourlTmp"));
+        /*if($("#image1Tmp").val()!='')
+          this.pushcontent1url.value=initUpload($("#image1Tmp"));
         if($("#image2Tmp").val()!='')
-          this.pushcontent2url.value=initUpload($("#image2"));
+          this.pushcontent2url.value=initUpload($("#image2Tmp"));
         if($("#image3Tmp").val()!='')
-          this.pushcontent3url.value=initUpload($("#image3"));
+          this.pushcontent3url.value=initUpload($("#image3Tmp"));
         if($("#image4Tmp").val()!='')
-          this.pushcontent3url.value=initUpload($("#image4"));
+          this.pushcontent3url.value=initUpload($("#image4Tmp"));
         if($("#image5Tmp").val()!='')
-          this.pushcontent3url.value=initUpload($("#image5"));
+          this.pushcontent3url.value=initUpload($("#image5Tmp"));*/
 
         var that=toJSONString(this);
         console.log(that);
@@ -256,13 +256,13 @@
      <td>Company Logo * <br><span style="font-size:smaller"></td>
      <td><div id="previewlogo" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="companylogourlTmp" name="companylogourl" required></div></td>
+</i><br><input type="file" class="file-input blue" id="companylogourlTmp" name="companylogourlTmp" required></div></td>
   </tr>
   <tr>
     <td>Push Content 1 *<br><div class="explain">Must be jpg, png, or jpeg,350px wide minimum, and be a picture of an email</div></td>
     <td><div id="preview1" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="image1Tmp" name="pushcontent1url" required></div>
+</i><br><input type="file" class="file-input blue" id="image1Tmp" name="pushcontent1urlTmp" required></div>
     </td>
   </tr>
   <tr>
@@ -275,28 +275,28 @@ photo_size_select_actual
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview2" class="preview" align="center"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="image2Tmp" name="pushcontent2url"></div></td>
+</i><br><input type="file" class="file-input blue" id="image2Tmp" name="pushcontent2urlTmp"></div></td>
   </tr>
   <tr>
     <td>Push Content 3<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview3" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="image3Tmp" name="pushcontent3url"></div></td>
+</i><br><input type="file" class="file-input blue" id="image3Tmp" name="pushcontent3urlTmp"></div></td>
   </tr>
   <tr>
     <td>Push Content 4<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview4" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="pushcontent4url" id="image4Tmp"></div></td>
+</i><br><input type="file" class="file-input blue" name="pushcontent4urlTmp" id="image4Tmp"></div></td>
   </tr>
   <tr>
     <td>Push Content 5<br>
     <div class="explain">Must be jpg, png, or jpeg and 350px wide minimum</div></td>
     <td><div id="preview5" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="pushcontent5url" id="image5Tmp"></div></td>
+</i><br><input type="file" class="file-input blue" name="pushcontent5urlTmp" id="image5Tmp"></div></td>
   </tr>
 
   <tr>
