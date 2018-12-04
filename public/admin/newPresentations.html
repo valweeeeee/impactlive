@@ -139,6 +139,7 @@ var initUpload=function(fileInput){
 }
 function getSignedRequest(file){
       var dfd = $.Deferred();
+      alert('signed');
       const xhr = new XMLHttpRequest();
       var fileNameOnly=file.name;
       fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
@@ -239,7 +240,7 @@ function getSignedRequest(file){
 
               if($("#companylogourlTmp").val()!=''){
                 fullURL=getPromise($("#companylogourlTmp"));
-                alert(fullURL);
+                //alert(fullURL);
                 if(fullURL!=0){
                   addHidden(that,"companylogourl",fullURL);
                   return true;
