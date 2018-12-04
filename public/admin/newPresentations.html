@@ -217,6 +217,7 @@ function getSignedRequest(file){
              }).done(function(data){
                 presentationid=data;
                  if(data.err!=1 && !data.err){
+                   alert(file);
                    dfd.resolve(file);
                  }
                }).fail(function(errMsg) {
