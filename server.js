@@ -216,7 +216,7 @@ app.post('/newrecord/', (req,res,next)=>{
 });
 function updateRecord(req,presentationid){
     sess=req.session;
-        let query = "UPDATE presentations SET companylogourl='"+req.body.companylogourl+"',pushcontent1url='"+req.body.pushcontent1url+"',pushcontent2url='"+req.body.pushcontent2url+"', pushcontent3url='"+req.body.pushcontent3url+"',pushcontent4url='"+req.body.pushcontent4url+"',pushcontent5url='"+req.body.pushcontent5url+"'  where userid='"+req.body.userid+ "' AND presentationid='"+newlyCreatedPresentationId+"'";
+        let query = "UPDATE presentations SET companylogourl='"+req.body.companylogourl+"',pushcontent1url='"+req.body.pushcontent1url+"',pushcontent2url='"+req.body.pushcontent2url+"', pushcontent3url='"+req.body.pushcontent3url+"',pushcontent4url='"+req.body.pushcontent4url+"',pushcontent5url='"+req.body.pushcontent5url+"'  where userid='"+req.body.userid+ "' AND presentationid='"+presentationid+"'";
         console.log(query);
         DB.query(query, (err, results) => {
           if(err) {
@@ -227,11 +227,11 @@ function updateRecord(req,presentationid){
               console.log('hi');
               res.header("Access-Control-Allow-Origin", "*");
               res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,    Accept");
-              res.json({"data":newlyCreatedPresentationId},200);
+              res.json({"data":presentationid},200);
             }
 
           });
-        return newlyCreatedPresentationId;
+        
       }
 
 
