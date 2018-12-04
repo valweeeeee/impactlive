@@ -132,7 +132,7 @@
   }
 
 
-function getSignedRequest(file){
+function getSignedRequest(file,pid){
       var dfd = $.Deferred();
 
       const xhr = new XMLHttpRequest();
@@ -207,7 +207,7 @@ function getSignedRequest(file){
         var that=toJSONString(form);
         //console.log(that);
         function getPresID(file){
-
+            var dfd = $.Deferred();
             $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
@@ -218,10 +218,10 @@ function getSignedRequest(file){
                 presentationid=data;
                  if(data.err!=1 && !data.err){
                    alert(file);
-                   dfd.resolve(file);
+                   dfd.resolve(file,presentationid);
                  }
                }).fail(function(errMsg) {
-                   resolve(false);
+                   dfd.resolve(false);
                })
            return false;
         }
