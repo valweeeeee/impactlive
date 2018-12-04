@@ -191,6 +191,7 @@ function getSignedRequest(file,pid){
         function getPresID(form,file){
             var form=form;
             var file=file;
+            
             $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
@@ -206,15 +207,16 @@ function getSignedRequest(file,pid){
              }).then(
                 function (pid) {
                   getSignedRequest(file,pid).then(uploadFile).done(function(uploadedURL){
-               if(uploadedURL!=0 && uploadedURL!=''){
-                 return uploadedURL;
-               }
-               else {
-                 return 0;
-               }
-             });
+                       if(uploadedURL!=0 && uploadedURL!=''){
+                         return uploadedURL;
+                       }
+                       else {
+                         return 0;
+                       }
+                    });
 
-        }
+                });
+
         getPresID(form,$("#companylogourlTmp"));
     });
 
