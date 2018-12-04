@@ -204,6 +204,7 @@ function getSignedRequest(file,pid){
         }
         function getPresID(form,file){
             var dfd = $.Deferred();
+            var x;
             $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
@@ -223,7 +224,7 @@ function getSignedRequest(file,pid){
                 dfd.resolve(file,presentationid);
                if(x==0)
                 dfd.resolve(0);
-                
+
              return dfd.promise();
         }
     });
