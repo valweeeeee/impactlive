@@ -192,18 +192,18 @@
       $('form').submit(function (e) {
         e.preventDefault();
         if($("#companylogourl").val()!='')
-          this.companylogourl=initUpload($("#companylogourl"));
+          this.companylogourl.value=initUpload($("#companylogourl"));
         if($("#image1").val()!='')
-          this.pushcontent1url=initUpload($("#image1"));
+          this.pushcontent1url.value=initUpload($("#image1"));
         if($("#image2").val()!='')
-          this.pushcontent2url=initUpload($("#image2"));
+          this.pushcontent2url.value=initUpload($("#image2"));
         if($("#image3").val()!='')
-          this.pushcontent3url=initUpload($("#image3"));
+          this.pushcontent3url.value=initUpload($("#image3"));
         if($("#image4").val()!='')
-          this.pushcontent3url=initUpload($("#image4"));
+          this.pushcontent3url.value=initUpload($("#image4"));
         if($("#image5").val()!='')
-          this.pushcontent3url=initUpload($("#image5"));
-          alert(this.companylogourl);
+          this.pushcontent3url.value=initUpload($("#image5"));
+          alert(this.companylogourl.val());
         var that=toJSONString(this);
         console.log(that);
        $.ajax({
