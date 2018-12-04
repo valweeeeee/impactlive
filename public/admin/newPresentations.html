@@ -135,7 +135,7 @@ function initUpload(fileInput){
     var urlFull=false;
     const files = $(fileInput).prop('files');
     const file = files[0];
-    getSignedRequest(file,this.src).then(uploadFile(a,b,c)){}
+    getSignedRequest(file,this.src).then(uploadFile(a,b,c));
 }
 
 
@@ -175,7 +175,6 @@ function initUpload(fileInput){
       if(xhr.readyState === 4){
         alert(xhr.status);
         if(xhr.status === 200){
-
           //url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
 
