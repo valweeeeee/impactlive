@@ -191,9 +191,20 @@
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-
-        this.companylogourl=initUpload($("#companylogourl"));
+        if($("#companylogourl").val()!='')
+          this.companylogourl=initUpload($("#companylogourl"));
+        if($("#image1").val()!='')
+          this.pushcontent1url=initUpload($("#image1"));
+        if($("#image2").val()!='')
+          this.pushcontent2url=initUpload($("#image2"));
+        if($("#image3").val()!='')
+          this.pushcontent3url=initUpload($("#image3"));
+        if($("#image4").val()!='')
+          this.pushcontent3url=initUpload($("#image4"));
+        if($("#image5").val()!='')
+          this.pushcontent3url=initUpload($("#image5"));
         var that=toJSONString(this);
+        console.log(that);
        $.ajax({
           url: '/newrecord/',
           contentType: 'application/json',
