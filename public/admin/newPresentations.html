@@ -133,6 +133,8 @@
 
 
 function getSignedRequest(file,pid){
+    alert(file);
+    alert(pid);
       var dfd = $.Deferred();
       const xhr = new XMLHttpRequest();
       var fileNameOnly=file.name;
@@ -206,7 +208,6 @@ function getSignedRequest(file,pid){
                 }
              }).then(
                 function (pid) {
-                  alert('here');
                   getSignedRequest(file,pid).then(uploadFile).done(function(uploadedURL){
                        if(uploadedURL!=0 && uploadedURL!=''){
                          return uploadedURL;
