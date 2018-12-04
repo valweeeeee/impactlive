@@ -160,7 +160,7 @@
       xhr.send();
     }
     function uploadFile(file, signedRequest, fileName){
-
+      alert('here');
       const xhr = new XMLHttpRequest();
       xhr.open('PUT', signedRequest);
       xhr.onreadystatechange = () => {
