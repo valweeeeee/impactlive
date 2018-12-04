@@ -188,7 +188,7 @@ function getSignedRequest(file,pid){
         e.preventDefault();
         var form=this;
         function getPromise(file){
-          var promise=getPresID(file);
+          var promise=getPresID(form,file);
           promise.then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
             if(uploadedURL!=0 && uploadedURL!=''){
               return uploadedURL;
@@ -205,7 +205,7 @@ function getSignedRequest(file,pid){
 
 
         var that=toJSONString(form);
-        //console.log(that);
+        console.log(that);
         function getPresID(file){
             var dfd = $.Deferred();
             $.ajax({
