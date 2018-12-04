@@ -197,6 +197,7 @@ function getSignedRequest(file){
             theForm.appendChild(input);
         }
         function getPromise(inputID){
+          alert(inputID);
           var promise=initUpload(inputID);
           promise.then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
             if(uploadedURL!=0 && uploadedURL!=''){
