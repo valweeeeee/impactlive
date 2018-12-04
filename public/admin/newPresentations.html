@@ -188,8 +188,7 @@ function getSignedRequest(file,pid){
         e.preventDefault();
         var form=this;
         function getPromise(file){
-          var promise=getPresID(form,file);
-          promise.then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
+          getPresID(form,file).then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
             if(uploadedURL!=0 && uploadedURL!=''){
               return uploadedURL;
             }
@@ -215,13 +214,14 @@ function getSignedRequest(file,pid){
                 var presentationid=data;
 
                  if(data.err!=1 && !data.err){
-                   return Promise.resolve(file,presentationid);
+                   resolve(file,presentationid);
 
                  }
                  else{
-                   return Promise.reject();
+                   reject();
                  }
                })
+
         });
     }
 
