@@ -163,6 +163,7 @@ function getSignedRequest(file){
       return dfd.promise();
     }
   function uploadFile(file, signedRequest, fileName){
+    alert('in upload');
     var dfd = $.Deferred();
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
@@ -170,6 +171,7 @@ function getSignedRequest(file){
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
+          alert(urlFull);
           dfd.resolve(urlFull);
 
         }
@@ -197,7 +199,7 @@ function getSignedRequest(file){
             theForm.appendChild(input);
         }
         function getPromise(inputID){
-          alert(inputID);
+
           var promise=initUpload(inputID);
           promise.then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
             if(uploadedURL!=0 && uploadedURL!=''){
