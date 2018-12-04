@@ -223,7 +223,8 @@ function getSignedRequest(file,pid){
                }).fail(function(errMsg) {
                    dfd.resolve(false);
                })
-           return false;
+
+             return dfd.promise();
         }
     });
 
