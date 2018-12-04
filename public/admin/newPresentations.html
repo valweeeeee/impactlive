@@ -167,17 +167,13 @@ function getSignedRequest(file){
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
     xhr.onreadystatechange = () => {
-        //alert('here');
-
       if(xhr.readyState === 4){
         if(xhr.status === 200){
-          //url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
           dfd.resolve(urlFull);
 
         }
         else{
-          //alert('Could not upload file.');
           dfd.reject(0);
         }
       }
@@ -212,14 +208,7 @@ function getSignedRequest(file){
           });
 
         }
-        if($("#companylogourlTmp").val()!=''){
-          fullURL=getPromise($("#companylogourlTmp"));
-          alert(fullURL);
-          if(fullURL!=0){
-            addHidden(this,"companylogourl",fullURL);
-            return false;
-          }
-        }
+
         /*if($("#image1Tmp").val()!='')
           this.pushcontent1url.value=initUpload($("#image1Tmp"));
         if($("#image2Tmp").val()!='')
@@ -238,19 +227,28 @@ function getSignedRequest(file){
           contentType: 'application/json',
           data:  that,
           type: 'POST',
-          dataType: "json",
-          success: function(data){
+          dataType: "json"
+        }).done(function(data){
             //alert(data.data);
             if(data.err!=1 && !data.err){
+              alert(data.data);
+              $("#presentationid").val(data.data);
+              var pid=data.data;
+              if($("#companylogourlTmp").val()!=''){
+                fullURL=getPromise($("#companylogourlTmp"));
+                alert(fullURL);
+                if(fullURL!=0){
+                  addHidden(this,"companylogourl",fullURL);
+                  return true;
+                }
+              }
             }
-          },
-          failure: function(errMsg) {
+          }).fail(function(errMsg) {
               console.log('error');
           }
 
       });
       return false;
-     });
    }
   });
 </script>
