@@ -134,7 +134,7 @@
 
 function getSignedRequest(file,pid){
       var dfd = $.Deferred();
-
+      console.log(file);
       const xhr = new XMLHttpRequest();
       var fileNameOnly=file.name;
       fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");

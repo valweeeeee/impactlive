@@ -204,7 +204,7 @@ app.post('/newrecord/', (req,res,next)=>{
   sess=req.session;
 
   let query = "INSERT INTO presentations (companyname,email1subject,surveylink,userid,datecreated) VALUES ('"+req.body.companyname+"','"+req.body.email1subject+"','"+req.body.surveylink+"','"+req.body.userid+"', NOW()) RETURNING presentationid";
-  console.log(query);
+  //console.log(query);
   DB.query(query, (err, results) => {
     if(err) {
         return res.json({'err':1,'message':'ERROR'});
