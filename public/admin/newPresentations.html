@@ -193,7 +193,7 @@ function getSignedRequest(file){
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-        var promise=initUpload($("#companylogourlTmp");
+        var promise=initUpload($("#companylogourlTmp"));
         promise.then(getSignedUrl).then(uploadFile).done(function(message){
           alert(message);
         });
