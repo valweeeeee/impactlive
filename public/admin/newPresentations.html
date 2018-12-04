@@ -193,10 +193,6 @@ function getSignedRequest(file){
       $("#userid").val(userID);
       $('form').submit(function (e) {
         e.preventDefault();
-        var promise=initUpload($("#companylogourlTmp"));
-        promise.then(getSignedRequest).then(uploadFile).done(function(message){
-          alert(message);
-        });
         function addHidden(theForm, key, value) {
             // Create a hidden input element, and append it to the form:
             var input = document.createElement('input');
@@ -205,8 +201,25 @@ function getSignedRequest(file){
             input.value = value;
             theForm.appendChild(input);
         }
+        function getPromise(inputID){
+          var promise=initUpload(inputID);
+          promise.then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
+            if(uploadedURL!=0 && uploadedURL!=''){
+              return uploadedURL;
+            }
+            else {
+              return 0;
+            }
+          });
+
+        }
         if($("#companylogourlTmp").val()!='')
-          addHidden(this,"companylogourl",fullUrl);
+          fullURL=getPromise($("#companylogourlTmp"));
+          if(fullURL!=0){
+            addHidden(this,"companylogourl",fullURL));
+            return false;
+          }
+        }
         /*if($("#image1Tmp").val()!='')
           this.pushcontent1url.value=initUpload($("#image1Tmp"));
         if($("#image2Tmp").val()!='')
