@@ -160,21 +160,17 @@
   }
   $.when(getSignedRequest()).done(function(value) {
     alert(value);
-});
+  });
   function uploadFile(file, signedRequest, fileName){
 
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
     xhr.onreadystatechange = () => {
-        alert('here');
-
       if(xhr.readyState === 4){
         alert(xhr.status);
         if(xhr.status === 200){
-
           //url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-
         }
         else{
           alert('Could not upload file.');
@@ -183,7 +179,6 @@
       }
     };
     xhr.send(file);
-  }
   alert(urlFull);
   return urlFull;
 
