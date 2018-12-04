@@ -214,20 +214,17 @@ function getSignedRequest(file,pid){
              }).done(function(data){
                 var presentationid=data;
                  if(data.err!=1 && !data.err){
-                   //alert(file);
-                   x=1;
-                   console.log(x);
+                   dfd.resolve(file,presentationid);
+                   return dfd.promise();
                  }
                }).fail(function(errMsg) {
-                   x=0;
+                  dfd.resolve(0);
+                  return dfd.promise();
                })
-               console.log(x);
-               if(x==1)
-                dfd.resolve(file,presentationid);
-               if(x==0)
-                dfd.resolve(0);
 
-             return dfd.promise();
+
+
+
         }
     });
 
