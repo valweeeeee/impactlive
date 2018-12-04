@@ -130,7 +130,7 @@
     return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
   }
 
-const initUpload(fileInput){
+function initUpload(fileInput){
     var deferred = $.Deferred();
     var urlFull=false;
     const files = $(fileInput).prop('files');
