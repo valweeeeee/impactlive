@@ -130,60 +130,65 @@
     return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
   }
 
-  function initUpload(fileInput){
+  function getSignedRequest(file){
+    var deferred = $.Deferred();
     var urlFull=false;
     const files = $(fileInput).prop('files');
     const file = files[0];
 
-    getSignedRequest(file,this.src);
+    const xhr = new XMLHttpRequest();
+    var fileNameOnly=file.name;
+    fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
+    fileExt=getFileExtension(file.name);
+    newFileName=fileNameOnly + '_' + userID + '' + '.' + fileExt;
+    const myNewFile = new File([file], newFileName, {type: file.type});
+    xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4){
+        if(xhr.status === 200){
+          const response = JSON.parse(xhr.responseText);
+          deferred.resolve(myNewFile, response.signedRequest, myNewFile.name);
 
-    function getSignedRequest(file){
-      const xhr = new XMLHttpRequest();
-      var fileNameOnly=file.name;
-      fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
-      fileExt=getFileExtension(file.name);
-      newFileName=fileNameOnly + '_' + userID + '' + '.' + fileExt;
-      const myNewFile = new File([file], newFileName, {type: file.type});
-      xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
-      xhr.onreadystatechange = () => {
-        if(xhr.readyState === 4){
-          if(xhr.status === 200){
-            const response = JSON.parse(xhr.responseText);
-            uploadFile(myNewFile, response.signedRequest, myNewFile.name);
-
-          }
-          else{
-            alert('Could not get signed URL.');
-          }
         }
-      };
-      xhr.send();
-    }
-    function uploadFile(file, signedRequest, fileName){
-
-      const xhr = new XMLHttpRequest();
-      xhr.open('PUT', signedRequest);
-      xhr.onreadystatechange = () => {
-          alert('here');
-          alert(xhr.readyState);
-        if(xhr.readyState === 4){
-          if(xhr.status === 200){
-            //url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
-            urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-
-          }
-          else{
-            alert('Could not upload file.');
-            return false;
-          }
+        else{
+          deferred.reject('error');
+          alert('Could not get signed URL.');
         }
-      };
-      xhr.send(file);
-    }
-    alert(urlFull);
-    return urlFull;
-
+      }
+    };
+    xhr.send();
   }
+  $.when(getSignedRequest()).done(function(value) {
+    alert(value);
+});
+  function uploadFile(file, signedRequest, fileName){
+
+    const xhr = new XMLHttpRequest();
+    xhr.open('PUT', signedRequest);
+    xhr.onreadystatechange = () => {
+        alert('here');
+
+      if(xhr.readyState === 4){
+        alert(xhr.status);
+        if(xhr.status === 200){
+
+          //url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
+          urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
+
+        }
+        else{
+          alert('Could not upload file.');
+          return false;
+        }
+      }
+    };
+    xhr.send(file);
+  }
+  alert(urlFull);
+  return urlFull;
+
+}
+
   if(!userID){
     window.location="/admin/index.html";
   }
@@ -201,7 +206,7 @@
             theForm.appendChild(input);
         }
         if($("#companylogourlTmp").val()!='')
-          addHidden(this,"companylogourl",initUpload($("#companylogourlTmp")));
+          addHidden(this,"companylogourl",getSignedRequest($("#companylogourlTmp")));
         /*if($("#image1Tmp").val()!='')
           this.pushcontent1url.value=initUpload($("#image1Tmp"));
         if($("#image2Tmp").val()!='')
