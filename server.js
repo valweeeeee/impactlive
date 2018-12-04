@@ -210,8 +210,8 @@ app.post('/newrecord/', (req,res,next)=>{
       }
     else{
       console.log(results);
-      presentationid=results.presentationid;
-      console.log(presentationid);
+      console.log(results.presentationid);
+
       updateRecord(req,presentationid,res);
     }
   });
