@@ -233,7 +233,7 @@ function updateRecord(req,presentationid){
           });
         return newlyCreatedPresentationId;
       }
-  };
+
 
 
 app.post('/delete/', (req,res,next)=>{
