@@ -78,6 +78,7 @@
  }
   $('.file-input').change(function() {
     thisid=$(this).parent();
+    console.log(this + ' in on change');
     if(this.files && this.files[0]){
 
       const files = this.files;
@@ -192,7 +193,7 @@ function getSignedRequest(file,pid){
 
         function getPresID(form,file){
             var form=form;
-
+            console.log(file + ' in get Pres id');
             $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
