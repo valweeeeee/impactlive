@@ -160,6 +160,7 @@ function getSignedRequest(file,pid){
       return dfd.promise();
     }
   function uploadFile(file, signedRequest, fileName){
+    console.log(signedRequest);
     var dfd = $.Deferred();
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
