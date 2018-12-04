@@ -167,7 +167,7 @@ function getSignedRequest(file){
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
     xhr.onreadystatechange = () => {
-        alert('here');
+        //alert('here');
 
       if(xhr.readyState === 4){
         alert(xhr.status);
@@ -216,7 +216,7 @@ function getSignedRequest(file){
         if($("#companylogourlTmp").val()!='')
           fullURL=getPromise($("#companylogourlTmp"));
           if(fullURL!=0){
-            addHidden(this,"companylogourl",fullURL));
+            addHidden(this,"companylogourl",fullURL);
             return false;
           }
         }
@@ -240,7 +240,7 @@ function getSignedRequest(file){
           type: 'POST',
           dataType: "json",
           success: function(data){
-            alert(data.data);
+            //alert(data.data);
             if(data.err!=1 && !data.err){
             }
           },
