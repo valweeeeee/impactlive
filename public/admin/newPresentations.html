@@ -204,7 +204,8 @@ function getSignedRequest(file,pid){
         }
 
         function getPresID(form,file){
-            return $.ajax({
+            return new Promise((resolve, reject) => {
+               $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
                data:  toJSONString(form),
@@ -214,7 +215,7 @@ function getSignedRequest(file,pid){
                 var presentationid=data;
 
                  if(data.err!=1 && !data.err){
-                   return dfd.resolve(file,presentationid).promise();
+                   return resolve(file,presentationid).promise();
 
                  }
                })
