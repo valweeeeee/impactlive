@@ -192,8 +192,7 @@ function getSignedRequest(file,pid){
 
         function getPresID(form,file){
             var form=form;
-            const files = file.files;
-            const file = files[0];
+
             $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
@@ -208,7 +207,7 @@ function getSignedRequest(file,pid){
                 }
              }).then(
                 function (pid) {
-                  getSignedRequest(file,pid.data).then(uploadFile).done(function(uploadedURL){
+                  getSignedRequest(file.files[0],pid.data).then(uploadFile).done(function(uploadedURL){
                        if(uploadedURL!=0 && uploadedURL!=''){
                          return uploadedURL;
                        }
