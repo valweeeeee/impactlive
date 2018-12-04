@@ -213,7 +213,7 @@ function getSignedRequest(file,pid){
                dataType: "json"
              }).then(function(data){
                 var presentationid=data;
-                var dfd = $.Deferred();
+              
                  if(data.err!=1 && !data.err){
                    dfd.resolve(file,presentationid);
                    return dfd.promise();
