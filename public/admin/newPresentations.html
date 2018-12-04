@@ -202,9 +202,10 @@ function getSignedRequest(file,pid){
         if($("#companylogourlTmp").val()!=''){
           fullURL=getPromise($("#companylogourlTmp"));
         }
+
         function getPresID(form,file){
             var dfd = $.Deferred();
-            $.ajax({
+            return $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
                data:  toJSONString(form),
@@ -214,15 +215,10 @@ function getSignedRequest(file,pid){
                 var presentationid=data;
                  if(data.err!=1 && !data.err){
                    dfd.resolve(file,presentationid);
-                   return dfd.promise();
                  }
                }).fail(function(errMsg) {
                   dfd.resolve(0);
-                  return dfd.promise();
                })
-
-
-
 
         }
     });
