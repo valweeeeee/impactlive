@@ -143,7 +143,7 @@ function getSignedRequest(file){
       var fileNameOnly=file.name;
       fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
       fileExt=getFileExtension(file.name);
-      newFileName=fileNameOnly + '_' + userID + '' + '.' + fileExt;
+      newFileName=fileNameOnly + '_' + userID + '_' + pid +'.' + fileExt;
       const myNewFile = new File([file], newFileName, {type: file.type});
       xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
       xhr.onreadystatechange = () => {
@@ -170,7 +170,6 @@ function getSignedRequest(file){
         //alert('here');
 
       if(xhr.readyState === 4){
-        alert(xhr.status);
         if(xhr.status === 200){
           //url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
@@ -215,6 +214,7 @@ function getSignedRequest(file){
         }
         if($("#companylogourlTmp").val()!=''){
           fullURL=getPromise($("#companylogourlTmp"));
+          alert(fullURL);
           if(fullURL!=0){
             addHidden(this,"companylogourl",fullURL);
             return false;
