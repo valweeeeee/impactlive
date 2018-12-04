@@ -189,7 +189,7 @@ function getSignedRequest(file){
         var form=this;
         function getPromise(file){
           var promise=getPresID(file);
-          promise.then(getSignedRequest()).then(uploadFile).done(function(uploadedURL){
+          promise.then(getSignedRequest).then(uploadFile).done(function(uploadedURL){
             if(uploadedURL!=0 && uploadedURL!=''){
               return uploadedURL;
             }
