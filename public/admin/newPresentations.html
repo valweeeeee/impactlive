@@ -135,6 +135,7 @@
         if(xhr.status === 200){
           url="https://d325v2sfwqo3gd.cloudfront.net/fit-in/210x210/images/" + fileName;
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
+          return urlFull;
         }
         else{
           alert('Could not upload file.');
@@ -164,6 +165,8 @@
         if(xhr.status === 200){
           const response = JSON.parse(xhr.responseText);
           uploadFile(myNewFile, response.signedRequest, myNewFile.name);
+          imageSRC=_URL.createObjectURL(file);
+          alert(imageSRC);
         }
         else{
           alert('Could not get signed URL.');
