@@ -211,7 +211,9 @@ app.post('/newrecord/', (req,res,next)=>{
     else{
       console.log(results);
       presentationid=results[0].presentationid;
-      return res.json({'data':presentationid});
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,    Accept");
+      res.json({"data":presentationid},200);
     }
   });
 });
