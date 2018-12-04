@@ -147,20 +147,16 @@ function getSignedRequest(file){
       fileExt=getFileExtension(file.name);
       newFileName=fileNameOnly + '_' + userID + '_' + pid +'.' + fileExt;
       const myNewFile = new File([file], newFileName, {type: file.type});
-      //alert(myNewFile);
       xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
 
       xhr.onreadystatechange = () => {
-      //  alert(xhr.readyState);
         if(xhr.readyState === 4){
 
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
-            //alert(response);
             dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
           }
           else{
-          //  alert('Could not get signed URL.');
             dfd.reject('error');
           }
         }
@@ -170,7 +166,6 @@ function getSignedRequest(file){
       return dfd.promise();
     }
   function uploadFile(file, signedRequest, fileName){
-    //alert('in upload');
     var dfd = $.Deferred();
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
@@ -178,7 +173,7 @@ function getSignedRequest(file){
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          //alert(urlFull);
+          console.log('here');
           dfd.resolve(urlFull);
 
         }
