@@ -209,10 +209,10 @@ app.post('/newrecord/', (req,res,next)=>{
         return res.json({'err':1,'message':'ERROR'});
       }
     else{
-      console.log('hi');
+      console.log(results);
       presentationid=results.presentationid;
       console.log(presentationid);
-      updateRecord(req,results.presentationid,req);
+      updateRecord(req,results.presentationid,res);
     }
   });
 });
