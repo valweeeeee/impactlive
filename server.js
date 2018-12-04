@@ -210,6 +210,7 @@ app.post('/newrecord/', (req,res,next)=>{
         return res.json({'err':1,'message':'ERROR'});
       }
     else{
+      presentationid=results.presentationid;
       updateRecord(req,results.presentationid);
     }
   });
@@ -225,13 +226,14 @@ function updateRecord(req,presentationid){
             }
             else{
               console.log('hi');
+
               res.header("Access-Control-Allow-Origin", "*");
               res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,    Accept");
               res.json({"data":presentationid},200);
             }
 
           });
-        
+
       }
 
 
