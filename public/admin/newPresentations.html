@@ -80,7 +80,7 @@
  }
   $('.file-input').change(function() {
     thisid=$(this).parent();
-    console.log(this + ' in on change');
+    alert(JSON.stringify(this, null, 4));
     if(this.files && this.files[0]){
       files = this.files;
       file = files[0];
@@ -134,7 +134,7 @@
 
 
 function getSignedRequest(fileSent,pid){
-    console.log("the file is" + fileSent);
+    alert(JSON.stringify(fileSent, null, 4));
     console.log(pid);
       var dfd = $.Deferred();
       const xhr = new XMLHttpRequest();
