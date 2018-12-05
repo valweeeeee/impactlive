@@ -48,14 +48,12 @@
     <script>
         $(document).ready(function() {
             var thisid;
-            var pid;
+            var files;
+            var file;
             $("body").on("click", ".deleteImage", function(e) {
                 e.preventDefault();
                 deleteImage(this);
             });
-            var files;
-            var file;
-
             function deleteImage(that) {
                 var data = '{"filename":"' + $(that).data('filename') + '"}';
                 $.ajax({
@@ -124,7 +122,7 @@
 
             });
             var userID = getCookie('impactLive');
-
+            var pid=getCookie('impactLivePid');
             function getFileExtension(filename) {
                 return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
             }
@@ -181,14 +179,14 @@
                     e.preventDefault();
                     var form = this;
 
-                    function getPresID(form, file, inputName,pid) {
+                    function getPresID(form, file, inputName) {
                         var form = form;
                         var inputName = inputName;
-                        pid=pid;
                         if (file == '' || !file)
                             return '';
-                        console.log(pid+' v');
-                      if(!pid){
+                        pid=$("#presentationid").val();
+                        console.log(pid);
+                      if(!pid || pid=''){
                         $.ajax({
                             url: '/newrecord/',
                             contentType: 'application/json',
