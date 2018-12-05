@@ -180,14 +180,12 @@
                 $('form').submit(function(e) {
                     e.preventDefault();
                     var form = this;
-
                     function getPresID(form, file, inputName) {
                         var form = form;
                         var inputName = inputName;
                         if (file == '' || !file)
                             return '';
-                      pidSet=$("#presentationid").val();
-                      alert(pidSet);
+                            alert(pidSet);
                       if(!pidSet || pidSet==''){
                         $.ajax({
                             url: '/newrecord/',
@@ -195,6 +193,10 @@
                             data: toJSONString(form),
                             type: 'POST',
                             dataType: "json",
+                            success:function(data){
+                                pidSet=$("#presentationid").val();
+
+                            }
 
                         }).then(function(data){
                           file = file[0];
@@ -202,11 +204,9 @@
                           $("#presentationid").val(pid.data);
                           if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
-
-                                  alert($("#presentationid").val());
                                   var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                   $('#editPresentation').after(newInput);
-                                  console.log(toJSONString(form));
+
                                   if (uploadedURL != 0 && uploadedURL != '') {
                                       $.ajax({
                                           url: '/makeedits/',
@@ -235,7 +235,7 @@
                                 $("#presentationid").val(pid.data);
                                 var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                 $('#editPresentation').after(newInput);
-                                console.log(toJSONString(form));
+
                                 if (uploadedURL != 0 && uploadedURL != '') {
                                     $.ajax({
                                         url: '/makeedits/',
