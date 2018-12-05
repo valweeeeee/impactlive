@@ -183,9 +183,9 @@
                     function getPresID(form, file, inputName) {
                         var form = form;
                         var inputName = inputName;
-                        alert(file);
+
                         if (file.length==0){
-                          console.log('no file');
+
                           return false;
 
                         }
@@ -270,7 +270,7 @@
                       getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
                       $.when(getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).then(function(){
                         alert('Your presentation was added.');
-                        window.location="/admin/index.html";
+                        window.location="/admin/presentations.html";
                       });
                 });
 
