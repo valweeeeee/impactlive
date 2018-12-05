@@ -208,6 +208,7 @@ function getSignedRequest(fileSent,pid){
                   getSignedRequest(file,pid.data).then(uploadFile).done(function(uploadedURL){
                       var newInput = $("<input name='"+inputName+"' type='hidden'>");
                       $('#editPresentation').after(newInput);
+                      console.log(toJSONString(form));
                        if(uploadedURL!=0 && uploadedURL!=''){
                          $.ajax({
                             url: '/makeedits/',
