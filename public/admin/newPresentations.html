@@ -46,16 +46,16 @@
         }
     </style>
     <script>
-
+    $(document).ajaxStop(function(){
+      alert('Your presentation was saved');
+      window.location="/admin/presentations.html";
+    });
         $(document).ready(function() {
             var thisid;
             var files;
             var file;
             var pidSet;
-            $(document).ajaxStop(function(){
-              alert('Your presentation was saved');
-              window.location="/admin/presentations.html";
-            });
+
             $("body").on("click", ".deleteImage", function(e) {
                 e.preventDefault();
                 deleteImage(this);
