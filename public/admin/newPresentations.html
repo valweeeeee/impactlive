@@ -206,6 +206,7 @@ function getSignedRequest(fileSent,pid){
                 function (pid) {
                   file=file[0];
                   getSignedRequest(file,pid.data).then(uploadFile).done(function(uploadedURL){
+                    console.log(uploadedURL);
                       var newInput = $("<input name='"+inputName+"' type='hidden' value='"+uploadedURL+"'>");
                       $('#editPresentation').after(newInput);
                       console.log(toJSONString(form));
@@ -234,10 +235,14 @@ function getSignedRequest(fileSent,pid){
     };
     getPresID(form,$("#companylogourlTmp").prop('files'),'companylogourl');
     getPresID(form,$("#image1Tmp").prop('files'), 'pushcontent1url');
-    getPresID(form,$("#image2Tmp").prop('files'), 'pushcontent2url');
-    getPresID(form,$("#image3Tmp").prop('files'), 'pushcontent3url');
-    getPresID(form,$("#image4Tmp").prop('files'), 'pushcontent4url');
-    getPresID(form,$("#image5Tmp").prop('files'), 'pushcontent5url');
+    if($("#image2Tmp")!='')
+      getPresID(form,$("#image2Tmp").prop('files'), 'pushcontent2url');
+    if($("#image3Tmp")!='')
+      getPresID(form,$("#image3Tmp").prop('files'), 'pushcontent3url');
+    if($("#image4Tmp")!='')
+      getPresID(form,$("#image4Tmp").prop('files'), 'pushcontent4url');
+    if($("#image5Tmp")!='')
+      getPresID(form,$("#image5Tmp").prop('files'), 'pushcontent5url');
 
  });
 }
