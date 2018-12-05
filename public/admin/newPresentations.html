@@ -48,13 +48,6 @@
   $(document).ready(function() {
     var thisid;
     var pid;
-    function printObject(o) {
-  var out = '';
-  for (var p in o) {
-    out += p + ': ' + o[p] + '\n';
-  }
-  alert(out);
-}
   $("body").on("click",".deleteImage",function(e){
     e.preventDefault();
     deleteImage(this);
@@ -140,12 +133,9 @@
 
 
 function getSignedRequest(fileSent,pid){
-    printObject(fileSent);
-    console.log(pid);
       var dfd = $.Deferred();
       const xhr = new XMLHttpRequest();
       var fileNameOnly=fileSent.name;
-      alert(fileNameOnly);
       fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
       fileExt=getFileExtension(fileSent.name);
       newFileName=fileNameOnly + '_' + userID + '_' + pid +'.' + fileExt;
@@ -167,7 +157,6 @@ function getSignedRequest(fileSent,pid){
       return dfd.promise();
     }
   function uploadFile(file, signedRequest, fileName){
-    console.log(signedRequest);
     var dfd = $.Deferred();
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', signedRequest);
@@ -175,7 +164,6 @@ function getSignedRequest(fileSent,pid){
       if(xhr.readyState === 4){
         if(xhr.status === 200){
           urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          console.log('here url is'+ urlFull);
           dfd.resolve(urlFull);
 
         }
@@ -198,7 +186,9 @@ function getSignedRequest(fileSent,pid){
 
         function getPresID(form,file){
             var form=form;
-            console.log(file + ' in get Pres id');
+            if(file=='' || !file)
+              return false;
+            //console.log(file + ' in get Pres id');
             $.ajax({
                url: '/newrecord/',
                contentType: 'application/json',
@@ -225,7 +215,13 @@ function getSignedRequest(fileSent,pid){
 
                 });
     };
+
     getPresID(form,$("#companylogourlTmp").prop('files'));
+    getPresID(form,$("#pushcontent1Tmp").prop('files'));
+    getPresID(form,$("#pushcontent2Tmp").prop('files'));
+    getPresID(form,$("#pushcontent3Tmp").prop('files'));
+    getPresID(form,$("#pushcontent4Tmp").prop('files'));
+    getPresID(form,$("#pushcontent5Tmp").prop('files'));
 
  });
 }
