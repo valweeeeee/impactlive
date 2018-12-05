@@ -48,6 +48,13 @@
   $(document).ready(function() {
     var thisid;
     var pid;
+    function printObject(o) {
+  var out = '';
+  for (var p in o) {
+    out += p + ': ' + o[p] + '\n';
+  }
+  alert(out);
+}
   $("body").on("click",".deleteImage",function(e){
     e.preventDefault();
     deleteImage(this);
@@ -80,7 +87,6 @@
  }
   $('.file-input').change(function() {
     thisid=$(this).parent();
-    alert(JSON.stringify(this, null, 4));
     if(this.files && this.files[0]){
       files = this.files;
       file = files[0];
@@ -134,7 +140,7 @@
 
 
 function getSignedRequest(fileSent,pid){
-    alert(JSON.stringify(fileSent, null, 4));
+    printObject(fileSent);
     console.log(pid);
       var dfd = $.Deferred();
       const xhr = new XMLHttpRequest();
@@ -206,7 +212,7 @@ function getSignedRequest(fileSent,pid){
                 }
              }).then(
                 function (pid) {
-                  getSignedRequest(file,pid.data).then(uploadFile).done(function(uploadedURL){
+                  getSignedRequest($("#companylogourlTmp"),pid.data).then(uploadFile).done(function(uploadedURL){
                        if(uploadedURL!=0 && uploadedURL!=''){
                          return uploadedURL;
                        }
