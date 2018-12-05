@@ -186,22 +186,21 @@
                         if (file == '' || !file)
                             return '';
                             alert(pidSet);
-                      if(!pidSet || pidSet==''){
-                        $.ajax({
-                            url: '/newrecord/',
-                            contentType: 'application/json',
-                            data: toJSONString(form),
-                            type: 'POST',
-                            async: false,
-                            dataType: "json",
-                            success:function(data){
-                                $("#presentationid").val(data.data);
-                                alert($("#presentationid").val());
-                                pidSet=$("#presentationid").val();
+                        if(!pidSet || pidSet==''){
+                          $.ajax({
+                              url: '/newrecord/',
+                              contentType: 'application/json',
+                              data: toJSONString(form),
+                              type: 'POST',
+                              async: false,
+                              dataType: "json",
+                              success:function(data){
+                                  $("#presentationid").val(data.data);
+                                  alert($("#presentationid").val());
+                                  pidSet=$("#presentationid").val();
+                              }
 
-                            }
-
-                        }).done(function(data){
+                          }).done(function(data){
                           file = file[0];
                           pid=data;
 
@@ -237,11 +236,11 @@
                       }
                       else{
                         file = file[0];
-                        pid=pidSet;
+                      
                         alert(pid);
-                        getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
+                        getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
                           console.log('gsr');
-                            $("#presentationid").val(pid.data);
+                            $("#presentationid").val(pidSet);
                             var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                             $('#editPresentation').after(newInput);
 
