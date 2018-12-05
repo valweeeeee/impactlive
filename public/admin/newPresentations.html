@@ -48,7 +48,7 @@
     <script>
         $(document).ready(function() {
             var thisid;
-            var pid;
+            var pid='';
             $("body").on("click", ".deleteImage", function(e) {
                 e.preventDefault();
                 deleteImage(this);
@@ -196,13 +196,13 @@
                             dataType: "json",
                             success: function(data) {
                                 pid=data;
-
                             },
                             error: function(error) {
                                 return error;
                             }
                         }).done(function(){
                           file = file[0];
+                          console.log(pid);
                           if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                                   $("#presentationid").val(pid.data);
