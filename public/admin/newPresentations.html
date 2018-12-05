@@ -192,12 +192,15 @@
                             contentType: 'application/json',
                             data: toJSONString(form),
                             type: 'POST',
+                            async: false,
                             dataType: "json",
-                            async:false,
                             success:function(data){
                                 $("#presentationid").val(data.data);
+                                alert($("#presentationid").val());
                                 pidSet=$("#presentationid").val();
+
                             }
+
                         }).done(function(data){
                           file = file[0];
                           pid=data;
@@ -228,9 +231,8 @@
                               });
 
                             }
-                          });
-                        }
-                        else{
+
+                          else{
                             getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                               console.log('gsr');
                                 $("#presentationid").val(pid.data);
@@ -257,8 +259,9 @@
                                 }
                             });
                           }
-                        };
-
+                        });
+                      };
+                    };
                     getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl');
                     getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
                     if ($("#image2Tmp").val() != '')
@@ -270,9 +273,8 @@
                     if ($("#image5Tmp").val() != '')
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
                 });
-              };
-            });;
-
+            }
+          });
     </script>
 
 </head>
