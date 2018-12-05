@@ -238,6 +238,7 @@
                       else{
                         file = file[0];
                         pid=pidSet;
+                        alert(pid);
                         getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                           console.log('gsr');
                             $("#presentationid").val(pid.data);
