@@ -185,7 +185,7 @@
                         var inputName = inputName;
                         if (file == '' || !file)
                             return '';
-                      alert(pid);
+                      pid=$("#presentationid").val();
                       if(!pid || pid==''){
                         $.ajax({
                             url: '/newrecord/',
