@@ -134,7 +134,7 @@
 
 
 function getSignedRequest(fileSent,pid){
-    console.log("the file is" + file);
+    console.log("the file is" + fileSent);
     console.log(pid);
       var dfd = $.Deferred();
       const xhr = new XMLHttpRequest();
@@ -144,10 +144,8 @@ function getSignedRequest(fileSent,pid){
       newFileName=fileNameOnly + '_' + userID + '_' + pid +'.' + fileExt;
       const myNewFile = new File([file], newFileName, {type: fileSent.type});
       xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
-
       xhr.onreadystatechange = () => {
         if(xhr.readyState === 4){
-
           if(xhr.status === 200){
             const response = JSON.parse(xhr.responseText);
             dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
