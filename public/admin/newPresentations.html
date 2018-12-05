@@ -184,9 +184,9 @@ function getSignedRequest(fileSent,pid){
         e.preventDefault();
         var form=this;
 
-        function getPresID(form,file){
+        function getPresID(form,file,inputName){
             var form=form;
-            console.log(file[0]);
+            var inputName=inputName;
             if(file=='' || !file)
               return false;
             //console.log(file + ' in get Pres id');
@@ -206,7 +206,22 @@ function getSignedRequest(fileSent,pid){
                 function (pid) {
                   file=file[0];
                   getSignedRequest(file,pid.data).then(uploadFile).done(function(uploadedURL){
+                      var newInput = $("<input name='"+inputName+"' type='hidden'>");
+                      $('#editPresentation').after(newInput);
                        if(uploadedURL!=0 && uploadedURL!=''){
+                         $.ajax({
+                            url: '/makeedits/',
+                            contentType: 'application/json',
+                            data:  toJSONString(form),
+                            type: 'POST',
+                            dataType: "json",
+                            success: function ( data ) {
+                                 return data;
+                             },
+                             error: function ( error ) {
+                                 return error;
+                             }
+                          })
                          return uploadedURL;
                        }
                        else {
@@ -217,12 +232,12 @@ function getSignedRequest(fileSent,pid){
                 });
     };
 
-    getPresID(form,$("#companylogourlTmp").prop('files'));
-    getPresID(form,$("#image1Tmp").prop('files'));
-    getPresID(form,$("#image2Tmp").prop('files'));
-    getPresID(form,$("#image3Tmp").prop('files'));
-    getPresID(form,$("#image4Tmp").prop('files'));
-    getPresID(form,$("#image5Tmp").prop('files'));
+    getPresID(form,$("#companylogourlTmp").prop('files'),'companylogourl');
+    getPresID(form,$("#image1Tmp").prop('files'), 'pushcontent1url');
+    getPresID(form,$("#image2Tmp").prop('files'), 'pushcontent2url');
+    getPresID(form,$("#image3Tmp").prop('files'), 'pushcontent3url');
+    getPresID(form,$("#image4Tmp").prop('files'), 'pushcontent4url');
+    getPresID(form,$("#image5Tmp").prop('files'), 'pushcontent5url');
 
  });
 }
