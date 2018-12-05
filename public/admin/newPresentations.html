@@ -52,6 +52,8 @@
     e.preventDefault();
     deleteImage(this);
   });
+  var files;
+  var file;
   function deleteImage(that){
     var data='{"filename":"' + $(that).data('filename')+ '"}';
     $.ajax({
@@ -80,10 +82,8 @@
     thisid=$(this).parent();
     console.log(this + ' in on change');
     if(this.files && this.files[0]){
-
-      const files = this.files;
-      const file = files[0];
-
+      files = this.files;
+      file = files[0];
       if(file == null){
         return alert('No file selected.');
       }
