@@ -213,8 +213,8 @@ function getSignedRequest(fileSent,pid){
                 }
              }).then(
                 function (pid) {
-                  alert('i '+$("#companylogourlTmp").prop('files'));
-                  getSignedRequest($("#companylogourlTmp").prop('files'),pid.data).then(uploadFile).done(function(uploadedURL){
+
+                  getSignedRequest(file,pid.data).then(uploadFile).done(function(uploadedURL){
                        if(uploadedURL!=0 && uploadedURL!=''){
                          return uploadedURL;
                        }
@@ -225,7 +225,7 @@ function getSignedRequest(fileSent,pid){
 
                 });
     };
-    getPresID(form,$("#companylogourlTmp"));
+    getPresID(form,$("#companylogourlTmp").prop('files'));
 
  });
 }
