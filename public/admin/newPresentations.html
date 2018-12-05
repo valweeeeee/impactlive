@@ -192,6 +192,7 @@
                             contentType: 'application/json',
                             data: toJSONString(form),
                             type: 'POST',
+                            async: false,
                             dataType: "json",
                             success:function(data){
                                 $("#presentationid").val(data.data);
@@ -200,7 +201,7 @@
 
                             }
 
-                        }).then(function(data){
+                        }).done(function(data){
                           file = file[0];
                           pid=data;
 
