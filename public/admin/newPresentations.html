@@ -175,6 +175,7 @@
                 window.location="/admin/index.html";
             } else {
                 $("#userid").val(userID);
+                var pid;
                 $('form').submit(function(e) {
                     e.preventDefault();
                     var form = this;
@@ -184,7 +185,7 @@
                         var inputName = inputName;
                         if (file == '' || !file)
                             return '';
-                        var pid=$("#presentationid").val();
+                         pid=$("#presentationid").val();
                         console.log(pid);
                       if(!pid || pid==''){
                         $.ajax({
@@ -195,11 +196,11 @@
                             dataType: "json",
 
                         }).done(function(data){
-                          pid=data;
                           file = file[0];
                           if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                                   $("#presentationid").val(pid.data);
+                                  alert($("#presentationid").val(pid.data);)
                                   var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                   $('#editPresentation').after(newInput);
                                   console.log(toJSONString(form));
@@ -290,72 +291,117 @@
     </div>
     <br>
     <br>
-    <form method="post" enctype="multipart/form-data">
-        <table id="presentationForm" width="45%" align="center" cellspacing="5" cellpadding="10" style="border-collapse: collapse;background:#fff;">
-            <tr>
-                <td>Company Name * </td>
-                <td>
-                    <input type="text" name="companyname" id="companyname" required>
-                </td>
-            </tr>
-            <tr>
-                <td>Company Logo *
-                    <br><span style="font-size:smaller"></td>
-     <td><div id="previewlogo" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg">
-photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="companylogourlTmp" name="companylogourlTmp" required></div></td>
-  </tr>
-  <tr>
-    <td>Push Content 1 *<br><div class="explain">Must be jpg, png, or jpeg,350 px wide minimum, and be a picture of an email</div></td>
-    <td><div id="preview1" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
-photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="image1Tmp" name="pushcontent1urlTmp" required></div>
-    </td>
-  </tr>
-  <tr>
-    <td>Email Subject *<br>
-      <div class="explain">Subject line for the first email (uploaded above)</div></td>
-    <td><input type="text" name="email1subject" id="email1subject" required></td>
-  </tr>
-  <tr>
-    <td>Push Content 2<br>
-    <div class="explain">Must be jpg, png, or jpeg and 350 px wide minimum</div></td>
-    <td><div id="preview2" class="preview" align="center"><i class="material-icons md-184 md-inactive md-dark previewimg">
-photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="image2Tmp" name="pushcontent2urlTmp"></div></td>
-  </tr>
-  <tr>
-    <td>Push Content 3<br>
-    <div class="explain">Must be jpg, png, or jpeg and 350 px wide minimum</div></td>
-    <td><div id="preview3" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg">
-photo_size_select_actual
-</i><br><input type="file" class="file-input blue" id="image3Tmp" name="pushcontent3urlTmp"></div></td>
-  </tr>
-  <tr>
-    <td>Push Content 4<br>
-    <div class="explain">Must be jpg, png, or jpeg and 350 px wide minimum</div></td>
-    <td><div id="preview4" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
-photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="pushcontent4urlTmp" id="image4Tmp"></div></td>
-  </tr>
-  <tr>
-    <td>Push Content 5<br>
-    <div class="explain">Must be jpg, png, or jpeg and 350 px wide minimum</div></td>
-    <td><div id="preview5" align="center" class="preview" ><i class="material-icons md-184 md-inactive md-dark previewimg">
-photo_size_select_actual
-</i><br><input type="file" class="file-input blue" name="pushcontent5urlTmp" id="image5Tmp"></div></td>
-  </tr>
 
-  <tr>
-    <td>Survey URL<br>
-      <div class="explain">If provided, survey link will display on end page</div></td>
-    <td><input type="text" name="surveylink" id="surveylink"></td>
-  </tr>
-  <tr>
-      <td style="border:none"><input type="hidden" name="userid" id="userid"><input type="hidden" name="presentationid" id="presentationid"></td>
-      <td style="border:none"><br><input type="submit" id="editPresentation" class="green" style="float:left;width:200px;height:50px;cursor:pointer;border:2px solid #000;margin-left:40px;font-size:16px" value="Save"></td>
-    </tr>
-  </table>
-</form>
-</body>
+  	<form enctype="multipart/form-data" method="post">
+  		<table align="center" cellpadding="10" cellspacing="5" id="presentationForm" style="border-collapse: collapse;background:#fff;" width="45%">
+  			<tr>
+  				<td>Company Name *</td>
+  				<td><input id="companyname" name="companyname" required="" type="text"></td>
+  			</tr>
+  			<tr>
+  				<td>Company Logo *<br>
+  				<span style="font-size:smaller"></span></td>
+  				<td>
+  					<div align="center" class="preview" id="previewlogo">
+  						<i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+  						<input class="file-input blue" id="companylogourlTmp" name="companylogourlTmp" required="" type="file">
+  					</div>
+  				</td>
+  			</tr>
+  			<tr>
+  				<td>
+  					Push Content 1 *<br>
+  					<div class="explain">
+  						Must be jpg, png, or jpeg,350 px wide minimum, and be a picture of an email
+  					</div>
+  				</td>
+  				<td>
+  					<div align="center" class="preview" id="preview1">
+  						<i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+  						<input class="file-input blue" id="image1Tmp" name="pushcontent1urlTmp" required="" type="file">
+  					</div>
+  				</td>
+  			</tr>
+  			<tr>
+  				<td>
+  					Email Subject *<br>
+  					<div class="explain">
+  						Subject line for the first email (uploaded above)
+  					</div>
+  				</td>
+  				<td><input id="email1subject" name="email1subject" required="" type="text"></td>
+  			</tr>
+  			<tr>
+  				<td>
+  					Push Content 2<br>
+  					<div class="explain">
+  						Must be jpg, png, or jpeg and 350 px wide minimum
+  					</div>
+  				</td>
+  				<td>
+  					<div align="center" class="preview" id="preview2">
+  						<i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+  						<input class="file-input blue" id="image2Tmp" name="pushcontent2urlTmp" type="file">
+  					</div>
+  				</td>
+  			</tr>
+  			<tr>
+  				<td>
+  					Push Content 3<br>
+  					<div class="explain">
+  						Must be jpg, png, or jpeg and 350 px wide minimum
+  					</div>
+  				</td>
+  				<td>
+  					<div align="center" class="preview" id="preview3">
+  						<i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+  						<input class="file-input blue" id="image3Tmp" name="pushcontent3urlTmp" type="file">
+  					</div>
+  				</td>
+  			</tr>
+  			<tr>
+  				<td>
+  					Push Content 4<br>
+  					<div class="explain">
+  						Must be jpg, png, or jpeg and 350 px wide minimum
+  					</div>
+  				</td>
+  				<td>
+  					<div align="center" class="preview" id="preview4">
+  						<i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+  						<input class="file-input blue" id="image4Tmp" name="pushcontent4urlTmp" type="file">
+  					</div>
+  				</td>
+  			</tr>
+  			<tr>
+  				<td>
+  					Push Content 5<br>
+  					<div class="explain">
+  						Must be jpg, png, or jpeg and 350 px wide minimum
+  					</div>
+  				</td>
+  				<td>
+  					<div align="center" class="preview" id="preview5">
+  						<i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+  						<input class="file-input blue" id="image5Tmp" name="pushcontent5urlTmp" type="file">
+  					</div>
+  				</td>
+  			</tr>
+  			<tr>
+  				<td>
+  					Survey URL<br>
+  					<div class="explain">
+  						If provided, survey link will display on end page
+  					</div>
+  				</td>
+  				<td><input id="surveylink" name="surveylink" type="text"></td>
+  			</tr>
+  			<tr>
+  				<td style="border:none"><input id="userid" name="userid" type="hidden"><input id="presentationid" name="presentationid" type="hidden"></td>
+  				<td style="border:none"><br>
+  				<input class="green" id="editPresentation" style="float:left;width:200px;height:50px;cursor:pointer;border:2px solid #000;margin-left:40px;font-size:16px" type="submit" value="Save"></td>
+  			</tr>
+  		</table>
+  	</form>
+  </body>
 </html>
