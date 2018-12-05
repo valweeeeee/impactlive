@@ -192,10 +192,10 @@
                             contentType: 'application/json',
                             data: toJSONString(form),
                             type: 'POST',
-                            async: false,
                             dataType: "json",
                             success:function(data){
                                 $("#presentationid").val(data.data);
+
                                 pidSet=$("#presentationid").val();
 
                             }
@@ -230,8 +230,9 @@
                               });
 
                             }
-
-                          else{
+                          });
+                        }
+                        else{
                             getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                               console.log('gsr');
                                 $("#presentationid").val(pid.data);
