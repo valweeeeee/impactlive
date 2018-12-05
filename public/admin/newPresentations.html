@@ -206,7 +206,7 @@ function getSignedRequest(fileSent,pid){
                 function (pid) {
                   file=file[0];
                   getSignedRequest(file,pid.data).then(uploadFile).done(function(uploadedURL){
-                      var newInput = $("<input name='"+inputName+"' type='hidden'>");
+                      var newInput = $("<input name='"+inputName+"' type='hidden' value='"+uploadedURL+"'>");
                       $('#editPresentation').after(newInput);
                       console.log(toJSONString(form));
                        if(uploadedURL!=0 && uploadedURL!=''){
@@ -232,7 +232,6 @@ function getSignedRequest(fileSent,pid){
 
                 });
     };
-
     getPresID(form,$("#companylogourlTmp").prop('files'),'companylogourl');
     getPresID(form,$("#image1Tmp").prop('files'), 'pushcontent1url');
     getPresID(form,$("#image2Tmp").prop('files'), 'pushcontent2url');
