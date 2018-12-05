@@ -122,7 +122,7 @@
 
             });
             var userID = getCookie('impactLive');
-            var pid=getCookie('impactLivePid');
+
             function getFileExtension(filename) {
                 return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
             }
@@ -184,9 +184,9 @@
                         var inputName = inputName;
                         if (file == '' || !file)
                             return '';
-                        pid=$("#presentationid").val();
+                        var pid=$("#presentationid").val();
                         console.log(pid);
-                      if(!pid || pid=''){
+                      if(!pid || pid==''){
                         $.ajax({
                             url: '/newrecord/',
                             contentType: 'application/json',
@@ -255,8 +255,6 @@
                         });
                       };
                     };
-
-
                     getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl',pid);
                     getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url',pid);
                     if ($("#image2Tmp").val() != '')
