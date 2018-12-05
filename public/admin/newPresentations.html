@@ -193,6 +193,7 @@
                             data: toJSONString(form),
                             type: 'POST',
                             dataType: "json",
+                            async:false,
                             success:function(data){
                                 $("#presentationid").val(data.data);
                                 pidSet=$("#presentationid").val();
