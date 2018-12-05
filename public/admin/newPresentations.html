@@ -194,12 +194,15 @@
                             type: 'POST',
                             async: false,
                             dataType: "json",
+                            success:function(data){
+                                $("#presentationid").val(data.data);
+                                pidSet=$("#presentationid").val();
+
+                            }
 
                         }).done(function(data){
                           file = file[0];
                           pid=data;
-                          $("#presentationid").val(data.data);
-                          pidSet=$("#presentationid").val();
 
                           if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
