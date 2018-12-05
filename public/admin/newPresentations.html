@@ -183,8 +183,13 @@
                     function getPresID(form, file, inputName) {
                         var form = form;
                         var inputName = inputName;
-                        if (file == '' || !file)
-                            return '';
+                        if (file.files.length==0){
+                          console.log('no file');
+                          return false;
+
+                        }
+
+
                         if(!pidSet || pidSet==''){
                           $.ajax({
                               url: '/newrecord/',
@@ -200,12 +205,10 @@
                           }).done(function(data){
                           file = file[0];
                           pid=data;
-
-                          if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                                   var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                   $('#editPresentation').after(newInput);
-                                  alert($("#image1Tmp").val());
+
                                   if (uploadedURL != 0 && uploadedURL != '') {
                                       $.ajax({
                                           url: '/makeedits/',
@@ -226,7 +229,7 @@
                                   }
                               });
 
-                            }
+
 
 
                         });
