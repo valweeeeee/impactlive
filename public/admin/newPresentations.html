@@ -50,6 +50,7 @@
             var thisid;
             var files;
             var file;
+            var pidSet;
             $("body").on("click", ".deleteImage", function(e) {
                 e.preventDefault();
                 deleteImage(this);
@@ -185,8 +186,9 @@
                         var inputName = inputName;
                         if (file == '' || !file)
                             return '';
-                      pid=$("#presentationid").val();
-                      if(!pid || pid==''){
+                      pidSet=$("#presentationid").val();
+                      alert(pidSet);
+                      if(!pidSet || pidSet==''){
                         $.ajax({
                             url: '/newrecord/',
                             contentType: 'application/json',
