@@ -194,12 +194,13 @@
                             type: 'POST',
                             dataType: "json",
 
-                        }).done(function(data){
+                        }).then(function(data){
                           file = file[0];
                           pid=data;
+                          $("#presentationid").val(pid.data);
                           if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
-                                  $("#presentationid").val(pid.data);
+
                                   alert($("#presentationid").val());
                                   var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                   $('#editPresentation').after(newInput);
