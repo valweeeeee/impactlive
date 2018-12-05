@@ -200,7 +200,7 @@
                           if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                                   $("#presentationid").val(pid.data);
-                                  alert($("#presentationid").val(pid.dat);
+                                  alert($("#presentationid").val());
                                   var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                   $('#editPresentation').after(newInput);
                                   console.log(toJSONString(form));
