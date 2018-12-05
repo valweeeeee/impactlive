@@ -237,9 +237,8 @@
                       }
                       else{
                         file = file[0];
-                        pid=data;
-                        
-                        getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
+                        pid=pidSet;
+                        getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                           console.log('gsr');
                             $("#presentationid").val(pid.data);
                             var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
