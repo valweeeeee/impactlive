@@ -208,6 +208,7 @@ input[type="password"], input[type="text"] {
 	border-radius:5px;
 	text-align:center;
 	padding-top:15px;
+	cursor:pointer;
 }
 .explain{
 	color:#666;margin-top:10px;font-size:smaller;width:125px;

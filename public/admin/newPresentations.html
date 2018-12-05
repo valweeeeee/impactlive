@@ -78,6 +78,9 @@
 
                 });
             }
+            $('.previewimg').on('click', function(){
+                $(this).siblings('.file-input').trigger('click');
+            });
             $('.file-input').change(function() {
                 thisid = $(this).parent();
                 if (this.files && this.files[0]) {
@@ -185,7 +188,7 @@
                         var inputName = inputName;
 
                         if (file.length==0){
-
+                          form.inputName
                           return false;
 
                         }
