@@ -184,7 +184,7 @@
                         var form = form;
                         var inputName = inputName;
                         alert(file);
-                        if (file.files.length==0){
+                        if ($(file).get(0).files.length==0){
                           console.log('no file');
                           return false;
 
