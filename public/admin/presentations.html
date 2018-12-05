@@ -52,6 +52,10 @@
            table.empty();
             $.each(data, function (a, b) {
               var date = new Date(b.datecreated);
+              d=new Date();
+              localTime=d.getTime();
+              localOffset=d.getTimezoneOffset() * 60000;
+              utc=localTime+localOffset;
               createdate=date.getMonth()+1 + '/' + date.getDate() + '/' +  date.getFullYear();
                 table.append("<tr class='record_"+b.presentationid+"'><td>"+b.presentationid+"</td><td>"+b.companyname+"</td>" +
                     "<td>"+createdate+"</td><td><a href='/?r="+b.presentationid+"' target='_blank'>User Side</a></td><td><a href=\"/admin/adminPush.html?r="+b.presentationid+"\" target='_blank'>Admin</a></td><td style='vertical-align:middle'><a href='/admin/editPresentations.html?e="+b.presentationid+"'><i class='material-icons'>create</i></a></td><td style='vertical-align:middle' class='delete'><i class='material-icons'  onclick='deletePres("+b.presentationid+","+b.userid+")'>delete_sweep</i></td></tr>");
