@@ -195,11 +195,8 @@
                             dataType: "json",
                             success:function(data){
                                 $("#presentationid").val(data.data);
-
                                 pidSet=$("#presentationid").val();
-
                             }
-
                         }).done(function(data){
                           file = file[0];
                           pid=data;
@@ -260,8 +257,7 @@
                             });
                           }
                         };
-                      });
-                    };
+
                     getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl');
                     getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
                     if ($("#image2Tmp").val() != '')
@@ -273,8 +269,9 @@
                     if ($("#image5Tmp").val() != '')
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
                 });
-            }
-          });
+              };
+            });;
+
     </script>
 
 </head>
