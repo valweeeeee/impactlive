@@ -1,281 +1,281 @@
 <html>
+
 <head>
-  <title>New Presentation  - Impact Live Admin</title>
-  <script src="/jquery/jquery.js" type="text/javascript"></script>
-  <script src="/socket/socket.js" type="text/javascript"></script>
-  <script src="admin.js" type="text/javascript"></script>
-  <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet">
-  <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-  <link href="/admin/admin.css" type="text/css" rel="stylesheet">
-  <style>
-  tr{
-  	border:1px solid black;
-  	border-radius:5px;
-  }
-  .material-icons {
-    margin-top:0;
-
-  }
-.md-dark{
-  	float:none;
-  	display: block;
-  	width:200px;
-    vertical-align: middle;
-    text-align: center;
-    margin-left:10px;
-    font-size:200px;
-    color: rgba(230, 230, 230, 1);
-    top: calc(50% - 2rem);
-    z-index: 0;
-    height:200px;
-    overflow:hidden;
-  }
-  .deleteImage{
-    font-size:36px;
-    color:#666;
-    position:relative;
-    margin-left:220px;
-    margin-top:-20px;
-    top:0;
-    height:36px;
-    width:36px;
-  }
-
-  </style>
-  <script>
-  $(document).ready(function() {
-    var thisid;
-    var pid;
-  $("body").on("click",".deleteImage",function(e){
-    e.preventDefault();
-    deleteImage(this);
-  });
-  var files;
-  var file;
-  function deleteImage(that){
-    var data='{"filename":"' + $(that).data('filename')+ '"}';
-    $.ajax({
-       url: '/delete-s3',
-       contentType: 'application/json',
-       data: data,
-       type: 'POST',
-       dataType: "json",
-       success: function(data){
-         if(data.data=="ok"){
-           $(that).siblings('.uploaded').hide('fast');
-           $(that).siblings('.previewimg').show('fast');
-           $(that).remove();
-         }
-         else{
-           console.log(data.data);
-         }
-       },
-       failure: function(errMsg) {
-           console.log('error');
-       }
-
-   });
- }
-  $('.file-input').change(function() {
-    thisid=$(this).parent();
-    if(this.files && this.files[0]){
-      files = this.files;
-      file = files[0];
-      if(file == null){
-        return alert('No file selected.');
-      }
-      var fileExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-      fileType=file.type.toLowerCase();
-      if (fileExtension.indexOf(fileType) == -1) {
-           alert("Only files of type jpg, png, gif, jpeg are allowed");
-           return false;
-      }
-      else{
-        /* image dimensions*/
-        img=new Image();
-        var _URL = window.URL || window.webkitURL;
-        img.src = _URL.createObjectURL(file);
-        img.onload=function(){
-          fileSize=(file.size/1024/1024).toFixed(2);
-          if(this.width<350 || this.height<200){
-            alert('The minimum width for an image is 350 px. The minimum height is 200 px');
-            return false;
-          }
-          else if (fileSize >4){
-            alert('Max file size is 4MB');
-            return false;
-         }
-         else{
-           /* this is going to load up the thumbnails in a temporary browser spot*/
-           var reader = new FileReader();
-           reader.onload=function(e){
-             $(thisid).find('.previewimg').hide('fast');
-             $(thisid).find(".uploaded").remove();
-             $(thisid).find(".deleteImage").remove();
-             $(thisid).find(".deleteThumb").remove();
-             $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+e.target.result+"' class='thumb' style='max-width:180px'></div>").fadeIn('slow').css("display","block");
-           }
-           reader.readAsDataURL(file);
+    <title>New Presentation - Impact Live Admin</title>
+    <script src="/jquery/jquery.js" type="text/javascript"></script>
+    <script src="/socket/socket.js" type="text/javascript"></script>
+    <script src="admin.js" type="text/javascript"></script>
+    <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link href="/admin/admin.css" type="text/css" rel="stylesheet">
+    <style>
+        tr {
+            border: 1px solid black;
+            border-radius: 5px;
         }
 
-      }
-    }
-  }
-
-});
-  var userID=getCookie('impactLive');
-
-  function getFileExtension(filename) {
-    return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
-  }
-
-
-function getSignedRequest(fileSent,pid){
-      var dfd = $.Deferred();
-      const xhr = new XMLHttpRequest();
-      var fileNameOnly=fileSent.name;
-      fileNameOnly=fileNameOnly.replace(/\.[^/.]+$/, "");
-      fileExt=getFileExtension(fileSent.name);
-      newFileName=fileNameOnly + '_' + userID + '_' + pid +'.' + fileExt;
-      const myNewFile = new File([file], newFileName, {type: fileSent.type});
-      xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
-      xhr.onreadystatechange = () => {
-        if(xhr.readyState === 4){
-          if(xhr.status === 200){
-            const response = JSON.parse(xhr.responseText);
-            dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
-          }
-          else{
-            dfd.reject('error');
-          }
+        .material-icons {
+            margin-top: 0;
         }
 
-      };
-      xhr.send();
-      return dfd.promise();
-    }
-  function uploadFile(file, signedRequest, fileName){
-    var dfd = $.Deferred();
-    const xhr = new XMLHttpRequest();
-    xhr.open('PUT', signedRequest);
-    xhr.onreadystatechange = () => {
-      if(xhr.readyState === 4){
-        if(xhr.status === 200){
-          urlFull="https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-          dfd.resolve(urlFull);
-
+        .md-dark {
+            float: none;
+            display: block;
+            width: 200px;
+            vertical-align: middle;
+            text-align: center;
+            margin-left: 10px;
+            font-size: 200px;
+            color: rgba(230, 230, 230, 1);
+            top: calc(50% - 2rem);
+            z-index: 0;
+            height: 200px;
+            overflow: hidden;
         }
-        else{
-          dfd.reject(0);
-        }
-      }
-    };
-    xhr.send(file);
-    return dfd.promise();
-  }
-  if(!userID){
-    //window.location="/admin/index.html";
-  }
-  else{
-      $("#userid").val(userID);
-      $('form').submit(function (e) {
-        e.preventDefault();
-        var form=this;
 
-        function getPresID(form,file,inputName){
-            var form=form;
-            var inputName=inputName;
-            if(file=='' || !file)
-              return false;
-            //console.log(file + ' in get Pres id');
-            $.ajax({
-               url: '/newrecord/',
-               contentType: 'application/json',
-               data:  toJSONString(form),
-               type: 'POST',
-               dataType: "json",
-               success: function ( data ) {
-                    return data;
-                },
-                error: function ( error ) {
-                    return error;
-                }
-             }).then(
-                function (pid) {
-                  file=file[0];
-                  if(file!=''){
-                    getSignedRequest(file,pid.data).then(uploadFile).done(function(uploadedURL){
-                        $("#presentationid").val(pid.data);
-                        var newInput = $("<input name='"+inputName+"' type='hidden' value='"+uploadedURL+"'>");
-                        $('#editPresentation').after(newInput);
-                        console.log(toJSONString(form));
-                         if(uploadedURL!=0 && uploadedURL!=''){
-                           $.ajax({
-                              url: '/makeedits/',
-                              contentType: 'application/json',
-                              data:  toJSONString(form),
-                              type: 'POST',
-                              dataType: "json",
-                              success: function ( data ) {
-                                   return data;
-                               },
-                               error: function ( error ) {
-                                   return error;
-                               }
-                            })
-                           return uploadedURL;
-                         }
-                         else {
-                           return 0;
-                         }
-                      });
+        .deleteImage {
+            font-size: 36px;
+            color: #666;
+            position: relative;
+            margin-left: 220px;
+            margin-top: -20px;
+            top: 0;
+            height: 36px;
+            width: 36px;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            var thisid;
+            var pid;
+            $("body").on("click", ".deleteImage", function(e) {
+                e.preventDefault();
+                deleteImage(this);
+            });
+            var files;
+            var file;
+
+            function deleteImage(that) {
+                var data = '{"filename":"' + $(that).data('filename') + '"}';
+                $.ajax({
+                    url: '/delete-s3',
+                    contentType: 'application/json',
+                    data: data,
+                    type: 'POST',
+                    dataType: "json",
+                    success: function(data) {
+                        if (data.data == "ok") {
+                            $(that).siblings('.uploaded').hide('fast');
+                            $(that).siblings('.previewimg').show('fast');
+                            $(that).remove();
+                        } else {
+                            console.log(data.data);
+                        }
+                    },
+                    failure: function(errMsg) {
+                        console.log('error');
                     }
+
                 });
-    };
-    getPresID(form,$("#companylogourlTmp").prop('files'),'companylogourl');
-    getPresID(form,$("#image1Tmp").prop('files'), 'pushcontent1url');
-    if($("#image2Tmp").val()!='')
-      getPresID(form,$("#image2Tmp").prop('files'), 'pushcontent2url');
-    if($("#image3Tmp").val()!='')
-      getPresID(form,$("#image3Tmp").prop('files'), 'pushcontent3url');
-    if($("#image4Tmp").val()!='')
-      getPresID(form,$("#image4Tmp").prop('files'), 'pushcontent4url');
-    if($("#image5Tmp").val()!='')
-      getPresID(form,$("#image5Tmp").prop('files'), 'pushcontent5url');
+            }
+            $('.file-input').change(function() {
+                thisid = $(this).parent();
+                if (this.files && this.files[0]) {
+                    files = this.files;
+                    file = files[0];
+                    if (file == null) {
+                        return alert('No file selected.');
+                    }
+                    var fileExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                    fileType = file.type.toLowerCase();
+                    if (fileExtension.indexOf(fileType) == -1) {
+                        alert("Only files of type jpg, png, gif, jpeg are allowed");
+                        return false;
+                    } else {
+                        /* image dimensions*/
+                        img = new Image();
+                        var _URL = window.URL || window.webkitURL;
+                        img.src = _URL.createObjectURL(file);
+                        img.onload = function() {
+                            fileSize = (file.size / 1024 / 1024).toFixed(2);
+                            if (this.width < 350 || this.height < 200) {
+                                alert('The minimum width for an image is 350 px. The minimum height is 200 px');
+                                return false;
+                            } else if (fileSize > 4) {
+                                alert('Max file size is 4MB');
+                                return false;
+                            } else {
+                                /* this is going to load up the thumbnails in a temporary browser spot*/
+                                var reader = new FileReader();
+                                reader.onload = function(e) {
+                                    $(thisid).find('.previewimg').hide('fast');
+                                    $(thisid).find(".uploaded").remove();
+                                    $(thisid).find(".deleteImage").remove();
+                                    $(thisid).find(".deleteThumb").remove();
+                                    $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='" + e.target.result + "' class='thumb' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
+                                }
+                                reader.readAsDataURL(file);
+                            }
 
- });
-}
-});
-</script>
+                        }
+                    }
+                }
 
+            });
+            var userID = getCookie('impactLive');
+
+            function getFileExtension(filename) {
+                return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+            }
+
+            function getSignedRequest(fileSent, pid) {
+                var dfd = $.Deferred();
+                const xhr = new XMLHttpRequest();
+                var fileNameOnly = fileSent.name;
+                fileNameOnly = fileNameOnly.replace(/\.[^/.]+$/, "");
+                fileExt = getFileExtension(fileSent.name);
+                newFileName = fileNameOnly + '_' + userID + '_' + pid + '.' + fileExt;
+                const myNewFile = new File([file], newFileName, {
+                    type: fileSent.type
+                });
+                xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            const response = JSON.parse(xhr.responseText);
+                            dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
+                        } else {
+                            dfd.reject('error');
+                        }
+                    }
+
+                };
+                xhr.send();
+                return dfd.promise();
+            }
+
+            function uploadFile(file, signedRequest, fileName) {
+                var dfd = $.Deferred();
+                const xhr = new XMLHttpRequest();
+                xhr.open('PUT', signedRequest);
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            urlFull = "https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
+                            dfd.resolve(urlFull);
+
+                        } else {
+                            dfd.reject(0);
+                        }
+                    }
+                };
+                xhr.send(file);
+                return dfd.promise();
+            }
+            if (!userID) {
+                //window.location="/admin/index.html";
+            } else {
+                $("#userid").val(userID);
+                $('form').submit(function(e) {
+                    e.preventDefault();
+                    var form = this;
+
+                    function getPresID(form, file, inputName) {
+                        var form = form;
+                        var inputName = inputName;
+                        if (file == '' || !file)
+                            return false;
+                        //console.log(file + ' in get Pres id');
+                        $.ajax({
+                            url: '/newrecord/',
+                            contentType: 'application/json',
+                            data: toJSONString(form),
+                            type: 'POST',
+                            dataType: "json",
+                            success: function(data) {
+                                return data;
+                            },
+                            error: function(error) {
+                                return error;
+                            }
+                        }).then(
+                            function(pid) {
+                                file = file[0];
+                                if (file != '') {
+                                    getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
+                                        $("#presentationid").val(pid.data);
+                                        var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
+                                        $('#editPresentation').after(newInput);
+                                        console.log(toJSONString(form));
+                                        if (uploadedURL != 0 && uploadedURL != '') {
+                                            $.ajax({
+                                                url: '/makeedits/',
+                                                contentType: 'application/json',
+                                                data: toJSONString(form),
+                                                type: 'POST',
+                                                dataType: "json",
+                                                success: function(data) {
+                                                    return data;
+                                                },
+                                                error: function(error) {
+                                                    return error;
+                                                }
+                                            })
+                                            return uploadedURL;
+                                        } else {
+                                            return 0;
+                                        }
+                                    });
+                                }
+                            });
+                    };
+                    getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl');
+                    getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
+                    if ($("#image2Tmp").val() != '')
+                        getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
+                    if ($("#image3Tmp").val() != '')
+                        getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
+                    if ($("#image4Tmp").val() != '')
+                        getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
+                    if ($("#image5Tmp").val() != '')
+                        getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
+
+                });
+            }
+        });
+    </script>
 
 </head>
+
 <body>
-<div class="topbar">
-  <div class="topbar-colors">
-      <i class="green"></i>
-      <i class="green"></i>
-      <i class="green"></i>
-      <i class="green"></i>
-      <i class="green"></i>
-      <i class="green"></i>
-      <i class="green"></i>
-  </div>
-  <nav>
-  Impact Live - New Presentation
-  </nav>
-</div>
-<br><br>
-<form method="post" enctype="multipart/form-data">
-  <table id="presentationForm" width="45%" align="center" cellspacing="5" cellpadding="10" style="border-collapse: collapse;background:#fff;">
-    <tr>
-      <td>Company Name * </td>
-      <td><input type="text" name="companyname" id="companyname" required></td>
-   </tr>
-   <tr>
-     <td>Company Logo * <br><span style="font-size:smaller"></td>
+    <div class="topbar">
+        <div class="topbar-colors">
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+        </div>
+        <nav>
+            Impact Live - New Presentation
+        </nav>
+    </div>
+    <br>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        <table id="presentationForm" width="45%" align="center" cellspacing="5" cellpadding="10" style="border-collapse: collapse;background:#fff;">
+            <tr>
+                <td>Company Name * </td>
+                <td>
+                    <input type="text" name="companyname" id="companyname" required>
+                </td>
+            </tr>
+            <tr>
+                <td>Company Logo *
+                    <br><span style="font-size:smaller"></td>
      <td><div id="previewlogo" align="center" class="preview"><i class="material-icons md-184 md-inactive md-dark previewimg">
 photo_size_select_actual
 </i><br><input type="file" class="file-input blue" id="companylogourlTmp" name="companylogourlTmp" required></div></td>
