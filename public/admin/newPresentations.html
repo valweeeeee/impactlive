@@ -233,6 +233,7 @@
 
                           else{
                             getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
+                              console.log('gsr');
                                 $("#presentationid").val(pid.data);
                                 var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                 $('#editPresentation').after(newInput);
