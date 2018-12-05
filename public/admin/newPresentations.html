@@ -185,8 +185,6 @@
                         var inputName = inputName;
                         if (file == '' || !file)
                             return '';
-                         pid=$("#presentationid").val();
-                        console.log(pid);
                       if(!pid || pid==''){
                         $.ajax({
                             url: '/newrecord/',
@@ -197,7 +195,7 @@
 
                         }).done(function(data){
                           file = file[0];
-                          console.log(data);
+                          pid=data;
                           if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                                   $("#presentationid").val(pid.data);
@@ -267,7 +265,6 @@
                         getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
                     if ($("#image5Tmp").val() != '')
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
-
                 });
             }
           });
