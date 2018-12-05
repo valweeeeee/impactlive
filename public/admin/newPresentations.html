@@ -185,7 +185,6 @@
                         var inputName = inputName;
                         if (file == '' || !file)
                             return '';
-                            alert(pidSet);
                         if(!pidSet || pidSet==''){
                           $.ajax({
                               url: '/newrecord/',
@@ -196,10 +195,8 @@
                               dataType: "json",
                               success:function(data){
                                   $("#presentationid").val(data.data);
-                                  alert($("#presentationid").val());
                                   pidSet=$("#presentationid").val();
                               }
-
                           }).done(function(data){
                           file = file[0];
                           pid=data;
@@ -236,10 +233,7 @@
                       }
                       else{
                         file = file[0];
-                      
-                        alert(pid);
                         getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
-                          console.log('gsr');
                             $("#presentationid").val(pidSet);
                             var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                             $('#editPresentation').after(newInput);
@@ -265,17 +259,17 @@
                         });
                       }
                     };
-                    getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl');
-                    getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
-                    if ($("#image2Tmp").val() != '')
-                        getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
-                    if ($("#image3Tmp").val() != '')
-                        getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
-                    if ($("#image4Tmp").val() != '')
-                        getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
-                    if ($("#image5Tmp").val() != '')
-                        getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
+                      getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl');
+                      getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
+                      getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
+                      getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
+                      getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
+                      $.when(getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url'))).then(function(){
+                        alert('Your presentation was added.');
+                        window.location="/admin/index.html";
+                      });
                 });
+
             }
           });
     </script>
