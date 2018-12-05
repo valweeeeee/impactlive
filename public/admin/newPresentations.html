@@ -185,7 +185,7 @@
                         var form = form;
                         var inputName = inputName;
                         if (file == '' || !file)
-                            return false;
+                            return '';
                         console.log(pid+' v');
                       if(!pid){
                         $.ajax({
@@ -202,7 +202,7 @@
                             }
                         }).done(function(){
                           file = file[0];
-                          console.log(pid);
+                          pid=pid.data;
                           if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                                   $("#presentationid").val(pid.data);
