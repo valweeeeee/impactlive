@@ -187,10 +187,7 @@
                         var form = form;
                         var inputName = inputName;
 
-                        if (file.length==0){
-                          alert('0');
 
-                        }
 
 
                         if(!pidSet || pidSet==''){
@@ -268,22 +265,26 @@
 
 
 
-                      
 
-                      $.when(getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).then(function(){
-                        getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl').then(function(){
-                          getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url').then(function(){
-                            getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url').then(function(){
-                              getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url').then(function(){
-                                getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url').then(function(){
-                                    alert('Your presentation was added.');
-                                    window.location="/admin/presentations.html";
+
+                      $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'pushcontent5url')).then(function(){
+                        getPresID(form, $("#image1Tmp").prop('files'), 'companylogourl').then(function(){
+                          if($("#image2Tmp").prop('files').length!=0)
+                            getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent1url').then(function(){
+                            if($("#image3Tmp").prop('files').length!=0)
+                              getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent2url').then(function(){
+                                if($("#image4Tmp").prop('files').length!=0)
+                                  getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent3url').then(function(){
+                                    if($("#image5Tmp").prop('files').length!=0)
+                                      getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent4url').then(function(){
+                                        alert('Your presentation was added.');
+                                        window.location="/admin/presentations.html";
+                                      });
+                                    });
+                                  });
                                 });
                               });
                             });
-                          });
-                        });
-                      });
                 });
 
             }
