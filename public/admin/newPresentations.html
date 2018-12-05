@@ -48,7 +48,7 @@
     <script>
         $(document).ready(function() {
             var thisid;
-            var pid='';
+
             $("body").on("click", ".deleteImage", function(e) {
                 e.preventDefault();
                 deleteImage(this);
@@ -181,9 +181,10 @@
                     e.preventDefault();
                     var form = this;
 
-                    function getPresID(form, file, inputName,callback,pid) {
+                    function getPresID(form, file, inputName,pid) {
                         var form = form;
                         var inputName = inputName;
+                        var pid=pid;
                         if (file == '' || !file)
                             return '';
                         console.log(pid+' v');
