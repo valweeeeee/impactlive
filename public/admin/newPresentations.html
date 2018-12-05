@@ -197,6 +197,7 @@
 
                         }).done(function(data){
                           file = file[0];
+                          console.log(data);
                           if (file != '') {
                               getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
                                   $("#presentationid").val(pid.data);
