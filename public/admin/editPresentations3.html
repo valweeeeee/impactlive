@@ -86,32 +86,32 @@
                           if(b.pushcontent1url!='' && b.pushcontent1url!="undefined"){
                             fileName=getFileName(b.pushcontent1url);
                             $("#image1None").hide('fast');
-                            $("#preview1").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent1url+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
+                            $("#preview1").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded original'><img src='"+b.pushcontent1url+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
                             $("input[name=pushcontent1url]").val(b.pushcontent1url);
                           }
                           if(b.pushcontent2url!='' && b.pushcontent2url!="undefined"){
                             fileName=getFileName(b.pushcontent2url);
                             $("#image2None").hide('fast');
-                            $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent2url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded original'><img src='"+b.pushcontent2url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                             $("input[name=pushcontent2url]").val(b.pushcontent2url);
                           }
                           if(b.pushcontent3url!='' && b.pushcontent3url!="undefined"){
                             fileName=getFileName(b.pushcontent3url);
                             $("#image3None").hide('fast');
-                            $("#preview3").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent3url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("#preview3").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded original'><img src='"+b.pushcontent3url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                             $("input[name=pushcontent3url]").val(b.pushcontent3url);
                           }
                           if(b.pushcontent4url!='' && b.pushcontent4url!="undefined"){
                             fileName=getFileName(b.pushcontent4url);
                             $("#image4None").hide('fast');
-                            $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent4url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded original'><img src='"+b.pushcontent4url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                             $("input[name=pushcontent4url]").val(b.pushcontent4url);
                           }
 
                           if(b.pushcontent5url!='' && b.pushcontent5url!="undefined"){
                             fileName=getFileName(b.pushcontent5url);
                             $("#image5None").hide('fast');
-                            $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent5url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded original'><img src='"+b.pushcontent5url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                             $("input[name=pushcontent5url").val(b.pushcontent5url);
                           }
                           $("#email1subject").val(b.email1subject);
@@ -131,11 +131,12 @@
 
                 function deleteImage(that) {
                     if($(that).data('orig')=='no'){
+                      //replaced image using upload image button
                       $(that).siblings('.previewimg').hide('fast');
-                      $(that).siblings('.uploaded').show('fast');
+                      $(that).siblings('.uploaded.original').show('fast');
                     }
                     else{
-                      $(that).siblings('.uploaded').hide('fast');
+                      $(that).siblings('.uploaded.replaced').hide('fast');
                       $(that).siblings('.previewimg').show('fast');
                     }
                     /*var data = '{"filename":"' + $(that).data('filename') + '"}';
@@ -204,7 +205,7 @@
                                         $(thisid).find(".uploaded").hide();
                                         $(thisid).find(".deleteImage").remove();
                                         $(thisid).find(".deleteThumb").remove();
-                                        $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-orig='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
+                                        $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-orig='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded replaced'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
                                     }
                                     reader.readAsDataURL(file);
                                 }
