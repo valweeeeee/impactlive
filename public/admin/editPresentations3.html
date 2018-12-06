@@ -132,11 +132,11 @@
                 function deleteImage(that) {
                     if($(that).data('orig')=='no'){
                       //replaced image using upload image button
-                      $(that).siblings('.previewimg').hide('fast');
+                      $(that).siblings('.uploaded.replaced').hide('fast');
                       $(that).siblings('.uploaded.original').show('fast');
                     }
                     else{
-                      $(that).siblings('.uploaded.replaced').hide('fast');
+                      $(that).siblings('.uploaded.original').hide('fast');
                       $(that).siblings('.previewimg').show('fast');
                     }
                     /*var data = '{"filename":"' + $(that).data('filename') + '"}';
