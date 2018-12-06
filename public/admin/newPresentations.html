@@ -67,27 +67,9 @@
                 });
 
                 function deleteImage(that) {
-                    var data = '{"filename":"' + $(that).data('filename') + '"}';
-                    $.ajax({
-                        url: '/delete-s3',
-                        contentType: 'application/json',
-                        data: data,
-                        type: 'POST',
-                        dataType: "json",
-                        success: function(data) {
-                            if (data.data == "ok") {
-                                $(that).siblings('.uploaded').hide('fast');
-                                $(that).siblings('.previewimg').show('fast');
-                                $(that).remove();
-                            } else {
-                                console.log(data.data);
-                            }
-                        },
-                        failure: function(errMsg) {
-                            console.log('error');
-                        }
-
-                    });
+                    $(that).siblings('.uploaded').hide('fast');
+                    $(that).siblings('.previewimg').show('fast');
+                    $(that).remove();
                 }
                 /* <!--Delete Images -- DONE*/
 
@@ -299,7 +281,6 @@
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function() {
                         alert('Your presentation has been added');
                         window.location="/admin/presentations.html";
-
                     });
                 })
             }
