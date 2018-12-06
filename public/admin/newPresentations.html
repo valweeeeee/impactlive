@@ -275,6 +275,7 @@
                     $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl')).then(function(){
                       return getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
                     }).then(function(){
+                        alert($("#image2Tmp").prop('files'));
                         return getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
                     }).then(function(){
                         return getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
