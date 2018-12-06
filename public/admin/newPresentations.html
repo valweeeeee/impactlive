@@ -206,8 +206,8 @@
                     var form = this;
                     e.preventDefault();
                     $("#userid").val(userID);
-                    $("#editPresentation").fadeOut('fast');
-                    $(".loading-wrapper").fadeIn('fast');
+                    $("#editPresentation").hide('fast');
+                    $(".loading-wrapper").show('fast');
 
                     function getPresID(form, file, inputName) {
                         var dfd = $.Deferred();
