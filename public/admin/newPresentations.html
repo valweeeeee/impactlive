@@ -182,11 +182,15 @@
             } else {
                 $("#userid").val(userID);
                 var pid;
-                $('form').submit(function(e) {
+                $.('form').submit(function(e) {
                     e.preventDefault();
                     var form = this;
 
                     function getPresID(form, file, inputName) {
+                        var dfd=$.Deferred();
+                        if(file.length==0){
+                          dfd.reject();
+                        }
                         var form = form;
                         var inputName = inputName;
                         if(!pidSet || pidSet==''){
@@ -216,9 +220,11 @@
                                           type: 'POST',
                                           dataType: "json",
                                           success: function(data) {
+                                              dfd.resolve();
                                               return data;
                                           },
                                           error: function(error) {
+                                              dfd.reject();
                                               return error;
                                           }
                                       })
@@ -248,9 +254,11 @@
                                     type: 'POST',
                                     dataType: "json",
                                     success: function(data) {
+                                        dfd.resolve();
                                         return data;
                                     },
                                     error: function(error) {
+                                        dfd.reject();
                                         return error;
                                     }
                                 })
@@ -262,21 +270,22 @@
                       }
                     }
 
-                      getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl');
-                      getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
-                      if($("#image2Tmp").prop('files').length!=0)
-                        getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
-                      if($("#image3Tmp").prop('files').length!=0)
-                        getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
-                      if($("#image4Tmp").prop('files').length!=0)
-                        getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
-                      if($("#image5Tmp").prop('files').length!=0)
-                        getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
+                      $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl')).then(function(){
+                        return getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
+                      }).then(function(){
+                          return getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url'));
+                      }).then(function(){
+                          return getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'));
+                      }).then(function(){
+                          return getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'));
+                      }).then(function(){
+                        return getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url'));
+                      }).then(function(){
+                          alert('done');
+                      })
 
 
-                }).done(function(data){
-                  alert('saved');
-                });
+                })
 
             }
           });
