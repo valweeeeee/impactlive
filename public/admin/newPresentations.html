@@ -190,7 +190,7 @@
 
                         var dfd=$.Deferred();
                         if(typeof file[0]==="undefined"){
-                            dfd.reject(0);
+                            dfd.resolve();
                             return dfd.promise();
                         }
 
@@ -236,10 +236,6 @@
                                       return 0;
                                   }
                               });
-
-
-
-
                         });
                       }
                       else{
@@ -265,7 +261,7 @@
                                         return dfd.promise();
                                     }
                                 })
-                          
+
                             } else {
                                 return 0;
                             }
