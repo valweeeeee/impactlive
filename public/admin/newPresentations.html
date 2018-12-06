@@ -188,6 +188,8 @@
 
                     function getPresID(form, file, inputName) {
                         alert(typeof file[0]);
+                        if(file[0]===null)
+                          alert('null');
                         if(typeof file[0]==="undefined");
                           return true;
                         }
