@@ -187,10 +187,9 @@
                     var form = this;
 
                     function getPresID(form, file, inputName) {
-                      alert(file[0]);
-                        if(file[0]){
-
-                          return false;
+                        alert(typeof file);
+                        if(typeof file==="undefined");
+                          return true;
                         }
                         var dfd=$.Deferred();
                         var form = form;
