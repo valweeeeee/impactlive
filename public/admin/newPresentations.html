@@ -188,12 +188,6 @@
 
                     function getPresID(form, file, inputName) {
                         var dfd=$.Deferred();
-
-                        if(!file[0]){
-                          dfd.resolve();
-                          return false;
-                        }
-
                         var form = form;
                         var inputName = inputName;
                         if(!pidSet || pidSet==''){
@@ -275,13 +269,25 @@
                     $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl')).then(function(){
                       return getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
                     }).then(function(){
-                        return getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
+                        if($("#image2Tmp").prop('files')[0])
+                          return getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
+                        else
+                          return true;
                     }).then(function(){
-                        return getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
+                        if($("#image3Tmp").prop('files')[0])
+                          return getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
+                        else
+                          return true;
                     }).then(function(){
-                        return getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
+                        if($("#image4Tmp").prop('files')[0])
+                          return getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
+                        else
+                          return true;
                     }).then(function(){
-                      return getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
+                      if($("#image5Tmp").prop('files')[0])
+                        return getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
+                      else
+                        return true;
                     }).then(function(){
                         alert('Your presentation was added.');
                         window.location="/admin/presentations.html";
