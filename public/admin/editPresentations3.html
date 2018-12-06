@@ -130,7 +130,7 @@
                 });
 
                 function deleteImage(that) {
-                    alert($(that).data());
+                    alert($(that).data('orig'));
                     if($(that).data('orig')=='no'){
                       $(that).siblings('.previewimg').show('fast');
                     }
