@@ -190,7 +190,6 @@
                         var dfd=$.Deferred();
 
                         if(!file[0]){
-                          alert('here');
                           dfd.resolve();
                           return false;
                         }
@@ -284,7 +283,8 @@
                     }).then(function(){
                       return getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
                     }).then(function(){
-                        alert('done');
+                        alert('Your presentation was added.');
+                        window.location="/admin/presentations.html";
                     });
 
 
