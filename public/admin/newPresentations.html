@@ -189,8 +189,11 @@
                     function getPresID(form, file, inputName) {
 
                         var dfd=$.Deferred();
-                        if(typeof file[0]==="undefined");
-                          dfd.resolve();
+                        if(typeof file[0]==="undefined"){
+                            dfd.reject(0);
+                            return dfd.promise();
+                        }
+
                         var form = form;
                         var inputName = inputName;
                         if(!pidSet || pidSet==''){
@@ -220,15 +223,15 @@
                                           type: 'POST',
                                           dataType: "json",
                                           success: function(data) {
-                                              dfd.resolve();
-                                              return data;
+                                              dfd.resolve(uploadedURL);
+                                              return dfd.promise();
                                           },
                                           error: function(error) {
-                                              dfd.reject();
-                                              return error;
+                                              dfd.reject(0);
+                                              return dfd.promise();
                                           }
                                       })
-                                      return uploadedURL;
+
                                   } else {
                                       return 0;
                                   }
@@ -254,15 +257,15 @@
                                     type: 'POST',
                                     dataType: "json",
                                     success: function(data) {
-                                        dfd.resolve();
-                                        return data;
+                                        dfd.resolve(uploadedURL);
+                                        return dfd.promise();
                                     },
                                     error: function(error) {
-                                        dfd.reject();
-                                        return error;
+                                        dfd.reject(0);
+                                        return dfd.promise();
                                     }
                                 })
-                                return uploadedURL;
+                          
                             } else {
                                 return 0;
                             }
