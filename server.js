@@ -82,7 +82,7 @@ app.get('/sign-s3', (req, res) => {
     Expires: 60,
     ContentType: fileType,
     ACL: 'public-read',
-    cache-control: "no-cache"
+    Cache-Control: "no-cache"
   };
   s3.getSignedUrl('putObject', s3Params, (err, data) => {
           if(err){
