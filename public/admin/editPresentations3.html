@@ -132,7 +132,7 @@
                 function deleteImage(that) {
                     if($(that).data('orig')=='no'){
                       $(that).siblings('.previewimg').hide('fast');
-                      $(that).siblings('.replaced').hide('fast');
+                      $(that).siblings('.uploaded').show('fast');
                     }
                     else{
                       $(that).siblings('.uploaded').hide('fast');
