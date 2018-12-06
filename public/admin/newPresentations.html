@@ -266,6 +266,7 @@
                       }
                     }
                     $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl')).then(function(){
+                      var dfd = $.Deferred();
                       getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
                       dfd.resolve();
                       return dfd.promise();
