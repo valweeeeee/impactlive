@@ -273,7 +273,9 @@
                       getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'),
                       getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
                       getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function(){
-                        alert('done');
+                        alert('Your presentation has been added');
+                        window.location="/admin/presentations.html";
+
                       });
 
                   /*  }).then(function(){
