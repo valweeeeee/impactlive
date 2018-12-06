@@ -81,7 +81,8 @@ app.get('/sign-s3', (req, res) => {
     Key: "images/" + fileName,
     Expires: 60,
     ContentType: fileType,
-    ACL: 'public-read'
+    ACL: 'public-read',
+    cache-control: "no-cache"
   };
   s3.getSignedUrl('putObject', s3Params, (err, data) => {
           if(err){
