@@ -106,6 +106,7 @@
                             $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent4url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
                             $("input[name=pushcontent4url]").val(b.pushcontent4url);
                           }
+                          alert(b.pushcontent5url);
                           if(b.pushcontent5url!='' || b.pushcontent5url!="undefined"){
                             fileName=splitTest(b.pushcontent5url);
                             $("#image1None").hide('fast');
