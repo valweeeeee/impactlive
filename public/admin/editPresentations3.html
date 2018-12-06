@@ -129,6 +129,8 @@
                 });
 
                 function deleteImage(that) {
+                    alert('hi');
+                    alert($(that).data('orig'));
                     if($(that).data('orig')=='no'){
                       $(that).siblings('.previewimg').show('fast');
                     }
