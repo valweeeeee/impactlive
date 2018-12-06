@@ -45,7 +45,7 @@
             width: 36px;
         }
 
-        #loader {
+        .loading-wrapper {
             display: none;
         }
     </style>
@@ -207,7 +207,7 @@
                     e.preventDefault();
                     $("#userid").val(userID);
                     $("#editPresentation").fadeOut('fast');
-                    $("#loader").fadeIn('fast');
+                    $(".loading-wrapper").fadeIn('fast');
 
                     function getPresID(form, file, inputName) {
                         var dfd = $.Deferred();
@@ -430,7 +430,21 @@
             <tr>
                 <td style="border:none"><input id="userid" name="userid" type="hidden"><input id="presentationid" name="presentationid" type="hidden"></td>
                 <td style="border:none"><br>
-                    <input class="green" id="editPresentation" style="float:left;width:200px;height:50px;cursor:pointer;border:2px solid #000;margin-left:40px;font-size:16px" type="submit" value="Save"><img src="/images/ajaxLoader.gif" width="100" height="100" id="loader"></td>
+                    <input class="green" id="editPresentation" style="float:left;width:200px;height:50px;cursor:pointer;border:2px solid #000;margin-left:40px;font-size:16px" type="submit" value="Save"><div class="loading-wrapper">
+                      <h2>saving..</h2>
+                      <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                      </ul>
+                  </td>
             </tr>
         </table>
     </form>

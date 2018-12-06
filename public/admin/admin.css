@@ -274,3 +274,152 @@ input[type="submit"]:active {
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
+
+/* loading animations*/
+.loading-wrapper {
+  padding-top: 120px;
+}
+.loading-wrapper h2 {
+  display: block;
+  margin: 0 auto;
+  padding-left: 50px;
+  text-align: center;
+  font-size: 42px;
+  color: #444;
+  text-transform: uppercase;
+  font-weight: 900;
+  -webkit-animation: blink 2s 0s infinite;
+  -moz-animation:    blink 2s 0s infinite;
+  -o-animation:      blink 2s 0s infinite;
+  animation:         blink 2s 0s infinite;
+}
+
+.loading-wrapper ul {
+  position: relative;
+  max-width: 400px;
+  min-height: 60px;
+  margin: 0 auto;
+}
+
+.loading-wrapper li {
+  position: absolute;
+  height: 30px;
+  width: 30px;
+  margin-top: -15px;
+  border-radius: 50%;
+}
+
+.loading-wrapper li:nth-child(1) {
+  -webkit-animation: load 5s 0s infinite;
+  -moz-animation:    load 5s 0s infinite;
+  -o-animation:      load 5s 0s infinite;
+  animation:         load 5s 0s infinite;
+  animation-timing-function: linear;
+}
+.loading-wrapper li:nth-child(2) {
+  -webkit-animation: load 5s .5s infinite;
+  -moz-animation:    load 5s .5s infinite;
+  -o-animation:      load 5s .5s infinite;
+  animation:         load 5s .5s infinite;
+  animation-timing-function: linear;
+}
+
+.loading-wrapper li:nth-child(3) {
+  -webkit-animation: load 5s 1s infinite;
+  -moz-animation:    load 5s 1s infinite;
+  -o-animation:      load 5s 1s infinite;
+  animation:         load 5s 1s infinite;
+  animation-timing-function: linear;
+}
+.loading-wrapper li:nth-child(4) {
+  -webkit-animation: load 5s 1.5s infinite;
+  -moz-animation:    load 5s 1.5s infinite;
+  -o-animation:      load 5s 1.5s infinite;
+  animation:         load 5s 1.5s infinite;
+  animation-timing-function: linear;
+}
+.loading-wrapper li:nth-child(5) {
+  -webkit-animation: load 5s 2s infinite;
+  -moz-animation:    load 5s 2s infinite;
+  -o-animation:      load 5s 2s infinite;
+  animation:         load 5s 2s infinite;
+  animation-timing-function: linear;
+}
+.loading-wrapper li:nth-child(6) {
+  -webkit-animation: load 5s 2.5s infinite;
+  -moz-animation:    load 5s 2.5s infinite;
+  -o-animation:      load 5s 2.5s infinite;
+  animation:         load 5s 2.5s infinite;
+  animation-timing-function: linear;
+}
+.loading-wrapper li:nth-child(7) {
+  -webkit-animation: load 5s 3s infinite;
+  -moz-animation:    load 5s 3s infinite;
+  -o-animation:      load 5s 3s infinite;
+  animation:         load 5s 3s infinite;
+  animation-timing-function: linear;
+}
+.loading-wrapper li:nth-child(8) {
+  -webkit-animation: load 5s 3.5s infinite;
+  -moz-animation:    load 5s 3.5s infinite;
+  -o-animation:      load 5s 3.5s infinite;
+  animation:         load 5s 3.5s infinite;
+  animation-timing-function: linear;
+}
+.loading-wrapper li:nth-child(9) {
+  -webkit-animation: load 5s 4s infinite;
+  -moz-animation:    load 5s 4s infinite;
+  -o-animation:      load 5s 4s infinite;
+  animation:         load 5s 4s infinite;
+  animation-timing-function: linear;
+}
+.loading-wrapper li:nth-child(10) {
+  -webkit-animation: load 5s 4.5s infinite;
+  -moz-animation:    load 5s 4.5s infinite;
+  -o-animation:      load 5s 4.5s infinite;
+  animation:         load 5s 4.5s infinite;
+  animation-timing-function: linear;
+}
+
+@keyframes load {
+	0% {
+    top: 100%;
+    left: 0%;
+    background: rgba(250,100,100, 1);
+    transform: scale(0);
+  }
+  10%, 90% {
+    top: 50%;
+  }
+  20%, 80% {
+    top: 75%;
+  }
+  30%, 70% {
+    top: 100%;
+  }
+  40%, 60% {
+    top: 75%;
+    transform: scale(.7);
+  }
+  50% {
+    top: 50%;
+    transform: scale(1);
+  }
+  100% {
+    top: 100%;
+    left: 100%;
+    background: rgba(150,250,100, 1);
+    transform: scale(0);
+  }
+}
+
+@keyframes blink {
+	0%, 100%   {
+    opacity: 0.1;
+    text-shadow: 0px 0px 3px rgba(0, 0, 0, 0);
+  }
+	50% {
+    opacity: 1;
+    text-shadow: -2px 6px 12px rgba(0, 0, 0, 0.3);
+  }
+}
