@@ -269,19 +269,6 @@
                         });
                       }
                     }
-                    $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl')).then(function(){
-                      return getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
-                    }).then(function(){
-                        return getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
-                    }).then(function(){
-                        return getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
-                    }).then(function(){
-                        return getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
-                    }).then(function(){
-                      return getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
-                    }).then(function(){
-                        alert('done');
-                    });
 
                 });
 
