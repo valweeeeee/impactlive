@@ -271,12 +271,14 @@
                         });
                       }
                     }
-                      getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl');
-                      getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
-                      getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
-                      getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
-                      getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
-                      getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
+                      $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl'),
+                      getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url'),
+                      getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url'),
+                      getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'),
+                      getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
+                      getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function(){
+                        alert('done');
+                      }
 
                   /*  }).then(function(){
                         var dfd = $.Deferred();
