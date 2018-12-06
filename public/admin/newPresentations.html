@@ -185,7 +185,7 @@
                 $('form').submit(function(e) {
                     e.preventDefault();
                     var form = this;
-
+                    var dvd=$.Deferred();
                     function getPresID(form, file, inputName) {
                         var dfd=$.Deferred();
                         var form = form;
@@ -267,38 +267,40 @@
                       }
                     }
                     $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl')).then(function(){
-                      return getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
+                      getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
+                      dvd.resolve();
+                      return dvd.promise();
                     }).then(function(){
                         if($("#image2Tmp").prop('files')[0]){
                           getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
-                          dfd.resolve();
-                          return dfd.promise();
+                          dvd.resolve();
+                          return dvd.promise();
                         }
                     }).then(function(){
                         if($("#image3Tmp").prop('files')[0]){
                           getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
-                          dfd.resolve();
-                          return dfd.promise();
+                          dvd.resolve();
+                          return dvd.promise();
                         }
                     }).then(function(){
                         if($("#image4Tmp").prop('files')[0]){
                           getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
-                          dfd.resolve();
-                          return dfd.promise();
+                          dvd.resolve();
+                          return dvd.promise();
                         }
 
                     }).then(function(){
                       if($("#image5Tmp").prop('files')[0]){
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
-                        dfd.resolve();
-                        return dfd.promise();
+                        dvd.resolve();
+                        return dvd.promise();
                       }
                     }).then(function(){
                         alert('Your presentation was added.');
-                        dfd.resolve();
+                        dvd.resolve();
 
                         window.location="/admin/presentations.html";
-                        return dfd.promise();
+                        return dvd.promise();
                     });
 
 
