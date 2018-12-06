@@ -1,0 +1,515 @@
+<html>
+
+<head>
+    <title>New Presentation - Impact Live Admin</title>
+    <script src="/jquery/jquery.js" type="text/javascript"></script>
+    <script src="/socket/socket.js" type="text/javascript"></script>
+    <script src="admin.js" type="text/javascript"></script>
+    <link href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <link href="/admin/admin.css" type="text/css" rel="stylesheet">
+    <style>
+        tr {
+            border: 1px solid black;
+            border-radius: 5px;
+        }
+
+        .material-icons {
+            margin-top: 0;
+        }
+
+        .md-dark {
+            float: none;
+            display: block;
+            width: 200px;
+            vertical-align: middle;
+            text-align: center;
+            margin-left: 10px;
+            font-size: 200px;
+            color: rgba(230, 230, 230, 1);
+            top: calc(50% - 2rem);
+            z-index: 0;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .deleteImage {
+            font-size: 36px;
+            color: #666;
+            position: relative;
+            margin-left: 220px;
+            margin-top: -20px;
+            top: 0;
+            height: 36px;
+            width: 36px;
+        }
+
+        .loading-wrapper {
+            display: none;
+        }
+    </style>
+    <script>
+        $(document).ready(function() {
+            var thisid;
+            var files;
+            var file;
+            var pidSet;
+            var pid = $.QueryString["e"];
+            var userID = getCookie('impactLive');
+            if (!userID) {
+                window.location = "/admin/index.html";
+            } else {
+
+              var data='{"userid":"' + userID + '", "presentationid":"'+pid+'" }';
+              $.ajax({
+                 url: '/getpresentation/',
+                 contentType: 'application/json',
+                 data: data,
+                 type: 'POST',
+                 dataType: "json",
+                 success: function (data) {
+                   var splitTest = function (str) {
+                        return str.split('\\').pop().split('/').pop();
+                    }
+                     $.each(data, function (a, b) {
+                          $("#presentationid").val(b.presentationid);
+                          $("#userid").val(b.userid);
+                          $("#companyname").val(b.companyname);
+
+                          if(b.companylogourl!=''){
+                            fileName=splitTest(b.companylogourl);
+                            $("#companyLogoNone").hide('fast');
+                            $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.companylogourl+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=companylogourl]").val(b.companylogourl);
+                          }
+                          if(b.pushcontent1url!=''){
+                            fileName=splitTest(b.pushcontent1url);
+                            $("#image1None").hide('fast');
+                            $("#preview1").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent1url+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=pushcontent1url]").val(b.pushcontent1url);
+                          }
+                          if(b.pushcontent2url!=''){
+                            fileName=splitTest(b.pushcontent2url);
+                            $("#image1None").hide('fast');
+                            $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent2url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=pushcontent2url]").val(b.pushcontent2url);
+                          }
+                          if(b.pushcontent3url!=''){
+                            fileName=splitTest(b.pushcontent3url);
+                            $("#image1None").hide('fast');
+                            $("#preview3").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent3url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=pushcontent3url]").val(b.val(b.pushcontent3url));
+                          }
+                          if(b.pushcontent4url!=''){
+                            fileName=splitTest(b.pushcontent4url);
+                            $("#image1None").hide('fast');
+                            $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent4url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=pushcontent4url]").val(b.pushcontent4url);
+                          }
+                          if(b.pushcontent5url!=''){
+                            fileName=splitTest(b.pushcontent5url);
+                            $("#image1None").hide('fast');
+                            $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.pushcontent5url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=pushcontent5url").val(b.pushcontent5url);
+                          }
+                          $("#email1subject").val(b.email1subject);
+                          $("#surveylink").val(b.surveylink);
+                        });
+                 },
+                 error: function (xhr, status, error) {
+                     console.log('Error: ' + error);
+
+                 },
+             });
+                /* Delete Images*/
+                $("body").on("click", ".deleteImage", function(e) {
+                    e.preventDefault();
+                    deleteImage(this);
+                });
+
+                function deleteImage(that) {
+                    var data = '{"filename":"' + $(that).data('filename') + '"}';
+                    $.ajax({
+                        url: '/delete-s3',
+                        contentType: 'application/json',
+                        data: data,
+                        type: 'POST',
+                        dataType: "json",
+                        success: function(data) {
+                            if (data.data == "ok") {
+                                $(that).siblings('.uploaded').hide('fast');
+                                $(that).siblings('.previewimg').show('fast');
+                                $(that).remove();
+                            } else {
+                                console.log(data.data);
+                            }
+                        },
+                        failure: function(errMsg) {
+                            console.log('error');
+                        }
+
+                    });
+                }
+                /* <!--Delete Images -- DONE*/
+
+                /* Change New image*/
+                $('.previewimg').on('click', function() {
+                    $(this).siblings('.file-input').trigger('click');
+                });
+                $('.file-input').change(function() {
+                    thisid = $(this).parent();
+                    if (this.files && this.files[0]) {
+                        files = this.files;
+                        file = files[0];
+                        if (file == null) {
+                            return alert('No file selected.');
+                        }
+                        var fileExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                        fileType = file.type.toLowerCase();
+                        if (fileExtension.indexOf(fileType) == -1) {
+                            alert("Only files of type jpg, png, gif, jpeg are allowed");
+                            return false;
+                        } else {
+                            /* image dimensions*/
+                            img = new Image();
+                            var _URL = window.URL || window.webkitURL;
+                            img.src = _URL.createObjectURL(file);
+                            img.onload = function() {
+                                fileSize = (file.size / 1024 / 1024).toFixed(2);
+                                if (this.width < 350 || this.height < 200) {
+                                    alert('The minimum width for an image is 350 px. The minimum height is 200 px');
+                                    return false;
+                                } else if (fileSize > 4) {
+                                    alert('Max file size is 4MB');
+                                    return false;
+                                } else {
+                                    /* this is going to load up the thumbnails in a temporary browser spot*/
+                                    var reader = new FileReader();
+                                    reader.onload = function(e) {
+                                        //just hiding elements
+                                        $(thisid).find('.previewimg').hide('fast');
+                                        $(thisid).find(".uploaded").remove();
+                                        $(thisid).find(".deleteImage").remove();
+                                        $(thisid).find(".deleteThumb").remove();
+                                        $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='" + e.target.result + "' class='thumb' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
+                                    }
+                                    reader.readAsDataURL(file);
+                                }
+
+                            }
+                        }
+                    }
+
+                });
+                /* <!--Change New Image -- DONE*/
+
+                /* File Manipulate Functions Only*/
+                function getFileExtension(filename) {
+                    //gets extension to find right type
+                    return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+                }
+
+                function getSignedRequest(fileSent, pid) {
+                    //gets the S3 authorization and signed request
+                    //lots of deferred because we need to wait for functions to finish
+                    var dfd = $.Deferred();
+                    const xhr = new XMLHttpRequest();
+                    var fileNameOnly = fileSent.name;
+                    fileNameOnly = fileNameOnly.replace(/\.[^/.]+$/, "");
+                    fileExt = getFileExtension(fileSent.name);
+
+                    //file manipulation to append user and presentaiton id
+                    newFileName = fileNameOnly + '_' + userID + '_' + pid + '.' + fileExt;
+                    const myNewFile = new File([file], newFileName, {
+                        type: fileSent.type
+                    });
+                    xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                const response = JSON.parse(xhr.responseText);
+                                //resolve promise and on to the next
+                                dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
+                            } else {
+                                dfd.reject('error');
+                            }
+                        }
+
+                    };
+                    xhr.send();
+                    return dfd.promise();
+                }
+
+                function uploadFile(file, signedRequest, fileName) {
+                    //handles and generates url name for database
+                    var dfd = $.Deferred();
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('PUT', signedRequest);
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState === 4) {
+                            if (xhr.status === 200) {
+                                urlFull = "https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
+                                dfd.resolve(urlFull);
+
+                            } else {
+                                dfd.reject(0);
+                            }
+                        }
+                    };
+                    xhr.send(file);
+                    return dfd.promise();
+                }
+                /* <!--File Manipulation Functions Only -- DONE*/
+
+                /* Form Submission */
+                $('form').submit(function(e) {
+                    //form is submitted
+                    var form = this;
+                    e.preventDefault();
+                    $("#userid").val(userID);
+                    $("#editPresentation").hide('fast');
+                    $(".loading-wrapper").show('fast');
+
+                    function getPresID(form, file, inputName) {
+                        var dfd = $.Deferred();
+                        //if the file is undefined when brought in we leave immediately
+                        if (typeof file[0] === "undefined") {
+                            dfd.resolve();
+                            return dfd.promise();
+
+                        }
+                        var form = form;
+                        var inputName = inputName;
+                        //here we are looking to see an existing presentation id exists. If not we add a new record with the base information and get the new id to add the files after upload.
+                        if (!pidSet || pidSet == '') {
+                            $.ajax({
+                                url: '/newrecord/',
+                                contentType: 'application/json',
+                                data: toJSONString(form),
+                                type: 'POST',
+                                async: false,
+                                dataType: "json",
+                                success: function(data) {
+                                    $("#presentationid").val(data.data);
+                                    pidSet = $("#presentationid").val();
+                                }
+                            }).done(function(data) {
+                                file = file[0];
+                                pid = data;
+                                getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
+                                    var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
+                                    $('#editPresentation').after(newInput);
+                                    if (uploadedURL != 0 && uploadedURL != '') {
+                                        $.ajax({
+                                            url: '/makeedits/',
+                                            contentType: 'application/json',
+                                            data: toJSONString(form),
+                                            type: 'POST',
+                                            dataType: "json",
+                                            success: function(data) {
+                                                dfd.resolve(uploadedURL);
+                                            },
+                                            error: function(error) {
+                                                dfd.reject(0);
+                                            }
+                                        })
+
+                                    } else {
+                                        return 0;
+                                    }
+                                });
+                            });
+                        } else {
+                            //there is an existing presenation id so now we edit the db
+                            file = file[0];
+                            getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
+                                $("#presentationid").val(pidSet);
+                                var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
+                                $('#editPresentation').after(newInput);
+                                if (uploadedURL != 0 && uploadedURL != '') {
+                                    $.ajax({
+                                        url: '/makeedits/',
+                                        contentType: 'application/json',
+                                        data: toJSONString(form),
+                                        type: 'POST',
+                                        dataType: "json",
+                                        success: function(data) {
+                                            dfd.resolve(uploadedURL);
+                                        },
+                                        error: function(error) {
+                                            dfd.reject(0);
+                                        }
+                                    })
+
+                                } else {
+                                    return 0;
+                                }
+                            });
+                        }
+                        return dfd.promise();
+                    }
+                    //changed method calls for each image
+                    $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl'),
+                        getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url'),
+                        getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url'),
+                        getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'),
+                        getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
+                        getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function() {
+                        alert('Your presentation has been added');
+                        window.location="/admin/presentations.html";
+
+                    });
+                })
+            }
+        });
+    </script>
+
+</head>
+
+<body>
+    <div class="topbar">
+        <div class="topbar-colors">
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+            <i class="green"></i>
+        </div>
+        <nav>
+            Impact Live - New Presentation
+        </nav>
+    </div>
+    <br>
+    <br>
+
+    <form enctype="multipart/form-data" method="post">
+        <table align="center" cellpadding="10" cellspacing="5" id="presentationForm" style="border-collapse: collapse;background:#fff;" width="45%">
+            <tr>
+                <td>Company Name *</td>
+                <td><input id="companyname" name="companyname" required="" type="text"></td>
+            </tr>
+            <tr>
+                <td>Company Logo *<br>
+                    <span style="font-size:smaller"></span></td>
+                <td>
+                    <div align="center" class="preview" id="previewlogo">
+                        <i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+                        <input class="file-input blue" id="companylogourlTmp" name="companylogourlTmp" required="" type="file">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Push Content 1 *<br>
+                    <div class="explain">
+                        Must be jpg, png, or jpeg, 350 px wide minimum, and be a picture of an email
+                    </div>
+                </td>
+                <td>
+                    <div align="center" class="preview" id="preview1">
+                        <i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+                        <input class="file-input blue" id="image1Tmp" name="pushcontent1urlTmp" required="" type="file">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email Subject *<br>
+                    <div class="explain">
+                        Subject line for the first email (uploaded above)
+                    </div>
+                </td>
+                <td><input id="email1subject" name="email1subject" required="" type="text"></td>
+            </tr>
+            <tr>
+                <td>
+                    Push Content 2<br>
+                    <div class="explain">
+                        Must be jpg, png, or jpeg and 350 px wide minimum
+                    </div>
+                </td>
+                <td>
+                    <div align="center" class="preview" id="preview2">
+                        <i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+                        <input class="file-input blue" id="image2Tmp" name="pushcontent2urlTmp" type="file">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Push Content 3<br>
+                    <div class="explain">
+                        Must be jpg, png, or jpeg and 350 px wide minimum
+                    </div>
+                </td>
+                <td>
+                    <div align="center" class="preview" id="preview3">
+                        <i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+                        <input class="file-input blue" id="image3Tmp" name="pushcontent3urlTmp" type="file">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Push Content 4<br>
+                    <div class="explain">
+                        Must be jpg, png, or jpeg and 350 px wide minimum
+                    </div>
+                </td>
+                <td>
+                    <div align="center" class="preview" id="preview4">
+                        <i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+                        <input class="file-input blue" id="image4Tmp" name="pushcontent4urlTmp" type="file">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Push Content 5<br>
+                    <div class="explain">
+                        Must be jpg, png, or jpeg and 350 px wide minimum
+                    </div>
+                </td>
+                <td>
+                    <div align="center" class="preview" id="preview5">
+                        <i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
+                        <input class="file-input blue" id="image5Tmp" name="pushcontent5urlTmp" type="file">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Survey URL<br>
+                    <div class="explain">
+                        If provided, survey link will display on end page
+                    </div>
+                </td>
+                <td><input id="surveylink" name="surveylink" type="text"></td>
+            </tr>
+            <tr>
+                <td style="border:none"><input id="userid" name="userid" type="hidden"><input id="presentationid" name="presentationid" type="hidden"></td>
+                <td style="border:none"><br>
+                    <input class="green" id="editPresentation" style="float:left;width:200px;height:50px;cursor:pointer;border:2px solid #000;margin-left:40px;font-size:16px" type="submit" value="Edit"><div class="loading-wrapper">
+                      <h2>saving..</h2>
+                      <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                      </ul>
+                  </td>
+            </tr>
+        </table>
+    </form>
+</body>
+
+</html>
