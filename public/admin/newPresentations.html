@@ -162,7 +162,8 @@
                     const myNewFile = new File([file], newFileName, {
                         type: file.type
                     });
-                    console.log(myNewFile);
+
+                    //console.log(myNewFile);
                     xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
                     xhr.onreadystatechange = () => {
                         if (xhr.readyState === 4) {
@@ -182,7 +183,7 @@
 
                 function uploadFile(file, signedRequest, fileName) {
                     //handles and generates url name for database
-                    console.log(file);
+                    //console.log(file);
                     var dfd = $.Deferred();
                     const xhr = new XMLHttpRequest();
                     xhr.open('PUT', signedRequest);
@@ -297,7 +298,7 @@
                         getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function() {
                         alert('Your presentation has been added');
-                        //indow.location="/admin/presentations.html";
+                        window.location="/admin/presentations.html";
 
                     });
                 })
