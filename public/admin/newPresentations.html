@@ -266,33 +266,21 @@
                         });
                       }
                     }
-                    $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl')).then(function(){
+                      getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl');
                       getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url');
-                    }).then(function(){
-                        if($("#image2Tmp").prop('files')[0]){
-                          getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
-                        }
-                    }).then(function(){
-                        if($("#image3Tmp").prop('files')[0]){
-                          getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
-                        }
-                    }).then(function(){
-                        if($("#image4Tmp").prop('files')[0]){
-                          getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
-                        }
+                      getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url');
+                      getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url');
+                      getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url');
+                      getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
 
-                    }).then(function(){
-                      if($("#image5Tmp").prop('files')[0]){
-                        getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url');
-                      }
-                    }).then(function(){
+                  /*  }).then(function(){
                         var dfd = $.Deferred();
                         alert('Your presentation was added.');
                         dfd.resolve();
 
                         window.location="/admin/presentations.html";
                         return dfd.promise();
-                    });
+                    });*/
 
 
 
