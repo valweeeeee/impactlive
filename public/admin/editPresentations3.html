@@ -125,12 +125,12 @@
                 /* Delete Images*/
                 $("body").on("click", ".deleteImage", function(e) {
                     e.preventDefault();
-                    deleteImage(this);
+
+                    deleteImage($(this));
                 });
 
                 function deleteImage(that) {
-                    alert(that);
-                    alert($(that).data('orig'));
+
                     if($(that).data('orig')=='no'){
                       $(that).siblings('.previewimg').show('fast');
                     }
