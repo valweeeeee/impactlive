@@ -131,6 +131,7 @@
                 });
 
                 function deleteImage(that){
+        
                   var data='{"filename":"' + $(that).data('filename')+ '"}';
                   $.ajax({
                      url: '/delete-s3',
