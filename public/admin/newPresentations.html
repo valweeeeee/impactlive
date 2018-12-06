@@ -188,6 +188,8 @@
 
                     function getPresID(form, file, inputName) {
                         var dfd=$.Deferred();
+                        if(file.length==0)
+                          dfd.reject();
                         var form = form;
                         var inputName = inputName;
                         if(!pidSet || pidSet==''){
