@@ -185,7 +185,8 @@
                 $('form').submit(function(e) {
                     e.preventDefault();
                     var form = this;
-
+                    $("#editPresentation").fadeOut('fast');
+                    $("#userid").append('<img src="/images/ajaxLoading.gif">');
                     function getPresID(form, file, inputName) {
                         var dfd=$.Deferred();
                         if(typeof file[0]==="undefined"){
