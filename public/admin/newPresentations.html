@@ -187,13 +187,10 @@
                     var form = this;
 
                     function getPresID(form, file, inputName) {
-
                         var dfd=$.Deferred();
                         if(typeof file[0]==="undefined"){
                             dfd.resolve();
-                            return dfd.promise();
                         }
-
                         var form = form;
                         var inputName = inputName;
                         if(!pidSet || pidSet==''){
@@ -224,11 +221,9 @@
                                           dataType: "json",
                                           success: function(data) {
                                               dfd.resolve(uploadedURL);
-                                              return dfd.promise();
                                           },
                                           error: function(error) {
                                               dfd.reject(0);
-                                              return dfd.promise();
                                           }
                                       })
 
@@ -254,11 +249,11 @@
                                     dataType: "json",
                                     success: function(data) {
                                         dfd.resolve(uploadedURL);
-                                        return dfd.promise();
+
                                     },
                                     error: function(error) {
                                         dfd.reject(0);
-                                        return dfd.promise();
+
                                     }
                                 })
 
@@ -267,6 +262,7 @@
                             }
                         });
                       }
+                      return dfd.promise();
                     }
                       $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl'),
                       getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url'),
