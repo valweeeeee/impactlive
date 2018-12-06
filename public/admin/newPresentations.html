@@ -190,6 +190,8 @@
                         var dfd=$.Deferred();
                         if(typeof file[0]==="undefined"){
                             dfd.resolve();
+                            return dfd.promise();
+
                         }
                         var form = form;
                         var inputName = inputName;
