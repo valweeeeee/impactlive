@@ -52,246 +52,257 @@
             var files;
             var file;
             var pidSet;
-
-            $("body").on("click", ".deleteImage", function(e) {
-                e.preventDefault();
-                deleteImage(this);
-            });
-            function deleteImage(that) {
-                var data = '{"filename":"' + $(that).data('filename') + '"}';
-                $.ajax({
-                    url: '/delete-s3',
-                    contentType: 'application/json',
-                    data: data,
-                    type: 'POST',
-                    dataType: "json",
-                    success: function(data) {
-                        if (data.data == "ok") {
-                            $(that).siblings('.uploaded').hide('fast');
-                            $(that).siblings('.previewimg').show('fast');
-                            $(that).remove();
-                        } else {
-                            console.log(data.data);
-                        }
-                    },
-                    failure: function(errMsg) {
-                        console.log('error');
-                    }
-
-                });
-            }
-            $('.previewimg').on('click', function(){
-                $(this).siblings('.file-input').trigger('click');
-            });
-            $('.file-input').change(function() {
-                thisid = $(this).parent();
-                if (this.files && this.files[0]) {
-                    files = this.files;
-                    file = files[0];
-                    if (file == null) {
-                        return alert('No file selected.');
-                    }
-                    var fileExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-                    fileType = file.type.toLowerCase();
-                    if (fileExtension.indexOf(fileType) == -1) {
-                        alert("Only files of type jpg, png, gif, jpeg are allowed");
-                        return false;
-                    } else {
-                        /* image dimensions*/
-                        img = new Image();
-                        var _URL = window.URL || window.webkitURL;
-                        img.src = _URL.createObjectURL(file);
-                        img.onload = function() {
-                            fileSize = (file.size / 1024 / 1024).toFixed(2);
-                            if (this.width < 350 || this.height < 200) {
-                                alert('The minimum width for an image is 350 px. The minimum height is 200 px');
-                                return false;
-                            } else if (fileSize > 4) {
-                                alert('Max file size is 4MB');
-                                return false;
-                            } else {
-                                /* this is going to load up the thumbnails in a temporary browser spot*/
-                                var reader = new FileReader();
-                                reader.onload = function(e) {
-                                    $(thisid).find('.previewimg').hide('fast');
-                                    $(thisid).find(".uploaded").remove();
-                                    $(thisid).find(".deleteImage").remove();
-                                    $(thisid).find(".deleteThumb").remove();
-                                    $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='" + e.target.result + "' class='thumb' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
-                                }
-                                reader.readAsDataURL(file);
-                            }
-
-                        }
-                    }
-                }
-
-            });
+            var pid;
             var userID = getCookie('impactLive');
-
-            function getFileExtension(filename) {
-                return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
-            }
-
-            function getSignedRequest(fileSent, pid) {
-                var dfd = $.Deferred();
-                const xhr = new XMLHttpRequest();
-                var fileNameOnly = fileSent.name;
-                fileNameOnly = fileNameOnly.replace(/\.[^/.]+$/, "");
-                fileExt = getFileExtension(fileSent.name);
-                newFileName = fileNameOnly + '_' + userID + '_' + pid + '.' + fileExt;
-                const myNewFile = new File([file], newFileName, {
-                    type: fileSent.type
-                });
-                xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
-                xhr.onreadystatechange = () => {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            const response = JSON.parse(xhr.responseText);
-                            dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
-                        } else {
-                            dfd.reject('error');
-                        }
-                    }
-
-                };
-                xhr.send();
-                return dfd.promise();
-            }
-
-            function uploadFile(file, signedRequest, fileName) {
-                var dfd = $.Deferred();
-                const xhr = new XMLHttpRequest();
-                xhr.open('PUT', signedRequest);
-                xhr.onreadystatechange = () => {
-                    if (xhr.readyState === 4) {
-                        if (xhr.status === 200) {
-                            urlFull = "https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
-                            dfd.resolve(urlFull);
-
-                        } else {
-                            dfd.reject(0);
-                        }
-                    }
-                };
-                xhr.send(file);
-                return dfd.promise();
-            }
             if (!userID) {
                 window.location="/admin/index.html";
             } else {
-                $("#userid").val(userID);
-                var pid;
-                $('form').submit(function(e) {
-                    e.preventDefault();
-                    var form = this;
-                    $("#editPresentation").fadeOut('fast');
-                    $("#userid").append('<img src="/images/ajaxLoader.gif">');
-                    function getPresID(form, file, inputName) {
-                        var dfd=$.Deferred();
-                        if(typeof file[0]==="undefined"){
-                            dfd.resolve();
-                            return dfd.promise();
+              /* Delete Images*/
+              $("body").on("click", ".deleteImage", function(e) {
+                  e.preventDefault();
+                  deleteImage(this);
+              });
+              function deleteImage(that) {
+                  var data = '{"filename":"' + $(that).data('filename') + '"}';
+                  $.ajax({
+                      url: '/delete-s3',
+                      contentType: 'application/json',
+                      data: data,
+                      type: 'POST',
+                      dataType: "json",
+                      success: function(data) {
+                          if (data.data == "ok") {
+                              $(that).siblings('.uploaded').hide('fast');
+                              $(that).siblings('.previewimg').show('fast');
+                              $(that).remove();
+                          } else {
+                              console.log(data.data);
+                          }
+                      },
+                      failure: function(errMsg) {
+                          console.log('error');
+                      }
 
-                        }
-                        var form = form;
-                        var inputName = inputName;
-                        if(!pidSet || pidSet==''){
-                          $.ajax({
-                              url: '/newrecord/',
-                              contentType: 'application/json',
-                              data: toJSONString(form),
-                              type: 'POST',
-                              async: false,
-                              dataType: "json",
-                              success:function(data){
-                                  $("#presentationid").val(data.data);
-                                  pidSet=$("#presentationid").val();
-                              }
-                          }).done(function(data){
-                          file = file[0];
-                          pid=data;
-                              getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
-                                  var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
-                                  $('#editPresentation').after(newInput);
+                  });
+              }
+              /* <!--Delete Images -- DONE*/
 
-                                  if (uploadedURL != 0 && uploadedURL != '') {
-                                      $.ajax({
-                                          url: '/makeedits/',
-                                          contentType: 'application/json',
-                                          data: toJSONString(form),
-                                          type: 'POST',
-                                          dataType: "json",
-                                          success: function(data) {
-                                              dfd.resolve(uploadedURL);
-                                          },
-                                          error: function(error) {
-                                              dfd.reject(0);
-                                          }
-                                      })
-
-                                  } else {
-                                      return 0;
+              /* Change New image*/
+              $('.previewimg').on('click', function(){
+                  $(this).siblings('.file-input').trigger('click');
+              });
+              $('.file-input').change(function() {
+                  thisid = $(this).parent();
+                  if (this.files && this.files[0]) {
+                      files = this.files;
+                      file = files[0];
+                      if (file == null) {
+                          return alert('No file selected.');
+                      }
+                      var fileExtension = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+                      fileType = file.type.toLowerCase();
+                      if (fileExtension.indexOf(fileType) == -1) {
+                          alert("Only files of type jpg, png, gif, jpeg are allowed");
+                          return false;
+                      } else {
+                          /* image dimensions*/
+                          img = new Image();
+                          var _URL = window.URL || window.webkitURL;
+                          img.src = _URL.createObjectURL(file);
+                          img.onload = function() {
+                              fileSize = (file.size / 1024 / 1024).toFixed(2);
+                              if (this.width < 350 || this.height < 200) {
+                                  alert('The minimum width for an image is 350 px. The minimum height is 200 px');
+                                  return false;
+                              } else if (fileSize > 4) {
+                                  alert('Max file size is 4MB');
+                                  return false;
+                              } else {
+                                  /* this is going to load up the thumbnails in a temporary browser spot*/
+                                  var reader = new FileReader();
+                                  reader.onload = function(e) {
+                                      //just hiding elements
+                                      $(thisid).find('.previewimg').hide('fast');
+                                      $(thisid).find(".uploaded").remove();
+                                      $(thisid).find(".deleteImage").remove();
+                                      $(thisid).find(".deleteThumb").remove();
+                                      $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='" + e.target.result + "' class='thumb' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
                                   }
-                              });
-                        });
+                                  reader.readAsDataURL(file);
+                              }
+
+                          }
                       }
-                      else{
-                        file = file[0];
-                        getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
-                            $("#presentationid").val(pidSet);
-                            var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
-                            $('#editPresentation').after(newInput);
+                  }
 
-                            if (uploadedURL != 0 && uploadedURL != '') {
-                                $.ajax({
-                                    url: '/makeedits/',
-                                    contentType: 'application/json',
-                                    data: toJSONString(form),
-                                    type: 'POST',
-                                    dataType: "json",
-                                    success: function(data) {
-                                        dfd.resolve(uploadedURL);
+              });
+              /* <!--Change New Image -- DONE*/
 
-                                    },
-                                    error: function(error) {
-                                        dfd.reject(0);
+              /* File Manipulate Functions*/
+              function getFileExtension(filename) {
+                  //gets extension to find right type
+                  return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+              }
+              function getSignedRequest(fileSent, pid) {
+                  //gets the S3 authorization and signed request
+                  var dfd = $.Deferred();
+                  const xhr = new XMLHttpRequest();
+                  var fileNameOnly = fileSent.name;
+                  fileNameOnly = fileNameOnly.replace(/\.[^/.]+$/, "");
+                  fileExt = getFileExtension(fileSent.name);
+                  //file manipulation to append user and presentaiton id
+                  newFileName = fileNameOnly + '_' + userID + '_' + pid + '.' + fileExt;
+                  const myNewFile = new File([file], newFileName, {
+                      type: fileSent.type
+                  });
+                  xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
+                  xhr.onreadystatechange = () => {
+                      if (xhr.readyState === 4) {
+                          if (xhr.status === 200) {
+                              const response = JSON.parse(xhr.responseText);
+                              //resolve promise and on to the next
+                              dfd.resolve(myNewFile, response.signedRequest, myNewFile.name);
+                          } else {
+                              dfd.reject('error');
+                          }
+                      }
 
+                  };
+                  xhr.send();
+                  return dfd.promise();
+              }
+              function uploadFile(file, signedRequest, fileName) {
+                  //handles and generates url name for database
+                  var dfd = $.Deferred();
+                  const xhr = new XMLHttpRequest();
+                  xhr.open('PUT', signedRequest);
+                  xhr.onreadystatechange = () => {
+                      if (xhr.readyState === 4) {
+                          if (xhr.status === 200) {
+                              urlFull = "https://d325v2sfwqo3gd.cloudfront.net/fit-in/350x350/images/" + fileName;
+                              dfd.resolve(urlFull);
+
+                          } else {
+                              dfd.reject(0);
+                          }
+                      }
+                  };
+                  xhr.send(file);
+                  return dfd.promise();
+              }
+                  $("#userid").val(userID);
+
+                  $('form').submit(function(e) {
+                      //form is submitted
+                      e.preventDefault();
+                      var form = this;
+                      $("#editPresentation").fadeOut('fast');
+                      $("#userid").append('<img src="/images/ajaxLoader.gif">');
+                      function getPresID(form, file, inputName) {
+                          var dfd=$.Deferred();
+                          if(typeof file[0]==="undefined"){
+                              dfd.resolve();
+                              return dfd.promise();
+
+                          }
+                          var form = form;
+                          var inputName = inputName;
+                          if(!pidSet || pidSet==''){
+                            $.ajax({
+                                url: '/newrecord/',
+                                contentType: 'application/json',
+                                data: toJSONString(form),
+                                type: 'POST',
+                                async: false,
+                                dataType: "json",
+                                success:function(data){
+                                    $("#presentationid").val(data.data);
+                                    pidSet=$("#presentationid").val();
+                                }
+                            }).done(function(data){
+                            file = file[0];
+                            pid=data;
+                                getSignedRequest(file, pid.data).then(uploadFile).done(function(uploadedURL) {
+                                    var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
+                                    $('#editPresentation').after(newInput);
+
+                                    if (uploadedURL != 0 && uploadedURL != '') {
+                                        $.ajax({
+                                            url: '/makeedits/',
+                                            contentType: 'application/json',
+                                            data: toJSONString(form),
+                                            type: 'POST',
+                                            dataType: "json",
+                                            success: function(data) {
+                                                dfd.resolve(uploadedURL);
+                                            },
+                                            error: function(error) {
+                                                dfd.reject(0);
+                                            }
+                                        })
+
+                                    } else {
+                                        return 0;
                                     }
-                                })
+                                });
+                          });
+                        }
+                        else{
+                          file = file[0];
+                          getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
+                              $("#presentationid").val(pidSet);
+                              var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
+                              $('#editPresentation').after(newInput);
 
-                            } else {
-                                return 0;
-                            }
-                        });
-                      }
-                      return dfd.promise();
-                    }
-                      $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl'),
-                      getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url'),
-                      getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url'),
-                      getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'),
-                      getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
-                      getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function(){
-                        alert('Your presentation has been added');
-                        //window.location="/admin/presentations.html";
+                              if (uploadedURL != 0 && uploadedURL != '') {
+                                  $.ajax({
+                                      url: '/makeedits/',
+                                      contentType: 'application/json',
+                                      data: toJSONString(form),
+                                      type: 'POST',
+                                      dataType: "json",
+                                      success: function(data) {
+                                          dfd.resolve(uploadedURL);
 
-                      });
+                                      },
+                                      error: function(error) {
+                                          dfd.reject(0);
 
-                  /*  }).then(function(){
-                        var dfd = $.Deferred();
-                        alert('Your presentation was added.');
-                        dfd.resolve();
+                                      }
+                                  })
 
-                        window.location="/admin/presentations.html";
+                              } else {
+                                  return 0;
+                              }
+                          });
+                        }
                         return dfd.promise();
-                    });*/
+                      }
+                        $.when(getPresID(form, $("#companylogourlTmp").prop('files'), 'companylogourl'),
+                        getPresID(form, $("#image1Tmp").prop('files'), 'pushcontent1url'),
+                        getPresID(form, $("#image2Tmp").prop('files'), 'pushcontent2url'),
+                        getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'),
+                        getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
+                        getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function(){
+                          alert('Your presentation has been added');
+                          //window.location="/admin/presentations.html";
+
+                        });
+
+                    /*  }).then(function(){
+                          var dfd = $.Deferred();
+                          alert('Your presentation was added.');
+                          dfd.resolve();
+
+                          window.location="/admin/presentations.html";
+                          return dfd.promise();
+                      });*/
 
 
 
-                })
+                  })
 
-            }
+              }
           });
     </script>
 
