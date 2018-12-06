@@ -207,7 +207,7 @@
                     e.preventDefault();
                     $("#userid").val(userID);
                     $("#editPresentation").fadeOut('fast');
-                    $("#userid").append('<img src="/images/ajaxLoader.gif">');
+                    $("#loader").fadeIn('fast');
 
                     function getPresID(form, file, inputName) {
                         var dfd = $.Deferred();
