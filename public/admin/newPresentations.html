@@ -187,9 +187,10 @@
                     var form = this;
 
                     function getPresID(form, file, inputName) {
-                        if(typeof file[0]==="undefined");
-                          return false;
+
                         var dfd=$.Deferred();
+                        if(typeof file[0]==="undefined");
+                          dfd.resolve();
                         var form = form;
                         var inputName = inputName;
                         if(!pidSet || pidSet==''){
