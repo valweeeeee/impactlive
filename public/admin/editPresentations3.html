@@ -80,7 +80,7 @@
                           if(b.companylogourl!='' && b.companylogourl!="undefined"){
                             fileName=getFileName(b.companylogourl);
                             $("#companyLogoNone").hide('fast');
-                            $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='"+b.companylogourl+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
+                            $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded original'><img src='"+b.companylogourl+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
                             $("input[name=companylogourl]").val(b.companylogourl);
                           }
                           if(b.pushcontent1url!='' && b.pushcontent1url!="undefined"){
