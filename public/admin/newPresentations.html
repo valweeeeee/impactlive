@@ -185,8 +185,9 @@
                 $('form').submit(function(e) {
                     e.preventDefault();
                     var form = this;
-                    var dfd=$.Deferred();
+
                     function getPresID(form, file, inputName) {
+                        var dfd=$.Deferred();
                         var form = form;
                         var inputName = inputName;
                         if(!pidSet || pidSet==''){
