@@ -200,7 +200,7 @@
                                     reader.onload = function(e) {
                                         //just hiding elements
                                         $(thisid).find('.previewimg').hide('fast');
-                                        $(thisid).find(".uploaded").remove();
+                                        $(thisid).find(".uploaded").hide();
                                         $(thisid).find(".deleteImage").remove();
                                         $(thisid).find(".deleteThumb").remove();
                                         $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-orig='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
