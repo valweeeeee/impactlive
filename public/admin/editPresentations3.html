@@ -203,7 +203,7 @@
                                         $(thisid).find(".uploaded").remove();
                                         $(thisid).find(".deleteImage").remove();
                                         $(thisid).find(".deleteThumb").remove();
-                                        $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-original='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
+                                        $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-orig='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
                                     }
                                     reader.readAsDataURL(file);
                                 }
