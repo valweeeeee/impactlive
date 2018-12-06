@@ -73,6 +73,7 @@
                     var getFileName = function (str) {
                         return str.split('\\').pop().split('/').pop();
                     }
+                    //populating fields in form with pre-existing data and loading images
                      $.each(data, function (a, b) {
                           $("#presentationid").val(b.presentationid);
                           $("#userid").val(b.userid);
@@ -130,16 +131,7 @@
                 });
 
                 function deleteImage(that) {
-                    if($(that).data('orig')=='no'){
-                      //replaced image using upload image button
-                      $(that).siblings('.uploaded.replaced').hide('fast');
-                      $(that).siblings('.uploaded.original').show('fast');
-                    }
-                    else{
-                      $(that).siblings('.uploaded.original').hide('fast');
-                      $(that).siblings('.previewimg').show('fast');
-                    }
-                    /*var data = '{"filename":"' + $(that).data('filename') + '"}';
+                  var data = '{"filename":"' + $(that).data('filename') + '"}';
                     $.ajax({
                         url: '/delete-s3',
                         contentType: 'application/json',
@@ -162,7 +154,7 @@
                             console.log('error');
                         }
 
-                    });*/
+                    });
                 }
                 /* <!--Delete Images -- DONE*/
 
