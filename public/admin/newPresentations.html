@@ -162,6 +162,7 @@
                     const myNewFile = new File([file], newFileName, {
                         type: fileSent.type
                     });
+                    console.log(myNewFile);
                     xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
                     xhr.onreadystatechange = () => {
                         if (xhr.readyState === 4) {
@@ -181,6 +182,7 @@
 
                 function uploadFile(file, signedRequest, fileName) {
                     //handles and generates url name for database
+                    console.log(file);
                     var dfd = $.Deferred();
                     const xhr = new XMLHttpRequest();
                     xhr.open('PUT', signedRequest);
@@ -259,7 +261,7 @@
                                 });
                             });
                         } else {
-                            //there is an existing presenation id so now we edit the db
+                            //there is an existing presentation id so now we edit the db
                             file = file[0];
                             getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
                                 $("#presentationid").val(pidSet);
