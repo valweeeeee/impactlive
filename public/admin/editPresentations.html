@@ -219,7 +219,7 @@
                                         $(thisid).find(".deleteImage").remove();
                                         $(thisid).find(".deleteThumb").remove();
                                         $(that).siblings('.hiddenInput').val(file);
-                                      
+
                                         $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-orig='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded replaced'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
                                     }
                                     reader.readAsDataURL(file);
@@ -294,6 +294,7 @@
                 $('form').submit(function(e) {
                     //form is submitted
                     var form = this;
+                    console.log(form);
                     e.preventDefault();
                     $("#userid").val(userID);
                     $("#editPresentation").hide('fast');
@@ -303,6 +304,7 @@
                         var dfd = $.Deferred();
                         //if the file is undefined when brought in we leave immediately
                         if (typeof file[0] === "undefined") {
+                            alert('hey');
                             dfd.resolve();
                             return dfd.promise();
 
@@ -327,7 +329,7 @@
                         getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'),
                         getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function() {
-                          console.log(form);
+
                           $.ajax({
                               url: '/makeedits/',
                               contentType: 'application/json',
