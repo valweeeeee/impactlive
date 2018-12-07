@@ -61,13 +61,26 @@ app.post('/delete-s3', (req, res) => {
       res.json({"data":'no'},200);
     }
     else{
-      console.log(data);
+      sess=req.session;
+      let query = "Update presentations SET companyname='"+req.body.companyname+"',companylogourl='"+req.body.companylogourl+"'  where userid='"+req.body.userid+ "' AND presentationid='"+req.body.presentationid+"'";
+      console.log(query);
+      DB.query(query, (err, results) => {
+        if(err){
+          res.json({ "ok": "false" });
+        }
+        else{
+          res.header("Access-Control-Allow-Origin", "*");
+          res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,    Accept");
+          res.json({"data":'ok'},200);
+        }
+      });
       res.json({"data":'ok'},200);
     }
     res.end();
   });
 
 });
+
 app.get('/sign-s3', (req, res) => {
   const s3 = new aws.S3();
   var currentDate = new Date();
