@@ -229,6 +229,7 @@
                                         $(thisid).find(".deleteImage").remove();
                                         $(thisid).find(".deleteThumb").remove();
                                         $(that).siblings('.hiddenInput').val(file);
+                                        alert($(that).siblings('.hiddenInput').val());
                                         $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-orig='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded replaced'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
                                     }
                                     reader.readAsDataURL(file);
