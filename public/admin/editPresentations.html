@@ -294,7 +294,7 @@
                 $('form').submit(function(e) {
                     //form is submitted
                     var form = this;
-                    console.log(form);
+
                     e.preventDefault();
                     $("#userid").val(userID);
                     $("#editPresentation").hide('fast');
@@ -304,7 +304,7 @@
                         var dfd = $.Deferred();
                         //if the file is undefined when brought in we leave immediately
                         if (typeof file[0] === "undefined") {
-                            alert('hey');
+
                             dfd.resolve();
                             return dfd.promise();
 
@@ -329,7 +329,7 @@
                         getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'),
                         getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function() {
-
+                          console.log(toJSONString(form));
                           $.ajax({
                               url: '/makeedits/',
                               contentType: 'application/json',
