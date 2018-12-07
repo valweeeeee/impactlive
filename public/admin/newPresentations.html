@@ -95,8 +95,8 @@
                             img.src = _URL.createObjectURL(file);
                             img.onload = function() {
                                 fileSize = (file.size / 1024 / 1024).toFixed(2);
-                                if (this.width < 350 || this.height < 200) {
-                                    alert('The minimum width for an image is 350 px. The minimum height is 200 px');
+                                if (this.width < 270 || this.height < 125) {
+                                    alert('The minimum width for an image is 270 px. The minimum height is 125 px');
                                     return false;
                                 } else if (fileSize > 4) {
                                     alert('Max file size is 4MB');
@@ -313,7 +313,10 @@
             </tr>
             <tr>
                 <td>Company Logo *<br>
-                    <span style="font-size:smaller"></span></td>
+                  <div class="explain">
+                      Must be jpg, png, or jpeg, 270px wide minimum, and be the logo of the company. It will resize to 270 on display.
+                  </div>
+                </td>
                 <td>
                     <div align="center" class="preview" id="previewlogo">
                         <i class="material-icons md-184 md-inactive md-dark previewimg">photo_size_select_actual</i><br>
@@ -325,7 +328,7 @@
                 <td>
                     Push Content 1 *<br>
                     <div class="explain">
-                        Must be jpg, png, or jpeg, 350 px wide minimum, and be a picture of an email
+                        Must be jpg, png, or jpeg, 270 px wide minimum, and be a picture of an email. Recommended width: 350 px
                     </div>
                 </td>
                 <td>
@@ -348,7 +351,7 @@
                 <td>
                     Push Content 2<br>
                     <div class="explain">
-                        Must be jpg, png, or jpeg and 350 px wide minimum
+                        Must be jpg, png, or jpeg and 270 px wide minimum. Recommended width: 350 px
                     </div>
                 </td>
                 <td>
@@ -362,7 +365,7 @@
                 <td>
                     Push Content 3<br>
                     <div class="explain">
-                        Must be jpg, png, or jpeg and 350 px wide minimum
+                        Must be jpg, png, or jpeg and 270 px wide minimum. Recommended width: 350 px
                     </div>
                 </td>
                 <td>
@@ -376,7 +379,7 @@
                 <td>
                     Push Content 4<br>
                     <div class="explain">
-                        Must be jpg, png, or jpeg and 350 px wide minimum
+                        Must be jpg, png, or jpeg and 270 px wide minimum. Recommended width: 350 px
                     </div>
                 </td>
                 <td>
