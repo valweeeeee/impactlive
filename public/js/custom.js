@@ -173,7 +173,7 @@ $('document').ready(function() {
 			$("h4.fadeInIntro").hide('fast');
 			tPosition = $("#ticket").position();
 			tWidth = $("#ticket").width() - 150;
-			resizedCompanyLogo=companyLogoUrl.replace('270x270','125x100');
+			resizedCompanyLogo=companyLogoUrl.replace('270x270','100x100');
 
 			$("#acsLogo").attr('src',resizedCompanyLogo);
 			$("#acsLogo").animate({
