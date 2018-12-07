@@ -244,7 +244,7 @@
                     const xhr = new XMLHttpRequest();
                     var fileNameOnly = file.name;
                     fileNameOnly = fileNameOnly.replace(/\.[^/.]+$/, "");
-                    fileExt = getFileExtension(fileSent.name);
+                    fileExt = getFileExtension(file.name);
 
                     //file manipulation to append user and presentaiton id
                     newFileName = fileNameOnly + '_' + userID + '_' + pid + '.' + fileExt;
