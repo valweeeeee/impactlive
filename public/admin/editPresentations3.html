@@ -142,6 +142,9 @@
                       }
                     }
                   }
+                  else{
+                    continueDelete=1;
+                  }
                   if(continueDelete==1){
                     var data='{"filename":"' + $(that).data('filename')+ '","presentationid":"'+pid+'","userid":"'+userID+'","columnname":"'+$(that).siblings('.uploaded').data('section')+'"}';
                     $.ajax({
