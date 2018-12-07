@@ -316,7 +316,7 @@
                                 $("#presentationid").val(pidSet);
                                 var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                 $('#editPresentation').after(newInput);
-
+                                dfd.resolve();
                             });
                             return dfd.promise();
                         }
