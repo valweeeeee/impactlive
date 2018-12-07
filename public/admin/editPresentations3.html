@@ -90,6 +90,7 @@
                             $("#companyLogoNone").hide('fast');
                             $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='companylogourl'><img src='"+b.companylogourl+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
                             $("input[name=companylogourl]").val(b.companylogourl);
+                            alert($("input[name=companylogourl]").val());
 
 
                           }
