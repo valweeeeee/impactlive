@@ -174,8 +174,9 @@ $('document').ready(function() {
 			tPosition = $("#ticket").position();
 			tWidth = $("#ticket").width() - 100;
 			resizedCompanyLogo=companyLogoUrl.replace('270x270','100x100');
-
+			$("acsLogo").hide('fast');
 			$("#acsLogo").attr('src',resizedCompanyLogo);
+			$("acsLogo").show('fast');
 			$("#acsLogo").animate({
 				'margin-left': (tWidth) + 'px',
 				'top': tPosition.top,
