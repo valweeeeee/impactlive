@@ -237,12 +237,12 @@
                     return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
                 }
 
-                function getSignedRequest(fileSent, pid) {
+                function getSignedRequest(file, pid) {
                     //gets the S3 authorization and signed request
                     //lots of deferred because we need to wait for functions to finish
                     var dfd = $.Deferred();
                     const xhr = new XMLHttpRequest();
-                    var fileNameOnly = fileSent.name;
+                    var fileNameOnly = file.name;
                     fileNameOnly = fileNameOnly.replace(/\.[^/.]+$/, "");
                     fileExt = getFileExtension(fileSent.name);
 
