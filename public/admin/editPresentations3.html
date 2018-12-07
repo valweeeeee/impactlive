@@ -81,39 +81,40 @@
                           if(b.companylogourl!='' && b.companylogourl!="undefined"){
                             fileName=getFileName(b.companylogourl);
                             $("#companyLogoNone").hide('fast');
-                            $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='companylogourl'><img src='"+b.companylogourl+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
-                            $("input[name=companylogourl]").val(b.companylogourl);
+                            $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='companylogourl'><img src='"+b.companylogourl+"' class='thumb' style='max-width:180px'></a><input type='hidden' name='companylogourl' value='"+b.companylogourl+"' required></div>").fadeIn('slow').css("display","block");
+
+
                           }
                           if(b.pushcontent1url!='' && b.pushcontent1url!="undefined"){
                             fileName=getFileName(b.pushcontent1url);
                             $("#image1None").hide('fast');
-                            $("#preview1").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent1url'><img src='"+b.pushcontent1url+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
-                            $("input[name=pushcontent1url]").val(b.pushcontent1url);
+                            $("#preview1").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent1url'><img src='"+b.pushcontent1url+"' class='thumb' style='max-width:180px'></a><input type='hidden' name='pushcontent1url' value='"+b.pushcontent1url+"' required></div>").fadeIn('slow').css("display","block");
+
                           }
                           if(b.pushcontent2url!='' && b.pushcontent2url!="undefined"){
                             fileName=getFileName(b.pushcontent2url);
                             $("#image2None").hide('fast');
-                            $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent2url'><img src='"+b.pushcontent2url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-                            $("input[name=pushcontent2url]").val(b.pushcontent2url);
+                            $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent2url'><img src='"+b.pushcontent2url+"' class='thumb'></a><input type='hidden' name='pushcontent2url' value='"+b.pushcontent2url+"'></div>").fadeIn('slow').css("display","block");
+
                           }
                           if(b.pushcontent3url!='' && b.pushcontent3url!="undefined"){
                             fileName=getFileName(b.pushcontent3url);
                             $("#image3None").hide('fast');
-                            $("#preview3").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent3url'><img src='"+b.pushcontent3url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-                            $("input[name=pushcontent3url]").val(b.pushcontent3url);
+                            $("#preview3").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent3url'><img src='"+b.pushcontent3url+"' class='thumb'></a><input type='hidden' name='pushcontent3url' value='"+b.pushcontent3url+"'></div>").fadeIn('slow').css("display","block");
+
                           }
                           if(b.pushcontent4url!='' && b.pushcontent4url!="undefined"){
                             fileName=getFileName(b.pushcontent4url);
                             $("#image4None").hide('fast');
-                            $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent4url'><img src='"+b.pushcontent4url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-                            $("input[name=pushcontent4url]").val(b.pushcontent4url);
+                            $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent4url'><img src='"+b.pushcontent4url+"' class='thumb'></a><input type='hidden' name='pushcontent4url' value='"+b.pushcontent4url+"' required></div>").fadeIn('slow').css("display","block");
+
                           }
 
                           if(b.pushcontent5url!='' && b.pushcontent5url!="undefined"){
                             fileName=getFileName(b.pushcontent5url);
                             $("#image5None").hide('fast');
-                            $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent5url'><img src='"+b.pushcontent5url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
-                            $("input[name=pushcontent5url").val(b.pushcontent5url);
+                            $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent5url'><img src='"+b.pushcontent5url+"' class='thumb'></a><input type='hidden' name='pushcontent5url' value='"+b.pushcontent5url+"' required></div>").fadeIn('slow').css("display","block");
+                            
                           }
                           $("#email1subject").val(b.email1subject);
                           $("#surveylink").val(b.surveylink);
@@ -301,9 +302,8 @@
                         }
                         var form = form;
                         var inputName = inputName;
-                        //there is an existing presenation id so now we edit the db
-                            file = file[0];
-                            getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
+                        file = file[0];
+                        getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
                                 $("#presentationid").val(pidSet);
                                 var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                 $('#editPresentation').after(newInput);
@@ -378,7 +378,7 @@
                 <td>
                     <div align="center" class="preview" id="previewlogo">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="companyLogoNone">photo_size_select_actual</i><br>
-                        <input class="file-input blue" id="companylogourlTmp" name="companylogourlTmp" required="" type="file">
+                        <input class="file-input blue" id="companylogourlTmp" name="companylogourlTmp"  type="file">
                     </div>
                 </td>
             </tr>
@@ -392,7 +392,7 @@
                 <td>
                     <div align="center" class="preview" id="preview1">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image1None">photo_size_select_actual</i><br>
-                        <input class="file-input blue" id="image1Tmp" name="pushcontent1urlTmp" required="" type="file">
+                        <input class="file-input blue" id="image1Tmp" name="pushcontent1urlTmp"  type="file">
                     </div>
                 </td>
             </tr>

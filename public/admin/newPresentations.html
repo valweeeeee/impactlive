@@ -65,14 +65,12 @@
                     e.preventDefault();
                     deleteImage(this);
                 });
-
                 function deleteImage(that) {
                     $(that).siblings('.uploaded').hide('fast');
                     $(that).siblings('.previewimg').show('fast');
                     $(that).remove();
                 }
                 /* <!--Delete Images -- DONE*/
-
                 /* Change New image*/
                 $('.previewimg').on('click', function() {
                     $(this).siblings('.file-input').trigger('click');
