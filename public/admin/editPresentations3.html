@@ -194,7 +194,7 @@
                 });
                 $('.file-input').change(function() {
                     thisid = $(this).parent();
-
+                    var that=this;
                     if (this.files && this.files[0]) {
                         files = this.files;
                         file = files[0];
