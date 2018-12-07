@@ -46,6 +46,15 @@
         .loading-wrapper {
             display: none;
         }
+        .hiddenInput{
+          opacity: 0;
+          width:1px;
+          height:1px;
+          margin-bottom:0;
+          float:right;
+          margin-top:-70px !important;
+          position:absolute;
+        }
     </style>
     <script>
         $(document).ready(function() {
@@ -81,40 +90,38 @@
                           if(b.companylogourl!='' && b.companylogourl!="undefined"){
                             fileName=getFileName(b.companylogourl);
                             $("#companyLogoNone").hide('fast');
-                            $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='companylogourl'><img src='"+b.companylogourl+"' class='thumb' style='max-width:180px'></a><input type='hidden' name='companylogourl' value='"+b.companylogourl+"' required></div>").fadeIn('slow').css("display","block");
-
-
+                            $("#previewlogo").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='companylogourl'><img src='"+b.companylogourl+"' class='thumb' style='max-width:180px'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=companylogourl]").val(b.companylogourl);
                           }
                           if(b.pushcontent1url!='' && b.pushcontent1url!="undefined"){
                             fileName=getFileName(b.pushcontent1url);
                             $("#image1None").hide('fast');
                             $("#preview1").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent1url'><img src='"+b.pushcontent1url+"' class='thumb' style='max-width:180px'></a><input type='hidden' name='pushcontent1url' value='"+b.pushcontent1url+"' required></div>").fadeIn('slow').css("display","block");
-
+                            $("input[name=pushcontent1url]").val(b.pushcontent1url);
                           }
                           if(b.pushcontent2url!='' && b.pushcontent2url!="undefined"){
                             fileName=getFileName(b.pushcontent2url);
                             $("#image2None").hide('fast');
-                            $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent2url'><img src='"+b.pushcontent2url+"' class='thumb'></a><input type='hidden' name='pushcontent2url' value='"+b.pushcontent2url+"'></div>").fadeIn('slow').css("display","block");
-
+                            $("#preview2").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent2url'><img src='"+b.pushcontent2url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=pushcontent2url]").val(b.pushcontent2url);
                           }
                           if(b.pushcontent3url!='' && b.pushcontent3url!="undefined"){
                             fileName=getFileName(b.pushcontent3url);
                             $("#image3None").hide('fast');
-                            $("#preview3").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent3url'><img src='"+b.pushcontent3url+"' class='thumb'></a><input type='hidden' name='pushcontent3url' value='"+b.pushcontent3url+"'></div>").fadeIn('slow').css("display","block");
-
+                            $("#preview3").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent3url'><img src='"+b.pushcontent3url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=pushcontent3url]").val(b.pushcontent3url);
                           }
                           if(b.pushcontent4url!='' && b.pushcontent4url!="undefined"){
                             fileName=getFileName(b.pushcontent4url);
                             $("#image4None").hide('fast');
-                            $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent4url'><img src='"+b.pushcontent4url+"' class='thumb'></a><input type='hidden' name='pushcontent4url' value='"+b.pushcontent4url+"' required></div>").fadeIn('slow').css("display","block");
-
+                            $("#preview4").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent4url'><img src='"+b.pushcontent4url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=pushcontent4url]").val(b.pushcontent4url);
                           }
-
                           if(b.pushcontent5url!='' && b.pushcontent5url!="undefined"){
                             fileName=getFileName(b.pushcontent5url);
                             $("#image5None").hide('fast');
-                            $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent5url'><img src='"+b.pushcontent5url+"' class='thumb'></a><input type='hidden' name='pushcontent5url' value='"+b.pushcontent5url+"' required></div>").fadeIn('slow').css("display","block");
-
+                            $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent5url'><img src='"+b.pushcontent5url+"' class='thumb'></a></div>").fadeIn('slow').css("display","block");
+                            $("input[name=pushcontent5url]").val(b.pushcontent5url);
                           }
                           $("#email1subject").val(b.email1subject);
                           $("#surveylink").val(b.surveylink);
@@ -158,7 +165,7 @@
                          if(data.data=="ok"){
                            $(that).siblings('.uploaded').hide('fast');
                            $(that).siblings('.previewimg').show('fast');
-                           $(that).siblings('.hiddenSrc').val('');
+                           $(that).siblings('.hiddenInput').val('');
                            $(that).remove();
                          }
                          else{
@@ -180,6 +187,7 @@
                 });
                 $('.file-input').change(function() {
                     thisid = $(this).parent();
+                    var that=this;
                     if (this.files && this.files[0]) {
                         files = this.files;
                         file = files[0];
@@ -213,6 +221,8 @@
                                         $(thisid).find(".uploaded").hide();
                                         $(thisid).find(".deleteImage").remove();
                                         $(thisid).find(".deleteThumb").remove();
+                                        $(that).siblings('.hiddenInput').val(file);
+                                        alert($(that).siblings('.hiddenInput').val());
                                         $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-orig='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded replaced'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
                                     }
                                     reader.readAsDataURL(file);
@@ -376,6 +386,8 @@
                     <div align="center" class="preview" id="previewlogo">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="companyLogoNone">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="companylogourlTmp" name="companylogourlTmp"  type="file">
+                        <input class="hiddenInput" id="companylogourl" name="companylogourl"  type="text" required>
+
                     </div>
                 </td>
             </tr>
@@ -390,6 +402,7 @@
                     <div align="center" class="preview" id="preview1">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image1None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image1Tmp" name="pushcontent1urlTmp"  type="file">
+                        <input type='text' name='pushcontent1url' class="hiddenInput" style="margin-top:150px important!" required>
                     </div>
                 </td>
             </tr>
@@ -400,7 +413,7 @@
                         Subject line for the first email (uploaded above)
                     </div>
                 </td>
-                <td><input id="email1subject" name="email1subject" required="" type="text"></td>
+                <td><input id="email1subject" name="email1subject" required type="text"></td>
             </tr>
             <tr>
                 <td>
@@ -413,6 +426,7 @@
                     <div align="center" class="preview" id="preview2">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image2None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image2Tmp" name="pushcontent2urlTmp" type="file">
+                        <input type='text' name='pushcontent2url' class="hiddenInput">
                     </div>
                 </td>
             </tr>
@@ -427,6 +441,7 @@
                     <div align="center" class="preview" id="preview3">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image3None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image3Tmp" name="pushcontent3urlTmp" type="file">
+                        <input type='text' name='pushcontent3url' class="hiddenInput">
                     </div>
                 </td>
             </tr>
@@ -441,6 +456,7 @@
                     <div align="center" class="preview" id="preview4">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image4None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image4Tmp" name="pushcontent4urlTmp" type="file">
+                        <input type='text' name='pushcontent4url' class="hiddenInput">
                     </div>
                 </td>
             </tr>
@@ -455,6 +471,7 @@
                     <div align="center" class="preview" id="preview5">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image5None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image5Tmp" name="pushcontent5urlTmp" type="file">
+                        <input type='text' name='pushcontent5url' class="hiddenInput">
                     </div>
                 </td>
             </tr>
