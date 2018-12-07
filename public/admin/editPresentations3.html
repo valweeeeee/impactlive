@@ -228,7 +228,7 @@
                                         $(thisid).find(".uploaded").hide();
                                         $(thisid).find(".deleteImage").remove();
                                         $(thisid).find(".deleteThumb").remove();
-                                        $(that).siblings('.hiddenInput').val(file);
+                                      //  $(that).siblings('.hiddenInput').val(file);
 
                                         $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-orig='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded replaced'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
                                     }
@@ -393,6 +393,7 @@
                     <div align="center" class="preview" id="previewlogo">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="companyLogoNone">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="companylogourlTmp" name="companylogourlTmp"  type="file">
+                        <input class="hiddenInput" id="companylogourl" name="companylogourl"  type="text" required>
 
                     </div>
                 </td>
@@ -408,7 +409,7 @@
                     <div align="center" class="preview" id="preview1">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image1None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image1Tmp" name="pushcontent1urlTmp"  type="file">
-                        
+                        <input type='text' name='pushcontent1url' class="hiddenInput" required>
                     </div>
                 </td>
             </tr>
