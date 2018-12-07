@@ -74,9 +74,7 @@ app.post('/delete-s3', (req, res) => {
           res.json({"data":'ok'},200);
         }
       });
-      res.json({"data":'ok'},200);
     }
-    res.end();
   });
 
 });
