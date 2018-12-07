@@ -61,7 +61,6 @@
             var thisid;
             var files;
             var file;
-            var pidSet;
             var b;
             var pid = $.QueryString["e"];
             var origImage;
@@ -312,8 +311,8 @@
                         var form = form;
                         var inputName = inputName;
                         file = file[0];
-                        getSignedRequest(file, pidSet).then(uploadFile).done(function(uploadedURL) {
-                                $("#presentationid").val(pidSet);
+                        getSignedRequest(file, pid).then(uploadFile).done(function(uploadedURL) {
+                                $("#presentationid").val(pid);
                                 var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                 $('#editPresentation').after(newInput);
                                 dfd.resolve();
