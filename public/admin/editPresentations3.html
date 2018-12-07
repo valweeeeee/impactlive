@@ -131,30 +131,42 @@
                 });
 
                 function deleteImage(that){
+                  var continue;
+                  deleteNagPref=getCookie('impactLiveDeletePref');
+                  if(deleteNagPref!=1){
 
-                  var data='{"filename":"' + $(that).data('filename')+ '","presentationid":"'+pid+'","userid":"'+userID+'","columnname":"'+$(that).siblings('.uploaded').data('section')+'"}';
-                  $.ajax({
-                     url: '/delete-s3',
-                     contentType: 'application/json',
-                     data: data,
-                     type: 'POST',
-                     dataType: "json",
-                     success: function(data){
-                       if(data.data=="ok"){
-                         $(that).siblings('.uploaded').hide('fast');
-                         $(that).siblings('.previewimg').show('fast');
-                         $(that).siblings('.hiddenSrc').val('');
-                         $(that).remove();
+                    if(confirm("Deleting here will permanently delete the file. Click OK to continue")){
+                      continue=1;
+                      if(confirm("Click OK to stop this alert for the rest of your current session")){
+                        setCookie('impactLiveDeletePref',1);
+                      }
+                    }
+                  }
+                  if(continue==1){
+                    var data='{"filename":"' + $(that).data('filename')+ '","presentationid":"'+pid+'","userid":"'+userID+'","columnname":"'+$(that).siblings('.uploaded').data('section')+'"}';
+                    $.ajax({
+                       url: '/delete-s3',
+                       contentType: 'application/json',
+                       data: data,
+                       type: 'POST',
+                       dataType: "json",
+                       success: function(data){
+                         if(data.data=="ok"){
+                           $(that).siblings('.uploaded').hide('fast');
+                           $(that).siblings('.previewimg').show('fast');
+                           $(that).siblings('.hiddenSrc').val('');
+                           $(that).remove();
+                         }
+                         else{
+                           //console.log(data.data);
+                         }
+                       },
+                       failure: function(errMsg) {
+                           //console.log('error');
                        }
-                       else{
-                         //console.log(data.data);
-                       }
-                     },
-                     failure: function(errMsg) {
-                         //console.log('error');
-                     }
 
-                 });
+                   });
+                }
                }
                 /* <!--Delete Images -- DONE*/
 
