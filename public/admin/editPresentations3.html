@@ -114,7 +114,7 @@
                             fileName=getFileName(b.pushcontent5url);
                             $("#image5None").hide('fast');
                             $("#preview5").prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage' data-filename='"+fileName+"' data-orig='yes'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded' data-section='pushcontent5url'><img src='"+b.pushcontent5url+"' class='thumb'></a><input type='hidden' name='pushcontent5url' value='"+b.pushcontent5url+"' required></div>").fadeIn('slow').css("display","block");
-                            
+
                           }
                           $("#email1subject").val(b.email1subject);
                           $("#surveylink").val(b.surveylink);
@@ -307,24 +307,7 @@
                                 $("#presentationid").val(pidSet);
                                 var newInput = $("<input name='" + inputName + "' type='hidden' value='" + uploadedURL + "'>");
                                 $('#editPresentation').after(newInput);
-                                if (uploadedURL != 0 && uploadedURL != '') {
-                                    $.ajax({
-                                        url: '/makeedits/',
-                                        contentType: 'application/json',
-                                        data: toJSONString(form),
-                                        type: 'POST',
-                                        dataType: "json",
-                                        success: function(data) {
-                                            dfd.resolve(uploadedURL);
-                                        },
-                                        error: function(error) {
-                                            dfd.reject(0);
-                                        }
-                                    })
 
-                                } else {
-                                    return 0;
-                                }
                             });
                             return dfd.promise();
                         }
@@ -337,8 +320,22 @@
                         getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'),
                         getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function() {
-                        alert('Your presentation has been added');
-                        window.location="/admin/presentations.html";
+                          console.log(form);
+                          $.ajax({
+                              url: '/makeedits/',
+                              contentType: 'application/json',
+                              data: toJSONString(form),
+                              type: 'POST',
+                              dataType: "json",
+                              success: function(data) {
+                                alert('Your presentation has been added');
+                                window.location="/admin/presentations.html";
+                              },
+                              error: function(error) {
+                                  return(0);
+                              }
+                          })
+
 
                     });
                 })
