@@ -178,7 +178,7 @@ $('document').ready(function() {
 			$("#acsLogo").attr('src',resizedCompanyLogo);
 			$("#acsLogo").animate({
 				'margin-left': (tWidth) + 'px',
-				'top': tPosition.top + 30,
+				'top': tPosition.top,
 			});
 			nxt();
 		});
