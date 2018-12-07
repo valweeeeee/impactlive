@@ -62,7 +62,7 @@ app.post('/delete-s3', (req, res) => {
     }
     else{
       sess=req.session;
-      let query = "Update presentations SET companyname='"+req.body.companyname+"',companylogourl='"+req.body.companylogourl+"'  where userid='"+req.body.userid+ "' AND presentationid='"+req.body.presentationid+"'";
+      let query = "Update presentations SET "+req.body.columnname+"='' where userid='"+req.body.userid+ "' AND presentationid='"+req.body.presentationid+"'";
       console.log(query);
       DB.query(query, (err, results) => {
         if(err){
