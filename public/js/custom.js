@@ -52,7 +52,6 @@ $('document').ready(function() {
 
 					document.title="Salesforce.org with "+companyName;
 					companyLogoUrl=companyLogoUrl.replace('350x350','270x270');
-					alert(companyLogoUrl);
 					$("#acsLogo").attr('src',companyLogoUrl);
 					$("#acsLogo").attr('alt',companyName);
 					$("#custSubject").html(email1subject);
@@ -174,11 +173,12 @@ $('document').ready(function() {
 			$("h4.fadeInIntro").hide('fast');
 			tPosition = $("#ticket").position();
 			tWidth = $("#ticket").width() - 150;
+			resizedCompanyLogo=companyLogoUrl.replace('270x270','150x150');
+
+			$("#acsLogo").attr('src',resizedCompanyLogo);
 			$("#acsLogo").animate({
 				'margin-left': (tWidth) + 'px',
 				'top': tPosition.top + 30,
-				width:"150px",
-				height:"52px"
 			});
 			nxt();
 		});
