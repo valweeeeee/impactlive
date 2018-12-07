@@ -131,18 +131,18 @@
                 });
 
                 function deleteImage(that){
-                  var continue;
+                  var continueDelete=0;
                   deleteNagPref=getCookie('impactLiveDeletePref');
                   if(deleteNagPref!=1){
 
                     if(confirm("Deleting here will permanently delete the file. Click OK to continue")){
-                      continue=1;
+                      continueDelete=1;
                       if(confirm("Click OK to stop this alert for the rest of your current session")){
                         setCookie('impactLiveDeletePref',1);
                       }
                     }
                   }
-                  if(continue==1){
+                  if(continueDelete==1){
                     var data='{"filename":"' + $(that).data('filename')+ '","presentationid":"'+pid+'","userid":"'+userID+'","columnname":"'+$(that).siblings('.uploaded').data('section')+'"}';
                     $.ajax({
                        url: '/delete-s3',
