@@ -83,15 +83,19 @@ $('document').ready(function() {
 						showEnd();
 						break;
 					case "Frame2":
+						$("body").css('background', "#fff");
 						imgSrc=pushcontent2;
 						break;
 					case "Frame3":
+						$("body").css('background', "#fff");
 							imgSrc=pushcontent3;
 							break;
 					case "Frame4":
+							$("body").css('background', "#fff");
 							imgSrc=pushcontent4;
 							break;
 					case "Frame5":
+							$("body").css('background', "#fff");
 							imgSrc=pushcontent5;
 								break;
 					case "StartOver":
