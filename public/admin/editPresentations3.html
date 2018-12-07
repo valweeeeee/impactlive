@@ -229,7 +229,7 @@
                                         $(thisid).find(".deleteImage").remove();
                                         $(thisid).find(".deleteThumb").remove();
                                         $(that).siblings('.hiddenInput').val(file);
-                                        alert($(that).siblings('.hiddenInput').val());
+
                                         $(thisid).prepend("<i class='material-icons md-184 md-inactive md-dark deleteImage deleteThumb' data-orig='no'>delete</i><div style='width:184px;height:150px;padding:0;text-align:0;' class='uploaded replaced'><img src='" + e.target.result + "' class='thumb replaced' style='max-width:180px'></div>").fadeIn('slow').css("display", "block");
                                     }
                                     reader.readAsDataURL(file);
@@ -408,7 +408,7 @@
                     <div align="center" class="preview" id="preview1">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image1None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image1Tmp" name="pushcontent1urlTmp"  type="file">
-                        <input type='hidden' name='pushcontent1urlTmp' class="hiddenInput" required>
+                        <input type='text' name='pushcontent1urlTmp' class="hiddenInput" required>
                     </div>
                 </td>
             </tr>
@@ -432,7 +432,7 @@
                     <div align="center" class="preview" id="preview2">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image2None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image2Tmp" name="pushcontent2urlTmp" type="file">
-                        <input type='hidden' name='pushcontent2urlTmp' class="hiddenInput">
+                        <input type='text' name='pushcontent2urlTmp' class="hiddenInput">
                     </div>
                 </td>
             </tr>
@@ -447,7 +447,7 @@
                     <div align="center" class="preview" id="preview3">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image3None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image3Tmp" name="pushcontent3urlTmp" type="file">
-                        <input type='hidden' name='pushcontent3urlTmp' class="hiddenInput">
+                        <input type='text' name='pushcontent3urlTmp' class="hiddenInput">
                     </div>
                 </td>
             </tr>
@@ -462,7 +462,7 @@
                     <div align="center" class="preview" id="preview4">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image4None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image4Tmp" name="pushcontent4urlTmp" type="file">
-                        <input type='hidden' name='pushcontent4urlTmp' class="hiddenInput">
+                        <input type='text' name='pushcontent4urlTmp' class="hiddenInput">
                     </div>
                 </td>
             </tr>
@@ -477,7 +477,7 @@
                     <div align="center" class="preview" id="preview5">
                         <i class="material-icons md-184 md-inactive md-dark previewimg" id="image5None">photo_size_select_actual</i><br>
                         <input class="file-input blue" id="image5Tmp" name="pushcontent5urlTmp" type="file">
-                        <input type='hidden' name='pushcontent5urlTmp' class="hiddenInput">
+                        <input type='text' name='pushcontent5urlTmp' class="hiddenInput">
                     </div>
                 </td>
             </tr>
