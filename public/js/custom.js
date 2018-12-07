@@ -103,7 +103,7 @@ $('document').ready(function() {
 					if (imgSrc!='' && imgSrc){
 						status="pushed";
 						clear();
-						$('<div id="pushed"><img src="'+imgSrc+'" alt="'+companyName+'" id="push" style="margin-top:10px;"></div>').prependTo('body').hide().fadeIn(400);
+						$('<div id="pushed"><img src="'+imgSrc+'" alt="'+companyName+'" id="push" style="max-width:99vw;margin-top:10px;"></div>').prependTo('body').hide().fadeIn(400);
 					}
 					x++;
 				});
