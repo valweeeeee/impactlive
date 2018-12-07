@@ -249,7 +249,7 @@
                     //file manipulation to append user and presentaiton id
                     newFileName = fileNameOnly + '_' + userID + '_' + pid + '.' + fileExt;
                     const myNewFile = new File([file], newFileName, {
-                        type: fileSent.type
+                        type: file.type
                     });
                     xhr.open('GET', `/sign-s3?file-name=${myNewFile.name}&file-type=${myNewFile.type}&userid=${userID}`);
                     xhr.onreadystatechange = () => {
