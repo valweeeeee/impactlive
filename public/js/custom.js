@@ -18,6 +18,11 @@ $('document').ready(function() {
 			$("<img />").attr("src", "/images/" + arguments[i]);
 		}
 	}
+	$.preloadImagesExternal = function() {
+		for (var i = 0; i < arguments.length; i++) {
+			$("<img />").attr("src", + arguments[i]);
+		}
+	}
 
 	$.preloadImages( "balloon.png", "blueHaveMail.png","blueJourney.png", "blueJourney.png", "email.png", "impactLiveFooter.png", "journeycont.png","ajaxLoader.gif","loading.gif","salesforce.png", "thankyou.png");
 
@@ -60,11 +65,10 @@ $('document').ready(function() {
 					});
 
 					document.title="Salesforce.org with "+companyName;
-					$.preloadImages(companyLogoUrl);
 					companyLogoUrl=companyLogoUrl.replace('400x400','270x270');
-					$.preloadImages(companyLogoUrl);
+					$.preloadImagesExternal(companyLogoUrl);
 					resizedCompanyLogo=companyLogoUrl.replace('270x270','150x150');
-					$.preloadImages(resizedCompanyLogo);
+					$.preloadImagesExternal(resizedCompanyLogo);
 					$("#acsLogo").attr('src',companyLogoUrl);
 					$("#acsLogo").attr('alt',companyName);
 					$("#custSubject").html(email1subject);
