@@ -108,7 +108,7 @@ $('document').ready(function() {
 						status="pushed";
 						clear();
 						imgSrc=imgSrc.replace('350x350','350x700');
-						$('<div id="pushed"><img src="'+imgSrc+'" alt="'+companyName+'" id="push" style="max-width:99vw;margin-top:10px;"></div>').prependTo('body').hide().fadeIn(400);
+						$('<div id="pushed"><img src="'+imgSrc+'" alt="'+companyName+'" id="push" style="width:100vw;margin-top:10px;"></div>').prependTo('body').hide().fadeIn(400);
 					}
 					x++;
 				});
