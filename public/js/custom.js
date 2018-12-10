@@ -183,8 +183,7 @@ $('document').ready(function() {
 			$("#acsLogo").animate({
 				'margin-left': (tWidth) + 'px',
 				'top': tPosition.top,
-			});
-			nxt();
+			}, 1000, 'linear');
 		});
 		$('#register').delay(6000).queue(function(nxt3) {
 			$('#register').fadeIn({
