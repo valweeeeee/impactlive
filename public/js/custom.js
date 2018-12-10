@@ -12,6 +12,15 @@ $('document').ready(function() {
 	var nologo;
 	var surveylink;
 	var companyinitial;
+	var resizedCompanyLogo;
+	$.preloadImages = function() {
+		for (var i = 0; i < arguments.length; i++) {
+			$("<img />").attr("src", "/images/" + arguments[i]);
+		}
+	}
+
+	$.preloadImages( "balloon.png", "blueHaveMail.png","blueJourney.png", "blueJourney.png", "email.png", "impactLiveFooter.png", "journeycont.png","ajaxLoader.gif","loading.gif","salesforce.png", "thankyou.png");
+
 	$.QueryString = (function(paramsArray) {
 			 let params = {};
 			 for (let i = 0; i < paramsArray.length; ++i){
@@ -51,7 +60,11 @@ $('document').ready(function() {
 					});
 
 					document.title="Salesforce.org with "+companyName;
+					$.preloadImages(companyLogoUrl);
 					companyLogoUrl=companyLogoUrl.replace('400x400','270x270');
+					$.preloadImages(companyLogoUrl);
+					resizedCompanyLogo=companyLogoUrl.replace('270x270','150x150');
+					$.preloadImages(resizedCompanyLogo);
 					$("#acsLogo").attr('src',companyLogoUrl);
 					$("#acsLogo").attr('alt',companyName);
 					$("#custSubject").html(email1subject);
@@ -143,12 +156,6 @@ $('document').ready(function() {
 	function showIntro() {
 		/*preload images*/
 
-		$.preloadImages = function() {
-			for (var i = 0; i < arguments.length; i++) {
-				$("<img />").attr("src", "/images/" + arguments[i]);
-			}
-		}
-		$.preloadImages( "balloon.png", "blueHaveMail.png","blueJourney.png", "blueJourney.png", "email.png", "impactLiveFooter.png", "journeycont.png","loading.gif","salesforce.png", "thankyou.png");
 
 
 		$('#ticket').delay(300).css({
@@ -178,12 +185,12 @@ $('document').ready(function() {
 			$("h4.fadeInIntro").hide('fast');
 			tPosition = $("#ticket").position();
 			tWidth = $("#ticket").width() - 100;
-			resizedCompanyLogo=companyLogoUrl.replace('270x270','150x150');
+
 			$("#acsLogo").attr('src',resizedCompanyLogo);
 			$("#acsLogo").animate({
 				'margin-left': (tWidth) + 'px',
 				'top': tPosition.top,
-			}, 600, 'linear');
+			}, 800, 'linear');
 		});
 		$('#register').delay(6000).queue(function(nxt3) {
 			$('#register').fadeIn({
