@@ -67,7 +67,7 @@ $('document').ready(function() {
 
 					document.title="Salesforce.org with "+companyName;
 					companyLogoUrl=companyLogoUrl.replace('400x400','270x270');
-					$.preloadImagesExternal(companyLogoUrl);
+					$.preloadImagesExternal(companyLogoUrl,pushcontent1,pushcontent2,pushcontent3,pushcontent4,pushcontent5);
 					resizedCompanyLogo=companyLogoUrl.replace('270x270','150x150');
 					$.preloadImagesExternal(resizedCompanyLogo);
 					$("#acsLogo").attr('src',companyLogoUrl);
