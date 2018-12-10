@@ -20,7 +20,6 @@ $('document').ready(function() {
 	}
 	$.preloadImagesExternal = function() {
 		for (var i = 0; i < arguments.length; i++) {
-			alert(arguments[i]);
 			$("<img />").attr("src", + arguments[i]);
 		}
 	}
