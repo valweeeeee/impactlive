@@ -107,7 +107,7 @@ $('document').ready(function() {
 					if (imgSrc!='' && imgSrc){
 						status="pushed";
 						clear();
-						imgSrc=imgSrc.replace('350x350','350x700');
+						imgSrc=imgSrc.replace('400x400','400x700');
 						$('<div id="pushed"><img src="'+imgSrc+'" alt="'+companyName+'" id="push" style="width:100vw;margin-top:10px;"></div>').prependTo('body').hide().fadeIn(400);
 					}
 					x++;
