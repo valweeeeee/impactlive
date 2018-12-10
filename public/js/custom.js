@@ -25,7 +25,7 @@ $('document').ready(function() {
 		}
 	}
 
-	$.preloadImages( "balloon.png", "blueHaveMail.png","blueJourney.png", "blueJourney.png", "email.png", "impactLiveFooter.png", "journeycont.png","ajaxLoader.gif","loading.gif","salesforce.png", "thankyou.png");
+	$.preloadImages("balloon.png", "blueHaveMail.png","blueJourney.png", "blueJourney.png", "email.png", "impactLiveFooter.png", "journeycont.png","ajaxLoader.gif","loading.gif","salesforce.png", "thankyou.png");
 
 	$.QueryString = (function(paramsArray) {
 			 let params = {};
@@ -75,7 +75,7 @@ $('document').ready(function() {
 					$("#custSubject").html(email1subject);
 					$("#subjectLink").html(companyName);
 					$("#emailImg").attr('src',pushcontent1);
-					$("#email1Img").attr('alt',companyName);
+					$("#emailImg").attr('alt',companyName);
 					companyinitial=companyName.charAt(0);
 					$("#icon").text(companyinitial.toUpperCase());
 				},
