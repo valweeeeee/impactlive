@@ -167,7 +167,7 @@ const DB = {
 app.post('/loginpage/', (req, res, next) => {
     sess=req.session;
     let query = "SELECT userid from users where username='"+req.body.username + "' AND password=CRYPT('" + req.body.password + "',password)";
-    console.log(query);
+    //console.log(query);
     DB.query(query, (err, results) => {
       if (results && results != ''){
         sess.userid=results[0].userid;
@@ -228,7 +228,7 @@ app.post('/newrecord/', (req,res,next)=>{
         return res.json({'err':1,'message':'ERROR'});
       }
     else{
-      console.log(results);
+      //console.log(results);
       presentationid=results[0].presentationid;
       console.log(presentationid);
       res.header("Access-Control-Allow-Origin", "*");
@@ -240,7 +240,7 @@ app.post('/newrecord/', (req,res,next)=>{
 function updateRecord(req,presentationid,res){
     sess=req.session;
         let query = "UPDATE presentations SET companylogourl='"+req.body.companylogourl+"',pushcontent1url='"+req.body.pushcontent1url+"',pushcontent2url='"+req.body.pushcontent2url+"', pushcontent3url='"+req.body.pushcontent3url+"',pushcontent4url='"+req.body.pushcontent4url+"',pushcontent5url='"+req.body.pushcontent5url+"'  where userid='"+req.body.userid+ "' AND presentationid='"+presentationid+"'";
-        console.log(query);
+        //console.log(query);
         DB.query(query, (err, results) => {
           if(err) {
               res.json({'err':1,'message':'ERROR'});

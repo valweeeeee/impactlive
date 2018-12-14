@@ -19,7 +19,7 @@
       var presentationid=presentationid;
       function deleteS3(filename){
         var data='{"filename":"' + filename+ '","presentationid":"'+presentationid+'","userid":"'+getCookie('impactLive') +'"}';
-        console.log(filename);
+        //console.log(filename);
         $.ajax({
            url: '/delete-s3',
            contentType: 'application/json',

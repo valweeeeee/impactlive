@@ -153,7 +153,7 @@
                     continueDelete=1;
                   }
                   if(continueDelete==1){
-                    
+
                     var data='{"filename":"' + $(that).data('filename')+ '","presentationid":"'+pid+'","userid":"'+userID+'","columnname":"'+$(that).siblings('.uploaded').data('section')+'"}';
                     $.ajax({
                        url: '/delete-s3',
@@ -329,7 +329,7 @@
                         getPresID(form, $("#image3Tmp").prop('files'), 'pushcontent3url'),
                         getPresID(form, $("#image4Tmp").prop('files'), 'pushcontent4url'),
                         getPresID(form, $("#image5Tmp").prop('files'), 'pushcontent5url')).done(function() {
-                          console.log(toJSONString(form));
+                          //console.log(toJSONString(form));
                           $.ajax({
                               url: '/makeedits/',
                               contentType: 'application/json',
