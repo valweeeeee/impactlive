@@ -16,7 +16,53 @@
   }
   window.deletePres=function(presentationid,userid){
     if(confirm('Are you sure you wish to delete this presentation? It cannot come back!')){
+      var presentationid=presentationid;
+      function deleteS3(filename){
+        var data='{"filename":"' + filename+ '","presentationid":"'+presentationid+'","userid":"'+getCookie('impactLive') +'"}';
+        $.ajax({
+           url: '/delete-s3',
+           contentType: 'application/json',
+           data: data,
+           type: 'POST',
+           dataType: "json"
+        });
+      }
       var data='{"userid":"' + getCookie('impactLive') + '", "presentationid":"'+presentationid+'" }';
+      //delete files
+      $.ajax({
+         url: '/getpresentation/',
+         contentType: 'application/json',
+         data: data,
+         type: 'POST',
+         dataType: "json",
+         success: function (data) {
+           //getting filename out of url
+            var getFileName = function (str) {
+                return str.split('\\').pop().split('/').pop();
+            }
+             $.each(data, function (a, b) {
+                  if(b.companylogourl!='' && b.companylogourl!="undefined"){
+                    deleteS3(b.companylogourl);
+                  }
+                  if(b.pushcontent1url!='' && b.pushcontent1url!="undefined"){
+                    deleteS3(b.pushcontent1url);
+                  }
+                  if(b.pushcontent2url!='' && b.pushcontent2url!="undefined"){
+                    deleteS3(b.pushcontent2url);
+                  }
+                  if(b.pushcontent3url!='' && b.pushcontent3url!="undefined"){
+                    deleteS3(b.pushcontent3url);
+                  }
+                  if(b.pushcontent4url!='' && b.pushcontent4url!="undefined"){
+                    deleteS3(b.pushcontent4url);
+                  }
+                  if(b.pushcontent5url!='' && b.pushcontent5url!="undefined"){
+                    deleteS3(b.pushcontent5url);
+                  }
+              });
+            });
+          });
+      //delete db record
       $.ajax({
          url: '/delete/',
          contentType: 'application/json',
@@ -34,7 +80,7 @@
           }
         });
       }
-}
+    }
     var userid=getCookie('impactLive');
     if(!userid){
       window.location="/admin/index.html";

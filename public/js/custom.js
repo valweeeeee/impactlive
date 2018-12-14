@@ -158,10 +158,6 @@ $('document').ready(function() {
 	}
 	/* Intro section */
 	function showIntro() {
-		/*preload images*/
-
-
-
 		$('#ticket').delay(300).css({
 			visibility: "visible"
 		}).fadeIn(3000);
