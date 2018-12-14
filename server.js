@@ -65,7 +65,6 @@ app.post('/delete-s3', (req, res) => {
       sess=req.session;
       if(req.body.columnname){
         let query = "Update presentations SET "+req.body.columnname+"='' where userid='"+req.body.userid+ "' AND presentationid='"+req.body.presentationid+"'";
-        console.log(query);
         DB.query(query, (err, results) => {
           if(err){
             res.json({ "ok": "false" });
