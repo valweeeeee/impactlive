@@ -63,18 +63,25 @@ app.post('/delete-s3', (req, res) => {
     }
     else{
       sess=req.session;
-      let query = "Update presentations SET "+req.body.columnname+"='' where userid='"+req.body.userid+ "' AND presentationid='"+req.body.presentationid+"'";
-
-      DB.query(query, (err, results) => {
-        if(err){
-          res.json({ "ok": "false" });
-        }
-        else{
-          res.header("Access-Control-Allow-Origin", "*");
-          res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,    Accept");
-          res.json({"data":'ok'},200);
-        }
-      });
+      if(req.body.columnname){
+        let query = "Update presentations SET "+req.body.columnname+"='' where userid='"+req.body.userid+ "' AND presentationid='"+req.body.presentationid+"'";
+        console.log(query);
+        DB.query(query, (err, results) => {
+          if(err){
+            res.json({ "ok": "false" });
+          }
+          else{
+            res.header("Access-Control-Allow-Origin", "*");
+            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,    Accept");
+            res.json({"data":'ok'},200);
+          }
+        });
+      }
+      else{
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type,    Accept");
+        res.json({"data":'ok'},200);
+      }
     }
   });
 
