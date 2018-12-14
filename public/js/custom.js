@@ -125,7 +125,7 @@ $('document').ready(function() {
 						status="pushed";
 						clear();
 						imgSrc=imgSrc.replace('400x400','400x700');
-						$('<div id="pushed"><img src="'+imgSrc+'" alt="'+companyName+'" id="push" style="max-width:400px;margin-top:10px;"></div>').prependTo('body').hide().fadeIn(1000);
+						$('<div id="pushed"><img src="'+imgSrc+'" alt="'+companyName+'" id="push" style="max-width:98vw;margin-top:10px;"></div>').prependTo('body').hide().fadeIn(1000);
 					}
 					x++;
 				});
