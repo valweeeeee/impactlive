@@ -153,7 +153,7 @@
                     continueDelete=1;
                   }
                   if(continueDelete==1){
-                    console.log($(that).data('filename'));
+                    
                     var data='{"filename":"' + $(that).data('filename')+ '","presentationid":"'+pid+'","userid":"'+userID+'","columnname":"'+$(that).siblings('.uploaded').data('section')+'"}';
                     $.ajax({
                        url: '/delete-s3',

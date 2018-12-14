@@ -43,21 +43,27 @@
             }
              $.each(data, function (a, b) {
                   if(b.companylogourl!='' && b.companylogourl!="undefined"){
+                    b.companylogourl=getFileName(b.companylogourl);
                     deleteS3(b.companylogourl);
                   }
                   if(b.pushcontent1url!='' && b.pushcontent1url!="undefined"){
+                    b.pushcontent1url=getFileName(b.pushcontent1url);
                     deleteS3(b.pushcontent1url);
                   }
                   if(b.pushcontent2url!='' && b.pushcontent2url!="undefined"){
+                    b.pushcontent2url=getFileName(b.pushcontent2url);
                     deleteS3(b.pushcontent2url);
                   }
                   if(b.pushcontent3url!='' && b.pushcontent3url!="undefined"){
+                    b.pushcontent3url=getFileName(b.pushcontent3url);
                     deleteS3(b.pushcontent3url);
                   }
                   if(b.pushcontent4url!='' && b.pushcontent4url!="undefined"){
+                    b.pushcontent4url=getFileName(b.pushcontent4url);
                     deleteS3(b.pushcontent4url);
                   }
                   if(b.pushcontent5url!='' && b.pushcontent5url!="undefined"){
+                    b.pushcontent5url=getFileName(b.pushcontent5url);
                     deleteS3(b.pushcontent5url);
                   }
               });
