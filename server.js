@@ -56,6 +56,7 @@ app.post('/delete-s3', (req, res) => {
   },
 };
   s3.deleteObjects(s3Params, function(err, data) {
+    console.log(s3Params);
     if(err){
       console.log(err);
       res.json({"data":'no'},200);
