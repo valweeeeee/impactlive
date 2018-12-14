@@ -45,6 +45,7 @@ app.get('/custom/custom.js', function(req, res) {
 app.post('/delete-s3', (req, res) => {
   const s3 = new aws.S3();
   const fileName = req.body['filename'];
+  console.log(fileName);
   const s3Params = {
   Bucket: S3_BUCKET,
   Delete: { // required
@@ -56,7 +57,6 @@ app.post('/delete-s3', (req, res) => {
   },
 };
   s3.deleteObjects(s3Params, function(err, data) {
-    console.log(s3Params);
     if(err){
       console.log(err);
       res.json({"data":'no'},200);
@@ -208,7 +208,6 @@ app.post('/getpresentation/', (req,res,next)=>{
 app.post('/makeedits/', (req,res,next)=>{
   sess=req.session;
   let query = "Update presentations SET companyname='"+req.body.companyname+"',companylogourl='"+req.body.companylogourl+"',pushcontent1url='"+req.body.pushcontent1url+"',pushcontent2url='"+req.body.pushcontent2url+"',pushcontent3url='"+req.body.pushcontent3url+"',pushcontent4url='"+req.body.pushcontent4url+"',pushcontent5url='"+req.body.pushcontent5url+"' ,surveylink='"+req.body.surveylink+"' where userid='"+req.body.userid+ "' AND presentationid='"+req.body.presentationid+"'";
-  console.log(query);
   DB.query(query, (err, results) => {
     if(err){
       res.json({ "ok": "false" });
