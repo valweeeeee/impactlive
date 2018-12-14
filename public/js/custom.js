@@ -190,10 +190,11 @@ $('document').ready(function() {
 			tPosition = $("#ticket").position();
 			tWidth = $("#ticket").width() - 100;
 
-			$("#acsLogo").attr('src',resizedCompanyLogo);
+			//$("#acsLogo").attr('src',resizedCompanyLogo);
 			$("#acsLogo").animate({
 				'margin-left': (tWidth) + 'px',
 				'top': tPosition.top,
+				'max-width':150 + 'px'
 			}, 800, 'linear');
 		});
 		$('#register').delay(6000).queue(function(nxt3) {
