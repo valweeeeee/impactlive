@@ -5,7 +5,6 @@ var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
 app.use(session({ resave: true ,secret: 'ValerieLovesYogi' , saveUninitialized: true,secure: false}));
-
 var path = require('path');
 var socket = require('socket.io');
 var sess;
