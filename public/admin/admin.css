@@ -195,6 +195,7 @@ input[type="password"], input[type="text"] {
 	margin-top:-30px;
 	margin-left:10px;
 	max-height:150px;
+	max-width:180px;
 	overflow:hidden;
 }
 .preview{
