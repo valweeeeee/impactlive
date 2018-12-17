@@ -184,14 +184,9 @@ app.get('/presentations/', (req, res, next) => {
 app.post('/getpresentations/', (req,res,next)=>{
   let query = "SELECT * from presentations where userid='"+req.body.userid+ "' ORDER BY dateCreated DESC";
   console.log(query);
-  
+
   DB.query(query, (err, results) => {
-    if (results && results != ''){
-      res.send(results);
-    }
-    else{
-      throw(err);
-    }
+    res.send(results);
   });
 });
 app.post('/getpresentation/', (req,res,next)=>{
