@@ -1,10 +1,7 @@
 
 var express = require('express');
-var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
-app.use(session({ resave: true ,secret: 'ValerieLovesYogi' , saveUninitialized: true,secure: false}));
-var sess;
 var port = process.env.PORT || 3000;
 var path = require('path');
 var homepage=path.join(__dirname + '/public/index.html');
