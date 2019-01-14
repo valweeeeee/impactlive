@@ -56,6 +56,7 @@ nav {
 	color: #fff;
 	position: relative;
 	display: inline-block;
+	width:100px !important;
 }
 .btn:active {
 	transform: translate(0px, 5px);
@@ -236,7 +237,7 @@ input[type="submit"]:active {
 }
 #presentations{
 
-	width:10%;
+	width:20%;
 	margin:auto;
 }
 #presentations_info{

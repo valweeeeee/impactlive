@@ -16,9 +16,11 @@
            //alert(data);
             $.each(data, function (a, b) {
 
-                $("#presForm").append("<input type='checkbox' value="+b.presentationid+" name='winners'>&nbsp;"+b.presentationauthor+"<br><br>");
+              $("#presForm").append("<input type='checkbox' value="+b.presentationid+" id="+b.presentationid+" name='winners'>&nbsp;"+b.presentationname+" by "+b.presentationauthor+"<br><br>");
+
 
             });
+            $("#"+b.presentationid).append('<input type="submit" value="send" class="btn blue">');
 
          },
          error: function(xhr, status, error) {
@@ -46,7 +48,7 @@
 <br><br>
 <div id="presentations">
   <form method="post" action="/updatepresentations/" id="presForm">
-    <input type="submit" value="send" class="btn blue">
+
   </form>
 </div>
 
