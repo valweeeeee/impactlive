@@ -16,7 +16,7 @@
            //alert(data);
             $.each(data, function (a, b) {
 
-                $("#presentations").append("<input type='checkbox' value="+b.presentationid+" name='winners'>&nbsp;"+b.presentationauthor+"<br><br>");
+                $("#presForm").append("<input type='checkbox' value="+b.presentationid+" name='winners'>&nbsp;"+b.presentationauthor+"<br><br>");
 
             });
 
@@ -45,7 +45,11 @@
 </div>
 <br><br>
 <div id="presentations">
+  <form method="post" action="/updatepresentations/" id="presForm">
+    <input type="submit" value="send" class="btn blue">
+  </form>
 </div>
+
 
 </body>
 </html>
