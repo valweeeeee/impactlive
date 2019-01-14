@@ -14,13 +14,14 @@
          dataType: "json",
          success: function (data) {
            //alert(data);
+           var lastPresID;
             $.each(data, function (a, b) {
 
               $("#presForm").append("<input type='checkbox' value="+b.presentationid+" id="+b.presentationid+" name='winners'>&nbsp;"+b.presentationname+" by "+b.presentationauthor+"<br><br>");
 
-
+              lastPresID=b.presentationid;
             });
-            $("#"+b.presentationid).append('<input type="submit" value="send" class="btn blue">');
+            $("#"+lastPresID).append('<input type="submit" value="send" class="btn blue">');
 
          },
          error: function(xhr, status, error) {
