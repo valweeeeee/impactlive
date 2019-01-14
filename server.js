@@ -55,11 +55,7 @@ const DB = {
 /* Data Functions*/
 app.post('/getpresentations/', (req,res,next)=>{
   let query = "SELECT * from presentations";
-  console.log(query);
-
   DB.query(query, (err, results) => {
-    console.log(err);
-    console.log(results);
     res.send(results);
   });
 });

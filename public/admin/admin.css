@@ -235,16 +235,12 @@ input[type="submit"]:active {
 	padding: 0;
 }
 #presentations{
-	margin-top:55px;
+	
+	width:50%;
+	margin:auto;
 }
 #presentations_info{
 	display:none;
-}
-#presentations_filter{
-	margin-right:80px !important;
-}
-#presentations_filter input{
-	height:35px !important;
 }
 .material-icons{
 	margin-top:-15px;
