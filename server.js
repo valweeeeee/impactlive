@@ -11,11 +11,6 @@ var homepage=path.join(__dirname + '/public/index.html');
 var jqPath=path.join(__dirname + '/node_modules/jquery/dist/jquery.min.js');
 var userJS=path.join(__dirname + '/public/js/custom.js');
 
-app.engine('html', require('ejs').renderFile);
-const S3_BUCKET = process.env.S3_BUCKET;
-
-
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
