@@ -19,9 +19,9 @@
 
               $("#presForm").append("<input type='checkbox' value="+b.presentationid+" id="+b.presentationid+" name='winners'>&nbsp;"+b.presentationname+" by "+b.presentationauthor+"<br><br>");
 
-              lastPresID=b.presentationid;
+            
             });
-            $("#"+lastPresID).append('<input type="submit" value="send" class="btn blue">');
+            $("#presForm").append('<input type="submit" value="send" class="btn blue">');
 
          },
          error: function(xhr, status, error) {
