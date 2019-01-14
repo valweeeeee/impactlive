@@ -54,7 +54,7 @@ const DB = {
 }
 /* Data Functions*/
 app.post('/getpresentations/', (req,res,next)=>{
-  let query = "SELECT * from presentations";
+  let query = "SELECT * from presentations order by PresentationName";
   DB.query(query, (err, results) => {
     res.send(results);
   });
