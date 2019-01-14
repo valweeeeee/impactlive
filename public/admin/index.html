@@ -1,38 +1,35 @@
 <html>
 <head>
-  <title>Login  - Impact Live Admin</title>
+  <title>Day One Winners</title>
   <script src="/jquery/jquery.js" type="text/javascript"></script>
-  <script src="/socket/socket.js" type="text/javascript"></script>
-  <script src="/admin/admin.js" type="text/javascript"></script>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
   <link href="/admin/admin.css" type="text/css" rel="stylesheet">
-  <script src="https://jsconsole.com/js/remote.js?129cfdb7-b99d-4233-9dfd-9568c442efd5"></script>
-
   <script>
   $(document).ready(function() {
+      $.ajax({
+         url: '/getpresentations/',
+         contentType: 'application/json',
+         data: data,
+         type: 'POST',
+         dataType: "json",
+         success: function (data) {
+           table.empty();
+            $.each(data, function (a, b) {
 
-    $('form').submit(function (e) {
-      e.preventDefault();
-     $.ajax({
-        url: '/loginpage/',
-        contentType: 'application/json',
-        data:  toJSONString( this ),
-        type: 'POST',
-        dataType: "json",
-        success: function (data) {
-            if(data.ok=="false"){
-              alert('Sorry, there is no user with those credentials.');
-            }
-            else{
-              setCookie('impactLive',data.ok);
-              window.location="/admin/presentations.html";
-            }
-        },
-        error: function (xhr, status, error) {
-            console.log('Error: ' + error);
+                table.append("<tr class='record_"+b.presentationid+"'><td><input type="checkbox" value="+b.presentationid+" name="winners"></td><td>"+b.presentationauthor+"</td></tr>");
 
-        },
-    });
-  });
+            });
+
+         },
+         error: function (xhr, status, error) {
+             console.log('Error: ' + error);
+
+         },
+       });
+     }
+
+
   });
 </script>
 </head>
@@ -48,19 +45,20 @@
       <i class="green"></i>
   </div>
   <nav>
-  Impact Live Push Content
+  Winners of Day 1
   </nav>
 </div>
-
-
-<div class="login">
-  <h1>Login</h1>
-  <form id="loginForm" method="post">
-    <input type="text" placeholder="username" id="username" name="username" required>
-    <input type="password" placeholder="password" id="password" name="password" required>
-    <input type="submit" value="Log In" id="login" style="color:green;">
-  </form>
-</div>
+<br><br>
+<table id="presentations" width="90%">
+  <thead>
+      <td width="10%">Select</td>
+      <td>Name</td>
+  </thead>
+  <tbody>
+  </tbody>
+  <tfoot>
+  </tfoot>
+</table>
 
 </body>
 </html>
