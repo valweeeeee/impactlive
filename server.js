@@ -58,6 +58,8 @@ app.post('/getpresentations/', (req,res,next)=>{
   console.log(query);
 
   DB.query(query, (err, results) => {
+    console.log(err);
+    console.log(results);
     res.send(results);
   });
 });
