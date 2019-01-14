@@ -16,7 +16,7 @@
            alert(data);
             $.each(data, function (a, b) {
 
-                table.append("<tr class='record_"+b.presentationid+"'><td><input type='checkbox' value="+b.presentationid+" name='winners'></td><td>"+b.presentationauthor+"</td></tr>");
+                $("#presentations").append("<tr class='record_"+b.presentationid+"'><td><input type='checkbox' value="+b.presentationid+" name='winners'></td><td>"+b.presentationauthor+"</td></tr>");
 
             });
 
@@ -44,16 +44,8 @@
   </nav>
 </div>
 <br><br>
-<table id="presentations" width="90%">
-  <thead>
-      <td width="10%">Select</td>
-      <td>Name</td>
-  </thead>
-  <tbody>
-  </tbody>
-  <tfoot>
-  </tfoot>
-</table>
+<div id="presentations">
+</div>
 
 </body>
 </html>
