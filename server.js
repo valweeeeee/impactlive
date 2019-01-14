@@ -1,13 +1,7 @@
 
 var express = require('express');
-var aws = require('aws-sdk');
-var session = require('express-session');
 var bodyParser = require('body-parser');
 var app = express();
-app.use(session({ resave: true ,secret: 'ValerieLovesYogi' , saveUninitialized: true,secure: false}));
-var path = require('path');
-var socket = require('socket.io');
-var sess;
 var port = process.env.PORT || 3000;
 var homepage=path.join(__dirname + '/public/index.html');
 var jqPath=path.join(__dirname + '/node_modules/jquery/dist/jquery.min.js');
@@ -21,9 +15,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
 
 /*------ROUTING------*/
-app.get('/', function(req, res, next) {
-  sess=req.session;
-});
 app.get('/jquery/jquery.js', function(req, res) {
     res.sendFile(jqPath);
 });
