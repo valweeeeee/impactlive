@@ -2,12 +2,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3001;
 var path = require('path');
 var homepage=path.join(__dirname + '/public/index.html');
 var jqPath=path.join(__dirname + '/node_modules/jquery/dist/jquery.min.js');
 var userJS=path.join(__dirname + '/public/js/custom.js');
-
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
@@ -22,7 +21,7 @@ app.get('/jquery/jquery.js', function(req, res) {
 app.get('/custom/custom.js', function(req, res) {
     res.sendFile(userJS);
 });
-
+var server = app.listen(port);
 /* DB Connection*/
 
 const url = require('url');
@@ -38,7 +37,6 @@ const config = {
   port: params.port,
   database: params.pathname.split('/')[1]
 };
-
 const pool = new pg.Pool(config);
 
 const DB = {
