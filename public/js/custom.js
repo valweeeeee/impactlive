@@ -64,7 +64,7 @@ $('document').ready(function() {
 		$("#register h6").text('Now pick a presentation to rate!');
 		$("#voter").empty();
 		$("#voter").attr("id", "presentations");
-		$(".next").removeClass(".next").addClass('.next1');
+		$(".next").removeClass("next").addClass('next1');
 		$("#register p").hide('fast');
 		if(day=="Day 1"){
 			url='/getday1/';
