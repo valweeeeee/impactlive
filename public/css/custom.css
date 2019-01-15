@@ -7,7 +7,7 @@ html, body {
 
 }
 body{
-    overflow-x:hidden;
+    overflow-x:hidden !important;
 }
 #ticket,#acsLogo{
   margin-top:-20px;
