@@ -60,13 +60,13 @@ app.post('/getvoters/', (req,res,next)=>{
   });
 });
 app.post('/getday1/', (req,res,next)=>{
-  let query = "SELECT * from presentations order by PresentationName";
+  let query = "SELECT * from presentations order by AuthorName";
   DB.query(query, (err, results) => {
     res.send(results);
   });
 });
 app.post('/getday2/', (req,res,next)=>{
-  let query = "SELECT * from presentations where day2=='true' order by PresentationName";
+  let query = "SELECT * from presentations where day2=='true' order by AuthorName";
   DB.query(query, (err, results) => {
     res.send(results);
   });
