@@ -60,6 +60,10 @@ $('document').ready(function() {
 			nxt3();
 		});
 	}
+	function startRating(presid,voterid){
+
+
+	}
 	function pickPresentation(day){
 		$("#register h6").text('Now pick a presentation to rate!');
 		$("#voter").empty();
@@ -79,7 +83,7 @@ $('document').ready(function() {
 			 dataType: "json",
 			 success: function (data) {
 					$.each(data, function (a, b) {
-						$("#presentations").append("<option value="+b.presentationid+" id="+b.presentationid+">"+b.presentationname+" ("+b.presentationauthor+")</option>");
+						$("#presentations").append("<option value="+b.presentationid+" id="+b.presentationid+">"+b.presentationauthor+"</option>");
 					});
 			 },
 			 error: function(xhr, status, error) {
