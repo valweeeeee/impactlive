@@ -3,38 +3,14 @@
 $('document').ready(function() {
 	var companyName;
 	var companyLogoUrl;
-	var email1subject;
-	var pushcontent1;
-	var pushcontent2;
-	var pushcontent3;
-	var pushcontent4;
-	var pushcontent5;
 	var nologo;
-	var surveylink;
-	var companyinitial;
 	var resizedCompanyLogo;
 	$.preloadImages = function() {
 		for (var i = 0; i < arguments.length; i++) {
 			$("<img />").attr("src", "/images/" + arguments[i]);
 		}
 	}
-
-
 	$.preloadImages("sko.png");
-
-	$.QueryString = (function(paramsArray) {
-			 let params = {};
-			 for (let i = 0; i < paramsArray.length; ++i){
-					 let param = paramsArray[i]
-							 .split('=', 2);
-					 if (param.length !== 2)
-							 continue;
-					 params[param[0]] = decodeURIComponent(param[1].replace(/\+/g, " "));
-			 }
-			 return params;
-	 })(window.location.search.substr(1).split('&'))
-
-
 	var section="name";
 	/* recenters */
 	jQuery.fn.center = function() {
@@ -43,7 +19,7 @@ $('document').ready(function() {
 		this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
 		return this;
 	}
-	$("#register").center();
+
 	var metaViewport = document.querySelector('meta[name=viewport]');
 	metaViewport.setAttribute('width', '380');
 	window.addEventListener("orientationchange", function() {
@@ -58,6 +34,7 @@ $('document').ready(function() {
 	}
 	/* Intro section */
 	function showIntro() {
+		$("#register").center();
 		$('#ticket').delay(300).css({
 			visibility: "visible"
 		}).fadeIn(3000);
@@ -65,8 +42,8 @@ $('document').ready(function() {
 			$(".sliding-background").animate({
 				'left': '-300px'
 			}, 500, 'linear');
+			$("#ticket").center();
 			$("#ticket").stop().animate({
-				marginLeft: '-20px',
 				width:"180px",
 				height:"203px"
 			});
