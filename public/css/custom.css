@@ -84,8 +84,7 @@ body{
   margin:5px auto auto auto;
 }
 #voter{
-  margin:auto;
-  max-width:280px;
+  max-width:250px;
 }
 #inputContainer {
   position: relative;
