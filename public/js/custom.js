@@ -80,7 +80,7 @@ $('document').ready(function() {
 			});
 			nxt3();
 		});
-	});
+	}
 	function timeNow() {
   var d = new Date(),
     h = d.getHours(),
