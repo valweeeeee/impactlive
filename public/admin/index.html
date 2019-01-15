@@ -13,13 +13,9 @@
          type: 'POST',
          dataType: "json",
          success: function (data) {
-           //alert(data);
            var lastPresID;
             $.each(data, function (a, b) {
-
               $("#presForm").append("<input type='checkbox' value="+b.presentationid+" id="+b.presentationid+" name='winners'>&nbsp;"+b.presentationname+" by "+b.presentationauthor+"<br><br>");
-
-            
             });
             $("#presForm").append('<input type="submit" value="send" class="btn blue">');
 

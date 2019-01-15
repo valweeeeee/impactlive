@@ -235,7 +235,7 @@ input[type="submit"]:active {
 	padding: 0;
 }
 #presentations{
-
+	text-align: center;
 	width:40%;
 	margin:auto;
 }
