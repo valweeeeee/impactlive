@@ -80,12 +80,10 @@ body{
   background:#FF7501;
   border-radius:5px;
   width:50px;
-  padding-left:2px;
-  float:left;
-  margin-left:5px;
+  padding-left:3px;
+  margin:auto;
 }
 #voter{
-  float:left;
   margin-left:30px;
 }
 .next:hover {color: #fff}
