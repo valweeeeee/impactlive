@@ -23,7 +23,7 @@
   <script src="/custom/custom.js" type="text/javascript"></script>
   <script>
   $(document).ready(function() {
-    var day="Day 1";
+    var day="Day1";
     $(".day").html(day);
     function pickPresentation(day){
       $("#register h6").text('Now pick a presentation to rate!');
@@ -64,7 +64,7 @@
             //alert(JSON.stringify(xhr.responseText));
           }
        });
-       if(day=="Day 1"){
+       if(day=="Day1"){
          url='/getday1/';
        }
        else{
