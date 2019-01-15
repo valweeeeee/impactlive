@@ -18,13 +18,9 @@ $('document').ready(function() {
 			$("<img />").attr("src", "/images/" + arguments[i]);
 		}
 	}
-	$.preloadImagesExternal = function() {
-		for (var i = 0; i < arguments.length; i++) {
-			$("<img />").attr("src", + arguments[i]);
-		}
-	}
 
-	$.preloadImages("balloon.png", "blueHaveMail.png","blueJourney.png", "blueJourney.png", "email.png", "impactLiveFooter.png", "journeycont.png","ajaxLoader.gif","loading.gif","salesforce.png", "thankyou.png");
+
+	$.preloadImages("sko.png");
 
 	$.QueryString = (function(paramsArray) {
 			 let params = {};
@@ -38,103 +34,7 @@ $('document').ready(function() {
 			 return params;
 	 })(window.location.search.substr(1).split('&'))
 
-	let room = $.QueryString["r"];
-	if(room!="" && room){
-		var data='{"presentationid":"'+room+'" }';
-
-		$.ajax({
-			 url: '/getpresentation/',
-			 contentType: 'application/json',
-			 data: data,
-			 type: 'POST',
-			 dataType: "json",
-			 success: function (data) {
-				 if(data==0){
-					 window.location="http://www.salesforce.org";
-				 }
-					$.each(data, function (a, b) {
-						companyName=b.companyname;
-						companyLogoUrl=b.companylogourl;
-						pushcontent1=b.pushcontent1url;
-						pushcontent2=b.pushcontent2url;
-						pushcontent3=b.pushcontent3url;
-						pushcontent4=b.pushcontent4url;
-						pushcontent5=b.pushcontent5url;
-						email1subject=b.email1subject;
-						surveylink=b.surveylink;
-					});
-
-					document.title="Salesforce.org with "+companyName;
-					companyLogoUrl=companyLogoUrl.replace('400x400','270x270');
-					$.preloadImagesExternal(companyLogoUrl,pushcontent1,pushcontent2,pushcontent3,pushcontent4,pushcontent5);
-					resizedCompanyLogo=companyLogoUrl.replace('270x270','150x150');
-					$.preloadImagesExternal(resizedCompanyLogo);
-					$("#acsLogo").attr('src',companyLogoUrl);
-					$("#acsLogo").attr('alt',companyName);
-					$("#custSubject").html(email1subject);
-					$("#subjectLink").html(companyName);
-					$("#emailImg").attr('src',pushcontent1);
-					$("#emailImg").attr('alt',companyName);
-					companyinitial=companyName.charAt(0);
-					$("#icon").text(companyinitial.toUpperCase());
-				},
-				error: function (request, status, error) {
-						//alert(request.responseText);
-
-					}
-			});
-
-		var socket = io.connect('',{query: 'v='+room,'transports': ['websocket']});
-		socket.removeAllListeners();
-		socket.on('connect', () => {
-				socket.emit("joinRoom",room);
-		});
-
-		var x=0;
-		var frame;
-
-		socket.on('message', function(data) {
-				var imgSrc='';
-				switch(data){
-					case "Finish":
-						showEnd();
-						break;
-					case "Frame2":
-						$("body").css('background', "#fff");
-						imgSrc=pushcontent2;
-						break;
-					case "Frame3":
-						$("body").css('background', "#fff");
-							imgSrc=pushcontent3;
-							break;
-					case "Frame4":
-							$("body").css('background', "#fff");
-							imgSrc=pushcontent4;
-							break;
-					case "Frame5":
-							$("body").css('background', "#fff");
-							imgSrc=pushcontent5;
-								break;
-					case "StartOver":
-							window.location="/?r="+room;
-							break;
-					default:
-							imgSrc='';
-				}
-					if (imgSrc!='' && imgSrc){
-						status="pushed";
-						clear();
-						imgSrc=imgSrc.replace('400x400','400x700');
-						$('<div id="pushed"><img src="'+imgSrc+'" alt="'+companyName+'" id="push" style="max-width:98vw;margin-top:10px;"></div>').prependTo('body').hide().fadeIn(1000);
-					}
-					x++;
-				});
-			}
-	else{
-			alert("You need to specify a room. Invalid URL.");
-			window.location="http://www.salesforce.org";
-	}
-
+	
 	var section="name";
 	/* recenters */
 	jQuery.fn.center = function() {
