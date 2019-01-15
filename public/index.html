@@ -31,14 +31,13 @@
     $(".day").html(displayDay);
     function pickPresentation(day){
       $(".sliding-background").animate({
-				'left': '-300px'
-			}, 500, 'linear');
+				'left': '-625px'
+			}, 200, 'linear');
       $("#register h6").text('Now pick a presentation to rate!');
       $("#voter").hide('fast');
-      $("#presentations").show('fast');
+      $("#presentations").show('slow');
       $(".next").removeClass("next").addClass('next1');
       $("#register p").hide('fast');
-      $(".sliding-background").animate({'left': '-600px'}, 500, 'linear');
     }
     $("body").on("click", '.next', function() {
       setCookie('scoringUser', $("#voter").val());
