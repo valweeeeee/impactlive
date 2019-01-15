@@ -79,9 +79,11 @@ body{
   color: #fff;
   cursor: pointer;
   background:#FF7501;
-  padding:10px;
   border-radius:5px;
-
+}
+#voter{
+  float:left;
+  margin-left:10px;
 }
 .next:hover {color: #fff}
 .wrong .next {color: #fff}
