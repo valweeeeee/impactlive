@@ -36,7 +36,7 @@
       setCookie('scoringUser', $("#voter").val());
       var data='{"voterid":"'+$("#voter").val()+'" }';
       $.ajax({
-         url: "/"+day+"/updatestartdate/"
+         url: "/"+day+"/updatestartdate/",
          contentType: 'application/json',
          type: 'POST',
          data: data,
