@@ -34,6 +34,7 @@
     }
     $("body").on("click", '.next', function() {
       setCookie('scoringUser', $("#voter").val());
+      var data='{"voterid":"'+$("#voter").val()+'" }';
       pickPresentation(day);
     });
       $.ajax({
@@ -71,7 +72,7 @@
              //alert(JSON.stringify(xhr.responseText));
            }
         });
-        var data='{"voterid":"'+getCookie('scoringUser')+'" }';
+
         $.ajax({
            url: url,
            contentType: 'application/json',
