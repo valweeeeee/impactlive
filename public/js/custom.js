@@ -61,9 +61,6 @@ $('document').ready(function() {
 		$('#ticket').delay(300).css({
 			visibility: "visible"
 		}).fadeIn(3000);
-		$('.fadeInIntro').hide().delay(500).css({
-			visibility: "visible"
-		}).fadeIn(3000);
 		$('#ticket').delay(2000).queue(function(nxt) {
 			$(".sliding-background").animate({
 				'left': '-300px'
@@ -73,9 +70,9 @@ $('document').ready(function() {
 				width:"200px",
 				height:"226px"
 			});
-			$("h4.fadeInIntro").hide('fast');
 			tPosition = $("#ticket").position();
 			tWidth = $("#ticket").width() - 100;
+		})
 		$('#register').delay(6000).queue(function(nxt3) {
 			$('#register').fadeIn({
 				queue: false,
@@ -83,7 +80,7 @@ $('document').ready(function() {
 			});
 			nxt3();
 		});
-	}
+	});
 	function timeNow() {
   var d = new Date(),
     h = d.getHours(),
