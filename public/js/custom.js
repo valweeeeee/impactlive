@@ -60,48 +60,18 @@ $('document').ready(function() {
 			nxt3();
 		});
 	}
-	function showInviteEmail(){
-		$(".container").fadeOut("normal",function(){
-			$(this).remove();
-		});
-		$("#whole").hide();
-		$('.fNameStored').text(questions[0].value);
-		$("#curTime").html(timeNow());
-		$('body').delay(200).queue(function(nxt3) {
-		$("body").css('overflow','visible');
-		$('#subject').fadeIn({
-			queue: false,
-			duration: 'slow'
-		});
-		$('#emailBuild').fadeIn({
-			queue: false,
-			duration: 'slow'
-		});
-		$('#icon').fadeIn({
-			queue: false,
-			duration: 'slow'
-		});
-		$('#tosection').fadeIn({
-			queue: false,
-			duration: 'slow'
-		});
-		$('#inbox').fadeIn({
-			queue: false,
-			duration: 'slow'
-		});
-		$("#email1").fadeIn({
-			queue: false,
-			duration: 'slow'
-		});
-		$("#nextStep").fadeIn({
-			queue: false,
-			duration: 'slow'
-		});
-					nxt3();
-				});
+	function pickPresentation(day){
+		$("#register h6").text('Now pick a presentation to rate!');
+		$("#voter").hide('fast');
+		if(day=="Day 1"){
+
+		}
+		else{
+
+		}
 	}
-	$("body").on("click", '#newMail', function() {
-		showInviteEmail();
+	$("body").on("click", '.next', function() {
+		pickPresentation(day);
 	});
 
 	$("body").on("click", '#nextStep', function() {
