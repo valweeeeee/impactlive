@@ -1,9 +1,7 @@
 /* Valerie M
 */
 $('document').ready(function() {
-	var day="Day 1";
-	//var day="Day 2";
-	$(".day").html(day);
+
 	var companyName;
 	var companyLogoUrl;
 	var resizedCompanyLogo;
@@ -66,30 +64,10 @@ $('document').ready(function() {
 	}
 	function pickPresentation(day){
 		$("#register h6").text('Now pick a presentation to rate!');
-		$("#voter").empty();
-		$("#voter").attr("id", "presentations");
+		$("#voter").hide('fast');
+		$("#presentations").show('fast');
 		$(".next").removeClass("next").addClass('next1');
 		$("#register p").hide('fast');
-		if(day=="Day 1"){
-			url='/getday1/';
-		}
-		else{
-			url='/getday2/';
-		}
-		$.ajax({
-			 url: url,
-			 contentType: 'application/json',
-			 type: 'POST',
-			 dataType: "json",
-			 success: function (data) {
-					$.each(data, function (a, b) {
-						$("#presentations").append("<option value="+b.presentationid+" id="+b.presentationid+">"+b.presentationauthor+"</option>");
-					});
-			 },
-			 error: function(xhr, status, error) {
-					//alert(JSON.stringify(xhr.responseText));
-				}
-		 });
 	}
 	$("body").on("click", '.next', function() {
 		pickPresentation(day);
