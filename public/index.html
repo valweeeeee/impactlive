@@ -33,6 +33,7 @@
       $("#register p").hide('fast');
     }
     $("body").on("click", '.next', function() {
+      setCookie('day1user', $("#voter").val());
       pickPresentation(day);
     });
       $.ajax({
@@ -70,6 +71,21 @@
              //alert(JSON.stringify(xhr.responseText));
            }
         });
+        var data='{"voterid":"'+voterid+'" }';
+        $.ajax({
+           url: url,
+           contentType: 'application/json',
+           type: 'POST',
+           dataType: "json",
+           success: function (data) {
+              $.each(data, function (a, b) {
+                $("#presentations").append("<option value="+b.presentationid+" id="+b.presentationid+">"+b.presentationauthor+"</option>");
+              });
+           },
+           error: function(xhr, status, error) {
+              //alert(JSON.stringify(xhr.responseText));
+            }
+         });
   });
   </script>
 </head>

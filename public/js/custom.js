@@ -62,111 +62,29 @@ $('document').ready(function() {
 
 
 	}
-
-
-	$("body").on("click", '#nextStep', function() {
-		$("#emailImg").hide();
-		startJourney2();
-	});
-	var status="pushed";
-	window.clear = (function (window, document, undefined) {
-		$("#pushed").empty();
-		$('#whole').remove();
-		$('#journeyStartAgain').remove();
-		$("#progressBar").remove();
-		$("#newMail2").remove();
-		if(status!="end")
-			$("body").animate({backgroundColor: "#ffffff"}, 'fast');
-		$("#end").remove();
-		$("#thankyou").remove();
-		$("#extras").remove();
-		$("body").css('overflow-y','visible');
-
-	});
-	window.showEnd = (function (window, document, undefined) {
-		var section = "end";
-		status="end";
-		clear();
-		$("body").css('overflow','hidden');
-			endHTML="<div id='end'><div id='balloon'><img src='images/balloon.png'></div></div>";
-				$("body").css('background', "#009BE0");
-				$("#thankyou").css('margin-top','25px');
-
-				$("#pushed").remove();
-
-
-				$(endHTML).appendTo('body').hide().fadeIn(500);
-
-				$("#balloon").animate({ top: "-650px" },4000,function(){
-					//$("#end").remove();
-					//$(this).remove();
-					if(surveylink!=''){
-						surveyHTML="<br><br><a href='"+surveylink+"' target='_blank' style='color:#fff;font-size:22px'>Please complete our survey</a>";
-					}
-					else{
-						surveyHTML='';
-					}
-					$(surveyHTML).appendTo('#balloon').hide().fadeIn(500);
-				});
-
-
-
-	})
-	function startJourney() {
-
-		$(".eventSelect").stop(true, false).fadeOut('fast');
-		$("#register").fadeOut('fast');
-		$(".sliding-background").fadeOut('fast');
-		$('body').delay(500).queue(function(nxt99) {
-			$("#journeyStart").remove();
-
-				$("<div id=\"journeyStart\"><img src=\"/images/blueJourney.png\" width=\"154\" height=\"154\" alt=\"start your journey!\" id=\"journey\"><img src=\"/images/email.png\" width=\"152\" height=\"189\" alt=\"you have emails!\" style=\"display:none\" id=\"emailJourney\"></div>").prependTo(".center").hide().fadeIn(200);
-				$("<div id=\"progressBar\" class=\"skillbar clearfix\" data-percent=\"100%\"><div class=\"skillbar-bar\" style=\"background: #ED7D31;\"></div></div>").prependTo(".center").hide().fadeIn(1000);
-
-
-		 var	startLevel=$("#journeyStart").offset();
-		//	$("#journeyStart").css({marginTop: startLevel.top, left: startLevel.left});
-
-			$('#progressBar').each(function() {
-				$(this).find('.skillbar-bar').animate({
-					width: $(this).attr('data-percent')
-				}, 2000, function() {}).promise().done(function() {
-					$("#journey").slideUp(100, function() {
-						$("#journey").css("display", "none");
-						$("#emailJourney").slideDown('slow');
-							$('<div id="newMail"><button id="getMail">Get Mail</button></div>').appendTo(".container").slideDown(5000);
-						$("#progressBar").animate({
-							top: (startLevel.top-220),
-							marginLeft: 0
-						}, 500, function() {}).fadeTo(200, 1);
-					});
-				});
-			});
-			nxt99();
-		});
-	}
-	function startJourney2() {
-		$("body").css('overflow','hidden');
-		$("#extras").hide();
-
-		$('body').delay(500).queue(function(nxt100) {
-			$("#journeyStartAgain").remove();
-
-				$("<div id=\"journeyStartAgain\"><img src=\"/images/journeycont.png\" width=\"300\" height=\"300\" alt=\"start your journey!\" id=\"journey2\">").prependTo("body").hide().fadeIn(200);
-				 var	startLevel=$("#journeyStartAgain").offset();
-				 $("<div id=\"progressBar\" style=\"overflow:hidden;\" class=\"skillbar clearfix\" data-percent=\"100%\"><div class=\"skillbar-bar\" style=\"background: #ED7D31;\"></div></div>").prependTo("body").hide().fadeIn(1000);
-			$('#progressBar').each(function() {
-				$(this).find('.skillbar-bar').animate({
-					width: $(this).attr('data-percent')
-				}, 1000, function() {}).promise().done(function() {
-							$('<div id="newMail2" style=\"overflow:hidden;\"><br><h6 style=\"font-size:smaller;font-weight:bold;color:#fff\">Please wait while we craft the rest of your journey</h6><img src=\"/images/loading.gif\" width=\"100\" height=\"100\" style=\"margin-top:-35px;\"></div>').appendTo("body").slideDown(100);
-
-				});
-			});
-			nxt100();
-		});
-	}
-	if (section == "name") {
+	function setCookie(name,value,days) {
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days*24*60*60*1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "")  + expires + "; path=/" +"; secure";
+}
+function getCookie(name) {
+    var nameEQ = name + "=";
+    var ca = document.cookie.split(';');
+    for(var i=0;i < ca.length;i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') c = c.substring(1,c.length);
+        if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+    }
+    return null;
+}
+function eraseCookie(name) {
+    document.cookie = name+'=; Max-Age=-99999999;';
+}
+if (section == "name") {
 		showIntro();
 	}
 
