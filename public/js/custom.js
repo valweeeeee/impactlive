@@ -43,7 +43,7 @@ $('document').ready(function() {
 				'left': '-300px'
 			}, 500, 'linear');
 			$("#ticket").stop().animate({
-				margin-left:"-20px",
+				"margin-left":"-20px",
 				width:"180px",
 				height:"203px"
 			});
