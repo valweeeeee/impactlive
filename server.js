@@ -53,6 +53,12 @@ const DB = {
     }
 }
 /* Data Functions*/
+app.post('/getvoters/', (req,res,next)=>{
+  let query = "SELECT * from voters order by VoterName";
+  DB.query(query, (err, results) => {
+    res.send(results);
+  });
+});
 app.post('/getpresentations/', (req,res,next)=>{
   let query = "SELECT * from presentations order by PresentationName";
   DB.query(query, (err, results) => {
