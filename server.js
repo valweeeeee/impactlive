@@ -66,7 +66,7 @@ app.post('/getday1/', (req,res,next)=>{
   });
 });
 app.post('/getday2/', (req,res,next)=>{
-  let query = "SELECT * from presentations where day2=='true' order by AuthorName";
+  let query = "SELECT * from presentations where day2=='true' order by PresentationAuthor";
   DB.query(query, (err, results) => {
     res.send(results);
   });
