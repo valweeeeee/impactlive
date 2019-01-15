@@ -35,7 +35,19 @@
     $("body").on("click", '.next', function() {
       setCookie('scoringUser', $("#voter").val());
       var data='{"voterid":"'+$("#voter").val()+'" }';
-      pickPresentation(day);
+      $.ajax({
+         url: "/"+day+"/updatestartdate/"
+         contentType: 'application/json',
+         type: 'POST',
+         data: data,
+         dataType: "json",
+         success: function (data) {
+            alert('done');
+         },
+         error: function(xhr, status, error) {
+            //alert(JSON.stringify(xhr.responseText));
+          }
+       });
     });
       $.ajax({
          url: '/getvoters/',

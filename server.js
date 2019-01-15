@@ -71,8 +71,16 @@ app.post('/getday2/', (req,res,next)=>{
     res.send(results);
   });
 });
-app.post('/updatestartdate/', (req,res,next)=>{
+app.post('/Day 1/updatestartdate/', (req,res,next)=>{
   let query = "UPDATE voters set pollingday1startdate=NOW() where voterid="+req.body.voterid;
+  console.log(query);
+  DB.query(query, (err, results) => {
+    res.send(results);
+  });
+});
+app.post('/Day 2/updatestartdate/', (req,res,next)=>{
+  let query = "UPDATE voters set pollingday2startdate=NOW() where voterid="+req.body.voterid;
+  console.log(query);
   DB.query(query, (err, results) => {
     res.send(results);
   });
