@@ -62,16 +62,7 @@ $('document').ready(function() {
 
 
 	}
-	function pickPresentation(day){
-		$("#register h6").text('Now pick a presentation to rate!');
-		$("#voter").hide('fast');
-		$("#presentations").show('fast');
-		$(".next").removeClass("next").addClass('next1');
-		$("#register p").hide('fast');
-	}
-	$("body").on("click", '.next', function() {
-		pickPresentation(day);
-	});
+
 
 	$("body").on("click", '#nextStep', function() {
 		$("#emailImg").hide();

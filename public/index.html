@@ -24,8 +24,17 @@
   <script>
   $(document).ready(function() {
     var day="Day 1";
-    //var day="Day 2";
     $(".day").html(day);
+    function pickPresentation(day){
+      $("#register h6").text('Now pick a presentation to rate!');
+      $("#voter").hide('fast');
+      $("#presentations").show('fast');
+      $(".next").removeClass("next").addClass('next1');
+      $("#register p").hide('fast');
+    }
+    $("body").on("click", '.next', function() {
+      pickPresentation(day);
+    });
       $.ajax({
          url: '/getvoters/',
          contentType: 'application/json',
@@ -86,6 +95,7 @@
         </div>
         <div class="center">
           <div id="register">
+            <br>
             <h6>Welcome to <span class="day"></span> of IMPACT200!</h6>
             <p>Pick your name below:</p>
             <select id="voter"></select>
