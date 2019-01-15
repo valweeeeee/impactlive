@@ -24,6 +24,10 @@
   <script>
   $(document).ready(function() {
     var day="Day1";
+    if(day=="Day1")
+      var displayDay="Day 1";
+    else
+      var displayDay="Day 2";
     $(".day").html(day);
     function pickPresentation(day){
       $("#register h6").text('Now pick a presentation to rate!');
