@@ -1,16 +1,19 @@
 /* Valerie M
 */
 $('document').ready(function() {
+	var day="Day 1";
+	//var day="Day 2";
+	$(".day").html(day);
 	var companyName;
 	var companyLogoUrl;
-	var nologo;
 	var resizedCompanyLogo;
+
 	$.preloadImages = function() {
 		for (var i = 0; i < arguments.length; i++) {
 			$("<img />").attr("src", "/images/" + arguments[i]);
 		}
 	}
-	$.preloadImages("sko.png");
+	$.preloadImages("SKO.png");
 	var section="name";
 	/* recenters */
 	jQuery.fn.center = function() {
