@@ -57,13 +57,6 @@ $('document').ready(function() {
 			nxt3();
 		});
 	}
-	function timeNow() {
-  var d = new Date(),
-    h = d.getHours(),
-    m = (d.getMinutes()<10?'0':'') + d.getMinutes();
-		if(h>12?h=h-12:'');
-   return  h + ':' + m;
-	}
 	function showInviteEmail(){
 		$(".container").fadeOut("normal",function(){
 			$(this).remove();
@@ -213,91 +206,5 @@ $('document').ready(function() {
 	if (section == "name") {
 		showIntro();
 	}
-	/*form*/
-	var questions = [{
-		question: "What is your first name?"
-	}, {
-		question: ""
-	}, {
-		question: ""
-	}];
-	(function() {
-		var tTime = 100 // transition transform time from #register in ms
-		var wTime = 200 // transition width time from #register in ms
-		var eTime = 1000 // transition width time from inputLabel in ms
-		// init
-		// --------------
-		var position = 0
-		putQuestion()
-		progressButton.addEventListener('click', validate)
-		inputField.addEventListener('keyup', function(e) {
-			transform(0, 0) // ie hack to redraw
-			if (e.keyCode == 13) validate()
-		})
 
-		function putQuestion() {
-			inputLabel.innerHTML = questions[position].question
-			inputField.value = ''
-			inputField.type = questions[position].type || 'text'
-			inputField.focus()
-			showCurrent()
-		}
-		// when all the questions have been answered
-		function done() {
-			register.className = 'close'
-		}
-		// when submitting the current question
-		function validate() {
-			// set the value of the field into the array
-			questions[position].value = inputField.value
-			// check if the pattern matches
-			if (!inputField.value.match(questions[position].pattern || /.+/)) wrong()
-			else ok(function() {
-				if (section == "name") {
-					$(".sliding-background").hide();
-
-					hideCurrent(done)
-					position = 1;
-					$('#ticket').animate({
-						left: '-2000px'
-					}, {
-						duration: 800
-					});
-					$('#ticket').css("display", "none");
-					$("#acsLogo").animate({
-						left: '-2000px'
-					}, {
-						duration: 800
-					});
-					$('#acsLogo').css("display", "none");
-					$('#inputField').css("display", "none");
-					$(".next").css('display', 'none');
-					startJourney();
-				}
-			})
-			window.validate = validate;
-		}
-
-		function hideCurrent(callback) {
-			inputContainer.style.opacity = 0
-			setTimeout(callback, wTime)
-		}
-
-		function showCurrent(callback) {
-			inputContainer.style.opacity = 1
-			setTimeout(callback, wTime)
-		}
-
-		function transform(x, y) {
-			register.style.transform = 'translate(' + x + 'px ,  ' + y + 'px)'
-		}
-
-		function ok(callback) {
-			register.className = ''
-			setTimeout(transform, tTime * 0, 0, 10)
-			setTimeout(transform, tTime * 1, 0, 0)
-			setTimeout(callback, tTime * 2)
-		}
-
-	}())
 })
