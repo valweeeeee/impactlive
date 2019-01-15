@@ -53,7 +53,7 @@ $('document').ready(function() {
 	}, false);
 	var pc = false;
 	if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-		alert('This experience is best viewed on a moble device in portrait mode.')
+		//alert('This experience is best viewed on a moble device in portrait mode.')
 		pc = true;
 	}
 	/* Intro section */
@@ -66,9 +66,9 @@ $('document').ready(function() {
 				'left': '-300px'
 			}, 500, 'linear');
 			$("#ticket").stop().animate({
-				marginLeft: '-80px',
-				width:"200px",
-				height:"226px"
+				marginLeft: '-20px',
+				width:"180px",
+				height:"203px"
 			});
 			tPosition = $("#ticket").position();
 			tWidth = $("#ticket").width() - 100;
