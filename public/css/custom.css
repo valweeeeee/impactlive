@@ -81,16 +81,12 @@ body{
   border-radius:5px;
   width:50px;
   padding-left:3px;
-  margin:auto;
+  margin:5px auto auto auto;
 }
 #voter{
   margin:auto;
-  max-width:300px;
+  max-width:280px;
 }
-.next:hover {color: #fff}
-.wrong .next {color: #fff}
-.close .next {color: #fff}
-
 #inputContainer {
   position: relative;
   opacity: 0;
