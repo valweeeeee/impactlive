@@ -42,8 +42,8 @@ $('document').ready(function() {
 			$(".sliding-background").animate({
 				'left': '-300px'
 			}, 500, 'linear');
-			$("#ticket").center();
 			$("#ticket").stop().animate({
+				margin-left:"-20px",
 				width:"180px",
 				height:"203px"
 			});
