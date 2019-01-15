@@ -62,7 +62,8 @@ $('document').ready(function() {
 
 
 	}
-	function setCookie(name,value,days) {
+
+	window.setCookie = (function (name,value,days) {
     var expires = "";
     if (days) {
         var date = new Date();
@@ -71,7 +72,7 @@ $('document').ready(function() {
     }
     document.cookie = name + "=" + (value || "")  + expires + "; path=/" +"; secure";
 }
-function getCookie(name) {
+	window.getCookie = (function (name) {function getCookie(name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
     for(var i=0;i < ca.length;i++) {
