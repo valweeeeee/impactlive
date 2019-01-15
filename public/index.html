@@ -38,7 +38,7 @@
       $("#presentations").show('fast');
       $(".next").removeClass("next").addClass('next1');
       $("#register p").hide('fast');
-
+      $(".sliding-background").animate({'left': '-600px'}, 500, 'linear');
     }
     $("body").on("click", '.next', function() {
       setCookie('scoringUser', $("#voter").val());
