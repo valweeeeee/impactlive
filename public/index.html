@@ -24,6 +24,11 @@
   <link rel="icon" type="image/png" href="images/favicon.png">
   <script src="/jquery/jquery.js" type="text/javascript"></script>
   <script src="/custom/custom.js" type="text/javascript"></script>
+  <script type="text/javascript">
+  var day="Day 1";
+  //var day="Day 2";
+  $(".day").html(day);
+  </script>
 </head>
 <body>
 
@@ -47,9 +52,9 @@
         </div>
         <div class="center">
           <div id="register">
-            <h5>Welcome to Day 1 of SKO 200!</h5>
-            <p>Chooswe a presentation to rate:</p>
-            
+            <h5>Welcome to <span class="day"></span> of SKO 200!</h5>
+            <p>Pick your name below</p>
+
           </div>
         </div>
       </div>
