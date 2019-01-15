@@ -74,12 +74,14 @@ body{
   transition: transform .1s ease-in-out;
 }
 .next {
-  margin-top:5px;
   font-size: 18px;
   color: #fff;
   cursor: pointer;
   background:#FF7501;
   border-radius:5px;
+  width:30px;
+  padding-left:0;
+  float:left;
 }
 #voter{
   float:left;
