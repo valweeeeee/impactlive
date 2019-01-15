@@ -71,7 +71,7 @@ $('document').ready(function() {
         expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "")  + expires + "; path=/" +"; secure";
-}
+});
 	window.getCookie = (function (name) {
     var nameEQ = name + "=";
     var ca = document.cookie.split(';');
@@ -81,7 +81,7 @@ $('document').ready(function() {
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
     }
     return null;
-}
+});
 function eraseCookie(name) {
     document.cookie = name+'=; Max-Age=-99999999;';
 }
