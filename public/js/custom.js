@@ -48,7 +48,7 @@ $('document').ready(function() {
 	metaViewport.setAttribute('width', '380');
 	window.addEventListener("orientationchange", function() {
 		if (window.orientation != 0) {
-			alert('This experience is best viewed on a moble device in portrait mode.')
+			//alert('This experience is best viewed on a moble device in portrait mode.')
 		}
 	}, false);
 	var pc = false;
@@ -66,7 +66,7 @@ $('document').ready(function() {
 				'left': '-300px'
 			}, 500, 'linear');
 			$("#ticket").stop().animate({
-				marginLeft: '-170px',
+				marginLeft: '-80px',
 				width:"200px",
 				height:"226px"
 			});
