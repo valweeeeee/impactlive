@@ -34,7 +34,7 @@ $('document').ready(function() {
 			 return params;
 	 })(window.location.search.substr(1).split('&'))
 
-	
+
 	var section="name";
 	/* recenters */
 	jQuery.fn.center = function() {
@@ -70,29 +70,12 @@ $('document').ready(function() {
 			}, 500, 'linear');
 			$("#ticket").stop().animate({
 				marginLeft: '-170px',
-				width:"150px",
-				height:"78px"
-			});
-			$("#acsLogo").parent().css({
-				position: 'relative'
-			});
-			acsPosition = $("#acsLogo").position();
-			$("#acsLogo").css({
-				top: acsPosition.top,
-				left: acsPosition.left,
-				position: 'absolute'
+				width:"200px",
+				height:"226px"
 			});
 			$("h4.fadeInIntro").hide('fast');
 			tPosition = $("#ticket").position();
 			tWidth = $("#ticket").width() - 100;
-
-			//$("#acsLogo").attr('src',resizedCompanyLogo);
-			$("#acsLogo").animate({
-				'margin-left': (tWidth) + 'px',
-				'top': tPosition.top,
-				'max-width':150 + 'px'
-			}, 800, 'linear');
-		});
 		$('#register').delay(6000).queue(function(nxt3) {
 			$('#register').fadeIn({
 				queue: false,
