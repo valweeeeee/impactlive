@@ -62,13 +62,28 @@ $('document').ready(function() {
 	}
 	function pickPresentation(day){
 		$("#register h6").text('Now pick a presentation to rate!');
-		$("#voter").hide('fast');
+		$("#voter").attr("id", "presentations")
+		$("#register p").hide('fast');
 		if(day=="Day 1"){
-
+			url='/getday1/';
 		}
 		else{
-
+			url='/getday2/';
 		}
+		$.ajax({
+			 url: url,
+			 contentType: 'application/json',
+			 type: 'POST',
+			 dataType: "json",
+			 success: function (data) {
+					$.each(data, function (a, b) {
+						$("#presentations").append("<option value="+b.presentationid+" id="+b.presentationid+">"+b.presentationname+"</option>");
+					});
+			 },
+			 error: function(xhr, status, error) {
+					//alert(JSON.stringify(xhr.responseText));
+				}
+		 });
 	}
 	$("body").on("click", '.next', function() {
 		pickPresentation(day);

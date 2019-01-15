@@ -59,8 +59,14 @@ app.post('/getvoters/', (req,res,next)=>{
     res.send(results);
   });
 });
-app.post('/getpresentations/', (req,res,next)=>{
+app.post('/getday1/', (req,res,next)=>{
   let query = "SELECT * from presentations order by PresentationName";
+  DB.query(query, (err, results) => {
+    res.send(results);
+  });
+});
+app.post('/getday2/', (req,res,next)=>{
+  let query = "SELECT * from presentations where day2=='true' order by PresentationName";
   DB.query(query, (err, results) => {
     res.send(results);
   });
