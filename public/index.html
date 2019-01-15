@@ -33,7 +33,7 @@
       $("#register p").hide('fast');
     }
     $("body").on("click", '.next', function() {
-      setCookie('day1user', $("#voter").val());
+      setCookie('scoringUser', $("#voter").val());
       pickPresentation(day);
     });
       $.ajax({
@@ -71,7 +71,7 @@
              //alert(JSON.stringify(xhr.responseText));
            }
         });
-        var data='{"voterid":"'+voterid+'" }';
+        var data='{"voterid":"'+getCookie('scoringUser')+'" }';
         $.ajax({
            url: url,
            contentType: 'application/json',
