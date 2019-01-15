@@ -78,7 +78,7 @@ $('document').ready(function() {
 			 dataType: "json",
 			 success: function (data) {
 					$.each(data, function (a, b) {
-						$("#presentations").append("<option value="+b.presentationid+" id="+b.presentationid+">"+b.presentationname+"</option>");
+						$("#presentations").append("<option value="+b.presentationid+" id="+b.presentationid+">"+b.presentationname+" ("+b.presentationauthor+")</option>");
 					});
 			 },
 			 error: function(xhr, status, error) {
