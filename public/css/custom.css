@@ -48,25 +48,7 @@ body{
   max-width:100%;
   height:auto;
 }
-/* form*/
-/*.center {
-  height: 50px;
-  width:250px;
-  margin:auto;
-  margin-top:5px;
 
-}*/
-@media (orientation: landscape) {
-  body {
-    flex-direction: row;
-  }
-  #ticket{
-    float:left;
-  }
-  #register{
-    margin-top:-75px;
-  }
-}
 /******
   Form
  ******/
@@ -101,6 +83,7 @@ body{
   display:none;
   min-height: 135px;
 }
+/* Ratings */
 .btn-scale {
   min-width: 44px;
   width: 6%;
@@ -230,4 +213,16 @@ body{
 }
 #end,#balloon,#thankyou{
 
+}
+
+@media (orientation: landscape) {
+  body {
+    flex-direction: row;
+  }
+  #ticket{
+    float:left;
+  }
+  #register{
+    margin-top:-75px;
+  }
 }
