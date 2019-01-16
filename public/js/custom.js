@@ -35,8 +35,8 @@ $('document').ready(function() {
 	}*/
 	window.addEventListener('orientationchange', doOnOrientationChange);
 	function doOnOrientationChange(){
-		$("#register").center();
-		$("#register").css('margin-left',0);
+		//$("#register").center();
+		//$("#register").css('margin-left',0);
 	}
 	/* Intro section */
 	function showIntro() {
