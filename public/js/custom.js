@@ -1,6 +1,7 @@
 /* Valerie M*/
 $('document').ready(function() {
-		var day="Day1";
+	let day="Day1";
+	var presentationAuthor;
 	$.preloadImages = function() {
 		for (var i = 0; i < arguments.length; i++) {
 			$("<img />").attr("src", "/images/" + arguments[i]);
@@ -15,8 +16,8 @@ $('document').ready(function() {
 			date.setTime(date.getTime() + (days*24*60*60*1000));
 			expires = "; expires=" + date.toUTCString();
 		}
-		alert('cookie');
-		document.cookie = name + "=" + (value || "")  + expires + "; path=/" +"; secure";
+		//document.cookie = name + "=" + (value || "")  + expires + "; path=/" +"; secure";
+		document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 	});
 	window.getCookie = (function (name) {
 		var nameEQ = name + "=";
@@ -33,38 +34,41 @@ $('document').ready(function() {
 	})
 
 	showIntro();
-	if(!getCookie('scoringUser') || getCookie('scoringUser')=='' || getCookie('scoringUser')=="null"){
-		$("#register").append('<br> '+
-		'<h6>Welcome to <span class="day"></span> of IMPACT200!</h6>' +
-		'<p>Pick your name below:</p>' +
-		'<select id="voter"></select>' +
-		'<select id="presentations" style="display:none"></select>' +
-		'<button class="next">Next</button>');
-	}
-	else{
-		$("body .next").trigger('click');
+	if(getCookie('scoringUser')){
+		pickPresentation(day);
 	}
 	/* Intro section */
 	function showIntro() {
-		$('#logo').delay(300).css({
-			visibility: "visible"
-		}).fadeIn(2000);
-		$('#logo').delay(1000).queue(function(nxt) {
-			$(".sliding-background").animate({
-				'left': '-300px'
-			}, 500, 'linear');
-			$("#logo").stop().animate({
-				width:"180px",
-				height:"203px"
-			});
-		})
-		$('#register').delay(4000).queue(function(nxt3) {
-			$('#register').fadeIn({
-				queue: false,
-				duration: 'slow'
-			});
-			nxt3();
-		});
+		if(!getCookie('scoringUser')){
+				$('#logo').delay(300).css({
+					visibility: "visible"
+				}).fadeIn(2000);
+				$('#logo').delay(1000).queue(function(nxt) {
+					$(".sliding-background").animate({
+						'left': '-300px'
+					}, 500, 'linear');
+					$("#logo").stop().animate({
+						width:"180px",
+						height:"203px"
+					});
+				})
+
+				$('#register').delay(4000).queue(function(nxt3) {
+					$('#register').fadeIn({
+						queue: false,
+						duration: 'slow'
+					});
+					nxt3();
+				});
+		}
+		else{
+			$('#logo').css({
+				visibility: "visible",
+				height:'200px',
+				width:'auto'
+			}).fadeIn('fast');
+			$('#register').fadeIn('fast');
+		}
 	}
 	function startRating(presid,voterid){
 
@@ -79,21 +83,21 @@ $('document').ready(function() {
 
 	$(".day").html(displayDay);
 	function pickPresentation(day){
-		$(".sliding-background").animate({
-			'left': '-625px'
-		}, 200, 'linear');
-		$("#register h6").text('Now pick a presentation to score!');
+		if(!getCookie('scoringUser')){
+			$(".sliding-background").animate({
+				'left': '-625px'
+			}, 200, 'linear');
+
+		}
+		else{
+			fullName=getCookie('scoringUserName').split(" ");
+			var firstName=fullName[0];
+			$("#register h6").text('Welcome to '+day+' of IMPACT200, '+firstName+'!');
+		}
+		$("#register p").text('Pick a presentation to score:');
 		$("#voter").hide('fast');
 		$("#presentations").show('slow');
 		$(".next").removeClass("next").addClass('next1');
-		$("#register p").hide('fast');
-	}
-	$("body").on("click", '.next', function() {
-		if(!getCookie('scoringUser')){
-			alert('hello');
-			setCookie('scoringUser', $("#voter").val());
-		}
-		pickPresentation(day);
 		var data='{"voterid":"'+getCookie('scoringUser')+'" }';
 		$.ajax({
 			 url: "/"+day+"/updatestartdate/",
@@ -108,11 +112,29 @@ $('document').ready(function() {
 					//alert(JSON.stringify(xhr.responseText));
 				}
 		 });
+	}
+	$("body").on("click", '.next', function() {
+		if(!getCookie('scoringUser') || getCookie('scoringUser')==''){
+			setCookie('scoringUser', $("#voter").val());
+			setCookie('scoringUserName', $( "#voter option:selected" ).text());
+		}
+
+		pickPresentation(day);
 	});
 	$("body").on("click", '.next1', function() {
+		$(".sliding-background").animate({
+			'left': '-625px'
+		}, 200, 'linear');
+
 		$("#register").stop().animate({
-			width:"80%"
+			width:"90%"
 		});
+		presentationAuthor=$("#presentations option:selected").text();
+		$("#register h6").text("Rating: " + presentationAuthor +'');
+		$("#presentations").hide('fast');
+		$(".ratings").show('fast');
+		$(".next1").hide('fast');
+
 	});
 		$.ajax({
 			 url: '/getvoters/',
