@@ -33,6 +33,10 @@ $('document').ready(function() {
 		//alert('This experience is best viewed on a moble device in portrait mode.')
 		pc = true;
 	}
+	window.addEventListener('orientationchange', doOnOrientationChange);
+	function doOnOrientationChange(){
+		$("#register").center();
+	}
 	/* Intro section */
 	function showIntro() {
 		$("#register").center();
