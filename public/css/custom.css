@@ -60,6 +60,9 @@ body{
   body {
     flex-direction: row;
   }
+  #ticket{
+    float:left;
+  }
 }
 /******
   Form
