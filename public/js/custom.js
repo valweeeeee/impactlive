@@ -40,7 +40,7 @@ $('document').ready(function() {
 	}
 	/* Intro section */
 	function showIntro() {
-		$("#register").center();
+	//	$("#register").center();
 		$('#logo').delay(300).css({
 			visibility: "visible"
 		}).fadeIn(2000);
