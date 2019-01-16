@@ -42,8 +42,8 @@ $('document').ready(function() {
 		$("#register").center();
 		$('#ticket').delay(300).css({
 			visibility: "visible"
-		}).fadeIn(3000);
-		$('#ticket').delay(2000).queue(function(nxt) {
+		}).fadeIn(2000);
+		$('#ticket').delay(1000).queue(function(nxt) {
 			$(".sliding-background").animate({
 				'left': '-300px'
 			}, 500, 'linear');
@@ -51,8 +51,6 @@ $('document').ready(function() {
 				width:"180px",
 				height:"203px"
 			});
-			tPosition = $("#ticket").position();
-			tWidth = $("#ticket").width() - 100;
 		})
 		$('#register').delay(6000).queue(function(nxt3) {
 			$('#register').fadeIn({
