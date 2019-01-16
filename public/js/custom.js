@@ -36,7 +36,7 @@ $('document').ready(function() {
 	window.addEventListener('orientationchange', doOnOrientationChange);
 	function doOnOrientationChange(){
 		$("#register").center();
-		margin-top:0;
+	
 	}
 	/* Intro section */
 	function showIntro() {
