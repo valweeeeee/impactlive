@@ -234,5 +234,8 @@ body{
     #logo{
       float:none;
     }
+    #register{
+      margin-top:0px;
+    }
   }
 }
