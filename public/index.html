@@ -21,79 +21,6 @@
   <link rel="stylesheet" href="css/custom.css">
   <script src="/jquery/jquery.js" type="text/javascript"></script>
   <script src="/custom/custom.js" type="text/javascript"></script>
-  <script>
-  $(document).ready(function() {
-    var day="Day1";
-    if(day=="Day1")
-      var displayDay="Day 1";
-    else
-      var displayDay="Day 2";
-    $(".day").html(displayDay);
-    function pickPresentation(day){
-      $(".sliding-background").animate({
-				'left': '-625px'
-			}, 200, 'linear');
-      $("#register h6").text('Now pick a presentation to score!');
-      $("#voter").hide('fast');
-      $("#presentations").show('slow');
-      $(".next").removeClass("next").addClass('next1');
-      $("#register p").hide('fast');
-    }
-    $("body").on("click", '.next', function() {
-      setCookie('scoringUser', $("#voter").val());
-      pickPresentation(day);
-      var data='{"voterid":"'+$("#voter").val()+'" }';
-      $.ajax({
-         url: "/"+day+"/updatestartdate/",
-         contentType: 'application/json',
-         type: 'POST',
-         data: data,
-         dataType: "json",
-         success: function (data) {
-            //alert('done');
-         },
-         error: function(xhr, status, error) {
-            //alert(JSON.stringify(xhr.responseText));
-          }
-       });
-    });
-      $.ajax({
-         url: '/getvoters/',
-         contentType: 'application/json',
-         type: 'POST',
-         dataType: "json",
-         success: function (data) {
-           var lastPresID;
-            $.each(data, function (a, b) {
-              $("#voter").append("<option value="+b.voterid+" id="+b.voterid+">"+b.votername+"</option>");
-            });
-         },
-         error: function(xhr, status, error) {
-            //alert(JSON.stringify(xhr.responseText));
-          }
-       });
-       if(day=="Day1"){
-         url='/getday1/';
-       }
-       else{
-         url='/getday2/';
-       }
-       $.ajax({
-          url: url,
-          contentType: 'application/json',
-          type: 'POST',
-          dataType: "json",
-          success: function (data) {
-             $.each(data, function (a, b) {
-               $("#presentations").append("<option value="+b.presentationid+" id="+b.presentationid+">"+b.presentationauthor+"</option>");
-             });
-          },
-          error: function(xhr, status, error) {
-             //alert(JSON.stringify(xhr.responseText));
-           }
-        });
-  });
-  </script>
 </head>
 <body>
 
@@ -117,12 +44,7 @@
         </div>
         <div class="center">
           <div id="register">
-            <br>
-            <h6>Welcome to <span class="day"></span> of IMPACT200!</h6>
-            <p>Pick your name below:</p>
-            <select id="voter"></select>
-            <select id="presentations" style="display:none"></select>
-            <button class="next">Next</button>
+            
           </div>
         </div>
         <div class="chart-scale" style="display:none">
