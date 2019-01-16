@@ -228,7 +228,7 @@ body{
     margin-top:-75px;
   }
 }
-@media screen {
+@media screen
   and (min-device-width: 1200px) {
     #ticket{
       float:none;
