@@ -74,15 +74,75 @@ app.post('/getday2/', (req,res,next)=>{
 });
 app.post('/Day1/updatestartdate/', (req,res,next)=>{
   let query = "UPDATE voters set pollingday1startdate=NOW() where voterid="+req.body.voterid;
-  console.log(query);
   DB.query(query, (err, results) => {
     res.send(results);
   });
 });
 app.post('/Day2/updatestartdate/', (req,res,next)=>{
   let query = "UPDATE voters set pollingday2startdate=NOW() where voterid="+req.body.voterid;
-  console.log(query);
   DB.query(query, (err, results) => {
     res.send(results);
   });
 });
+app.post('/getcurrentcriteria/', (req,res,next)=>{
+  let query = "SELECT max(criteriaid) as lastcriteriaid from completedvotes where voterid="+req.body.voterid+" and presentationid="+req.body.presentationid;
+  console.log(query);
+    DB.query(query, (err, results) => {
+     if(results[0].lastcriteriaid){
+        console.log(results[0]);
+
+        var lastcriteriaid=results[0].lastcriteriaid;
+        //console.log(lastcriteriaid);
+        if(lastcriteriaid==1010){
+            res.send('complete');
+        }
+        else{
+          nextcriteriaid=lastcriteriaid+1;
+          //console.log(nextcriteriaid);
+          let nextQuery="SELECT * from criteria where criteriaid="+nextcriteriaid;
+          console.log(nextQuery);
+          DB.query(nextQuery, (err, results) => {
+            res.send(results);
+          });
+        }
+      }
+      else{
+        console.log('here');
+        let query="SELECT * from criteria where criteriaid=1006";
+        console.log(query);
+        DB.query(query, (err, results) => {
+          res.send(results);
+        })
+      }
+
+  });
+
+});
+app.post('/updatevote/', (req,res,next)=>{
+  let query="INSERT into completedvotes (presentationid,criteriaid,voterid) values ("+req.body.presentationid+","+req.body.criteriaid+","+req.body.voterid+")";
+  console.log(query);
+  DB.query(query, (err, results) => {})
+  let queryNext="INSERT into votes (voterid,criteriaid,vote,presentationid)  values("+req.body.voterid+","+req.body.criteriaid+","+req.body.vote+","+req.body.presentationid+")";
+  DB.query(queryNext, (err, results) => {
+    res.send(results);
+  })
+});
+
+/*
+if(lastcriteriaid==1010){
+    res.send('complete');
+}
+else{
+  nextcriteria=lastcriteriaid+1;
+  "SELECT * from criteria from criteria where criteriaid=nextcriteriaid and presentationid="+req.body.presentationid;
+  DB.query(query, (err, results) => {
+    res.send(results);
+  });
+}
+}
+else{
+"SELECT * from criteria from criteria where criteriaid=1006 and presentationid="+req.body.presentationid;
+DB.query(query, (err, results) => {
+  res.send(results);
+});
+}*/

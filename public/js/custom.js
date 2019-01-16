@@ -2,6 +2,8 @@
 $('document').ready(function() {
 	let day="Day1";
 	var presentationAuthor;
+	var presentationID;
+	var vote;
 	$.preloadImages = function() {
 		for (var i = 0; i < arguments.length; i++) {
 			$("<img />").attr("src", "/images/" + arguments[i]);
@@ -121,6 +123,7 @@ $('document').ready(function() {
 
 		pickPresentation(day);
 	});
+	//picking presentation
 	$("body").on("click", '.next1', function() {
 		$(".sliding-background").animate({
 			'left': '-625px'
@@ -130,12 +133,71 @@ $('document').ready(function() {
 			width:"90%"
 		});
 		presentationAuthor=$("#presentations option:selected").text();
-		$("#register h6").text("Rating: " + presentationAuthor +'');
+		presentationID=$("#presentations").val();
+		$("#register h6").hide('fast');
+		$("#register h6").before("<h5><span id='author'>" + presentationAuthor +"</span><br><span id='criteriaText'></span></h5>");
+		$("#register p").hide('fast');
+		$("#register h5").after("<p id='criteriaDescription'></p>");
 		$("#presentations").hide('fast');
 		$(".ratings").show('fast');
 		$(".next1").hide('fast');
+		var data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'"}';
+		$.ajax({
+			 url: "/getcurrentcriteria/",
+			 contentType: 'application/json',
+			 type: 'POST',
+			 data: data,
+			 dataType: "json",
+			 success: function (data) {
+				 $.each(data, function (a, b) {
+					 criteriaid=b.criteriaid;
+					 criteriatext=b.criteriatext;
+					 criteriadescription=b.criteriadescription;
+					 $(".curPres").val(presentationID);
+					 $(".curCriteria").val(criteriaid);
+					 $("#criteriaText").text(criteriatext);
+					 $("#criteriaDescription").text(criteriadescription);
+				 });
+
+			 },
+			 error: function(xhr, status, error) {
+				//alert('hello');
+				//alert(JSON.stringify(xhr.responseText));
+				}
+		 });
 
 	});
+	$("body").on("click", '.btn', function() {
+			$(".curVote").val($(this).text());
+	})
+	$("body").on("click", '.next2', function() {
+		if($(".curVote").val()==''){
+			alert('Please enter your score before proceeding.');
+		}
+		else{
+			vote=$(".curVote").val();
+			var data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+$(".curPres").val()+'", "vote":"'+vote+'","criteriaid":"'+$(".curCriteria").val()+'"}';
+			alert(data);
+			$.ajax({
+				 url: "/updatevote/",
+				 contentType: 'application/json',
+				 type: 'POST',
+				 data: data,
+				 dataType: "json",
+				 success: function (data) {
+					 $.each(data, function (a, b) {
+
+					 });
+
+				 },
+				 error: function(xhr, status, error) {
+					//alert('hello');
+					//alert(JSON.stringify(xhr.responseText));
+					}
+			 });
+		}
+
+	})
 		$.ajax({
 			 url: '/getvoters/',
 			 contentType: 'application/json',
