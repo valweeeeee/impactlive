@@ -52,7 +52,7 @@ $('document').ready(function() {
 				height:"203px"
 			});
 		})
-		$('#register').delay(6000).queue(function(nxt3) {
+		$('#register').delay(2000).queue(function(nxt3) {
 			$('#register').fadeIn({
 				queue: false,
 				duration: 'slow'
