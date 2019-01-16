@@ -14,24 +14,12 @@ $('document').ready(function() {
 	$.preloadImages("SKO.png");
 	var section="name";
 	/* recenters */
-	$.fn.center = function () {
-	        /// <summary>Centers a Fixed or Absolute positioned element relative to its parent</summary>
-
-	        var element = $(this),
-	            elementPos = element.css('position'),
-	            elementParent = $(element.parent()),
-	            elementWidth = element.outerWidth(),
-	            parentWidth = elementParent.width();
-
-	        if (parentWidth <= elementWidth) {
-	            elementParent = $(elementParent.parent());
-	            parentWidth = elementParent.width();
-	        }
-
-	        if (elementPos === "absolute" || elementPos === "fixed") {
-	            element.css('right', (parentWidth / 2) - elementWidth / 2 + 'px');
-	        }
-	    };
+	jQuery.fn.center = function() {
+		this.css("position", "absolute");
+		this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
+		this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
+		return this;
+	}
 
 	var metaViewport = document.querySelector('meta[name=viewport]');
 	metaViewport.setAttribute('width', '380');
