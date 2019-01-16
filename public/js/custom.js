@@ -40,14 +40,14 @@ $('document').ready(function() {
 	/* Intro section */
 	function showIntro() {
 		$("#register").center();
-		$('#ticket').delay(300).css({
+		$('#logo').delay(300).css({
 			visibility: "visible"
 		}).fadeIn(2000);
-		$('#ticket').delay(1000).queue(function(nxt) {
+		$('#logo').delay(1000).queue(function(nxt) {
 			$(".sliding-background").animate({
 				'left': '-300px'
 			}, 500, 'linear');
-			$("#ticket").stop().animate({
+			$("#logo").stop().animate({
 				width:"180px",
 				height:"203px"
 			});
