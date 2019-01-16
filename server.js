@@ -26,6 +26,7 @@ var server = app.listen(port);
 
 const url = require('url');
 const pg = require('pg');
+pg.defaults.ssl = true;
 
 const params = url.parse("postgres://nahmlcqldwtkie:c02f12c54cd34887a8b0a7039bfc0c9c7fd8b98c27e107c8fce35adfcbb4e4fe@ec2-23-21-171-25.compute-1.amazonaws.com:5432/dfm063bjb2rsr7");
 const auth = params.auth.split(':');
@@ -66,7 +67,7 @@ app.post('/getday1/', (req,res,next)=>{
   });
 });
 app.post('/getday2/', (req,res,next)=>{
-  let query = "SELECT * from presentations where day2=='true' order by PresentationAuthor";
+  let query = "SELECT * from presentations where day2=1 order by PresentationAuthor";
   DB.query(query, (err, results) => {
     res.send(results);
   });
