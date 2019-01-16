@@ -221,6 +221,8 @@ body{
   }
   #ticket{
     float:left;
+    max-height:80vh;
+    width:auto;
   }
   #register{
     margin-top:-75px;
