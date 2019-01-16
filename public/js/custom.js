@@ -5,42 +5,15 @@ $('document').ready(function() {
 	var companyName;
 	var companyLogoUrl;
 	var resizedCompanyLogo;
-
+	showIntro();
 	$.preloadImages = function() {
 		for (var i = 0; i < arguments.length; i++) {
 			$("<img />").attr("src", "/images/" + arguments[i]);
 		}
 	}
 	$.preloadImages("SKO.png");
-	var section="name";
-	/* recenters */
-	jQuery.fn.center = function() {
-		this.css("position", "fixed");
-		this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
-		this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
-		return this;
-	}
-
-	/*var metaViewport = document.querySelector('meta[name=viewport]');
-	metaViewport.setAttribute('width', '380');
-	window.addEventListener("orientationchange", function() {
-	if (window.orientation != 0) {
-	//alert('This experience is best viewed on a moble device in portrait mode.')
-}
-}, false);
-var pc = false;
-if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-//alert('This experience is best viewed on a moble device in portrait mode.')
-pc = true;
-}*/
-window.addEventListener('orientationchange', doOnOrientationChange);
-function doOnOrientationChange(){
-	//$("#register").center();
-	//$("#register").css('margin-left',0);
-}
 /* Intro section */
 function showIntro() {
-	//	$("#register").center();
 	$('#logo').delay(300).css({
 		visibility: "visible"
 	}).fadeIn(2000);
@@ -85,11 +58,9 @@ window.getCookie = (function (name) {
 	}
 	return null;
 });
-function eraseCookie(name) {
+window.eraseCookie = (function (name) {
 	document.cookie = name+'=; Max-Age=-99999999;';
 }
-if (section == "name") {
-	showIntro();
-}
+
 
 })
