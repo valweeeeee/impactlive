@@ -15,7 +15,7 @@ $('document').ready(function() {
 	var section="name";
 	/* recenters */
 	jQuery.fn.center = function() {
-		this.css("position", "absolute");
+		this.css("position", "fixed");
 		this.css("top", Math.max(0, (($(window).height() - $(this).outerHeight()) / 2) + $(window).scrollTop()) + "px");
 		this.css("left", Math.max(0, (($(window).width() - $(this).outerWidth()) / 2) + $(window).scrollLeft()) + "px");
 		return this;
@@ -36,7 +36,7 @@ $('document').ready(function() {
 	window.addEventListener('orientationchange', doOnOrientationChange);
 	function doOnOrientationChange(){
 		$("#register").center();
-	
+		$("#register").css('margin-left',0);
 	}
 	/* Intro section */
 	function showIntro() {
