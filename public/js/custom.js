@@ -21,7 +21,7 @@ $('document').ready(function() {
 		return this;
 	}
 
-	var metaViewport = document.querySelector('meta[name=viewport]');
+	/*var metaViewport = document.querySelector('meta[name=viewport]');
 	metaViewport.setAttribute('width', '380');
 	window.addEventListener("orientationchange", function() {
 		if (window.orientation != 0) {
@@ -32,10 +32,11 @@ $('document').ready(function() {
 	if (!/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
 		//alert('This experience is best viewed on a moble device in portrait mode.')
 		pc = true;
-	}
+	}*/
 	window.addEventListener('orientationchange', doOnOrientationChange);
 	function doOnOrientationChange(){
 		$("#register").center();
+		margin-top:0;
 	}
 	/* Intro section */
 	function showIntro() {
