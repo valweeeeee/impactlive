@@ -230,7 +230,7 @@ body{
   }
 }
 @media screen
-  and (min-screen-width: 1200px) {
+  and (min-width: 1200px) {
     #logo{
       float:none;
     }
