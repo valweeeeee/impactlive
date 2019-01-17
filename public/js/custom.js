@@ -5,6 +5,12 @@ $('document').ready(function() {
 	var presentationID;
 	var vote;
 	var home="http://192.168.0.106:3001/index.html";
+	if(day=="Day1")
+		var displayDay="Day 1";
+	else
+		var displayDay="Day 2";
+
+	$(".day").html(displayDay);
 	$.preloadImages = function() {
 		for (var i = 0; i < arguments.length; i++) {
 			$("<img />").attr("src", "/images/" + arguments[i]);
@@ -50,9 +56,17 @@ $('document').ready(function() {
 					$(".sliding-background").animate({
 						'left': '-300px'
 					}, 500, 'linear');
+					if($(document).height()>700){
+						var width="180px";
+						var height="203px"
+					}
+					else{
+						var width="133px";
+						var height="150px";
+					}
 					$("#logo").stop().animate({
-						width:"180px",
-						height:"203px"
+						width:width,
+						height:height
 					});
 				})
 
@@ -79,12 +93,7 @@ $('document').ready(function() {
 	}
 
 
-	if(day=="Day1")
-		var displayDay="Day 1";
-	else
-		var displayDay="Day 2";
 
-	$(".day").html(displayDay);
 
 	function pickPresentation(day){
 		if(!getCookie('scoringUser')){
@@ -96,7 +105,7 @@ $('document').ready(function() {
 		else{
 			fullName=getCookie('scoringUserName').split(" ");
 			var firstName=fullName[0];
-			$("#register h6").text('Welcome to '+day+' of IMPACT200, '+firstName+'!');
+			$("#register h6").text('Welcome to '+displayDay+' of IMPACT200, '+firstName+'!');
 		}
 		$("#register p").text('Pick a presentation to score:');
 		$("#voter").hide('fast');
@@ -204,9 +213,12 @@ $('document').ready(function() {
 				 data: data,
 				 dataType: "json",
 				 success: function (data) {
-					 $.each(data, function (a, b) {
-
-					 });
+					 data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'"}';
+					 if($(".curCriteria").val()!=1010)
+			 		 	getPresentations(data);
+					else{
+						showEnd();
+					}
 
 				 },
 				 error: function(xhr, status, error) {
@@ -214,12 +226,7 @@ $('document').ready(function() {
 					//alert(JSON.stringify(xhr.responseText));
 					}
 			 });
-			 data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'"}';
-			 if($(".curCriteria").val()!=1010)
-	 		 	getPresentations(data);
-			else{
-				showEnd();
-			}
+
 		}
 
 	})
