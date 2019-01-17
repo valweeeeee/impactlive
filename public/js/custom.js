@@ -4,7 +4,16 @@ $('document').ready(function() {
 	var presentationAuthor;
 	var presentationID;
 	var vote;
-	var home="http://192.168.0.106:3001/index.html";
+	var width;
+	var height;
+	if($(document).height()>700){
+		var width="180px";
+		var height="203px"
+	}
+	else{
+		width="133px";
+		height="150px";
+	}
 	if(day=="Day1")
 		var displayDay="Day 1";
 	else
@@ -48,6 +57,7 @@ $('document').ready(function() {
 	}
 	/* Intro section */
 	function showIntro() {
+
 		if(!getCookie('scoringUser')){
 				$('#logo').delay(300).css({
 					visibility: "visible"
@@ -56,14 +66,7 @@ $('document').ready(function() {
 					$(".sliding-background").animate({
 						'left': '-300px'
 					}, 500, 'linear');
-					if($(document).height()>700){
-						var width="180px";
-						var height="203px"
-					}
-					else{
-						var width="133px";
-						var height="150px";
-					}
+
 					$("#logo").stop().animate({
 						width:width,
 						height:height
@@ -81,20 +84,12 @@ $('document').ready(function() {
 		else{
 			$('#logo').css({
 				visibility: "visible",
-				height:'200px',
+				height:height,
 				width:'auto'
 			}).fadeIn('fast');
 			$('#register').fadeIn('fast');
 		}
 	}
-	function startRating(presid,voterid){
-
-
-	}
-
-
-
-
 	function pickPresentation(day){
 		if(!getCookie('scoringUser')){
 			$(".sliding-background").animate({
@@ -134,8 +129,12 @@ $('document').ready(function() {
 
 		pickPresentation(day);
 	});
+	$("body").on("click", '#rateAnother', function() {
+		window.location="/index.html";
+	});
 		//picking presentation
 	function getPresentations(data){
+
 			$.ajax({
 				 url: "/getcurrentcriteria/",
 				 contentType: 'application/json',
@@ -148,6 +147,7 @@ $('document').ready(function() {
 					 }
 					 else{
 						$("#register h6").hide('fast');
+							$('.loader').replaceWith('<button class="next2">Next</button>');
 						if($("#author").text()==''){
 							$("#register h6").before("<h5><span id='author'>" + presentationAuthor +"</span><br><span id='criteriaText'></span></h5>");
 						}
@@ -166,12 +166,15 @@ $('document').ready(function() {
 							 $("#criteriaText").text(criteriatext);
 							 $("#criteriaDescription").text(criteriadescription);
 						 });
-						 $(".sliding-background").animate({
-							 'left': '-625px'
-						 }, 200, 'linear');
+
 						 $("#register").stop().animate({
 							width:"90%"
 							});
+							var backgroundPOS=$(".sliding-background").position();
+							backgroundPOS=backgroundPOS.left - 410 + 'px';
+							$(".sliding-background").animate({
+								'left': backgroundPOS
+							}, 200, 'linear');
 
 					 }
 
@@ -203,6 +206,8 @@ $('document').ready(function() {
 			alert('Please enter your score before proceeding.');
 		}
 		else{
+			//$(this).hide();
+			$(this).replaceWith("<img src='/images/ajaxLoader.gif' width='100' height='31' class='loader'>");
 			vote=$(".curVote").val();
 			presentationID=$(".curPres").val();
 			var data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'", "vote":"'+vote+'","criteriaid":"'+$(".curCriteria").val()+'"}';
@@ -213,11 +218,30 @@ $('document').ready(function() {
 				 data: data,
 				 dataType: "json",
 				 success: function (data) {
+
+
 					 data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'"}';
-					 if($(".curCriteria").val()!=1010)
+					 if($(".curCriteria").val()!=1010){
 			 		 	getPresentations(data);
+
+					}
 					else{
-						showEnd();
+						data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'"}';
+						$.ajax({
+							 url: "/updatelastcompleted/",
+							 contentType: 'application/json',
+							 type: 'POST',
+							 data: data,
+							 dataType: "json",
+							 success: function (data) {
+								 showEnd();
+							 },
+							 error: function(xhr, status, error) {
+								//alert('hello');
+								//alert(JSON.stringify(xhr.responseText));
+								}
+						 });
+
 					}
 
 				 },
@@ -266,26 +290,14 @@ $('document').ready(function() {
 				 }
 			});
 			window.showEnd = (function (window, document, undefined) {
-				var section = "end";
-				status="end";
 				clear();
 				$("body").css('overflow','hidden');
-					endHTML="<div id='end'><div id='balloon'><img src='images/balloon.png'></div></div>";
-						$("body").css('background', "#009BE0");
-						$("#thankyou").css('margin-top','25px');
-
-						$("#pushed").remove();
-
-
-						$(endHTML).appendTo('body').hide().fadeIn(500);
-
-						$("#balloon").animate({ top: "-650px" },4000,function(){
-							//$("#end").remove();
-							//$(this).remove();
-
-						});
-
-
+				endHTML="<div id='end'><div id='balloon'><img src='images/balloon.png'></div></div>";
+				$("body").css('background', "#009BE0");
+				$(endHTML).appendTo('body').hide().fadeIn(500);
+				$("#balloon").animate({ top: "-650px" },4000,function(){
+					$("#balloon").after("<button id='rateAnother' style='background:#fff'>Score Another Presentation</button>").fadeIn(3000);
+				});
 
 			})
 			window.clear = (function (window, document, undefined) {

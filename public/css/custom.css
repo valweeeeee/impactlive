@@ -34,6 +34,7 @@ body{
   background-size:contain;
   bottom:0;
   overflow:hidden;
+  z-index:1;
 }
 #logo{
   margin-top:-20px;
@@ -60,6 +61,8 @@ body{
   transition: transform .1s ease-in-out;
   display:none;
   min-height: 135px;
+  z-index:1000;
+  position:relative;
 }
 .next,.next1,.next2,.next3 {
   font-size: 15px;
@@ -70,6 +73,7 @@ body{
   width:60px;
   padding-left:8px;
   margin:5px auto auto auto;
+  display:inline;
 }
 
 /* Ratings */
@@ -120,6 +124,11 @@ body{
 #end,#balloon,#thankyou{
 
 }
+.loader{
+  display:inline;
+  margin:0;
+  padding:0;
+}
 
 @media (orientation: landscape) {
   body {
@@ -127,12 +136,12 @@ body{
   }
   #logo{
     float:left;
-    max-height:80vh;
+    max-height:30vh;
     width:auto;
     margin-top:-30px;
   }
   #register{
-    margin-top:-185px;
+    margin-top:-110px;
   }
 }
 @media only screen
@@ -144,11 +153,21 @@ body{
       margin-top:0px;
     }
     .btn-scale {
-      width:40px;
-      height:40px;
+      width:50px;
+      height:50px;
+      border-radius:50px;
     }
     .next1{
       margin-right:30px;
+    }
+  }
+}
+@media only screen
+  and (max-width: 399px) {
+    .btn-scale{
+      width:20px;
+      height:20px;
+      border-radius:20px;
     }
   }
 }

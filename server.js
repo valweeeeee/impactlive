@@ -105,9 +105,8 @@ app.post('/getcurrentcriteria/', (req,res,next)=>{
         }
       }
       else{
-        console.log('here');
         let query="SELECT * from criteria where criteriaid=1006";
-        console.log(query);
+      //  console.log(query);
         DB.query(query, (err, results) => {
           res.send(results);
         })
@@ -118,10 +117,17 @@ app.post('/getcurrentcriteria/', (req,res,next)=>{
 });
 app.post('/updatevote/', (req,res,next)=>{
   let query="INSERT into completedvotes (presentationid,criteriaid,voterid) values ("+req.body.presentationid+","+req.body.criteriaid+","+req.body.voterid+")";
-  console.log(query);
+  //console.log(query);
   DB.query(query, (err, results) => {})
   let queryNext="INSERT into votes (voterid,criteriaid,vote,presentationid)  values("+req.body.voterid+","+req.body.criteriaid+","+req.body.vote+","+req.body.presentationid+")";
   DB.query(queryNext, (err, results) => {
+    res.send(results);
+  })
+});
+app.post('/updatelastcompleted/', (req,res,next)=>{
+  let query="UPDATE voters SET lastcompletedpresentationid="+req.body.presentationid+" where voterid="+req.body.voterid;
+  console.log(query);
+  DB.query(query, (err, results) => {
     res.send(results);
   })
 });
