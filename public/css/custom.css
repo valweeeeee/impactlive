@@ -139,8 +139,6 @@ body{
   }
   #logo{
     float:left;
-    max-height:30vh;
-    width:auto;
     margin-top:-30px;
   }
   #register{
@@ -163,7 +161,7 @@ body{
     .next1{
       margin-right:30px;
     }
-    
+
   }
 }
 @media only screen

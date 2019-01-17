@@ -63,7 +63,6 @@ $('document').ready(function() {
 					visibility: "visible"
 				}).fadeIn(2000);
 				$('#logo').delay(1000).queue(function(nxt) {
-					//if($(document).width()<1000){
 						$(".sliding-background").animate({
 							'left': '-300px'
 						}, 500, 'linear');
@@ -104,7 +103,7 @@ $('document').ready(function() {
 		else{
 			fullName=getCookie('scoringUserName').split(" ");
 			var firstName=fullName[0];
-			$("#register h6").text('Welcome to '+displayDay+' of IMPACT200, '+firstName+'!');
+			$("#register h6").html('Welcome to '+displayDay+' of <br>IMPACT200, '+firstName+'! <br><span id="newUser"><a href="#" style="font-size:smaller">Not you? Click here.</a></span>');
 		}
 		$("#register p").text('Pick a presentation to score:');
 		$("#voter").hide('fast');
@@ -136,6 +135,12 @@ $('document').ready(function() {
 	$("body").on("click", '#rateAnother', function() {
 		window.location="/index.html";
 	});
+	$("body").on("click", '#newUser', function() {
+		eraseCookie('scoringUser');
+		eraseCookie('scoringUserName');
+		window.location="/index.html";
+
+	})
 		//picking presentation
 	function getPresentations(data){
 
