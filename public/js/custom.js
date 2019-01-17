@@ -63,11 +63,11 @@ $('document').ready(function() {
 					visibility: "visible"
 				}).fadeIn(2000);
 				$('#logo').delay(1000).queue(function(nxt) {
-					if($(document).width()<1000){
+					//if($(document).width()<1000){
 						$(".sliding-background").animate({
 							'left': '-300px'
 						}, 500, 'linear');
-					}
+
 
 					$("#logo").stop().animate({
 						width:width,
@@ -94,11 +94,11 @@ $('document').ready(function() {
 	}
 	function pickPresentation(day){
 		if(!getCookie('scoringUser')){
-			if($(document).width()<1000){
+			//if($(document).width()<1000){
 				$(".sliding-background").animate({
-					'left': '-625px'
+					'left': '-300px'
 				}, 200, 'linear');
-			}
+			//}
 
 		}
 		else{
@@ -175,12 +175,12 @@ $('document').ready(function() {
 							width:"90%"
 							});
 							var backgroundPOS=$(".sliding-background").position();
-							backgroundPOS=backgroundPOS.left - 410 + 'px';
-							if($(document).width()<1000){
+							backgroundPOS=backgroundPOS.left - 300 + 'px';
+							//if($(document).width()<1000){
 								$(".sliding-background").animate({
 									'left': backgroundPOS
 								}, 200, 'linear');
-							}
+							//}
 
 					 }
 
