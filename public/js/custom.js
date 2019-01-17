@@ -63,9 +63,11 @@ $('document').ready(function() {
 					visibility: "visible"
 				}).fadeIn(2000);
 				$('#logo').delay(1000).queue(function(nxt) {
-					$(".sliding-background").animate({
-						'left': '-300px'
-					}, 500, 'linear');
+					if($(document).width()<1000){
+						$(".sliding-background").animate({
+							'left': '-300px'
+						}, 500, 'linear');
+					}
 
 					$("#logo").stop().animate({
 						width:width,
@@ -92,9 +94,11 @@ $('document').ready(function() {
 	}
 	function pickPresentation(day){
 		if(!getCookie('scoringUser')){
-			$(".sliding-background").animate({
-				'left': '-625px'
-			}, 200, 'linear');
+			if($(document).width()<1000){
+				$(".sliding-background").animate({
+					'left': '-625px'
+				}, 200, 'linear');
+			}
 
 		}
 		else{
@@ -152,8 +156,8 @@ $('document').ready(function() {
 							$("#register h6").before("<h5><span id='author'>" + presentationAuthor +"</span><br><span id='criteriaText'></span></h5>");
 						}
 						$(".curVote").val('');
-						$("#register p").hide('fast');
-						$("#register h5").after("<p id='criteriaDescription'></p>");
+						$("#register p").text('');
+						$("#register h5").after("<p id='criteriaDescription'></p>").fadeIn('slow');
 						$("#presentations").hide('fast');
 						$(".ratings").show('fast');
 						$(".next1").hide('fast');
@@ -172,9 +176,11 @@ $('document').ready(function() {
 							});
 							var backgroundPOS=$(".sliding-background").position();
 							backgroundPOS=backgroundPOS.left - 410 + 'px';
-							$(".sliding-background").animate({
-								'left': backgroundPOS
-							}, 200, 'linear');
+							if($(document).width()<1000){
+								$(".sliding-background").animate({
+									'left': backgroundPOS
+								}, 200, 'linear');
+							}
 
 					 }
 
