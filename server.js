@@ -86,21 +86,19 @@ app.post('/Day2/updatestartdate/', (req,res,next)=>{
 });
 app.post('/getcurrentcriteria/', (req,res,next)=>{
   let query = "SELECT max(criteriaid) as lastcriteriaid from completedvotes where voterid="+req.body.voterid+" and presentationid="+req.body.presentationid;
-  console.log(query);
     DB.query(query, (err, results) => {
      if(results[0].lastcriteriaid){
         console.log(results[0]);
 
         var lastcriteriaid=results[0].lastcriteriaid;
-        //console.log(lastcriteriaid);
         if(lastcriteriaid==1010){
-            res.send('complete');
+            res.json({"data":1010},200);
         }
         else{
           nextcriteriaid=lastcriteriaid+1;
           //console.log(nextcriteriaid);
           let nextQuery="SELECT * from criteria where criteriaid="+nextcriteriaid;
-          console.log(nextQuery);
+          //console.log('here' + nextQuery);
           DB.query(nextQuery, (err, results) => {
             res.send(results);
           });
@@ -127,22 +125,3 @@ app.post('/updatevote/', (req,res,next)=>{
     res.send(results);
   })
 });
-
-/*
-if(lastcriteriaid==1010){
-    res.send('complete');
-}
-else{
-  nextcriteria=lastcriteriaid+1;
-  "SELECT * from criteria from criteria where criteriaid=nextcriteriaid and presentationid="+req.body.presentationid;
-  DB.query(query, (err, results) => {
-    res.send(results);
-  });
-}
-}
-else{
-"SELECT * from criteria from criteria where criteriaid=1006 and presentationid="+req.body.presentationid;
-DB.query(query, (err, results) => {
-  res.send(results);
-});
-}*/

@@ -4,6 +4,7 @@ $('document').ready(function() {
 	var presentationAuthor;
 	var presentationID;
 	var vote;
+	var home="http://192.168.0.106:3001/index.html";
 	$.preloadImages = function() {
 		for (var i = 0; i < arguments.length; i++) {
 			$("<img />").attr("src", "/images/" + arguments[i]);
@@ -84,6 +85,7 @@ $('document').ready(function() {
 		var displayDay="Day 2";
 
 	$(".day").html(displayDay);
+
 	function pickPresentation(day){
 		if(!getCookie('scoringUser')){
 			$(".sliding-background").animate({
@@ -123,61 +125,78 @@ $('document').ready(function() {
 
 		pickPresentation(day);
 	});
-	//picking presentation
-	$("body").on("click", '.next1', function() {
-		$(".sliding-background").animate({
-			'left': '-625px'
-		}, 200, 'linear');
+		//picking presentation
+	function getPresentations(data){
+			$.ajax({
+				 url: "/getcurrentcriteria/",
+				 contentType: 'application/json',
+				 type: 'POST',
+				 data: data,
+				 dataType: "json",
+				 success: function (data) {
+					 if(data.data==1010){
+						 alert('You have already completed the scoring for this user.');
+					 }
+					 else{
+						$("#register h6").hide('fast');
+						if($("#author").text()==''){
+							$("#register h6").before("<h5><span id='author'>" + presentationAuthor +"</span><br><span id='criteriaText'></span></h5>");
+						}
+						$(".curVote").val('');
+						$("#register p").hide('fast');
+						$("#register h5").after("<p id='criteriaDescription'></p>");
+						$("#presentations").hide('fast');
+						$(".ratings").show('fast');
+						$(".next1").hide('fast');
+						 $.each(data, function (a, b) {
+							 criteriaid=b.criteriaid;
+							 criteriatext=b.criteriatext;
+							 criteriadescription=b.criteriadescription;
+							 $(".curPres").val(presentationID);
+							 $(".curCriteria").val(criteriaid);
+							 $("#criteriaText").text(criteriatext);
+							 $("#criteriaDescription").text(criteriadescription);
+						 });
+						 $(".sliding-background").animate({
+							 'left': '-625px'
+						 }, 200, 'linear');
+						 $("#register").stop().animate({
+							width:"90%"
+							});
 
-		$("#register").stop().animate({
-			width:"90%"
-		});
+					 }
+
+				 },
+				 error: function(xhr, status, error) {
+					//alert('hello');
+					//alert(JSON.stringify(xhr.responseText));
+					}
+			 });
+
+	}
+	$("body").on("click", '.next1', function() {
 		presentationAuthor=$("#presentations option:selected").text();
 		presentationID=$("#presentations").val();
-		$("#register h6").hide('fast');
-		$("#register h6").before("<h5><span id='author'>" + presentationAuthor +"</span><br><span id='criteriaText'></span></h5>");
-		$("#register p").hide('fast');
-		$("#register h5").after("<p id='criteriaDescription'></p>");
-		$("#presentations").hide('fast');
-		$(".ratings").show('fast');
-		$(".next1").hide('fast');
-		var data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'"}';
-		$.ajax({
-			 url: "/getcurrentcriteria/",
-			 contentType: 'application/json',
-			 type: 'POST',
-			 data: data,
-			 dataType: "json",
-			 success: function (data) {
-				 $.each(data, function (a, b) {
-					 criteriaid=b.criteriaid;
-					 criteriatext=b.criteriatext;
-					 criteriadescription=b.criteriadescription;
-					 $(".curPres").val(presentationID);
-					 $(".curCriteria").val(criteriaid);
-					 $("#criteriaText").text(criteriatext);
-					 $("#criteriaDescription").text(criteriadescription);
-				 });
 
-			 },
-			 error: function(xhr, status, error) {
-				//alert('hello');
-				//alert(JSON.stringify(xhr.responseText));
-				}
-		 });
+		var data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'"}';
+		getPresentations(data);
+		$('.btn').css('background','#fff');
 
 	});
 	$("body").on("click", '.btn', function() {
 			$(".curVote").val($(this).text());
+			$(".btn").css('background','#fff');
+			$(this).css('background','#FFC700');
 	})
 	$("body").on("click", '.next2', function() {
+		$('.btn').css('background','#fff');
 		if($(".curVote").val()==''){
 			alert('Please enter your score before proceeding.');
 		}
 		else{
 			vote=$(".curVote").val();
-			var data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+$(".curPres").val()+'", "vote":"'+vote+'","criteriaid":"'+$(".curCriteria").val()+'"}';
-			alert(data);
+			presentationID=$(".curPres").val();
+			var data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'", "vote":"'+vote+'","criteriaid":"'+$(".curCriteria").val()+'"}';
 			$.ajax({
 				 url: "/updatevote/",
 				 contentType: 'application/json',
@@ -195,6 +214,12 @@ $('document').ready(function() {
 					//alert(JSON.stringify(xhr.responseText));
 					}
 			 });
+			 data='{"voterid":"'+getCookie('scoringUser')+'","presentationid": "'+presentationID+'"}';
+			 if($(".curCriteria").val()!=1010)
+	 		 	getPresentations(data);
+			else{
+				showEnd();
+			}
 		}
 
 	})
@@ -232,5 +257,38 @@ $('document').ready(function() {
 				error: function(xhr, status, error) {
 					 //alert(JSON.stringify(xhr.responseText));
 				 }
+			});
+			window.showEnd = (function (window, document, undefined) {
+				var section = "end";
+				status="end";
+				clear();
+				$("body").css('overflow','hidden');
+					endHTML="<div id='end'><div id='balloon'><img src='images/balloon.png'></div></div>";
+						$("body").css('background', "#009BE0");
+						$("#thankyou").css('margin-top','25px');
+
+						$("#pushed").remove();
+
+
+						$(endHTML).appendTo('body').hide().fadeIn(500);
+
+						$("#balloon").animate({ top: "-650px" },4000,function(){
+							//$("#end").remove();
+							//$(this).remove();
+
+						});
+
+
+
+			})
+			window.clear = (function (window, document, undefined) {
+				$("#pushed").empty();
+				$('#whole').remove();
+				$("body").animate({backgroundColor: "#ffffff"}, 'fast');
+				$("#end").remove();
+				$("#thankyou").remove();
+				$("#extras").remove();
+				$("body").css('overflow-y','visible');
+
 			});
 })
