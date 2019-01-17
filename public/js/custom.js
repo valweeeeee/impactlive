@@ -34,8 +34,8 @@ $('document').ready(function() {
 			date.setTime(date.getTime() + (days*24*60*60*1000));
 			expires = "; expires=" + date.toUTCString();
 		}
-		document.cookie = name + "=" + (value || "")  + expires + "; path=/" +"; secure";
-	//	document.cookie = name + "=" + (value || "")  + expires + "; path=/";
+		//document.cookie = name + "=" + (value || "")  + expires + "; path=/" +"; secure";
+	document.cookie = name + "=" + (value || "")  + expires + "; path=/";
 	});
 	window.getCookie = (function (name) {
 		var nameEQ = name + "=";
