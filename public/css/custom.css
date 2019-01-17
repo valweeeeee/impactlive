@@ -38,6 +38,8 @@ body{
 }
 #logo{
   margin-top:-20px;
+  z-index:1001;
+  position:relative;
 }
 #logo,.fadeInIntro{
   display:none;
