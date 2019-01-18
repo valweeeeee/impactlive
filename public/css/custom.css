@@ -156,7 +156,7 @@ body{
   and (max-height: 440px) {
     #logo{
       height:auto !important;
-      width:80px !important;
+      width:90px !important;
       position:absolute;
 
     }
