@@ -133,25 +133,14 @@ body{
   padding:0;
 }
 
-@media (orientation: landscape) {
-  body {
-    flex-direction: row;
-  }
-  #logo{
-    float:left;
-    margin-top:-30px;
-  }
-  #register{
-    margin-top:-110px;
-  }
-}
+
 @media only screen
   and (min-width: 800px) {
     #logo{
       float:none;
     }
     #register{
-      margin-top:0px;
+      margin-top:50px;
     }
     .btn-scale {
       width:50px;
@@ -163,6 +152,19 @@ body{
     }
 
   }
+@media only screen
+  and (max-height: 440px) {
+    #logo{
+      height:auto !important;
+      width:80px !important;
+      float:left;
+    }
+    .shrink{
+      width:30px;
+    }
+    #register{
+      margin-top:-80px;
+  }
 }
 @media only screen
   and (max-width: 399px) {
@@ -172,4 +174,3 @@ body{
       border-radius:20px;
     }
   }
-}
