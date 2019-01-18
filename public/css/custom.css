@@ -157,14 +157,16 @@ body{
     #logo{
       height:auto !important;
       width:80px !important;
-      float:left;
+      position:absolute;
+
     }
+
     .shrink{
       width:30px;
     }
-    #register{
+    /*#register{
       margin-top:-80px;
-  }
+  }*/
 }
 @media only screen
   and (max-width: 399px) {
