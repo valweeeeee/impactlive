@@ -107,7 +107,7 @@ $('document').ready(function() {
 			$("#register h6").html('Welcome to '+displayDay+' of <br>IMPACT200, '+firstName+'! <br><span id="newUser"><a href="#" style="font-size:smaller">Not you? Click here.</a></span>');
 		}
 		$("#register p").text('Pick a presentation to score:');
-		$("#voter").hide('fast');
+		$("#voters").hide('fast');
 		$("#presentations").show('slow');
 		$(".next").removeClass("next").addClass('next1');
 		var data='{"voterid":"'+getCookie('scoringUser')+'" }';
