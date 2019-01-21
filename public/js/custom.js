@@ -103,6 +103,7 @@ $('document').ready(function() {
 		else{
 			fullName=getCookie('scoringUserName').split(" ");
 			var firstName=fullName[0];
+			$("#voter").hide('fast');
 			$("#register h6").html('Welcome to '+displayDay+' of <br>IMPACT200, '+firstName+'! <br><span id="newUser"><a href="#" style="font-size:smaller">Not you? Click here.</a></span>');
 		}
 		$("#register p").text('Pick a presentation to score:');
