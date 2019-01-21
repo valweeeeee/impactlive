@@ -10,75 +10,9 @@ body{
     font-family:"SalesforceSans",verdana,serif;
     text-align: center;
 }
-.container {
-  max-width:100%;
-  margin-left:0;
-  margin-right:0;
-  background-color:#fff;
-  text-align:center;
-  height:100%;
-  width:100%;
-  padding:0;
-}
 .bgContainer{
   overflow:hidden;
 }
-.sliding-background{
-  background-image:url('../images/impactLiveFooter.png');
-  background-position:left bottom;
-  background-repeat:repeat-x;
-  height:135px;
-  width:5521px;
-  padding:0;
-  position:absolute;
-  background-size:contain;
-  bottom:0;
-  overflow:hidden;
-  z-index:1;
-
-}
-#logo{
-  margin-top:-20px;
-  z-index:1001;
-  position:relative;
-}
-#logo,.fadeInIntro{
-  display:none;
-  visibility: hidden;
-}
-#voter{
-  max-width:250px;
-}
-#register {
-  margin-top:3px;
-  margin-left:auto;
-  margin-right:auto;
-  background: #fff;
-  border-radius:15px;
-  border:3px solid #1D4084;
-  color: #1D4084;
-  width: 250px;
-  padding: 2px 15px 15px 15px;
-  display:inline-block;
-  box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
-  transition: transform .1s ease-in-out;
-  display:none;
-  min-height: 135px;
-  z-index:1000;
-  position:relative;
-}
-.next,.next1,.next2,.next3 {
-  font-size: 15px;
-  color: #fff;
-  cursor: pointer;
-  background:#FF7501;
-  border-radius:5px;
-  width:60px;
-  padding-left:8px;
-  margin:5px auto auto auto;
-  display:inline;
-}
-
 /* Ratings */
 .btn-scale {
   width: 25px;
@@ -106,16 +40,49 @@ body{
   background:#FFC700;
   outline:0;
 }
-#register h5{
-  margin-bottom:2px !important;
+.container {
+  max-width:100%;
+  margin-left:0;
+  margin-right:0;
+  background-color:#fff;
+  text-align:center;
+  height:100%;
+  width:100%;
+  padding:0;
+}
+.loader{
+  display:inline;
+  margin:0;
+  padding:0;
+}
+.next,.next1,.next2,.next3 {
+  font-size: 15px;
+  color: #fff;
+  cursor: pointer;
+  background:#FF7501;
+  border-radius:5px;
+  width:60px;
+  padding-left:8px;
+  margin:5px auto auto auto;
+  display:inline;
+}
+.sliding-background{
+  background-image:url('../images/impactLiveFooter.png');
+  background-position:left bottom;
+  background-repeat:repeat-x;
+  height:135px;
+  width:5521px;
+  padding:0;
+  position:absolute;
+  background-size:contain;
+  bottom:0;
+  overflow:hidden;
+  z-index:1;
+
 }
 #author{
   margin-bottom:15px;
   font-size:smaller;
-}
-#end{
-  margin-top:300px;
-  overflow:hidden;
 }
 #balloon{
   width:100%;
@@ -124,16 +91,43 @@ body{
   text-align: center;
   overflow:hidden;
 }
-#end,#balloon,#thankyou{
-
+#end{
+  margin-top:300px;
+  overflow:hidden;
 }
-.loader{
-  display:inline;
-  margin:0;
-  padding:0;
+#logo{
+  margin-top:-20px;
+  z-index:1001;
+  position:relative;
 }
-
-
+#logo,.fadeInIntro{
+  display:none;
+  visibility: hidden;
+}
+#register {
+  margin-top:3px;
+  margin-left:auto;
+  margin-right:auto;
+  background: #fff;
+  border-radius:15px;
+  border:3px solid #1D4084;
+  color: #1D4084;
+  width: 250px;
+  padding: 2px 15px 15px 15px;
+  display:inline-block;
+  box-shadow: 0 16px 24px 2px rgba(0,0,0,0.14), 0 6px 30px 5px rgba(0,0,0,0.12), 0 8px 10px -5px rgba(0,0,0,0.3);
+  transition: transform .1s ease-in-out;
+  display:none;
+  min-height: 135px;
+  z-index:1000;
+  position:relative;
+}
+#register h5{
+  margin-bottom:2px !important;
+}
+#voter{
+  max-width:250px;
+}
 @media only screen
   and (min-width: 800px) {
     #logo{

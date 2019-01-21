@@ -275,6 +275,10 @@ $('document').ready(function() {
 					$.each(data, function (a, b) {
 						$("#voter").append("<option value="+b.voterid+" id="+b.voterid+">"+b.votername+"</option>");
 					});
+					$("#voter").chosen({
+				      no_results_text: "Oops, nothing found!",
+							width:"200px"
+				    })
 			 },
 			 error: function(xhr, status, error) {
 					//alert(JSON.stringify(xhr.responseText));
