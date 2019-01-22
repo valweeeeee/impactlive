@@ -2,13 +2,13 @@
   font-family: "SalesforceSans";
   src: url("SalesforceSans-Regular.ttf");
 }
-html, body {
-  height: 100%;
 
-}
 body{
     font-family:"SalesforceSans",verdana,serif;
     text-align: center;
+    width:100vw;
+    height:90vh;
+    background:#fff;
 }
 .bgContainer{
   overflow:hidden;
@@ -99,6 +99,8 @@ body{
   margin-top:-20px;
   z-index:1001;
   position:relative;
+  margin-left:safe-area-inset-right;
+  margin-right:safe-area-inset-left;
 }
 #logo,.fadeInIntro{
   display:none;
@@ -130,11 +132,15 @@ body{
 }
 @media only screen
   and (min-width: 800px) {
+    body{
+      height:100vh;
+    }
     #logo{
       float:none;
     }
     #register{
       margin-top:50px;
+
     }
     .btn-scale {
       width:50px;
@@ -158,9 +164,7 @@ body{
     .shrink{
       width:30px;
     }
-    /*#register{
-      margin-top:-80px;
-  }*/
+
 }
 @media only screen
   and (max-width: 399px) {
