@@ -11,7 +11,7 @@ body{
     background:#fff;
 }
 .bgContainer{
-  overflow:hidden;
+  overflow-x:hidden;
 }
 /* Ratings */
 .btn-scale {
@@ -76,7 +76,7 @@ body{
   position:absolute;
   background-size:contain;
   bottom:0;
-  overflow:hidden;
+  overflow-x:hidden;
   z-index:1;
 
 }
