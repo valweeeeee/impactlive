@@ -2,12 +2,14 @@
   font-family: "SalesforceSans";
   src: url("SalesforceSans-Regular.ttf");
 }
-
+html{
+  height:100%;
+}
 body{
     font-family:"SalesforceSans",verdana,serif;
     text-align: center;
     width:100vw;
-    height:100%;
+    height:100vh;
     background:#fff;
 }
 .bgContainer{
