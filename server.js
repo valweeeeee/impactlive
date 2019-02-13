@@ -53,6 +53,7 @@ const DB = {
         });
     }
 }
+DB.query("SET search_path TO 'salesforce';");
 /* Data Functions*/
 app.post('/getvoters/', (req,res,next)=>{
   let query = "SELECT * from voters order by VoterName";
